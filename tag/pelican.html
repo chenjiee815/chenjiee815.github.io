@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+        <meta charset="utf-8" />
+        <title>January Star - pelican</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">January Star </a></h1>
+                <nav><ul>
+                    <li><a href="/category/xue-xi.html">学习</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/pelican-ru-men-zhi-nan.html"><strong>Pelican</strong> 入门指南</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-06-22T00:00:00">
+                日 22 六月 2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="/author/chen-jie.html">Chen Jie</a>
+        </address>
+<p>In <a href="/category/xue-xi.html">学习</a>. </p>
+<p>tags: <a href="/tag/pelican.html">pelican</a><a href="/tag/python.html">python</a><a href="/tag/blog.html">blog</a><a href="/tag/restructuredtext.html">reStructuredText</a><a href="/tag/markdown.html">MarkDown</a></p>
+</footer><!-- /.post-info --><div class="section" id="id1">
+<h2>简介</h2>
+<p><strong>Pelican</strong> 是一个用Python实现的静态网站生成器。</p>
+<ul class="simple">
+<li>通过 <strong>reStructuredText</strong> 或 <strong>MarkDown</strong> 语言，直接使用你的编辑器编写博文（Vim!）</li>
+<li>使用简单的命令行工具生成博客</li>
+<li>易于与版本控制工具和WEB应用配合使用</li>
+<li>全静态输出可以方便的在任何地方部署</li>
+</ul>
+<p>简单来说，就是你使用 <strong>reStructuredText</strong> 或者 <strong>MarkDown</strong> 来生写网站的具体内容，
+然后用这个工具根据你之前写的内容来生成对应的网页。</p>
+<p>这个工具一般用来生成静态的博客是极好的，
+并且网上也很多技术人的博客也已经是这样来实现的。</p>
+</div>
+<div class="section" id="id2">
+<h2>安装</h2>
+<p><strong>Pelican</strong> 的安装还是很简单的，
+因为它属于Python的一个第三方库，
+所以直接一条命令即可：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip install pelican
+</pre>
+<p>如果系统报没有 <cite>pip</cite> 这个命令，
+你可以点击 <a class="reference external" href="https://pip.pypa.io/en/latest/installing.html/">pip的安装文档</a> 。</p>
+<div class="section" id="id3">
+<h3>依赖</h3>
+<p>到目前为止， <strong>Pelican</strong> 依赖于以下Python包：</p>
+<p>Pelican安装之后，依赖于以下的Python包都将会自动安装：</p>
+<ul class="simple">
+<li>feedgenerator, 生成Atom</li>
+<li>jinja2, 模板支持</li>
+<li>pygments, 语法高亮</li>
+<li>docutils, 支持reStructuredText输入格式</li>
+<li>pytz, 定义时区</li>
+<li>blinker, 消息分发系统</li>
+<li>unidecode, Unicode文件转码</li>
+<li>six, 兼容Python2、3</li>
+<li>MarkupSafe, 安全标记字符串</li>
+</ul>
+<p>如果需要以下安装包，可以通过 pip 命令手动安装：</p>
+<ul class="simple">
+<li>markdown, 支持Markdown格式输入</li>
+<li>typogrify, 增强排版</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>更新</h2>
+<p><strong>Pelican</strong> 的更新还是一样依赖于 <cite>pip</cite> 命令：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip install -U pelican
+</pre>
+</div>
+<div class="section" id="id5">
+<h2>创建 <strong>Pelican</strong> 工程目录</h2>
+<p>首先创建一个 <strong>Pelican</strong> 工程目录 <em>myblog</em> （目录名称自定义）：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>mkdir myblog
+<span class="nv">$ </span><span class="nb">cd </span>myblog
+<span class="nv">$ </span>pelican-quickstart
+</pre>
+<p>运行 <cite>pelican-quickstart</cite> 后会有一堆的提示信息。</p>
+<p>其目录结构</p>
+<pre class="literal-block">
+blog/
+├── content  # 存放你要写的博客
+│   └── (pages)  #单纯的页面
+├── output   # 生成的输出文件
+├── develop_server.sh# 方便开启测试服务器
+├── Makefile # 方便管理博客的Makefile
+├── pelicanconf.py   # 主配置文件
+└── publishconf.py   # 主发布文件，可删除
+</pre>
+</div>
+<div class="section" id="id6">
+<h2>使用 <strong>Pelican</strong> 编写文章</h2>
+<p><strong>Pelican</strong> 尽可能地会从文件系统中来获取信息（比如，获取文章分类的方式）。
+但是你最好在文件的元数据中提供。</p>
+<p>下面以 <strong>reStructuredText</strong> 为例。</p>
+<pre class="code rst literal-block">
+<span class="gh">=============</span>
+<span class="gh">|PL| 指南</span>
+<span class="gh">=============</span>
+
+<span class="nc">:date:</span> <span class="nf">2014-06-22 10:00</span>
+<span class="nc">:tags:</span> <span class="nf">pelican, python, blog</span>
+<span class="nc">:category:</span> <span class="nf">学习</span>
+</pre>
+<div class="tip">
+<p class="first admonition-title">Tip</p>
+<p>除了标题外，其它元素都不是必须的。</p>
+<p>如果没有日期， <strong>Pelican</strong> 是以对应文件的修改时间为日期。</p>
+<p class="last">如果没有分类， <strong>Pelican</strong> 将使用文件所放置的目录名称作为分类。</p>
+</div>
+<div class="section" id="id7">
+<h3>语法高亮</h3>
+<p><strong>Pelican</strong> 使用Pyments来支持语法高亮，
+所以你可以在你的 <strong>reStructuredText</strong> 文档里使用如下方法：</p>
+<pre class="code rst literal-block">
+<span class="p">..</span> <span class="ow">code</span><span class="p">::</span> identifier
+
+   your code
+</pre>
+<p>其中 <cite>identifier</cite> 必须存在与这个列表中 <a class="reference external" href="http://pygments.org/docs/lexers/">list of available lexers</a>
+的字段匹配。</p>
+</div>
+</div>
+<div class="section" id="makefile">
+<h2>Makefile</h2>
+<p>你可以直接在之前创建的 <strong>Pelican</strong> 的工程目录里面执行 <cite>make</cite> 命令：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>make
+Makefile <span class="k">for </span>a pelican Web site
+
+Usage:
+make html                        <span class="o">(</span>re<span class="o">)</span>generate the web site
+make clean                       remove the generated files
+make regenerate                  regenerate files upon modification
+make publish                     generate using production settings
+make serve <span class="o">[</span><span class="nv">PORT</span><span class="o">=</span>8000<span class="o">]</span>           serve site at http://localhost:8000
+make devserver <span class="o">[</span><span class="nv">PORT</span><span class="o">=</span>8000<span class="o">]</span>       start/restart develop_server.sh
+make stopserver                  stop <span class="nb">local </span>server
+make ssh_upload                  upload the web site via SSH
+make rsync_upload                upload the web site via rsync+ssh
+make dropbox_upload              upload the web site via Dropbox
+make ftp_upload                  upload the web site via FTP
+make s3_upload                   upload the web site via S3
+make cf_upload                   upload the web site via Cloud Files
+make github                      upload the web site via gh-pages
+
+Set the DEBUG variable to 1 to <span class="nb">enable </span>debugging, e.g. make <span class="nv">DEBUG</span><span class="o">=</span>1 html
+</pre>
+<p><strong>Pelican</strong> 的作者将所有 <strong>Pelican</strong> 的用到的功能都封装进去了。
+你可以不用理会 <strong>Pelican</strong> 提供的其它命令是如何使用的，
+直接使用 <cite>make</cite> 的各种子命令就可以了。</p>
+<p>关于各个子命令，我下面尽量会挨个讲到。
+同时会也讲到这个子命令封装了 <strong>Pelican</strong> 提供的哪个原始命令。</p>
+</div>
+<div class="section" id="develop-server-sh">
+<h2>develop_server.sh</h2>
+<p>该命令开启一个测试用的服务器。
+基本使用方法：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>./develop_server.sh <span class="o">(</span>start|stop|restart<span class="o">)</span> <span class="o">[</span>port<span class="o">]</span>
+</pre>
+<p>可以看到，它的使用方法也是比较简单的：</p>
+<ul class="simple">
+<li>start 开启一个测试服务器，启动成功后，服务器会在后台运行</li>
+<li>stop 停止一个测试服务器</li>
+<li>restart 重启测试服务器</li>
+<li>port 绑定特定的端口号，默认为8000</li>
+</ul>
+<p>这个测试服务器比较方便的就是它会自动监控content目录中的文件，
+如果有新的文件生成、文件内容发生变化，
+它会立即生成新的页面（在浏览器里手动刷新即可看到新生成的页面），
+同时它也会在后台打印出详细的debug日志。</p>
+<p>Makefile配置文件中对该命令进行了一层封装。
+你可以运行命令：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>make devserver <span class="o">[</span><span class="nv">PORT</span><span class="o">=</span>8000<span class="o">]</span>
+</pre>
+<p>来进行这个测试服务器的启动和重启。</p>
+<p>同时也可以运行命令：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>make stopserver
+</pre>
+<p>来停止测试服务器。</p>
+</div>
+                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </aside><!-- /#featured -->
+            </ol><!-- /#posts-list -->
+            </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
