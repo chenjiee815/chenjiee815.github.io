@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>January Star - package</title>
+    <title>January Star - lisp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Chen Jie">
@@ -85,7 +85,7 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
-                <h1><a href="/pipzhi-nan.html">pip指南</a></h1>
+                <h1><a href="/thelittleschemerbi-ji.html">TheLittleSchemer笔记</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
 <abbr class="published" title="2014-06-22T00:00:00">
@@ -98,122 +98,26 @@
 
 
 <span class="label">Tags</span>
-	<a href="/tag/pip.html"><i class="icon-tag"></i>pip</a>
-	<a href="/tag/python.html"><i class="icon-tag"></i>python</a>
-	<a href="/tag/package.html"><i class="icon-tag"></i>package</a>
+	<a href="/tag/lisp.html"><i class="icon-tag"></i>lisp</a>
+	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
+	<a href="/tag/guile.html"><i class="icon-tag"></i>guile</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><p><a class="reference external" href="https://pip.pypa.io/en/latest/">pip官方文档</a></p>
-<p>以下内容是根据pip的1.5.X版本的官方文档写的笔记。</p>
-<p>官方文档有用户指南专门一章节，
-我翻译时将之分割到多个章节中去了。</p>
-<div class="section" id="id1">
-<h2>安装pip</h2>
-<p>可以下载 <a class="reference external" href="https://bootstrap.pypa.io/get-pip.py/">get-pip.py</a> ，
-运行命令：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>python get-pip.py
-</pre>
-<p>如果setuptools没有安装，该命令同时也会安装它。</p>
-<p>如果已经安装了setuptools库，那么可以通过easy_install安装：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>easy_install pip
-</pre>
-</div>
-<div class="section" id="id2">
-<h2>升级pip</h2>
-<p>在Linux系统上：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip insall -U pip
-</pre>
-<p>在Windows系统上：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>python -m pip install -U pip
-</pre>
-</div>
-<div class="section" id="id3">
-<h2>常用命令介绍</h2>
-<ul>
-<li><p class="first">安装包</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip install SomePackage
-</pre>
+                <div class="summary"><div class="section" id="id1">
+<h2>总纲</h2>
+<div class="section" id="scheme">
+<h3>scheme十戒</h3>
+<ol class="arabic">
+<li><p class="first">当对一个原子列表进行递归时，要注意两个问题：(null? lat) and else。</p>
+<p>当对一个数字进行递归时，要注意两个问题：(zero? n) and else。</p>
+<p>当对一个S表达式列表进行递归时，要注意三个问题：(null? l), (atom? (car l)) 和 else。</p>
 </li>
-<li><p class="first">升级包</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip install --upgrade SomePackage
-
-<span class="nv">$ </span>pip install -U SomePackage
-</pre>
+<li><p class="first">使用cons来创建列表。</p>
 </li>
-<li><p class="first">删除包</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip uninstall ...</pre></li></ul></div>
-                        <a class="btn primary xsmall" href="/pipzhi-nan.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/pythonda-bao-gong-ju-dui-bi.html">Python打包工具对比</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2014-06-22T00:00:00">
-        <i class="icon-calendar"></i>日 22 六月 2014
-</abbr>
-<span class="label">By</span>
-<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
-<span class="label">Category</span>
-<a href="/category/xue-xi.html"><i class="icon-folder-open"></i>学习</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/pip.html"><i class="icon-tag"></i>pip</a>
-	<a href="/tag/setuptools.html"><i class="icon-tag"></i>setuptools</a>
-	<a href="/tag/python.html"><i class="icon-tag"></i>python</a>
-	<a href="/tag/package.html"><i class="icon-tag"></i>package</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><dl class="docutils">
-<dt>我先给出对比结果：</dt>
-<dd>推荐使用setuptools + pip</dd>
-</dl>
-<p>具体原因看下文。</p>
-<div class="section" id="distutils">
-<h2>distutils</h2>
-<ul class="simple">
-<li>目前属于Python标准库的一部分。</li>
-<li>只适用于非常简单的应用场景，建议使用setuptools。</li>
-</ul>
-</div>
-<div class="section" id="setuptools">
-<h2>setuptools</h2>
-<ul class="simple">
-<li>setuptools是对distutils的增强, 尤其是引入了包依赖管理。</li>
-<li>setuptools可以为Python包创建egg文件。</li>
-<li>包含包目录内的数据文件。</li>
-<li>自动包含包目录内的所有的包，而不用在setup.py中列举。</li>
-<li>自动包含包内和发布有关的所有相关文件，而不用创建一个MANIFEST.in文件。</li>
-<li>自动生成经过包装的脚本或Windows执行文件。</li>
-<li>支持Pyrex，即在可以setup.py中列出.pyx文件，而最终用户无须安装Pyrex。</li>
-<li>支持上传到PyPI。</li>
-<li>可以部署开发模式，使项目在sys.path中。</li>
-<li>用新命令或setup()参数扩展distutils，为多个项目发布/重用扩展。</li>
-<li>基本满足大型项目的安装和发布。</li>
-</ul>
-<p>setuptools的诸多功能下面会有具体讲解。</p>
-</div>
-<div class="section" id="distribute">
-<h2>distribute</h2>
-<ul class="simple">
-<li>由于setuptools初期开发进度缓慢, 不支持 Python3, 代码混乱,
-一帮程序员另起炉灶, fork并且重构setuptools代码, 增加功能。</li>
-<li>然后2013年8月，distribute又合并回setuptools 0.7。</li>
-</ul>
-</div>
-<div class="section" id="easy-install">
-<h2>easy_install</h2>
-<ul class="simple">
-<li>setuptools和distribute自带的安装脚本。</li>
-<li>只支持从 ...</li></ul></div>
-                        <a class="btn primary xsmall" href="/pythonda-bao-gong-ju-dui-bi.html">more ...</a>
+<li><p class="first">当创建一个列表时，先描述第一个元素，然后用cons来将它和递归连接在一起</p>
+</li>
+<li><p class="first">递归时，至少要改变一个参数。 例如：递归一个原子列表使用(cdr lat)；递归一个数字使用(sub1 n)；</p>
+<p>递归一个S表达式时，如果这个表达式即不(null? l)，也不(atom? (car l))， 那么使用(car l) 和 (cdr l ...</p></li></ol></div></div>
+                        <a class="btn primary xsmall" href="/thelittleschemerbi-ji.html">more ...</a>
                 </div>
         </div>
         <hr />

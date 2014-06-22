@@ -271,6 +271,43 @@
                 </div>
         </div>
         <hr />
+        <div class="article">
+                <h1><a href="/thelittleschemerbi-ji.html">TheLittleSchemer笔记</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-06-22T00:00:00">
+        <i class="icon-calendar"></i>日 22 六月 2014
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/xue-xi.html"><i class="icon-folder-open"></i>学习</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/lisp.html"><i class="icon-tag"></i>lisp</a>
+	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
+	<a href="/tag/guile.html"><i class="icon-tag"></i>guile</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="section" id="id1">
+<h2>总纲</h2>
+<div class="section" id="scheme">
+<h3>scheme十戒</h3>
+<ol class="arabic">
+<li><p class="first">当对一个原子列表进行递归时，要注意两个问题：(null? lat) and else。</p>
+<p>当对一个数字进行递归时，要注意两个问题：(zero? n) and else。</p>
+<p>当对一个S表达式列表进行递归时，要注意三个问题：(null? l), (atom? (car l)) 和 else。</p>
+</li>
+<li><p class="first">使用cons来创建列表。</p>
+</li>
+<li><p class="first">当创建一个列表时，先描述第一个元素，然后用cons来将它和递归连接在一起</p>
+</li>
+<li><p class="first">递归时，至少要改变一个参数。 例如：递归一个原子列表使用(cdr lat)；递归一个数字使用(sub1 n)；</p>
+<p>递归一个S表达式时，如果这个表达式即不(null? l)，也不(atom? (car l))， 那么使用(car l) 和 (cdr l ...</p></li></ol></div></div>
+                        <a class="btn primary xsmall" href="/thelittleschemerbi-ji.html">more ...</a>
+                </div>
+        </div>
+        <hr />
 
         </div><!--/span-->
 
@@ -294,6 +331,21 @@
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
 <li class="tag-4">
     <a href="/tag/blog.html">
         <i class="icon-tag icon-large"></i>blog
@@ -304,14 +356,19 @@
         <i class="icon-tag icon-large"></i>setuptools
     </a>
 </li>
-<li class="tag-1">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
+<li class="tag-4">
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
     </a>
 </li>
-<li class="tag-2">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
+<li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
     </a>
 </li>
 <li class="tag-2">
@@ -327,11 +384,6 @@
 <li class="tag-4">
     <a href="/tag/markdown.html">
         <i class="icon-tag icon-large"></i>MarkDown
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/pelican.html">
-        <i class="icon-tag icon-large"></i>pelican
     </a>
 </li>
 
