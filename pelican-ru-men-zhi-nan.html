@@ -49,6 +49,8 @@
 然后用这个工具根据你之前写的内容来生成对应的网页。</p>
 <p>这个工具一般用来生成静态的博客是极好的，
 并且网上也很多技术人的博客也已经是这样来实现的。</p>
+<p>本指南只讲解了一些有关 <strong>Pelican</strong> 的入门知识，
+如果你想了解更多，请移步 <a class="reference external" href="http://pelican-docs-zh-cn.readthedocs.org/en/latest/">Pelican中文文档</a> ，或者 <a class="reference external" href="http://docs.getpelican.com/en/latest/">Pelican官方文档</a> 。</p>
 </div>
 <div class="section" id="id2">
 <h2>安装</h2>
@@ -98,7 +100,30 @@
 <span class="nv">$ </span>pelican-quickstart
 </pre>
 <p>运行 <cite>pelican-quickstart</cite> 后会有一堆的提示信息。</p>
-<p>其目录结构</p>
+<ul class="simple">
+<li>Where do you want to create your new web site?
+你想在哪里创建你的网站，默认当前目录</li>
+<li>What will be the title of this web site?
+网站标题是什么？</li>
+<li>Who will be the author of this web site?
+网站作者？</li>
+<li>What will be the default language of this web site?
+网站默认语言？默认为en，我一般写zh。</li>
+<li>Do you want to specify a URL prefix?
+是否指定一个URL前缀</li>
+<li>Do you want to enable article pagination?
+文章是否需要分页？</li>
+<li>How many articles per page do you want?
+每页多少个文章？ 默认10个。</li>
+<li>Do you want to generate a Fabfile/Makefile to automate generation and publishing?
+是否需要生成Fabfile/Makefile来对文档的生成和发布进行管理。
+建议你选择是。</li>
+<li>Do you want an auto-reload &amp; simpleHTTP script to assist with theme and site development?
+是否需要一个文档更改后能够自动更新的简单HTTP服务器。
+建议也选择是。下面会讲到这个服务器，很有用。</li>
+<li>下面的问题，都是问你通过哪种方面将你生成的网页上传到你的真实站点。</li>
+</ul>
+<p>然后会在 <cite>myblog</cite> 目录中生成一些目录及文件，其结构</p>
 <pre class="literal-block">
 blog/
 ├── content  # 存放你要写的博客
@@ -171,8 +196,42 @@ Set the DEBUG variable to 1 to <span class="nb">enable </span>debugging, e.g. ma
 <p><strong>Pelican</strong> 的作者将所有 <strong>Pelican</strong> 的用到的功能都封装进去了。
 你可以不用理会 <strong>Pelican</strong> 提供的其它命令是如何使用的，
 直接使用 <cite>make</cite> 的各种子命令就可以了。</p>
-<p>关于各个子命令，我下面尽量会挨个讲到。
+<p>关于各个子命令，我下面穿插着讲到。
 同时会也讲到这个子命令封装了 <strong>Pelican</strong> 提供的哪个原始命令。</p>
+<div class="section" id="make-html">
+<h3>make html</h3>
+<p>这个命令将当前content目录中的内容生成对应的网页，
+不过此命令生成的网页只是简单的HTML内容，并没有CSS样式之类。</p>
+</div>
+<div class="section" id="make-clean">
+<h3>make clean</h3>
+<p>直接清除整个output目录</p>
+</div>
+<div class="section" id="make-regenerate">
+<h3>make regenerate</h3>
+<p>如果每次检测到变化时，
+你希望Pelican会自动重新生成页面（本地测试都是基于手动生成），
+可以使用该命令。</p>
+<p>它的生成的页面还是和 <cite>make html</cite> 是一样的，没有什么CSS样式。</p>
+</div>
+<div class="section" id="make-serve">
+<h3>make serve</h3>
+<p>启动一个后台服务，来显示生成的网页，
+不过当content目录内容更新时，该服务不会自动更新网页。</p>
+</div>
+<div class="section" id="make-devserver">
+<h3>make devserver</h3>
+<p>同样也是启动一个后台服务，不过它会在content目录内容更新时，
+会自动更新网页内容。</p>
+</div>
+<div class="section" id="make-stopserver">
+<h3>make stopserver</h3>
+<p>停止用上面两个命令启动的后台服务。</p>
+</div>
+<div class="section" id="make">
+<h3>其它make子命令</h3>
+<p>其它子命令都是用来上传生成的网页到指定服务器用的。</p>
+</div>
 </div>
 <div class="section" id="develop-server-sh">
 <h2>develop_server.sh</h2>
@@ -192,17 +251,7 @@ Set the DEBUG variable to 1 to <span class="nb">enable </span>debugging, e.g. ma
 如果有新的文件生成、文件内容发生变化，
 它会立即生成新的页面（在浏览器里手动刷新即可看到新生成的页面），
 同时它也会在后台打印出详细的debug日志。</p>
-<p>Makefile配置文件中对该命令进行了一层封装。
-你可以运行命令：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>make devserver <span class="o">[</span><span class="nv">PORT</span><span class="o">=</span>8000<span class="o">]</span>
-</pre>
-<p>来进行这个测试服务器的启动和重启。</p>
-<p>同时也可以运行命令：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>make stopserver
-</pre>
-<p>来停止测试服务器。</p>
+<p><cite>make devserver</cite> 其实就是对该命令一层简单封装。</p>
 </div>
 
     </div><!-- /.entry-content -->
