@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>January Star</title>
+    <title>January Star - setuptools</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Chen Jie">
@@ -84,49 +84,72 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-<ul>
-<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-2">
-	<a href="/tag/package.html">
-		<i class="icon-tag icon-large"></i>package
-	</a>
-</li>
-<li class="tag-4">
-	<a href="/tag/setuptools.html">
-		<i class="icon-tag icon-large"></i>setuptools
-	</a>
-</li>
-<li class="tag-1">
-	<a href="/tag/python.html">
-		<i class="icon-tag icon-large"></i>python
-	</a>
-</li>
-<li class="tag-2">
-	<a href="/tag/pip.html">
-		<i class="icon-tag icon-large"></i>pip
-	</a>
-</li>
-<li class="tag-4">
-	<a href="/tag/restructuredtext.html">
-		<i class="icon-tag icon-large"></i>reStructuredText
-	</a>
-</li>
-<li class="tag-4">
-	<a href="/tag/blog.html">
-		<i class="icon-tag icon-large"></i>blog
-	</a>
-</li>
-<li class="tag-4">
-	<a href="/tag/markdown.html">
-		<i class="icon-tag icon-large"></i>MarkDown
-	</a>
-</li>
-<li class="tag-4">
-	<a href="/tag/pelican.html">
-		<i class="icon-tag icon-large"></i>pelican
-	</a>
-</li>
+        <div class="article">
+                <h1><a href="/pythonda-bao-gong-ju-dui-bi.html">Python打包工具对比</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-06-22T00:00:00">
+        <i class="icon-calendar"></i>日 22 六月 2014
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/xue-xi.html"><i class="icon-folder-open"></i>学习</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/pip.html"><i class="icon-tag"></i>pip</a>
+	<a href="/tag/setuptools.html"><i class="icon-tag"></i>setuptools</a>
+	<a href="/tag/python.html"><i class="icon-tag"></i>python</a>
+	<a href="/tag/package.html"><i class="icon-tag"></i>package</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><dl class="docutils">
+<dt>我先给出对比结果：</dt>
+<dd>推荐使用setuptools + pip</dd>
+</dl>
+<p>具体原因看下文。</p>
+<div class="section" id="distutils">
+<h2>distutils</h2>
+<ul class="simple">
+<li>目前属于Python标准库的一部分。</li>
+<li>只适用于非常简单的应用场景，建议使用setuptools。</li>
 </ul>
+</div>
+<div class="section" id="setuptools">
+<h2>setuptools</h2>
+<ul class="simple">
+<li>setuptools是对distutils的增强, 尤其是引入了包依赖管理。</li>
+<li>setuptools可以为Python包创建egg文件。</li>
+<li>包含包目录内的数据文件。</li>
+<li>自动包含包目录内的所有的包，而不用在setup.py中列举。</li>
+<li>自动包含包内和发布有关的所有相关文件，而不用创建一个MANIFEST.in文件。</li>
+<li>自动生成经过包装的脚本或Windows执行文件。</li>
+<li>支持Pyrex，即在可以setup.py中列出.pyx文件，而最终用户无须安装Pyrex。</li>
+<li>支持上传到PyPI。</li>
+<li>可以部署开发模式，使项目在sys.path中。</li>
+<li>用新命令或setup()参数扩展distutils，为多个项目发布/重用扩展。</li>
+<li>基本满足大型项目的安装和发布。</li>
+</ul>
+<p>setuptools的诸多功能下面会有具体讲解。</p>
+</div>
+<div class="section" id="distribute">
+<h2>distribute</h2>
+<ul class="simple">
+<li>由于setuptools初期开发进度缓慢, 不支持 Python3, 代码混乱,
+一帮程序员另起炉灶, fork并且重构setuptools代码, 增加功能。</li>
+<li>然后2013年8月，distribute又合并回setuptools 0.7。</li>
+</ul>
+</div>
+<div class="section" id="easy-install">
+<h2>easy_install</h2>
+<ul class="simple">
+<li>setuptools和distribute自带的安装脚本。</li>
+<li>只支持从 ...</li></ul></div>
+                        <a class="btn primary xsmall" href="/pythonda-bao-gong-ju-dui-bi.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">

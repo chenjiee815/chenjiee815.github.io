@@ -1,46 +1,123 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head>
-        <meta charset="utf-8" />
-        <title>Pelican 入门指南</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title><strong>Pelican</strong> 入门指南</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Chen Jie">
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-</head>
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">January Star </a></h1>
-                <nav><ul>
-                    <li class="active"><a href="/category/xue-xi.html">学习</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="/pelican-ru-men-zhi-nan.html" rel="bookmark"
-           title="Permalink to Pelican 入门指南"><strong>Pelican</strong> 入门指南</a></h1>
-    </header>
+    <link href="/theme/css/pygments.css" rel="stylesheet">
 
-    <div class="entry-content">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="January Star ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">January Star </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li class="active">
+                    <a href="/category/xue-xi.html">
+						<i class="icon-folder-open icon-large"></i>学习
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Pelican 入门指南">
+                                        <strong>Pelican</strong> 入门指南
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
 <footer class="post-info">
-        <abbr class="published" title="2014-06-22T00:00:00">
-                日 22 六月 2014
-        </abbr>
+<span class="label">Date</span>
+<abbr class="published" title="2014-06-22T00:00:00">
+        <i class="icon-calendar"></i>日 22 六月 2014
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/xue-xi.html"><i class="icon-folder-open"></i>学习</a>.
 
-        <address class="vcard author">
-                By <a class="url fn" href="/author/chen-jie.html">Chen Jie</a>
-        </address>
-<p>In <a href="/category/xue-xi.html">学习</a>. </p>
-<p>tags: <a href="/tag/pelican.html">pelican</a><a href="/tag/python.html">python</a><a href="/tag/blog.html">blog</a><a href="/tag/restructuredtext.html">reStructuredText</a><a href="/tag/markdown.html">MarkDown</a></p>
-</footer><!-- /.post-info -->      <div class="section" id="id1">
-<h2>简介</h2>
-<p><strong>Pelican</strong> 是一个用Python实现的静态网站生成器。</p>
+
+<span class="label">Tags</span>
+	<a href="/tag/pelican.html"><i class="icon-tag"></i>pelican</a>
+	<a href="/tag/python.html"><i class="icon-tag"></i>python</a>
+	<a href="/tag/blog.html"><i class="icon-tag"></i>blog</a>
+	<a href="/tag/restructuredtext.html"><i class="icon-tag"></i>reStructuredText</a>
+	<a href="/tag/markdown.html"><i class="icon-tag"></i>MarkDown</a>
+</footer><!-- /.post-info -->                </div>
+                <p><strong>Pelican</strong> 是一个用Python实现的静态网站生成器。</p>
 <ul class="simple">
-<li>通过 <strong>reStructuredText</strong> 或 <strong>MarkDown</strong> 语言，直接使用你的编辑器编写博文（Vim!）</li>
+<li>通过 <strong>reStructuredText</strong> 或 <strong>MarkDown</strong> 语言，直接使用你的编辑器编写博客</li>
 <li>使用简单的命令行工具生成博客</li>
 <li>易于与版本控制工具和WEB应用配合使用</li>
 <li>全静态输出可以方便的在任何地方部署</li>
@@ -51,8 +128,7 @@
 并且网上也很多技术人的博客也已经是这样来实现的。</p>
 <p>本指南只讲解了一些有关 <strong>Pelican</strong> 的入门知识，
 如果你想了解更多，请移步 <a class="reference external" href="http://pelican-docs-zh-cn.readthedocs.org/en/latest/">Pelican中文文档</a> ，或者 <a class="reference external" href="http://docs.getpelican.com/en/latest/">Pelican官方文档</a> 。</p>
-</div>
-<div class="section" id="id2">
+<div class="section" id="id1">
 <h2>安装</h2>
 <p><strong>Pelican</strong> 的安装还是很简单的，
 因为它属于Python的一个第三方库，
@@ -62,7 +138,7 @@
 </pre>
 <p>如果系统报没有 <cite>pip</cite> 这个命令，
 你可以点击 <a class="reference external" href="https://pip.pypa.io/en/latest/installing.html/">pip的安装文档</a> 。</p>
-<div class="section" id="id3">
+<div class="section" id="id2">
 <h3>依赖</h3>
 <p>到目前为止， <strong>Pelican</strong> 依赖于以下Python包：</p>
 <p>Pelican安装之后，依赖于以下的Python包都将会自动安装：</p>
@@ -84,14 +160,14 @@
 </ul>
 </div>
 </div>
-<div class="section" id="id4">
+<div class="section" id="id3">
 <h2>更新</h2>
 <p><strong>Pelican</strong> 的更新还是一样依赖于 <cite>pip</cite> 命令：</p>
 <pre class="code bash literal-block">
 <span class="nv">$ </span>pip install -U pelican
 </pre>
 </div>
-<div class="section" id="id5">
+<div class="section" id="id4">
 <h2>创建 <strong>Pelican</strong> 工程目录</h2>
 <p>首先创建一个 <strong>Pelican</strong> 工程目录 <em>myblog</em> （目录名称自定义）：</p>
 <pre class="code bash literal-block">
@@ -135,7 +211,7 @@ blog/
 └── publishconf.py   # 主发布文件，可删除
 </pre>
 </div>
-<div class="section" id="id6">
+<div class="section" id="id5">
 <h2>使用 <strong>Pelican</strong> 编写文章</h2>
 <p><strong>Pelican</strong> 尽可能地会从文件系统中来获取信息（比如，获取文章分类的方式）。
 但是你最好在文件的元数据中提供。</p>
@@ -155,7 +231,7 @@ blog/
 <p>如果没有日期， <strong>Pelican</strong> 是以对应文件的修改时间为日期。</p>
 <p class="last">如果没有分类， <strong>Pelican</strong> 将使用文件所放置的目录名称作为分类。</p>
 </div>
-<div class="section" id="id7">
+<div class="section" id="id6">
 <h3>语法高亮</h3>
 <p><strong>Pelican</strong> 使用Pyments来支持语法高亮，
 所以你可以在你的 <strong>reStructuredText</strong> 文档里使用如下方法：</p>
@@ -254,37 +330,96 @@ Set the DEBUG variable to 1 to <span class="nb">enable </span>debugging, e.g. ma
 <p><cite>make devserver</cite> 其实就是对该命令一层简单封装。</p>
 </div>
 
-    </div><!-- /.entry-content -->
-
-  </article>
+                </div><!-- /.entry-content -->
+        </article>
 </section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
+        </div><!--/span-->
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/"><i class="icon-external-link"></i>Jinja2</a></li>
+    <li><a href="#"><i class="icon-external-link"></i>You can modify those links in your config file</a></li>
+<li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
+<li><a href="/" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
+    <li><a href="#"><i class="icon-You can add links in your config file-sign icon-large"></i>You can add links in your config file</a></li>
+    <li><a href="#"><i class="icon-Another social link-sign icon-large"></i>Another social link</a></li>
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/xue-xi.html">
+    <i class="icon-folder-open icon-large"></i>学习
+</a>
+</li>
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-2">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/setuptools.html">
+        <i class="icon-tag icon-large"></i>setuptools
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>MarkDown
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
 
-</body>
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
 </html>

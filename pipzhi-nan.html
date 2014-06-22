@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>pip指南</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Chen Jie">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="January Star ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">January Star </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li class="active">
+                    <a href="/category/xue-xi.html">
+						<i class="icon-folder-open icon-large"></i>学习
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to pip指南">
+                                        pip指南
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-06-22T00:00:00">
+        <i class="icon-calendar"></i>日 22 六月 2014
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/xue-xi.html"><i class="icon-folder-open"></i>学习</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/pip.html"><i class="icon-tag"></i>pip</a>
+	<a href="/tag/python.html"><i class="icon-tag"></i>python</a>
+	<a href="/tag/package.html"><i class="icon-tag"></i>package</a>
+</footer><!-- /.post-info -->                </div>
+                <p><a class="reference external" href="https://pip.pypa.io/en/latest/">pip官方文档</a></p>
+<p>以下内容是根据pip的1.5.X版本的官方文档写的笔记。</p>
+<p>官方文档有用户指南专门一章节，
+我翻译时将之分割到多个章节中去了。</p>
+<div class="section" id="id1">
+<h2>安装pip</h2>
+<p>可以下载 <a class="reference external" href="https://bootstrap.pypa.io/get-pip.py/">get-pip.py</a> ，
+运行命令：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>python get-pip.py
+</pre>
+<p>如果setuptools没有安装，该命令同时也会安装它。</p>
+<p>如果已经安装了setuptools库，那么可以通过easy_install安装：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>easy_install pip
+</pre>
+</div>
+<div class="section" id="id2">
+<h2>升级pip</h2>
+<p>在Linux系统上：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip insall -U pip
+</pre>
+<p>在Windows系统上：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>python -m pip install -U pip
+</pre>
+</div>
+<div class="section" id="id3">
+<h2>常用命令介绍</h2>
+<ul>
+<li><p class="first">安装包</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip install SomePackage
+</pre>
+</li>
+<li><p class="first">升级包</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip install --upgrade SomePackage
+
+<span class="nv">$ </span>pip install -U SomePackage
+</pre>
+</li>
+<li><p class="first">删除包</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip uninstall SomePackage
+</pre>
+</li>
+<li><p class="first">查看某个包安装了哪些文件</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip show --files SomePackage
+</pre>
+</li>
+<li><p class="first">列出哪些包过期了，或者说是有新的版本了</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip list --outdated
+</pre>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>配置</h2>
+<div class="section" id="id5">
+<h3>配置文件</h3>
+<p>配置文件路径：</p>
+<blockquote>
+<ul class="simple">
+<li>Unix: ~/.pip/pip.conf</li>
+<li>Windows: %HOMEPATH%pippip.ini</li>
+</ul>
+</blockquote>
+<p>当然，如果你想自定义配置文件的存放路径，
+你可以将你自定义的路径保存到环境变量 <cite>PIP_ONFIG_FILE</cite> 。</p>
+<p>配置文件的格式类似于INI文件。</p>
+<p>当你想添加一个对所有命令都生效的参数时，
+可以将该配置放置在 <cite>[global]</cite> 段中。例如：</p>
+<pre class="code ini literal-block">
+<span class="k">[global]</span>
+<span class="na">timeout</span> <span class="o">=</span> <span class="s">60</span>
+<span class="na">index-url</span> <span class="o">=</span> <span class="s">http://pypi.douban.com/simple</span>
+</pre>
+<p>如果你想针对pip的某个子命令进行配置的话，
+可以将该子命令名称当作段名称，该段内的配置与
+<cite>[global]</cite> 中的配置冲突则会覆盖之。</p>
+<ul>
+<li><p class="first">比如 <cite>freeze</cite> 子命令：</p>
+<pre class="code ini literal-block">
+<span class="k">[freeze]</span>
+<span class="na">timeout</span> <span class="o">=</span> <span class="s">10</span>
+</pre>
+</li>
+<li><p class="first">比如 <cite>install</cite> 子命令：</p>
+<pre class="code ini literal-block">
+<span class="k">[install]</span>
+<span class="na">ignore-installed</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">no-dependencies</span> <span class="o">=</span> <span class="s">yes</span>
+<span class="na">find-links</span> <span class="o">=</span><span class="s">
+       http://mirror1.example.com
+       http://mirror2.example.com</span>
+</pre>
+</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3>环境变量</h3>
+<p>pip的命令行参数也可以通过环境变量来设置。
+它的格式为： <cite>PIP_&lt;UPPER_LONG_NAME&gt;</cite> 。</p>
+<ul>
+<li><p class="first">比如设置超时：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">PIP_DEFAULT_TIMEOUT</span><span class="o">=</span>60
+</pre>
+<p>其效果等于：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip --default-timeout<span class="o">=</span>60 <span class="o">[</span>...<span class="o">]</span>
+</pre>
+</li>
+<li><p class="first">比如设置find-links：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">PIP_FIND_LINKS</span><span class="o">=</span><span class="s2">&quot;http://mirror1.example.com http://mirror2.example.com&quot;</span>
+</pre>
+<p>其效果等于：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip install --find-links<span class="o">=</span>http://mirror1.example.com
+--find-links<span class="o">=</span>http://mirror2.example.com
+</pre>
+</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3>配置的优先级</h3>
+<p>刚才讲到一个参数的三种配置方法优先级顺序是：</p>
+<ol class="arabic simple">
+<li>命令行</li>
+<li>环境变量</li>
+<li>配置文件</li>
+</ol>
+</div>
+<div class="section" id="id8">
+<h3>命令的自动补全</h3>
+<p>用过bash/zsh环境的人都知道有自动补全功能。</p>
+<p>pip命令想要自动补全功能的话，可以运行以下命令：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip completion --bash &gt;&gt; ~/.profile
+
+<span class="nv">$ </span>pip completion --zsh &gt;&gt; ~/.zprofile
+</pre>
+<p>加入到profile文件后，需要重新进入bash/zsh环境才能生效，
+你也可以运行以下命令，立即生效自动补全功能：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span><span class="nb">eval</span> <span class="s2">&quot;`pip completion --bash`&quot;</span>
+</pre>
+</div>
+</div>
+<div class="section" id="pip-install">
+<h2>pip install</h2>
+<p>安装Python包</p>
+<div class="section" id="id9">
+<h3>使用方法</h3>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip install <span class="o">[</span>options<span class="o">]</span> &lt;requirement specifier&gt; ...
+
+<span class="nv">$ </span>pip install <span class="o">[</span>options<span class="o">]</span> -r &lt;requirements file&gt; ...
+
+<span class="nv">$ </span>pip install <span class="o">[</span>options<span class="o">]</span> <span class="o">[</span>-e<span class="o">]</span> &lt;vcs project url&gt; ...
+
+<span class="nv">$ </span>pip install <span class="o">[</span>options<span class="o">]</span> <span class="o">[</span>-e<span class="o">]</span> &lt;<span class="nb">local </span>project path&gt; ...
+
+<span class="nv">$ </span>pip install <span class="o">[</span>options<span class="o">]</span> &lt;archive url/path&gt; ...
+</pre>
+</div>
+<div class="section" id="id10">
+<h3>本地快速安装</h3>
+<ol class="arabic simple">
+<li>下载你所需要的所有的Python包</li>
+</ol>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip install --download &lt;DIR&gt; -r requirements.txt
+</pre>
+<ol class="arabic simple" start="2">
+<li>使用以下命令即可安装刚才下载到本地的Python包</li>
+</ol>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip install --no-index --find-links<span class="o">=[</span>file://<span class="o">]</span>&lt;DIR&gt; -r requirements.txt
+</pre>
+</div>
+<div class="section" id="id11">
+<h3>非递归式升级</h3>
+<p>其实就是只升级你需要的包，但是该包所依赖的包不安装/升级。</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip install --upgrade --no-deps SomePackage
+</pre>
+</div>
+<div class="section" id="id12">
+<h3>特定用户安装</h3>
+<p>从Python2.6开始，Python就支持将Python包安装到指定的用户目录了。</p>
+<p>该用户的目录默认值是由 <cite>site.USER_BASE</cite> 所指定的。</p>
+<p>如果想覆盖该值，则使用环境变量 <cite>PYTHONUSERBASE</cite> 。</p>
+<p>可以通过 <cite>--user</cite> 参数来指定特定用户。</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">PYTHONUSERBASE</span><span class="o">=</span>/myappenv
+<span class="nv">$ </span>pip install --user SomePackage
+</pre>
+</div>
+</div>
+<div class="section" id="pip-uninstall">
+<h2>pip uninstall</h2>
+<p>卸载Python包</p>
+<div class="section" id="id13">
+<h3>使用方法</h3>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip uninstall <span class="o">[</span>options<span class="o">]</span> &lt;package&gt; ...
+
+<span class="nv">$ </span>pip uninstall <span class="o">[</span>options<span class="o">]</span> -r &lt;requirements file&gt; ...
+</pre>
+</div>
+<div class="section" id="id14">
+<h3>已知缺陷</h3>
+<p>目前已知的两种无法正常删除的情况：</p>
+<ul class="simple">
+<li>完全使用disutils模块制定的Python包，
+且通过 <cite>python setup.py install</cite> 来安装的。
+这种包没有什么元信息能够知道它倒底安装了哪些文件。</li>
+<li>通过 <cite>python setup.py develp</cite> 来安装的脚本。</li>
+</ul>
+</div>
+<div class="section" id="id15">
+<h3>参数</h3>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-r</span>, <span class="option">--requirement <var>&lt;file&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>删除requirements.txt文件中的包含的Python包名，可以跟多个该参数</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-y</span>, <span class="option">--yes</span></kbd></td>
+<td>在删除时不需要确认</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="pip-freeze">
+<h2>pip freeze</h2>
+<p>将当前Python环境所有的安装包名输出成requirements格式。</p>
+<div class="section" id="id16">
+<h3>使用方法</h3>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip freeze <span class="o">[</span>options<span class="o">]</span>
+</pre>
+</div>
+<div class="section" id="id17">
+<h3>参数</h3>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-r</span>, <span class="option">--requirement <var>&lt;file&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td><ul class="first last simple">
+<li>先输出该requirement文件内的Python包名。</li>
+<li>再输出当前环境安装的Python包，
+requirement文件中有的Python包名则不再显示。</li>
+<li>当requirement文件中的包名在环境没有，则会给出提示。</li>
+</ul>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-f</span>, <span class="option">--find-links <var>&lt;url&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>从该URL来查找Python包，查找出来的Python包名也会输出出来。
+说实话，我还真不知道这个参数的应用场景是什么。</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-l</span>, <span class="option">--local</span></kbd></td>
+<td>如果一个virtualenv环境被配置成能够读取全局的Python包，
+那么在该环境内运行 <cite>pip freeze -l</cite> 时，
+不会显示全局的Python包名。</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id18">
+<h3>常见应用场景</h3>
+<p>当你需要将一个virtualenv环境中复制到另外一个virtualenv环境时，
+你可以先在源virtualenv环境运行命令：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip freeze &gt; requirements.txt
+</pre>
+<p>然后再进入目的virtualenv环境运行命令：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip install -r requirements.txt
+</pre>
+<p>这样就完成了虚拟环境的复制过程。</p>
+<p>这时可能有人会问，virtualenv环境不就是一个目录么，
+直接拷贝一下，不就一个跟原来一样的新的virtualenv环境么？</p>
+<blockquote>
+<p>好吧，我觉得这方法一般情况也可以的。</p>
+<p>但是如果源virtualenv环境和目的virtualenv环境的
+Python版本或者操作系统不一样，
+建议你还是老实地按照上面的说做吧。</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="pip-list">
+<h2>pip list</h2>
+<p>列出当前环境所有已经安装的Python包，包括可编辑的包（including editables）。</p>
+<p>好像功能和 <cite>pip freeze</cite> 功能差不多的么，
+只是输出的格式不一样。</p>
+<p>可编辑的包是啥意思？暂时还不清楚。</p>
+<div class="section" id="id19">
+<h3>使用方法</h3>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip list <span class="o">[</span>options<span class="o">]</span>
+</pre>
+</div>
+<div class="section" id="id20">
+<h3>参数</h3>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-o</span>, <span class="option">--outdated</span></kbd></td>
+<td>列出所有有新版本的Python包名（不包括可编辑包）</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-u</span>, <span class="option">--uptodate</span></kbd></td>
+<td>列出所有更新到最新版本的Python包名</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-e</span>, <span class="option">--editable</span></kbd></td>
+<td>列出所有可编辑的包名</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-l</span>, <span class="option">--local</span></kbd></td>
+<td>如果一个virtualenv环境被配置成能够读取全局的Python包，
+那么在该环境内运行 <cite>pip list -l</cite> 时，
+不会显示全局的Python包名。</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--pre</span></kbd></td>
+<td>列出的包中包括预发行或者是开发包，默认只会列出稳定版本的包</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-i</span>, <span class="option">--index-url <var>&lt;url&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td><cite>Python Package Index</cite> 的URL地址</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--extra-index-url <var>&lt;url&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>更多的 <cite>Python Package Index</cite> 的URL地址</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--no-index</span></kbd></td>
+<td>忽略包索引，只与 <cite>--find-links</cite> 参数配合使用</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-f</span>, <span class="option">--find-links <var>&lt;url&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>如果为一个URL或者是一个指定HTML页面的路径，PIP会从该地址解析出包地址。
+如果是一个本地目录，PIP就会直接从该目录中查找所需要的包。</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--allow-external <var>&lt;package&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Allow the installation of externally hosted files</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--allow-all-external</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Allow the installation of all externally hosted files</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--allow-unverified <var>&lt;package&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Allow the installation of insecure and unverifiable files</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--process-dependency-links</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Enable the processing of dependency links</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="pip-show">
+<h2>pip show</h2>
+<p>列出一个或者多个包的信息</p>
+<div class="section" id="id21">
+<h3>使用方法</h3>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip show <span class="o">[</span>options<span class="o">]</span> &lt;package&gt; ...
+</pre>
+</div>
+<div class="section" id="id22">
+<h3>参数</h3>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-f</span>, <span class="option">--files</span></kbd></td>
+<td>列出一个已安装包中的所有文件</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="pip-search">
+<h2>pip search</h2>
+<p>从 <cite>Python Package Index</cite> 上查找
+Python包名或者其简要描述中包含关键字（&lt;query&gt;）的Python包。</p>
+<div class="section" id="id23">
+<h3>使用方法</h3>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip search <span class="o">[</span>options<span class="o">]</span> &lt;query&gt;
+</pre>
+</div>
+<div class="section" id="id24">
+<h3>参数</h3>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">--index <var>&lt;url&gt;</var></span></kbd></td>
+<td><cite>Python Package Index</cite> URL地址</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="pip-wheel">
+<h2>pip wheel</h2>
+<p>创建wheel格式的Python包</p>
+<p>使用该参数，需要您的环境安装setuptools &gt;= 0.8，并且安装了wheel。</p>
+<p><cite>pip wheel</cite> 使用setuptools扩展 <cite>bdist_wheel</cite> 来制作wheel格式的Python包。</p>
+<p>如果想更多了解wheel，请看 <a class="reference external" href="http://wheel.readthedocs.org/en/latest/">wheel官方文档</a> 。</p>
+<div class="section" id="id25">
+<h3>使用方法</h3>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip pip wheel <span class="o">[</span>options<span class="o">]</span> &lt;requirement specifier&gt; ...
+
+<span class="nv">$ </span>pip wheel <span class="o">[</span>options<span class="o">]</span> -r &lt;requirements file&gt; ...
+
+<span class="nv">$ </span>pip wheel <span class="o">[</span>options<span class="o">]</span> &lt;vcs project url&gt; ...
+
+<span class="nv">$ </span>pip wheel <span class="o">[</span>options<span class="o">]</span> &lt;<span class="nb">local </span>project path&gt; ...
+
+<span class="nv">$ </span>pip wheel <span class="o">[</span>options<span class="o">]</span> &lt;archive url/path&gt; ...
+</pre>
+</div>
+<div class="section" id="id26">
+<h3>参数</h3>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-w</span>, <span class="option">--wheel-dir <var>&lt;dir&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>wheel格式Python包的存放目录，默认为 <cite>&lt;cwd&gt;/wheelhouse</cite></td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--no-use-wheel</span></kbd></td>
+<td>当在 <cite>Python Package Index</cite> 上查找包时不优先查找wheel格式的Python包</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--build-option <var>&lt;options&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td><cite>setup.py bdist_wheel</cite> 提供的额外参数</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-r</span>, <span class="option">--requirement <var>&lt;file&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>从requirements文件进行安装，该参数可以跟多个</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--download-cache <var>&lt;dir&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>从网上下载的原始Python包的临时存放目录</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--no-deps</span></kbd></td>
+<td>不安装某个包的依赖包</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-b</span>, <span class="option">--build <var>&lt;dir&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>build目录，在virtualenv环境中默认值为 <cite>&lt;venv path&gt;/build</cite> ,
+在正常环境默认值为 <cite>&lt;OS temp dir&gt;/pip_build_&lt;username&gt;</cite></td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--global-option <var>&lt;options&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td><cite>bdsit_wheel</cite> 命令所用到的一些全局参数</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--pre</span></kbd></td>
+<td>列出的包中包括预发行或者是开发包，默认只会列出稳定版本的包</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--no-clean</span></kbd></td>
+<td>不清除build目录</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-i</span>, <span class="option">--index-url <var>&lt;url&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td><cite>Python Package Index</cite> 的URL地址 (默认为 <a class="reference external" href="https://pypi.python.org/simple/">https://pypi.python.org/simple/</a>)</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--extra-index-url <var>&lt;url&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>更多的 Python Package Index 的URL地址</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--no-index</span></kbd></td>
+<td>忽略包索引，只与 <cite>--find-links</cite> 参数配合使用</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-f</span>, <span class="option">--find-links <var>&lt;url&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>如果为一个URL或者是一个指定HTML页面的路径，PIP会从该地址解析出包地址。
+如果是一个本地目录，PIP就会直接从该目录中查找所需要的包。</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--allow-external <var>&lt;package&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Allow the installation of externally hosted files</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--allow-all-external</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Allow the installation of all externally hosted files</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--allow-unverified <var>&lt;package&gt;</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Allow the installation of insecure and unverifiable files</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--process-dependency-links</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Enable the processing of dependency links.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id27">
+<h3>常见应用场景</h3>
+<p>先将需要的所有第三方Python包打包到本地目录，
+然后再从本地目录直接安装之前已经打包好的wheel格式的Python包。</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip wheel --wheel-dir<span class="o">=</span>/tmp/wheelhouse SomePackage
+<span class="nv">$ </span>pip install --no-index --find-links<span class="o">=</span>/tmp/wheelhouse SomePackage
+</pre>
+</div>
+</div>
+<div class="section" id="id28">
+<h2>其它</h2>
+<div class="section" id="id29">
+<h3>国内镜像源</h3>
+<ul class="simple">
+<li><a class="reference external" href="http://pypi.douban.com/">豆瓣PyPI</a></li>
+<li><a class="reference external" href="http://pypi.hustunique.com/">华中理工大学PyPI</a></li>
+<li><a class="reference external" href="http://pypi.sdutlinux.org/">山东理工大学PyPI</a> ， 这个貌似用不了。</li>
+<li><a class="reference external" href="http://pypi.mirrors.ustc.edu.cn/">中国科学技术大学PyPI</a></li>
+</ul>
+<p>可以用pip的 <cite>-i</cite> 参数来指定镜像源。</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>pip install gevent -i http://pypi.douban.com/simple
+</pre>
+<p>如果不想每次手动指定，且永久有效的话，
+可以写入到pip的配置文件中。</p>
+<pre class="code ini literal-block">
+<span class="k">[global]</span>
+<span class="na">index-url</span> <span class="o">=</span> <span class="s">http://pypi.douban.com/simple</span>
+</pre>
+</div>
+</div>
+
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/"><i class="icon-external-link"></i>Jinja2</a></li>
+    <li><a href="#"><i class="icon-external-link"></i>You can modify those links in your config file</a></li>
+<li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
+<li><a href="/" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
+    <li><a href="#"><i class="icon-You can add links in your config file-sign icon-large"></i>You can add links in your config file</a></li>
+    <li><a href="#"><i class="icon-Another social link-sign icon-large"></i>Another social link</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/xue-xi.html">
+    <i class="icon-folder-open icon-large"></i>学习
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-2">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/setuptools.html">
+        <i class="icon-tag icon-large"></i>setuptools
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>MarkDown
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
