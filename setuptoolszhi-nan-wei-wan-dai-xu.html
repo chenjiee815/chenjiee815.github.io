@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>setuptools指南：未完待续</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Chen Jie">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="January Star ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">January Star </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="/category/sheng-huo.html">
+						<i class="icon-folder-open icon-large"></i>生活
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="/category/xue-xi.html">
+						<i class="icon-folder-open icon-large"></i>学习
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to setuptools指南：未完待续">
+                                        setuptools指南：未完待续
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-06-22T00:00:00">
+        <i class="icon-calendar"></i>日 22 六月 2014
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/xue-xi.html"><i class="icon-folder-open"></i>学习</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/setup.html"><i class="icon-tag"></i>setup</a>
+	<a href="/tag/python.html"><i class="icon-tag"></i>python</a>
+	<a href="/tag/package.html"><i class="icon-tag"></i>package</a>
+	<a href="/tag/setuptools.html"><i class="icon-tag"></i>setuptools</a>
+</footer><!-- /.post-info -->                </div>
+                <p><a class="reference external" href="http://pythonhosted.org/setuptools/">setuptools官方文档</a></p>
+<p>以下内容是根据官方文档做的笔记。</p>
+<div class="section" id="id1">
+<h2>推荐用法</h2>
+<p>在项目根目录添加 <a class="reference external" href="https://bootstrap.pypa.io/ez_setup.py/">ez_setup.py</a> 文件，
+然后在setup.py文件的开头添加如下代码：</p>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">ez_setup</span> <span class="kn">import</span> <span class="n">use_setuptools</span>
+<span class="n">use_setuptools</span><span class="p">()</span>
+</pre>
+<p>这样写的话，其他人安装你的Python包时，
+如果没有安装setuptools工具，该脚本就会自动下载并安装setuptools。</p>
+<p>当然也可以通过这个脚本来直接安装、更新setuptools：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>sudo python ez_setup.py -U setuptools
+</pre>
+</div>
+<div class="section" id="id2">
+<h2>基本用法</h2>
+<p>下面是一个最基本的setup.py。</p>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+<span class="n">setup</span><span class="p">(</span>
+       <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;HelloWorld&quot;</span><span class="p">,</span>
+       <span class="n">version</span> <span class="o">=</span> <span class="s">&quot;0.1&quot;</span><span class="p">,</span>
+       <span class="n">packages</span> <span class="o">=</span> <span class="n">find_packages</span><span class="p">(),</span>
+<span class="p">)</span>
+</pre>
+<p>就是这里的几行代码，就可以自动查找需要打包的文件，
+将当前的项目打包成eggs，支持上传到 <a class="reference external" href="https://pypi.python.org/pypi/">PyPI</a> 。</p>
+<p>当然如果需要上传到 <a class="reference external" href="https://pypi.python.org/pypi/">PyPI</a> ，最好再添加一些额外信息。</p>
+</div>
+<div class="section" id="id3">
+<h2>版本号格式</h2>
+<p>setuptools能够支持大部分的版本号格式。</p>
+<p>如果您不是很确定您定义的版本号是否被setuptools支持，
+您可以使用pkg_resources.parse_version()来判断。</p>
+<pre class="code python literal-block">
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">parse_version</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">parse_version</span><span class="p">(</span><span class="s">'1.9.a.dev'</span><span class="p">)</span> <span class="o">==</span> <span class="n">parse_version</span><span class="p">(</span><span class="s">'1.9a0dev'</span><span class="p">)</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">parse_version</span><span class="p">(</span><span class="s">'2.1-rc2'</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">parse_version</span><span class="p">(</span><span class="s">'2.1'</span><span class="p">)</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">parse_version</span><span class="p">(</span><span class="s">'0.6a9dev-r41475'</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">parse_version</span><span class="p">(</span><span class="s">'0.6a9'</span><span class="p">)</span>
+<span class="bp">True</span>
+</pre>
+</div>
+<div class="section" id="setup">
+<h2>可选的setup()函数参数</h2>
+<p>include_package_data</p>
+<blockquote>
+<p>如果设置为True，setuptools就会在项目目录里自动查找所有的数据文件</p>
+<p>这些数据文件包括被CVS/SVN进行版本管理的，
+或者你在MANIFEST.in中指定的文件。</p>
+</blockquote>
+<p>exclude_package_data</p>
+<p>package_data</p>
+<p>zip_safe</p>
+<p>install_requires</p>
+<p>entry_points</p>
+<p>extras_require</p>
+<p>setup_requires</p>
+<p>dependency_links</p>
+<p>namespace_packages</p>
+<div class="section" id="id4">
+<h3>安装数据文件</h3>
+<p>setuptools提供三种方式来定制包内的数据文件。</p>
+<ul>
+<li><p class="first">你需要将打开 <cite>include_package_data</cite> 参数。</p>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+<span class="n">setup</span><span class="p">(</span>
+       <span class="o">...</span>
+       <span class="n">include_package_data</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="p">)</span>
+</pre>
+<p>这个参数会告诉setuptools自动查找包内包含的数据文件，
+但是自动查找是有要求的。</p>
+<p>这些数据文件必须是在CVS/SVN这些版本管理工具的仓库里面受版本控制的
+（当然你也可以写setuptools扩展来支持其它的版本管理工具），
+或者在 <cite>MANIFEST.in</cite> 文件中被指定的。</p>
+</li>
+<li><p class="first">如果你想有比较细粒度地控制setuptools打包哪些数据文件，
+那么你可以使用 <cite>package_data</cite> 参数。</p>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+<span class="n">setup</span><span class="p">(</span>
+       <span class="o">...</span>
+       <span class="n">package_data</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="c"># If any package contains *.txt or *.rst files, include them:</span>
+       <span class="s">''</span><span class="p">:</span> <span class="p">[</span><span class="s">'*.txt'</span><span class="p">,</span> <span class="s">'*.rst'</span><span class="p">],</span>
+       <span class="c"># And include any *.msg files found in the 'hello' package, too:</span>
+       <span class="s">'hello'</span><span class="p">:</span> <span class="p">[</span><span class="s">'*.msg'</span><span class="p">],</span>
+       <span class="p">}</span>
+<span class="p">)</span>
+</pre>
+<p><cite>package_data</cite> 参数是一个字典，它的Key值是包内目录的名称，
+Value值是一个包含通配符字符串的列表。
+比如一个包的内部目录结构</p>
+<pre class="literal-block">
+setup.py
+src/
+    mypkg/
+        __init__.py
+        mypkg.txt
+        data/
+            somefile.dat
+            otherdata.dat
+</pre>
+<p>那么它对应的 <cite>package_data</cite> 参数就是：</p>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+<span class="n">setup</span><span class="p">(</span>
+       <span class="o">...</span>
+       <span class="n">packages</span> <span class="o">=</span> <span class="n">find_packages</span><span class="p">(</span><span class="s">'src'</span><span class="p">),</span>  <span class="c"># include all packages under src</span>
+       <span class="n">package_dir</span> <span class="o">=</span> <span class="p">{</span><span class="s">''</span><span class="p">:</span><span class="s">'src'</span><span class="p">},</span>   <span class="c"># tell distutils packages are under src</span>
+
+       <span class="n">package_data</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="c"># If any package contains *.txt files, include them:</span>
+       <span class="s">''</span><span class="p">:</span> <span class="p">[</span><span class="s">'*.txt'</span><span class="p">],</span>
+       <span class="c"># And include any *.dat files found in the 'data' subdirectory</span>
+       <span class="c"># of the 'mypkg' package, also:</span>
+       <span class="s">'mypkg'</span><span class="p">:</span> <span class="p">[</span><span class="s">'data/*.dat'</span><span class="p">],</span>
+       <span class="p">}</span>
+<span class="p">)</span>
+</pre>
+<p>注意：上面两个示例中 <cite>package_data</cite> 的一个Key值是一个空字符串，
+这个就代表会在所有的目录里查找对应的数据文件。</p>
+<p>注意：如果你使用到了路径，请使用 <cite>/</cite> 来指定路径分隔，
+即使在Windows平台也是这样，setuptools会根据当前的打包平台自动识别。</p>
+<p>注意：在Python2.4之后的distutils模块也添加对该参数的支持。
+如果你指定了 <cite>include_package_data</cite> 参数，那么 <cite>package_data</cite> 将无效。</p>
+</li>
+<li><p class="first">但是还有些情况，以上两个参数还是满足不了。
+比如你想在你发布的Python包内包含README文件，
+但是安装的时候又不希望安装它。</p>
+<p>这时候，你就需要 <cite>exclude_package_data</cite> 参数来帮忙了。</p>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+<span class="n">setup</span><span class="p">(</span>
+       <span class="o">...</span>
+       <span class="n">packages</span> <span class="o">=</span> <span class="n">find_packages</span><span class="p">(</span><span class="s">'src'</span><span class="p">),</span>  <span class="c"># include all packages under src</span>
+       <span class="n">package_dir</span> <span class="o">=</span> <span class="p">{</span><span class="s">''</span><span class="p">:</span><span class="s">'src'</span><span class="p">},</span>   <span class="c"># tell distutils packages are under src</span>
+
+       <span class="n">include_package_data</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span>    <span class="c"># include everything in source control</span>
+
+       <span class="c"># ...but exclude README.txt from all packages</span>
+       <span class="n">exclude_package_data</span> <span class="o">=</span> <span class="p">{</span> <span class="s">''</span><span class="p">:</span> <span class="p">[</span><span class="s">'README.txt'</span><span class="p">]</span> <span class="p">},</span>
+<span class="p">)</span>
+</pre>
+<p><cite>exclude_package_data</cite> 参数和 <cite>package_data</cite> 是一样的，
+也是字典，在该字典里匹配到的所有文件都不会被安装。
+即使这个文件符合 <cite>include_package_data</cite> 或者 <cite>package_data</cite> 参数
+的要求。</p>
+</li>
+</ul>
+<p>注意： disutils模块的打包流程会导致一种现象，
+你之前的包有包含过某些数据文件，但之后你又删除了该数据文件。
+那么这些数据文件在你的打包目录便会变成孤儿，你最好运行命令
+<cite>python setup.py clean --all</cite> 来完全删除它们。</p>
+<p>你的这个包的使用者或者其它代码贡献者通过版本管理工具追踪版本时，
+他们就会知道是你做了某些改变，然后需要删除这此文件的，
+那么他们也就能够放心大胆运行 <cite>python setup.py clean --all</cite> 命令了。</p>
+</div>
+</div>
+<div class="section" id="easy-install">
+<h2>easy_install</h2>
+</div>
+<div class="section" id="pkg-resources">
+<h2>pkg_resources</h2>
+<p>该模块的全称为： <cite>Package Discovery and Resource Access</cite></p>
+<p>这个模块主要有以下几个功能：</p>
+<ul class="simple">
+<li>提供API给Python库来让它们能够访问它们自己的资源文件</li>
+<li>能让扩展的应用和框架自动发现插件</li>
+<li>给zip格式的eggs包内的C扩展提示运行时支持</li>
+<li>能够合并各种独立分发的Python模块，就是下文的命名空间包</li>
+<li>提供API来管理当前“工作集”中的Python包</li>
+</ul>
+<div class="section" id="id5">
+<h3>命名空间包</h3>
+<p>命名空间包本质算是一个虚拟包，
+这个包主要将多个独立分发的包集合成一个，方便安装。
+比如： <cite>peak</cite> 是一个命名空间包，它包含了一系列不同用途的子包。</p>
+<p>那么如何创建一个命名空间包呢？</p>
+<blockquote>
+<p>在 <cite>setup()</cite> 函数中添加 <cite>namespace_package</cite> 参数。
+该参数为一个列表，然后将需要集合的包的名称写进去。</p>
+<p>你也必须在命名空间包的 <cite>__init__.py</cite> 文件中添加
+<cite>__declare_namespace()</cite> 函数的调用。</p>
+</blockquote>
+</div>
+<div class="section" id="id6">
+<h3>工作集对象</h3>
+</div>
+</div>
+
+                </div><!-- /.entry-content -->
+                <div class="comments">
+                <h2>Comments !</h2>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                           var disqus_identifier = "setuptoolszhi-nan-wei-wan-dai-xu.html";
+                           (function() {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://chenjiee815blog.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] ||
+                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+                          })();
+                        </script>
+                </div>
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/"><i class="icon-external-link"></i>Jinja2</a></li>
+    <li><a href="#"><i class="icon-external-link"></i>You can modify those links in your config file</a></li>
+<li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
+<li><a href="/" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
+    <li><a href="#"><i class="icon-You can add links in your config file-sign icon-large"></i>You can add links in your config file</a></li>
+    <li><a href="#"><i class="icon-Another social link-sign icon-large"></i>Another social link</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/sheng-huo.html">
+    <i class="icon-folder-open icon-large"></i>生活
+</a>
+</li>
+<li>
+<a href="/category/xue-xi.html">
+    <i class="icon-folder-open icon-large"></i>学习
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>MarkDown
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/setuptools.html">
+        <i class="icon-tag icon-large"></i>setuptools
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speech.html">
+        <i class="icon-tag icon-large"></i>speech
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
+    </a>
+</li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+	var pageTracker = _gat._getTracker("UA-52167018-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<script type="text/javascript">
+    var disqus_shortname = 'chenjiee815blog';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

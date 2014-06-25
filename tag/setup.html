@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>January Star - MarkDown</title>
+    <title>January Star - setup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Chen Jie">
@@ -90,7 +90,7 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
-                <h1><a href="/pelican-ru-men-zhi-nan.html"><strong>Pelican</strong> 入门指南</a></h1>
+                <h1><a href="/setuptoolszhi-nan-wei-wan-dai-xu.html">setuptools指南：未完待续</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
 <abbr class="published" title="2014-06-22T00:00:00">
@@ -103,43 +103,43 @@
 
 
 <span class="label">Tags</span>
-	<a href="/tag/pelican.html"><i class="icon-tag"></i>pelican</a>
+	<a href="/tag/setup.html"><i class="icon-tag"></i>setup</a>
 	<a href="/tag/python.html"><i class="icon-tag"></i>python</a>
-	<a href="/tag/blog.html"><i class="icon-tag"></i>blog</a>
-	<a href="/tag/restructuredtext.html"><i class="icon-tag"></i>reStructuredText</a>
-	<a href="/tag/markdown.html"><i class="icon-tag"></i>MarkDown</a>
+	<a href="/tag/package.html"><i class="icon-tag"></i>package</a>
+	<a href="/tag/setuptools.html"><i class="icon-tag"></i>setuptools</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><p><strong>Pelican</strong> 是一个用Python实现的静态网站生成器。</p>
-<ul class="simple">
-<li>通过 <strong>reStructuredText</strong> 或 <strong>MarkDown</strong> 语言，直接使用你的编辑器编写博客</li>
-<li>使用简单的命令行工具生成博客</li>
-<li>易于与版本控制工具和WEB应用配合使用</li>
-<li>全静态输出可以方便的在任何地方部署</li>
-</ul>
-<p>简单来说，就是你使用 <strong>reStructuredText</strong> 或者 <strong>MarkDown</strong> 来生写网站的具体内容，
-然后用这个工具根据你之前写的内容来生成对应的网页。</p>
-<p>这个工具一般用来生成静态的博客是极好的，
-并且网上也很多技术人的博客也已经是这样来实现的。</p>
-<p>本指南只讲解了一些有关 <strong>Pelican</strong> 的入门知识，
-如果你想了解更多，请移步 <a class="reference external" href="http://pelican-docs-zh-cn.readthedocs.org/en/latest/">Pelican中文文档</a> ，或者 <a class="reference external" href="http://docs.getpelican.com/en/latest/">Pelican官方文档</a> 。</p>
+                <div class="summary"><p><a class="reference external" href="http://pythonhosted.org/setuptools/">setuptools官方文档</a></p>
+<p>以下内容是根据官方文档做的笔记。</p>
 <div class="section" id="id1">
-<h2>安装</h2>
-<p><strong>Pelican</strong> 的安装还是很简单的，
-因为它属于Python的一个第三方库，
-所以直接一条命令即可：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip install pelican
+<h2>推荐用法</h2>
+<p>在项目根目录添加 <a class="reference external" href="https://bootstrap.pypa.io/ez_setup.py/">ez_setup.py</a> 文件，
+然后在setup.py文件的开头添加如下代码：</p>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">ez_setup</span> <span class="kn">import</span> <span class="n">use_setuptools</span>
+<span class="n">use_setuptools</span><span class="p">()</span>
 </pre>
-<p>如果系统报没有 <cite>pip</cite> 这个命令，
-你可以点击 <a class="reference external" href="https://pip.pypa.io/en/latest/installing.html/">pip的安装文档</a> 。</p>
+<p>这样写的话，其他人安装你的Python包时，
+如果没有安装setuptools工具，该脚本就会自动下载并安装setuptools。</p>
+<p>当然也可以通过这个脚本来直接安装、更新setuptools：</p>
+<pre class="code bash literal-block">
+<span class="nv">$ </span>sudo python ez_setup.py -U setuptools
+</pre>
+</div>
 <div class="section" id="id2">
-<h3>依赖</h3>
-<p>到目前为止， <strong>Pelican</strong> 依赖于以下Python包：</p>
-<p>Pelican安装之后，依赖于以下的Python包都将会自动安装：</p>
-<ul class="simple">
-<li>feedgenerator, 生成Atom</li>
-<li>jinja2 ...</li></ul></div></div>
-                        <a class="btn primary xsmall" href="/pelican-ru-men-zhi-nan.html">more ...</a>
+<h2>基本用法</h2>
+<p>下面是一个最基本的setup.py。</p>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+<span class="n">setup</span><span class="p">(</span>
+       <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;HelloWorld&quot;</span><span class="p">,</span>
+       <span class="n">version</span> <span class="o">=</span> <span class="s">&quot;0.1&quot;</span><span class="p">,</span>
+       <span class="n">packages</span> <span class="o">=</span> <span class="n">find_packages</span><span class="p">(),</span>
+<span class="p">)</span>
+</pre>
+<p>就是这里的几行代码，就可以自动查找需要打包的文件，
+将当前的项目打包成eggs，支持上传到 <a class="reference external" href="https://pypi.python.org/pypi/">PyPI</a> 。</p>
+<p>当然如果需要上传到 <a class="reference external" href="https://pypi.python.org/pypi/">PyPI</a> ，最好再添加一些额外信息 ...</p></div>
+                        <a class="btn primary xsmall" href="/setuptoolszhi-nan-wei-wan-dai-xu.html">more ...</a>
                 </div>
         </div>
         <hr />
