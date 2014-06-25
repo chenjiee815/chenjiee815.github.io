@@ -107,21 +107,49 @@
 	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
 	<a href="/tag/guile.html"><i class="icon-tag"></i>guile</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><div class="section" id="id1">
-<h2>总纲</h2>
-<div class="section" id="scheme">
-<h3>scheme十戒</h3>
-<ol class="arabic">
-<li><p class="first">当对一个原子列表进行递归时，要注意两个问题：(null? lat) and else。</p>
-<p>当对一个数字进行递归时，要注意两个问题：(zero? n) and else。</p>
-<p>当对一个S表达式列表进行递归时，要注意三个问题：(null? l), (atom? (car l)) 和 else。</p>
+                <div class="summary"><div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id23">总纲</a><ul>
+<li><a class="reference internal" href="#scheme" id="id24">scheme十戒</a></li>
+<li><a class="reference internal" href="#id2" id="id25">scheme五律</a></li>
+</ul>
 </li>
-<li><p class="first">使用cons来创建列表。</p>
+<li><a class="reference internal" href="#toys" id="id26">第一章: Toys</a><ul>
+<li><a class="reference internal" href="#id3" id="id27">基本概念</a></li>
+<li><a class="reference internal" href="#id4" id="id28">其它概念</a></li>
+</ul>
 </li>
-<li><p class="first">当创建一个列表时，先描述第一个元素，然后用cons来将它和递归连接在一起</p>
+<li><a class="reference internal" href="#do-it-do-it-again-and-again-and-again" id="id29">第二章: Do It, Do It Again, and Again, and Again…</a><ul>
+<li><a class="reference internal" href="#lat" id="id30">lat操作</a><ul>
+<li><a class="reference internal" href="#id5" id="id31">基本概念</a></li>
+<li><a class="reference internal" href="#id6" id="id32">应用</a></li>
+</ul>
 </li>
-<li><p class="first">递归时，至少要改变一个参数。 例如：递归一个原子列表使用(cdr lat)；递归一个数字使用(sub1 n)；</p>
-<p>递归一个S表达式时，如果这个表达式即不(null? l)，也不(atom? (car l))， 那么使用(car l) 和 (cdr l ...</p></li></ol></div></div>
+</ul>
+</li>
+<li><a class="reference internal" href="#cons-the-magnificent" id="id33">第三章: Cons the Magnificent</a><ul>
+<li><a class="reference internal" href="#id7" id="id34">lat操作</a><ul>
+<li><a class="reference internal" href="#id8" id="id35">应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#numbers-games" id="id36">第四章: Numbers Games</a><ul>
+<li><a class="reference internal" href="#id9" id="id37">数字操作</a><ul>
+<li><a class="reference internal" href="#id10" id="id38">基本概念</a></li>
+<li><a class="reference internal" href="#id11" id="id39">应用</a></li>
+<li><a class="reference internal" href="#id12" id="id40">综合操作</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#oh-my-gawd-it-s-full-of-stars" id="id41">第五章: *Oh My Gawd*: It's Full of Stars</a></li>
+<li><a class="reference internal" href="#shadows" id="id42">第六章: Shadows</a><ul>
+<li><a class="reference internal" href="#id13" id="id43">应用</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#friends-and-relations" id="id44">第七章: Friends and Relations ...</a></li></ul></div>
                         <a class="btn primary xsmall" href="/thelittleschemerbi-ji.html">more ...</a>
                 </div>
         </div>
@@ -155,33 +183,13 @@
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
 <li class="tag-4">
-    <a href="/tag/pelican.html">
-        <i class="icon-tag icon-large"></i>pelican
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/guile.html">
-        <i class="icon-tag icon-large"></i>guile
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/restructuredtext.html">
-        <i class="icon-tag icon-large"></i>reStructuredText
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/setup.html">
-        <i class="icon-tag icon-large"></i>setup
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/package.html">
-        <i class="icon-tag icon-large"></i>package
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
     </a>
 </li>
 <li class="tag-4">
@@ -190,8 +198,48 @@
     </a>
 </li>
 <li class="tag-4">
+    <a href="/tag/speech.html">
+        <i class="icon-tag icon-large"></i>speech
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/setuptools.html">
+        <i class="icon-tag icon-large"></i>setuptools
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-4">
     <a href="/tag/markdown.html">
         <i class="icon-tag icon-large"></i>MarkDown
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
     </a>
 </li>
 <li class="tag-4">
@@ -204,29 +252,9 @@
         <i class="icon-tag icon-large"></i>pip
     </a>
 </li>
-<li class="tag-2">
-    <a href="/tag/setuptools.html">
-        <i class="icon-tag icon-large"></i>setuptools
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speech.html">
-        <i class="icon-tag icon-large"></i>speech
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speak.html">
-        <i class="icon-tag icon-large"></i>speak
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/lisp.html">
-        <i class="icon-tag icon-large"></i>lisp
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/dna.html">
-        <i class="icon-tag icon-large"></i>dna
+<li class="tag-1">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
     </a>
 </li>
 
