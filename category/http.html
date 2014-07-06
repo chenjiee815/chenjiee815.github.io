@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>January Star - http</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Chen Jie">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="January Star ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">January Star </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="/category/dna.html">
+						<i class="icon-folder-open icon-large"></i>dna
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="/category/http.html">
+						<i class="icon-folder-open icon-large"></i>http
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/python.html">
+						<i class="icon-folder-open icon-large"></i>python
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/scheme.html">
+						<i class="icon-folder-open icon-large"></i>scheme
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+        <div class="article">
+                <h1><a href="/httpquan-wei-zhi-nan-bi-ji-di-yi-zhang-httpgai-shu.html">《HTTP权威指南》笔记 第一章 HTTP概述</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-07-06T19:04:02.070889">
+        <i class="icon-calendar"></i>2014-07-06 19:04:02
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/http.html"><i class="icon-folder-open"></i>http</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/http.html"><i class="icon-tag"></i>http</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>这一章主要介绍了HTTP协议的一些基本概念，
+这样大家会对HTTP有一个基本的了解。</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#web" id="id13">Web客户端和服务器</a></li>
+<li><a class="reference internal" href="#id1" id="id14">Web资源</a></li>
+<li><a class="reference internal" href="#id2" id="id15">媒体类型</a></li>
+<li><a class="reference internal" href="#uri" id="id16">URI</a><ul>
+<li><a class="reference internal" href="#url" id="id17">URL</a></li>
+<li><a class="reference internal" href="#urn" id="id18">URN</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3" id="id19">事务</a></li>
+<li><a class="reference internal" href="#id4" id="id20">方法</a></li>
+<li><a class="reference internal" href="#id5" id="id21">状态码</a></li>
+<li><a class="reference internal" href="#id6" id="id22">报文</a></li>
+<li><a class="reference internal" href="#id7" id="id23">连接</a></li>
+<li><a class="reference internal" href="#id8" id="id24">Web的结构组件</a><ul>
+<li><a class="reference internal" href="#id9" id="id25">代理</a></li>
+<li><a class="reference internal" href="#id10" id="id26">缓存</a></li>
+<li><a class="reference internal" href="#id11" id="id27">网关</a></li>
+<li><a class="reference internal" href="#id12" id="id28">隧道</a></li>
+<li><a class="reference internal" href="#agent" id="id29">Agent代理</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="web">
+<h2><a class="toc-backref" href="#id13">Web客户端和服务器</a></h2>
+<img alt="" src="static/web_clients_and_servers.png" />
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id14">Web资源</a></h2>
+<p>资源既可以是静态文件，也可以是根据需求动态生成的。</p>
+<img alt="" src="static/web_resources.png" />
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id15">媒体类型</a></h2>
+<p>资源多了，就要分类。HTTP采用了MIME类型。
+MIME类型原来是在邮件里面使用的，由于它很成熟也很好用，
+所以HTTP也采用了。</p>
+<p>Web服务器会为所有的HTTP对象数据附加一个MIME类型。</p>
+<p>当浏览器从服务器中取回一个对象时，会去查看相关的MIME类型，
+这样它就知道如何处理这个对象了。</p>
+<p>常用MIME类型举例：</p>
+<ul class="simple">
+<li>HTML格式的文本文档：text/tml</li>
+<li>普通的ASCII文本文档：text/plain</li>
+<li>JPEG格式的图片：image/jpeg</li>
+</ul>
+</div>
+<div class="section" id="uri">
+<h2><a class="toc-backref" href="#id16">URI</a></h2>
+<p>Uniform Resource Idenifier: 统一资源标识符 ...</p></div>
+                        <a class="btn primary xsmall" href="/httpquan-wei-zhi-nan-bi-ji-di-yi-zhang-httpgai-shu.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/httpquan-wei-zhi-nan-bi-ji-di-er-zhang-urlyu-zi-yuan.html">《HTTP权威指南》笔记 第二章 URL与资源</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-07-06T19:03:55.242360">
+        <i class="icon-calendar"></i>2014-07-06 19:03:55
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/http.html"><i class="icon-folder-open"></i>http</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/http.html"><i class="icon-tag"></i>http</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><img alt="" src="static/url.png" />
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#url" id="id4">URL语法</a></li>
+<li><a class="reference internal" href="#id1" id="id5">相对URL</a></li>
+<li><a class="reference internal" href="#id2" id="id6">转义字符</a></li>
+<li><a class="reference internal" href="#id3" id="id7">保留字符</a></li>
+</ul>
+</div>
+<div class="section" id="url">
+<h2><a class="toc-backref" href="#id4">URL语法</a></h2>
+<p>大多数URL的格式：</p>
+<blockquote>
+&lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;&#64;&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt;</blockquote>
+<p>其中最重要的是scheme, host, path。</p>
+<img alt="" src="static/url_format.png" />
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id5">相对URL</a></h2>
+<p>有时候网页里面的URL不是绝对路径的，
+那么就会有相应的算法将之转换成绝对URL。</p>
+<img alt="" src="static/relative_url.png" />
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id6">转义字符</a></h2>
+<p>为了在URL中表示各种不安全的字符，
+需要在URL用转义字符来表示这些不安全的字符。</p>
+<p>这种转义表示法包含一个百分号，后面跟着两个表示字符ASCII码的16进制数。</p>
+<table border="1" class="docutils">
+<caption>一些编码字符举例</caption>
+<colgroup>
+<col width="17%" />
+<col width="17%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">字符</th>
+<th class="head">ASCII码</th>
+<th class="head">示例URL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>~</td>
+<td>126(0x7E)</td>
+<td><a class="reference external" href="http://www.joes-hardware.com/%7Ejoe">http://www.joes-hardware.com/%7Ejoe</a></td>
+</tr>
+<tr><td>空格</td>
+<td>32(0x20)</td>
+<td><a class="reference external" href="http://www.joes-hardware.com/more%20tools.html">http://www.joes-hardware.com/more%20tools.html</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id7">保留字符</a></h2>
+<p>在URL中 ...</p></div>
+                        <a class="btn primary xsmall" href="/httpquan-wei-zhi-nan-bi-ji-di-er-zhang-urlyu-zi-yuan.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/httpquan-wei-zhi-nan-bi-ji-di-san-zhang-httpbao-wen.html">《HTTP权威指南》笔记 第三章 HTTP报文</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-07-06T19:03:50.811861">
+        <i class="icon-calendar"></i>2014-07-06 19:03:50
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/http.html"><i class="icon-folder-open"></i>http</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/http.html"><i class="icon-tag"></i>http</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id7">起始行</a><ul>
+<li><a class="reference internal" href="#id2" id="id8">请求行</a></li>
+<li><a class="reference internal" href="#id3" id="id9">响应行</a></li>
+<li><a class="reference internal" href="#id4" id="id10">状态码</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5" id="id11">首部</a></li>
+<li><a class="reference internal" href="#id6" id="id12">主体</a></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id7">起始行</a></h2>
+<p>所有的HTTP报文都以一个起始行作为开始。</p>
+<p>请求报文的起始行（请求行）说明： <strong>要做些什么</strong> 。</p>
+<p>响应报文的起始行（响应行）说明： <strong>发生了什么</strong> 。</p>
+<div class="section" id="id2">
+<h3><a class="toc-backref" href="#id8">请求行</a></h3>
+<p>包含一个方法和一个请求URL。</p>
+<p>这个方法描述了服务器应该执行的操作，
+请求URL描述了要对哪个资源执行这个方法。
+此外，它还包含了客户端使用HTTP版本。</p>
+</div>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id9">响应行</a></h3>
+<p>包含服务器使用HTTP版本、数字状态码及其对应的原因短语。</p>
+<p>所有这些字段通过空格来进行分隔。</p>
+</div>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id10">状态码</a></h3>
+<p>状态码表示为三位数字。</p>
+<ul class="simple">
+<li>200~299之间的状态码表示成功。</li>
+<li>300~399之间的状态码表示资源已经被移走。</li>
+<li>400~499之间的状态码表示客户端请求出错。</li>
+<li>500~599之间的状态码表示服务器响应出错。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id11">首部</a></h2>
+<p>本质上是一些KeyValue对的列表。</p>
+<p>将长的首部行分为多行可以提高可读性，
+多出来的每行前面至少要有一个空格或者制表符。</p>
+</div>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id12">主体</a></h2>
+<p>主体是HTTP要传输的具体内容。</p>
+</div>
+
+                        <a class="btn primary xsmall" href="/httpquan-wei-zhi-nan-bi-ji-di-san-zhang-httpbao-wen.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/httpquan-wei-zhi-nan-bi-ji-di-si-zhang-lian-jie-guan-li.html">《HTTP权威指南》笔记 第四章 连接管理</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-07-06T19:03:45.813544">
+        <i class="icon-calendar"></i>2014-07-06 19:03:45
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/http.html"><i class="icon-folder-open"></i>http</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/http.html"><i class="icon-tag"></i>http</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><img alt="" src="static/http_tcp_connection.png" />
+<p>HTTP和HTTPS网络协议栈区别</p>
+<img alt="" src="static/http_stacks_vs_https_stacks.png" />
+
+                        <a class="btn primary xsmall" href="/httpquan-wei-zhi-nan-bi-ji-di-si-zhang-lian-jie-guan-li.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/"><i class="icon-external-link"></i>Jinja2</a></li>
+    <li><a href="#"><i class="icon-external-link"></i>You can modify those links in your config file</a></li>
+<li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
+<li><a href="/" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
+    <li><a href="#"><i class="icon-You can add links in your config file-sign icon-large"></i>You can add links in your config file</a></li>
+    <li><a href="#"><i class="icon-Another social link-sign icon-large"></i>Another social link</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/dna.html">
+    <i class="icon-folder-open icon-large"></i>dna
+</a>
+</li>
+<li>
+<a href="/category/http.html">
+    <i class="icon-folder-open icon-large"></i>http
+</a>
+</li>
+<li>
+<a href="/category/python.html">
+    <i class="icon-folder-open icon-large"></i>python
+</a>
+</li>
+<li>
+<a href="/category/scheme.html">
+    <i class="icon-folder-open icon-large"></i>scheme
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-4">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/setuptools.html">
+        <i class="icon-tag icon-large"></i>setuptools
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speech.html">
+        <i class="icon-tag icon-large"></i>speech
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>MarkDown
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/http.html">
+        <i class="icon-tag icon-large"></i>http
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+	var pageTracker = _gat._getTracker("UA-52167018-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<script type="text/javascript">
+    var disqus_shortname = 'chenjiee815blog';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
