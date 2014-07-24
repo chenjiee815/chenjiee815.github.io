@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>January Star - setup</title>
+    <title>January Star - Chen Jie</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Chen Jie">
@@ -100,11 +100,11 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
-                <h1><a href="/setuptoolszhi-nan-wei-wan-dai-xu.html">setuptools指南：未完待续</a></h1>
+                <h1><a href="/pythonda-bao-gong-ju-dui-bi.html">Python打包工具对比</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-07-06T19:02:41.854493">
-        <i class="icon-calendar"></i>2014-07-06 19:02:41
+<abbr class="published" title="2014-06-22T00:00:00">
+        <i class="icon-calendar"></i>2014-06-22 00:00:00
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -113,58 +113,189 @@
 
 
 <span class="label">Tags</span>
-	<a href="/tag/setup.html"><i class="icon-tag"></i>setup</a>
+	<a href="/tag/pip.html"><i class="icon-tag"></i>pip</a>
+	<a href="/tag/setuptools.html"><i class="icon-tag"></i>setuptools</a>
 	<a href="/tag/python.html"><i class="icon-tag"></i>python</a>
 	<a href="/tag/package.html"><i class="icon-tag"></i>package</a>
-	<a href="/tag/setuptools.html"><i class="icon-tag"></i>setuptools</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><p><a class="reference external" href="http://pythonhosted.org/setuptools/">setuptools官方文档</a></p>
-<p>以下内容是根据官方文档做的笔记。</p>
-<div class="contents topic" id="contents">
-<p class="topic-title first">Contents</p>
+                <div class="summary"><dl class="docutils">
+<dt>我先给出对比结果：</dt>
+<dd>推荐使用setuptools + pip</dd>
+</dl>
+<p>具体原因看下文。</p>
+<div class="section" id="distutils">
+<h2>distutils</h2>
 <ul class="simple">
-<li><a class="reference internal" href="#id1" id="id11">推荐用法</a></li>
-<li><a class="reference internal" href="#id2" id="id12">基本用法</a></li>
-<li><a class="reference internal" href="#id3" id="id13">版本号格式</a></li>
-<li><a class="reference internal" href="#setup" id="id14">可选的setup()函数参数</a></li>
-<li><a class="reference internal" href="#find-packages" id="id15">使用 <cite>find_packages()</cite></a></li>
-<li><a class="reference internal" href="#id4" id="id16">脚本的自动生成</a></li>
-<li><a class="reference internal" href="#eggsecutable" id="id17"><cite>Eggsecutable</cite> 脚本</a></li>
-<li><a class="reference internal" href="#id5" id="id18">依赖的声明</a></li>
-<li><a class="reference internal" href="#id6" id="id19">数据文件的安装</a></li>
-<li><a class="reference internal" href="#id7" id="id20">依赖包的声明</a></li>
-<li><a class="reference internal" href="#easy-install" id="id21">easy_install</a></li>
-<li><a class="reference internal" href="#pkg-resources" id="id22">pkg_resources</a></li>
-<li><a class="reference internal" href="#id8" id="id23">命名空间包</a><ul>
-<li><a class="reference internal" href="#id9" id="id24">工作集对象</a></li>
-</ul>
-</li>
+<li>目前属于Python标准库的一部分。</li>
+<li>只适用于非常简单的应用场景，建议使用setuptools。</li>
 </ul>
 </div>
-<div class="section" id="id1">
-<h2><a class="toc-backref" href="#id11">推荐用法</a></h2>
-<p>在项目根目录添加 <a class="reference external" href="https://bootstrap.pypa.io/ez_setup.py/">ez_setup.py</a> 文件，
-然后在setup.py文件的开头添加如下代码：</p>
-<pre class="code python literal-block">
-<span class="kn">from</span> <span class="nn">ez_setup</span> <span class="kn">import</span> <span class="n">use_setuptools</span>
-<span class="n">use_setuptools</span><span class="p">()</span>
-</pre>
-<p>这样写的话，其他人安装你的Python包时，
-如果没有安装setuptools工具，该脚本就会自动下载并安装setuptools。</p>
-<p>当然也可以通过这个脚本来直接安装、更新setuptools：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>sudo python ez_setup.py -U setuptools
-</pre>
+<div class="section" id="setuptools">
+<h2>setuptools</h2>
+<ul class="simple">
+<li>setuptools是对distutils的增强, 尤其是引入了包依赖管理。</li>
+<li>setuptools可以为Python包创建egg文件。</li>
+<li>包含包目录内的数据文件。</li>
+<li>自动包含包目录内的所有的包，而不用在setup.py中列举。</li>
+<li>自动包含包内和发布有关的所有相关文件，而不用创建一个MANIFEST.in文件。</li>
+<li>自动生成经过包装的脚本或Windows执行文件。</li>
+<li>支持Pyrex，即在可以setup.py中列出.pyx文件，而最终用户无须安装Pyrex。</li>
+<li>支持上传到PyPI。</li>
+<li>可以部署开发模式，使项目在sys.path中。</li>
+<li>用新命令或setup()参数扩展distutils，为多个项目发布/重用扩展。</li>
+<li>基本满足大型项目的安装和发布。</li>
+</ul>
+<p>setuptools的诸多功能下面会有具体讲解。</p>
 </div>
-<div class="section" id="id2">
-<h2><a class="toc-backref" href="#id12">基本用法</a></h2>
-<p>下面是一个最基本的setup.py。</p>
-<pre class="code python literal-block">
-<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import ...</span></pre></div>
-                        <a class="btn primary xsmall" href="/setuptoolszhi-nan-wei-wan-dai-xu.html">more ...</a>
+<div class="section" id="distribute">
+<h2>distribute</h2>
+<ul class="simple">
+<li>由于setuptools初期开发进度缓慢, 不支持 Python3, 代码混乱,
+一帮程序员另起炉灶, fork并且重构setuptools代码, 增加功能。</li>
+<li>然后2013年8月，distribute又合并回setuptools 0.7。</li>
+</ul>
+</div>
+<div class="section" id="easy-install">
+<h2>easy_install</h2>
+<ul class="simple">
+<li>setuptools和distribute自带的安装脚本。</li>
+<li>只支持从 ...</li></ul></div>
+                        <a class="btn primary xsmall" href="/pythonda-bao-gong-ju-dui-bi.html">more ...</a>
                 </div>
         </div>
         <hr />
+        <div class="article">
+                <h1><a href="/thelittleschemerbi-ji.html">TheLittleSchemer笔记</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-06-22T00:00:00">
+        <i class="icon-calendar"></i>2014-06-22 00:00:00
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/scheme.html"><i class="icon-folder-open"></i>scheme</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/lisp.html"><i class="icon-tag"></i>lisp</a>
+	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
+	<a href="/tag/guile.html"><i class="icon-tag"></i>guile</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id23">总纲</a><ul>
+<li><a class="reference internal" href="#scheme" id="id24">scheme十戒</a></li>
+<li><a class="reference internal" href="#id2" id="id25">scheme五律</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#toys" id="id26">第一章: Toys</a><ul>
+<li><a class="reference internal" href="#id3" id="id27">基本概念</a></li>
+<li><a class="reference internal" href="#id4" id="id28">其它概念</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#do-it-do-it-again-and-again-and-again" id="id29">第二章: Do It, Do It Again, and Again, and Again…</a><ul>
+<li><a class="reference internal" href="#lat" id="id30">lat操作</a><ul>
+<li><a class="reference internal" href="#id5" id="id31">基本概念</a></li>
+<li><a class="reference internal" href="#id6" id="id32">应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cons-the-magnificent" id="id33">第三章: Cons the Magnificent</a><ul>
+<li><a class="reference internal" href="#id7" id="id34">lat操作</a><ul>
+<li><a class="reference internal" href="#id8" id="id35">应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#numbers-games" id="id36">第四章: Numbers Games</a><ul>
+<li><a class="reference internal" href="#id9" id="id37">数字操作</a><ul>
+<li><a class="reference internal" href="#id10" id="id38">基本概念</a></li>
+<li><a class="reference internal" href="#id11" id="id39">应用</a></li>
+<li><a class="reference internal" href="#id12" id="id40">综合操作</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#oh-my-gawd-it-s-full-of-stars" id="id41">第五章: *Oh My Gawd*: It's Full of Stars</a></li>
+<li><a class="reference internal" href="#shadows" id="id42">第六章: Shadows</a><ul>
+<li><a class="reference internal" href="#id13" id="id43">应用</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#friends-and-relations" id="id44">第七章: Friends and Relations ...</a></li></ul></div>
+                        <a class="btn primary xsmall" href="/thelittleschemerbi-ji.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/wo-de-yan-jiang-shui-ping-wei-shi-yao-zhe-yao-lan.html">我的演讲水平为什么这么烂？</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-06-22T00:00:00">
+        <i class="icon-calendar"></i>2014-06-22 00:00:00
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/dna.html"><i class="icon-folder-open"></i>dna</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/dna.html"><i class="icon-tag"></i>dna</a>
+	<a href="/tag/speak.html"><i class="icon-tag"></i>speak</a>
+	<a href="/tag/speech.html"><i class="icon-tag"></i>speech</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="section" id="id2">
+<h2>背景</h2>
+<p>应该是前三周的DNA会议，我做了第一次P3的演讲。
+很遗憾，那次的演讲由于超时没有通过。</p>
+<p>这事虽然对我打击不是很大，但是却让我反思了一下自己的演讲水平。</p>
+</div>
+<div class="section" id="id3">
+<h2>有多烂？事实在这里</h2>
+<p>我发现自己从P1到P3的整个演讲历程走得磕磕跘跘：</p>
+<ul class="simple">
+<li>P1做了三次，其中有一次说到一半忘词说不下去了。</li>
+<li>P2做了两次，第一次超时了，第二次也是勉强过了。</li>
+<li>P3正如大家所见，我正在做第二次的P3演讲。</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>为什么会这么烂？原因何在？</h2>
+<ol class="arabic simple">
+<li>认为演讲水平不好，只是上台的经历比较少，经历多了，自然会讲得比较好。</li>
+<li>认为演讲时紧张，还是上台的经历比较少，经历多了，脸皮就厚了。</li>
+<li>没有做好提前准备，既然是备稿演讲，你的稿子在哪？每次只是打个提纲。</li>
+<li>每次演讲完成，没有回顾自己在演讲时被拍摄的视频，找出缺点并改正。</li>
+<li>在演讲时，一遇到需要表演的地方，就觉得很假，
+就会把一个很有感觉的事说得平淡无奇。</li>
+</ol>
+</div>
+<div class="section" id="id5">
+<h2>如何解决这些问题？</h2>
+</div>
+<div class="section" id="id6">
+<h2>难道自己就没有优点？</h2>
+</div>
+<div class="section" id="id7">
+<h2>结尾</h2>
+</div>
+
+                        <a class="btn primary xsmall" href="/wo-de-yan-jiang-shui-ping-wei-shi-yao-zhe-yao-lan.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+
+        <div class="pagination">
+        <ul>
+                        <li class="prev"><a href="/author/chen-jie.html">&larr; Previous</a></li>
+                        <li class=""><a href="/author/chen-jie.html">1</a></li>
+                        <li class="active"><a href="/author/chen-jie2.html">2</a></li>
+                        <li class="next disabled"><a href="#">&rarr; Next</a></li>
+        </ul>
+        </div>
 
         </div><!--/span-->
 

@@ -100,6 +100,124 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/htdpdi-san-zhang-cheng-xu-jiu-shi-han-shu-jia-shang-bian-liang-ding-yi.html">HTDP第三章：程序就是函数加上变量定义</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-07-24T23:24:45.280575">
+        <i class="icon-calendar"></i>2014-07-24 23:24:45
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/scheme.html"><i class="icon-folder-open"></i>scheme</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
+	<a href="/tag/htdp.html"><i class="icon-tag"></i>htdp</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="section" id="id1">
+<h2>函数复合</h2>
+<p>电影院定制电影票价格的代码如下：</p>
+<pre class="code scheme literal-block">
+<span class="c1">;; profit: number -&gt; number</span>
+<span class="c1">;; 利润</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">profit</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)))</span>
+
+<span class="c1">;; revenue: number -&gt; number</span>
+<span class="c1">;; 收入</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="nv">ticket-price</span><span class="p">))</span>
+
+<span class="c1">;; cost: number -&gt; number</span>
+<span class="c1">;; 支出</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="mi">180</span> <span class="p">(</span><span class="nb">* </span><span class="mf">0.04</span> <span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">))))</span>
+
+<span class="c1">;; attendees: number -&gt; number</span>
+<span class="c1">;; 观众数</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="mi">120</span> <span class="p">(</span><span class="nb">* </span><span class="mi">10</span> <span class="p">(</span><span class="nb">- </span><span class="mf">5.0</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="mi">15</span><span class="p">)))</span>
+</pre>
+<p>上面是使用辅助函数实现的代码。由该问题引出一条程序设计原则 ...</p></div>
+                        <a class="btn primary xsmall" href="/htdpdi-san-zhang-cheng-xu-jiu-shi-han-shu-jia-shang-bian-liang-ding-yi.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/htdpdi-er-zhang-shu-biao-da-shi-he-jian-dan-cheng-xu.html">HTDP第二章：数、表达式和简单程序</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-07-24T22:46:51.238002">
+        <i class="icon-calendar"></i>2014-07-24 22:46:51
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/scheme.html"><i class="icon-folder-open"></i>scheme</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
+	<a href="/tag/htdp.html"><i class="icon-tag"></i>htdp</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>这一章开始4小段简单介绍了一下Scheme语法。</p>
+<p>Scheme的语法相当简单，所以廖廖几页就说完了。</p>
+<p>相关的习题也是讲解：</p>
+<blockquote>
+各种不符合Scheme语法情况下的代码的运行出错提示是什么。</blockquote>
+<p>2.5段则给出了一个 <cite>设计诀窍</cite> 表格。
+其实就是设计一个函数的具体步骤有哪些。</p>
+<img alt="" src="static/设计诀窍.png" />
+<div class="section" id="id1">
+<h2>程序设计原则</h2>
+<p>这里我也具体列出下面每章都会提及的程序设计原则。</p>
+<p><strong>辅助函数原则</strong></p>
+<blockquote>
+对在表述中所提到的或在进行实例计算中所发现的每种依赖关系
+都使用一个辅助函数进行明确表达。</blockquote>
+<p><strong>变量定义原则</strong></p>
+<blockquote>
+给频繁使用的常量定义一个名字，并在程序中使用。</blockquote>
+</div>
+
+                        <a class="btn primary xsmall" href="/htdpdi-er-zhang-shu-biao-da-shi-he-jian-dan-cheng-xu.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/htdpdi-yi-zhang-xue-sheng-lao-shi-he-ji-suan-ji.html">HTDP第一章：学生、老师和计算机</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-07-24T21:42:35.485614">
+        <i class="icon-calendar"></i>2014-07-24 21:42:35
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/scheme.html"><i class="icon-folder-open"></i>scheme</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
+	<a href="/tag/htdp.html"><i class="icon-tag"></i>htdp</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><p>第一章对程序设计这个概念作了一个简单介绍。</p>
+<p>我在这里简单说介绍一下 <strong>HTDP</strong> 用到的教学软件包。</p>
+<ul class="simple">
+<li>从 <a class="reference external" href="http://download.racket-lang.org/">Racket官方网站</a> 下载最新版本的Racket软件。</li>
+<li>运行命令 <cite>drracket</cite> 。</li>
+<li>在 <cite>语言</cite> 中 <cite>选择语言...</cite> 选择 <cite>教学语言(ctl-T)</cite> 。</li>
+<li>级别随便选择，我一开始做习题就是选择 <cite>初级</cite> 。</li>
+<li>然后根据课后习题的要求，在 <cite>语言</cite> 中选择 <cite>加载教学包...</cite> 。</li>
+</ul>
+
+                        <a class="btn primary xsmall" href="/htdpdi-yi-zhang-xue-sheng-lao-shi-he-ji-suan-ji.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/thelittleschemerbi-ji.html">TheLittleSchemer笔记</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -202,14 +320,9 @@
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-4">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/restructuredtext.html">
-        <i class="icon-tag icon-large"></i>reStructuredText
+<li class="tag-1">
+    <a href="/tag/http.html">
+        <i class="icon-tag icon-large"></i>http
     </a>
 </li>
 <li class="tag-2">
@@ -217,14 +330,9 @@
         <i class="icon-tag icon-large"></i>setuptools
     </a>
 </li>
-<li class="tag-2">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/setup.html">
-        <i class="icon-tag icon-large"></i>setup
+<li class="tag-1">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
     </a>
 </li>
 <li class="tag-4">
@@ -233,18 +341,53 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/speak.html">
-        <i class="icon-tag icon-large"></i>speak
-    </a>
-</li>
-<li class="tag-4">
     <a href="/tag/markdown.html">
         <i class="icon-tag icon-large"></i>MarkDown
     </a>
 </li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
+    </a>
+</li>
 <li class="tag-1">
-    <a href="/tag/http.html">
-        <i class="icon-tag icon-large"></i>http
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/htdp.html">
+        <i class="icon-tag icon-large"></i>htdp
     </a>
 </li>
 <li class="tag-1">
@@ -258,28 +401,8 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/guile.html">
-        <i class="icon-tag icon-large"></i>guile
-    </a>
-</li>
-<li class="tag-4">
     <a href="/tag/blog.html">
         <i class="icon-tag icon-large"></i>blog
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/dna.html">
-        <i class="icon-tag icon-large"></i>dna
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/pelican.html">
-        <i class="icon-tag icon-large"></i>pelican
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
     </a>
 </li>
 

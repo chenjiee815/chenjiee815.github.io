@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>HTDP第三章：程序就是函数加上变量定义</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Chen Jie">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="/" type="application/atom+xml" rel="alternate" title="January Star ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/index.html">January Star </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                          <li class="divider-vertical"></li>
+                  <li >
+                    <a href="/category/dna.html">
+						<i class="icon-folder-open icon-large"></i>dna
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/http.html">
+						<i class="icon-folder-open icon-large"></i>http
+					</a>
+                  </li>
+                  <li >
+                    <a href="/category/python.html">
+						<i class="icon-folder-open icon-large"></i>python
+					</a>
+                  </li>
+                  <li class="active">
+                    <a href="/category/scheme.html">
+						<i class="icon-folder-open icon-large"></i>scheme
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to HTDP第三章：程序就是函数加上变量定义">
+                                        HTDP第三章：程序就是函数加上变量定义
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-07-24T23:24:45.280575">
+        <i class="icon-calendar"></i>2014-07-24 23:24:45
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/scheme.html"><i class="icon-folder-open"></i>scheme</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
+	<a href="/tag/htdp.html"><i class="icon-tag"></i>htdp</a>
+</footer><!-- /.post-info -->                </div>
+                <div class="section" id="id1">
+<h2>函数复合</h2>
+<p>电影院定制电影票价格的代码如下：</p>
+<pre class="code scheme literal-block">
+<span class="c1">;; profit: number -&gt; number</span>
+<span class="c1">;; 利润</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">profit</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)))</span>
+
+<span class="c1">;; revenue: number -&gt; number</span>
+<span class="c1">;; 收入</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="nv">ticket-price</span><span class="p">))</span>
+
+<span class="c1">;; cost: number -&gt; number</span>
+<span class="c1">;; 支出</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="mi">180</span> <span class="p">(</span><span class="nb">* </span><span class="mf">0.04</span> <span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">))))</span>
+
+<span class="c1">;; attendees: number -&gt; number</span>
+<span class="c1">;; 观众数</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="mi">120</span> <span class="p">(</span><span class="nb">* </span><span class="mi">10</span> <span class="p">(</span><span class="nb">- </span><span class="mf">5.0</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="mi">15</span><span class="p">)))</span>
+</pre>
+<p>上面是使用辅助函数实现的代码。由该问题引出一条程序设计原则：</p>
+<p><strong>辅助函数原则</strong></p>
+<blockquote>
+对在表述中所提到的或在进行实例计算中所发现的每种依赖关系
+都使用一个辅助函数进行明确表达。</blockquote>
+<p>习题3.14，这一题能够很明显看到使用辅助函数的好处，
+虽然需求改变，但是只需要改变cost函数的具体算法即可。</p>
+<pre class="code scheme literal-block">
+<span class="c1">;; profit: number -&gt; number</span>
+<span class="c1">;; 利润</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">profit</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)))</span>
+
+<span class="c1">;; revenue: number -&gt; number</span>
+<span class="c1">;; 收入</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="nv">ticket-price</span><span class="p">))</span>
+
+<span class="c1">;; cost: number -&gt; number</span>
+<span class="c1">;; 支出</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">+ </span><span class="mf">0.04</span> <span class="mf">1.5</span><span class="p">)</span> <span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)))</span>
+
+<span class="c1">;; attendees: number -&gt; number</span>
+<span class="c1">;; 观众数</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="mi">120</span> <span class="p">(</span><span class="nb">* </span><span class="mi">10</span> <span class="p">(</span><span class="nb">- </span><span class="mf">5.0</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="mi">15</span><span class="p">)))</span>
+</pre>
+</div>
+<div class="section" id="id2">
+<h2>变量定义</h2>
+<p><strong>变量定义原则</strong></p>
+<blockquote>
+给频繁使用的常量定义一个名字，并在程序中使用。</blockquote>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="k">define </span><span class="nv">FILM_COST</span> <span class="mi">180</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">ATTENDEES_COST</span> <span class="mf">0.04</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">ATTENDEES_AT_MAX_TICKET_PRICE</span> <span class="mi">120</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">MAX_TICKET_PRICE</span> <span class="mf">5.0</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">PER_ADD_ATTENDEES_NUM</span> <span class="mi">15</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">PER_SUB_TICKET_PRICE</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1">;; profit: number -&gt; number</span>
+<span class="c1">;; 利润</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">profit</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)))</span>
+
+<span class="c1">;; revenue: number -&gt; number</span>
+<span class="c1">;; 收入</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
+          <span class="nv">ticket-price</span><span class="p">))</span>
+
+<span class="c1">;; cost: number -&gt; number</span>
+<span class="c1">;; 支出</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="nv">FILM_COST</span>
+          <span class="p">(</span><span class="nb">* </span><span class="nv">ATTENDEES_COST</span>
+             <span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">))))</span>
+
+<span class="c1">;; attendees: number -&gt; number</span>
+<span class="c1">;; 观众数</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="nv">ATTENDEES_AT_MAX_TICKET_PRICE</span>
+          <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">/ </span><span class="nv">PER_ADD_ATTENDEES_NUM</span>
+                <span class="nv">PER_SUB_TICKET_PRICE</span><span class="p">)</span>
+             <span class="p">(</span><span class="nb">- </span><span class="nv">MAX_TICKET_PRICE</span> <span class="nv">ticket-price</span><span class="p">))))</span>
+</pre>
+</div>
+<div class="section" id="id3">
+<h2>函数复合练习</h2>
+<div class="section" id="id4">
+<h3>习题3.3.1</h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; british-&gt;metric: number -&gt; number</span>
+<span class="c1">;; 英制转换成公制</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">british-&gt;metric</span> <span class="nv">reduced_unit</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">reduced_unit</span> <span class="nv">num</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">INCHES-&gt;CM_UNIT</span> <span class="mf">2.54</span><span class="p">)</span>
+
+<span class="c1">;; inches-&gt;cm: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">inches-&gt;cm</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">british-&gt;metric</span> <span class="nv">INCHES-&gt;CM_UNIT</span> <span class="nv">num</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">FEET-&gt;INCHES_UNIT</span> <span class="mi">12</span><span class="p">)</span>
+
+<span class="c1">;; feet-&gt;inches: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">feet-&gt;inches</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">british-&gt;metric</span> <span class="nv">FEET-&gt;INCHES_UNIT</span> <span class="nv">num</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">YARDS-&gt;FEET_UNIT</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">;; yards-&gt;feet: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">yards-&gt;feet</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">british-&gt;metric</span> <span class="nv">YARDS-&gt;FEET_UNIT</span> <span class="nv">num</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">RODS-&gt;YARDS_UNIT</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1">;; rods-&gt;yards: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">rods-&gt;yards</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">british-&gt;metric</span> <span class="nv">RODS-&gt;YARDS_UNIT</span> <span class="nv">num</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">FURLONGS-&gt;RODS_UNIT</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="c1">;; furlongs-&gt;rods: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">furlongs-&gt;rods</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">british-&gt;metric</span> <span class="nv">FURLONGS-&gt;RODS_UNIT</span> <span class="nv">num</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">MILES-&gt;FURLONGS_UNIT</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="c1">;; miles-&gt;furlongs: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">miles-&gt;furlongs</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">british-&gt;metric</span> <span class="nv">MILES-&gt;FURLONGS_UNIT</span> <span class="nv">num</span><span class="p">))</span>
+
+<span class="c1">;; feet-&gt;cm: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">feet-&gt;cm</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">inches-&gt;cm</span> <span class="p">(</span><span class="nf">feet-&gt;inches</span> <span class="nv">num</span><span class="p">)))</span>
+
+<span class="c1">;; yards-&gt;cm: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">yards-&gt;cm</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">inches-&gt;cm</span> <span class="p">(</span><span class="nf">feet-&gt;inches</span> <span class="p">(</span><span class="nf">yards-&gt;feet</span> <span class="nv">num</span><span class="p">))))</span>
+
+<span class="c1">;; yards-&gt;cm: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">rods-&gt;inches</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">feet-&gt;inches</span> <span class="p">(</span><span class="nf">yards-&gt;feet</span> <span class="p">(</span><span class="nf">rods-&gt;yards</span> <span class="nv">num</span><span class="p">))))</span>
+
+<span class="c1">;; yards-&gt;cm: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">miles-&gt;feet</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">yards-&gt;feet</span> <span class="p">(</span><span class="nf">rods-&gt;yards</span> <span class="p">(</span><span class="nf">furlongs-&gt;rods</span> <span class="p">(</span><span class="nf">miles-&gt;furlongs</span> <span class="nv">num</span><span class="p">)))))</span>
+</pre>
+</div>
+<div class="section" id="id5">
+<h3>习题3.3.2</h3>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="k">define </span><span class="nv">PI</span> <span class="mf">3.14</span><span class="p">)</span>
+
+<span class="c1">;; volume-cylinder: number -&gt; number</span>
+<span class="c1">;; 求圆柱体体积</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">volume-cylinder</span> <span class="nv">radius</span> <span class="nv">height</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">PI</span> <span class="p">(</span><span class="nb">* </span><span class="nv">radius</span> <span class="nv">radius</span><span class="p">)</span> <span class="nv">height</span><span class="p">))</span>
+</pre>
+</div>
+<div class="section" id="id6">
+<h3>习题3.3.3</h3>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="k">define </span><span class="nv">PI</span> <span class="mf">3.14</span><span class="p">)</span>
+
+<span class="c1">;; circumference-bottem: number -&gt; number</span>
+<span class="c1">;; 底部的周长</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">circumference-bottem</span> <span class="nv">radius</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">PI</span> <span class="nv">radius</span><span class="p">))</span>
+
+<span class="c1">;; area-bottem: number -&gt; number</span>
+<span class="c1">;; 底部面积</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-bottem</span> <span class="nv">radius</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">PI</span> <span class="p">(</span><span class="nb">* </span><span class="nv">radius</span> <span class="nv">radius</span><span class="p">)))</span>
+
+<span class="c1">;; area-flank: number number -&gt; number</span>
+<span class="c1">;; 侧面积</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-flank</span> <span class="nv">radius</span> <span class="nv">height</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">height</span> <span class="p">(</span><span class="nf">circumference-bottem</span> <span class="nv">radius</span><span class="p">)))</span>
+
+<span class="c1">;; area-cylinder: number number -&gt; number</span>
+<span class="c1">;; 求圆柱体的表面积</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-cylinder</span> <span class="nv">radius</span> <span class="nv">height</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">area-flank</span> <span class="nv">radius</span> <span class="nv">height</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nf">area-bottem</span> <span class="nv">radius</span><span class="p">))))</span>
+</pre>
+</div>
+<div class="section" id="id7">
+<h3>习题3.3.4</h3>
+<div class="section" id="id8">
+<h4>单一函数版本</h4>
+<p>单一函数的我就不写了，编程刚入门的可以先写一个单一函数版本，
+再对比一下辅助函数版本，这样有感觉。</p>
+</div>
+<div class="section" id="id9">
+<h4>辅助函数版本</h4>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="k">define </span><span class="nv">PI</span> <span class="mf">3.14</span><span class="p">)</span>
+
+<span class="c1">;; area-pipe: number number number -&gt; number</span>
+<span class="c1">;; 管道（中空的圆柱体）的表面积</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-pipe</span> <span class="nv">inner_radius</span> <span class="nv">length</span> <span class="nv">thickness</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">outer_radius</span> <span class="p">(</span><span class="nf">outer-radius</span> <span class="nv">inner_radius</span> <span class="nv">thickness</span><span class="p">)))</span>
+            <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">outer-area-flank</span> <span class="nv">length</span> <span class="nv">outer_radius</span><span class="p">)</span>
+               <span class="p">(</span><span class="nf">inner-area-flank</span> <span class="nv">length</span> <span class="nv">inner_radius</span><span class="p">)</span>
+               <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nf">area-ring</span> <span class="nv">outer_radius</span> <span class="nv">inner_radius</span><span class="p">)))))</span>
+
+<span class="c1">;; outer-area-flank: number number -&gt; number</span>
+<span class="c1">;; 外部的侧面积</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">outer-area-flank</span> <span class="nv">length</span> <span class="nv">outer_radius</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">area-flank</span> <span class="nv">outer_radius</span> <span class="nv">length</span><span class="p">))</span>
+
+<span class="c1">;; inner-area-flank: number number -&gt; number</span>
+<span class="c1">;; 内部的侧面积</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">inner-area-flank</span> <span class="nv">length</span> <span class="nv">inner_radius</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">area-flank</span> <span class="nv">inner_radius</span> <span class="nv">length</span><span class="p">))</span>
+
+<span class="c1">;; area-ring: number number -&gt; number</span>
+<span class="c1">;; 空心圆的面积</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-ring</span> <span class="nv">outer_radius</span> <span class="nv">inner_radius</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">area-cycle</span> <span class="nv">outer_radius</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">area-cycle</span> <span class="nv">inner_radius</span><span class="p">)))</span>
+
+<span class="c1">;; outer-radius: number number -&gt; number</span>
+<span class="c1">;; 外半径</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">outer-radius</span> <span class="nv">inner_radius</span> <span class="nv">thickness</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="nv">inner_radius</span> <span class="nv">thickness</span><span class="p">))</span>
+
+<span class="c1">;; area-flank: number number -&gt; number</span>
+<span class="c1">;; 侧面积</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-flank</span> <span class="nv">radius</span> <span class="nv">height</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">height</span> <span class="p">(</span><span class="nf">circumference-cycle</span> <span class="nv">radius</span><span class="p">)))</span>
+
+<span class="c1">;; area-cycle: number -&gt; number</span>
+<span class="c1">;; 圆面积</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-cycle</span> <span class="nv">radius</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">PI</span> <span class="p">(</span><span class="nb">* </span><span class="nv">radius</span> <span class="nv">radius</span><span class="p">)))</span>
+
+<span class="c1">;; circumference-cycle: number -&gt; number</span>
+<span class="c1">;; 圆周长</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">circumference-cycle</span> <span class="nv">radius</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">PI</span> <span class="nv">radius</span><span class="p">))</span>
+</pre>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>习题3.3.5</h3>
+</div>
+<div class="section" id="id11">
+<h3>习题3.3.6</h3>
+</div>
+</div>
+
+                </div><!-- /.entry-content -->
+                <div class="comments">
+                <h2>Comments !</h2>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                           var disqus_identifier = "htdpdi-san-zhang-cheng-xu-jiu-shi-han-shu-jia-shang-bian-liang-ding-yi.html";
+                           (function() {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://chenjiee815blog.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] ||
+                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
+                          })();
+                        </script>
+                </div>
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
+    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/"><i class="icon-external-link"></i>Jinja2</a></li>
+    <li><a href="#"><i class="icon-external-link"></i>You can modify those links in your config file</a></li>
+<li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
+<li><a href="/" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
+    <li><a href="#"><i class="icon-You can add links in your config file-sign icon-large"></i>You can add links in your config file</a></li>
+    <li><a href="#"><i class="icon-Another social link-sign icon-large"></i>Another social link</a></li>
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="/category/dna.html">
+    <i class="icon-folder-open icon-large"></i>dna
+</a>
+</li>
+<li>
+<a href="/category/http.html">
+    <i class="icon-folder-open icon-large"></i>http
+</a>
+</li>
+<li>
+<a href="/category/python.html">
+    <i class="icon-folder-open icon-large"></i>python
+</a>
+</li>
+<li>
+<a href="/category/scheme.html">
+    <i class="icon-folder-open icon-large"></i>scheme
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-1">
+    <a href="/tag/http.html">
+        <i class="icon-tag icon-large"></i>http
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/setuptools.html">
+        <i class="icon-tag icon-large"></i>setuptools
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speech.html">
+        <i class="icon-tag icon-large"></i>speech
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>MarkDown
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/htdp.html">
+        <i class="icon-tag icon-large"></i>htdp
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+	var pageTracker = _gat._getTracker("UA-52167018-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<script type="text/javascript">
+    var disqus_shortname = 'chenjiee815blog';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

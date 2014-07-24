@@ -114,8 +114,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-07-06T19:03:45.813544">
-        <i class="icon-calendar"></i>2014-07-06 19:03:45
+<abbr class="published" title="2014-07-06T20:13:44.661978">
+        <i class="icon-calendar"></i>2014-07-06 20:13:44
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -126,9 +126,35 @@
 <span class="label">Tags</span>
 	<a href="/tag/http.html"><i class="icon-tag"></i>http</a>
 </footer><!-- /.post-info -->                </div>
-                <img alt="" src="static/http_tcp_connection.png" />
-<p>HTTP和HTTPS网络协议栈区别</p>
+                <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id2">HTTP的连接过程</a><ul>
+<li><a class="reference internal" href="#httphttps" id="id3">HTTP和HTTPS网络协议栈区别</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id2">HTTP的连接过程</a></h2>
+<p>HTTP连接本质上就是TCP连接和一些使用连接的规则。</p>
+<img alt="" src="static/http_tcp_connection.png" />
+<div class="section" id="httphttps">
+<h3><a class="toc-backref" href="#id3">HTTP和HTTPS网络协议栈区别</a></h3>
+<p>HTTPS连接其中就是在HTTP和TCP层之间插入一个TSL/SSL层。</p>
 <img alt="" src="static/http_stacks_vs_https_stacks.png" />
+<p>HTTP要传送一条报文时，
+会以流的形式将报文数据通过一条打开的TCP连接按序传输。</p>
+<p>TCP收到数据流后，会将数据流分成多个小段，
+并将该段封装在IP分组中。</p>
+<p>每个IP分组包括：</p>
+<ul class="simple">
+<li>一个IP分组首部（通常为20个字节）</li>
+<li>一个TCP段首部（通常为20个字节）</li>
+<li>一个TCP数据块（0个或者多个字节）</li>
+</ul>
+</div>
+</div>
 
                 </div><!-- /.entry-content -->
                 <div class="comments">
@@ -184,14 +210,9 @@
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-4">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/restructuredtext.html">
-        <i class="icon-tag icon-large"></i>reStructuredText
+<li class="tag-1">
+    <a href="/tag/http.html">
+        <i class="icon-tag icon-large"></i>http
     </a>
 </li>
 <li class="tag-2">
@@ -199,14 +220,9 @@
         <i class="icon-tag icon-large"></i>setuptools
     </a>
 </li>
-<li class="tag-2">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/setup.html">
-        <i class="icon-tag icon-large"></i>setup
+<li class="tag-1">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
     </a>
 </li>
 <li class="tag-4">
@@ -215,18 +231,53 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/speak.html">
-        <i class="icon-tag icon-large"></i>speak
-    </a>
-</li>
-<li class="tag-4">
     <a href="/tag/markdown.html">
         <i class="icon-tag icon-large"></i>MarkDown
     </a>
 </li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
+    </a>
+</li>
 <li class="tag-1">
-    <a href="/tag/http.html">
-        <i class="icon-tag icon-large"></i>http
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/htdp.html">
+        <i class="icon-tag icon-large"></i>htdp
     </a>
 </li>
 <li class="tag-1">
@@ -240,28 +291,8 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/guile.html">
-        <i class="icon-tag icon-large"></i>guile
-    </a>
-</li>
-<li class="tag-4">
     <a href="/tag/blog.html">
         <i class="icon-tag icon-large"></i>blog
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/dna.html">
-        <i class="icon-tag icon-large"></i>dna
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/pelican.html">
-        <i class="icon-tag icon-large"></i>pelican
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
     </a>
 </li>
 
