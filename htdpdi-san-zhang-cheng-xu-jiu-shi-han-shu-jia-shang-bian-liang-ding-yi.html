@@ -114,8 +114,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-07-24T23:24:45.280575">
-        <i class="icon-calendar"></i>2014-07-24 23:24:45
+<abbr class="published" title="2014-07-27T10:35:05.941386">
+        <i class="icon-calendar"></i>2014-07-27 10:35:05
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -134,12 +134,14 @@
 <span class="c1">;; profit: number -&gt; number</span>
 <span class="c1">;; 利润</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">profit</span> <span class="nv">ticket-price</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)))</span>
+       <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)))</span>
 
 <span class="c1">;; revenue: number -&gt; number</span>
 <span class="c1">;; 收入</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="nv">ticket-price</span><span class="p">))</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
+          <span class="nv">ticket-price</span><span class="p">))</span>
 
 <span class="c1">;; cost: number -&gt; number</span>
 <span class="c1">;; 支出</span>
@@ -162,17 +164,20 @@
 <span class="c1">;; profit: number -&gt; number</span>
 <span class="c1">;; 利润</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">profit</span> <span class="nv">ticket-price</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)))</span>
+       <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)))</span>
 
 <span class="c1">;; revenue: number -&gt; number</span>
 <span class="c1">;; 收入</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="nv">ticket-price</span><span class="p">))</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
+          <span class="nv">ticket-price</span><span class="p">))</span>
 
 <span class="c1">;; cost: number -&gt; number</span>
 <span class="c1">;; 支出</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">+ </span><span class="mf">0.04</span> <span class="mf">1.5</span><span class="p">)</span> <span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)))</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">+ </span><span class="mf">0.04</span> <span class="mf">1.5</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)))</span>
 
 <span class="c1">;; attendees: number -&gt; number</span>
 <span class="c1">;; 观众数</span>
@@ -326,8 +331,7 @@
 <h3>习题3.3.4</h3>
 <div class="section" id="id8">
 <h4>单一函数版本</h4>
-<p>单一函数的我就不写了，编程刚入门的可以先写一个单一函数版本，
-再对比一下辅助函数版本，这样有感觉。</p>
+<p>Pass</p>
 </div>
 <div class="section" id="id9">
 <h4>辅助函数版本</h4>
@@ -382,9 +386,23 @@
 </div>
 <div class="section" id="id10">
 <h3>习题3.3.5</h3>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="k">define </span><span class="nv">G</span> <span class="mf">9.8</span><span class="p">)</span> <span class="c1">;; 重力加速度</span>
+
+<span class="c1">;; height: number -&gt; number</span>
+<span class="c1">;; 计算火箭升空后在给定时刻所到达的高度</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">height</span> <span class="nv">sec</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nf">speed</span> <span class="nv">sec</span><span class="p">)</span> <span class="nv">sec</span><span class="p">))</span>
+
+<span class="c1">;; speed: number -&gt; number</span>
+<span class="c1">;; 计算火箭升空后在给定时刻所到达的速度</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">speed</span> <span class="nv">sec</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">G</span> <span class="nv">sec</span><span class="p">))</span>
+</pre>
 </div>
 <div class="section" id="id11">
 <h3>习题3.3.6</h3>
+<p>Pass</p>
 </div>
 </div>
 
@@ -442,79 +460,14 @@
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-1">
-    <a href="/tag/http.html">
-        <i class="icon-tag icon-large"></i>http
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/setuptools.html">
-        <i class="icon-tag icon-large"></i>setuptools
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speech.html">
-        <i class="icon-tag icon-large"></i>speech
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/markdown.html">
-        <i class="icon-tag icon-large"></i>MarkDown
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speak.html">
-        <i class="icon-tag icon-large"></i>speak
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/pelican.html">
-        <i class="icon-tag icon-large"></i>pelican
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/setup.html">
-        <i class="icon-tag icon-large"></i>setup
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/restructuredtext.html">
-        <i class="icon-tag icon-large"></i>reStructuredText
-    </a>
-</li>
 <li class="tag-4">
     <a href="/tag/guile.html">
         <i class="icon-tag icon-large"></i>guile
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/dna.html">
-        <i class="icon-tag icon-large"></i>dna
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/htdp.html">
-        <i class="icon-tag icon-large"></i>htdp
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/package.html">
-        <i class="icon-tag icon-large"></i>package
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
     </a>
 </li>
 <li class="tag-4">
@@ -525,6 +478,71 @@
 <li class="tag-4">
     <a href="/tag/blog.html">
         <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/setuptools.html">
+        <i class="icon-tag icon-large"></i>setuptools
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>MarkDown
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/htdp.html">
+        <i class="icon-tag icon-large"></i>htdp
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speech.html">
+        <i class="icon-tag icon-large"></i>speech
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/http.html">
+        <i class="icon-tag icon-large"></i>http
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
     </a>
 </li>
 
