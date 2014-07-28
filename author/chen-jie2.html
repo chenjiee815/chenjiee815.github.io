@@ -100,6 +100,71 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/pelican-ru-men-zhi-nan.html"><strong>Pelican</strong> 入门指南</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-06-22T00:00:00">
+        <i class="icon-calendar"></i>2014-06-22 00:00:00
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/python.html"><i class="icon-folder-open"></i>python</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/pelican.html"><i class="icon-tag"></i>pelican</a>
+	<a href="/tag/python.html"><i class="icon-tag"></i>python</a>
+	<a href="/tag/blog.html"><i class="icon-tag"></i>blog</a>
+	<a href="/tag/restructuredtext.html"><i class="icon-tag"></i>reStructuredText</a>
+	<a href="/tag/markdown.html"><i class="icon-tag"></i>MarkDown</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id9">简介</a></li>
+<li><a class="reference internal" href="#id2" id="id10">安装</a><ul>
+<li><a class="reference internal" href="#id3" id="id11">依赖</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4" id="id12">更新</a></li>
+<li><a class="reference internal" href="#id5" id="id13">创建 <strong>Pelican</strong> 工程目录</a></li>
+<li><a class="reference internal" href="#id6" id="id14">使用 <strong>Pelican</strong> 编写文章</a><ul>
+<li><a class="reference internal" href="#id7" id="id15">语法高亮</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#makefile" id="id16">Makefile</a><ul>
+<li><a class="reference internal" href="#make-html" id="id17">make html</a></li>
+<li><a class="reference internal" href="#make-clean" id="id18">make clean</a></li>
+<li><a class="reference internal" href="#make-regenerate" id="id19">make regenerate</a></li>
+<li><a class="reference internal" href="#make-serve" id="id20">make serve</a></li>
+<li><a class="reference internal" href="#make-devserver" id="id21">make devserver</a></li>
+<li><a class="reference internal" href="#make-stopserver" id="id22">make stopserver</a></li>
+<li><a class="reference internal" href="#make" id="id23">其它make子命令</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#develop-server-sh" id="id24">develop_server.sh</a></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id9">简介</a></h2>
+<p><strong>Pelican</strong> 是一个用Python实现的静态网站生成器。</p>
+<ul class="simple">
+<li>通过 <strong>reStructuredText</strong> 或 <strong>MarkDown</strong> 语言，直接使用你的编辑器编写博客</li>
+<li>使用简单的命令行工具生成博客</li>
+<li>易于与版本控制工具和WEB应用配合使用</li>
+<li>全静态输出可以方便的在任何地方部署</li>
+</ul>
+<p>简单来说，就是你使用 <strong>reStructuredText</strong> 或者 <strong>MarkDown</strong> 来生写网站的具体内容，
+然后用这个工具根据你之前写的内容来生成对应的网页。</p>
+<p>这个工具一般用来生成静态的博客是极好的，
+并且网上也很多技术人的博客也已经是这样来实现的。</p>
+<p>本指南只讲解了一些有关 ...</p></div>
+                        <a class="btn primary xsmall" href="/pelican-ru-men-zhi-nan.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/pipzhi-nan.html">pip指南</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -415,24 +480,9 @@
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-4">
-    <a href="/tag/guile.html">
-        <i class="icon-tag icon-large"></i>guile
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/setup.html">
-        <i class="icon-tag icon-large"></i>setup
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/lisp.html">
-        <i class="icon-tag icon-large"></i>lisp
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/blog.html">
-        <i class="icon-tag icon-large"></i>blog
+<li class="tag-2">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
     </a>
 </li>
 <li class="tag-2">
@@ -441,23 +491,43 @@
     </a>
 </li>
 <li class="tag-4">
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
+    </a>
+</li>
+<li class="tag-0">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
+    </a>
+</li>
+<li class="tag-4">
     <a href="/tag/speak.html">
         <i class="icon-tag icon-large"></i>speak
     </a>
 </li>
+<li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
 <li class="tag-1">
-    <a href="/tag/package.html">
-        <i class="icon-tag icon-large"></i>package
+    <a href="/tag/http.html">
+        <i class="icon-tag icon-large"></i>http
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/markdown.html">
-        <i class="icon-tag icon-large"></i>MarkDown
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
     </a>
 </li>
 <li class="tag-1">
@@ -466,8 +536,8 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/restructuredtext.html">
-        <i class="icon-tag icon-large"></i>reStructuredText
+    <a href="/tag/speech.html">
+        <i class="icon-tag icon-large"></i>speech
     </a>
 </li>
 <li class="tag-4">
@@ -476,28 +546,23 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/pelican.html">
-        <i class="icon-tag icon-large"></i>pelican
+    <a href="/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>MarkDown
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/speech.html">
-        <i class="icon-tag icon-large"></i>speech
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
     </a>
 </li>
 <li class="tag-1">
-    <a href="/tag/http.html">
-        <i class="icon-tag icon-large"></i>http
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
     </a>
 </li>
 

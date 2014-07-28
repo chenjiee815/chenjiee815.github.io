@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>HTDP第一章：学生、老师和计算机</title>
+    <title>HTDP第五章：符号信息</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Chen Jie">
@@ -105,8 +105,8 @@
                         <h1>
                                 <a href=""
                                         rel="bookmark"
-                                        title="Permalink to HTDP第一章：学生、老师和计算机">
-                                        HTDP第一章：学生、老师和计算机
+                                        title="Permalink to HTDP第五章：符号信息">
+                                        HTDP第五章：符号信息
                                 </a>
                         </h1>
                 </header>
@@ -114,8 +114,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-07-27T13:36:45.907425">
-        <i class="icon-calendar"></i>2014-07-27 13:36:45
+<abbr class="published" title="2014-07-28T23:23:44.256323">
+        <i class="icon-calendar"></i>2014-07-28 23:23:44
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -127,23 +127,26 @@
 	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
 	<a href="/tag/htdp.html"><i class="icon-tag"></i>htdp</a>
 </footer><!-- /.post-info -->                </div>
-                <p>第一章对程序设计这个概念作了一个简单介绍。</p>
-<p>本书主要使用的是Scheme语言的一种方言，叫做Racket。</p>
-<p>我在这里简单说介绍一下 <strong>HTDP</strong> 用到的教学软件包。</p>
-<ul class="simple">
-<li>从 <a class="reference external" href="http://download.racket-lang.org/">Racket官方网站</a> 下载最新版本的Racket软件。</li>
-<li>运行命令 <cite>drracket</cite> 。</li>
-<li>在 <cite>语言</cite> 中 <cite>选择语言...</cite> 选择 <cite>教学语言(ctl-T)</cite> 。</li>
-<li>级别随便选择，我一开始做习题就是选择 <cite>初级</cite> 。</li>
-<li>然后根据课后习题的要求，在 <cite>语言</cite> 中选择 <cite>加载教学包...</cite> 。</li>
-</ul>
+                <div class="section" id="id1">
+<h2>习题5.1.1</h2>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reply</span> <span class="nv">s</span><span class="p">)</span>
+        <span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'GoodMorning</span><span class="p">)</span> <span class="ss">'Hi</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'HowAreYou?</span><span class="p">)</span> <span class="ss">'Fine</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'GoodAternoon</span><span class="p">)</span> <span class="ss">'INeedANap</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'GoodEvening</span><span class="p">)</span> <span class="ss">'BoyAmITired</span><span class="p">)))</span>
+</pre>
+</div>
+<div class="section" id="id2">
+<h2>习题5.1.2</h2>
+</div>
 
                 </div><!-- /.entry-content -->
                 <div class="comments">
                 <h2>Comments !</h2>
                         <div id="disqus_thread"></div>
                         <script type="text/javascript">
-                           var disqus_identifier = "htdpdi-yi-zhang-xue-sheng-lao-shi-he-ji-suan-ji.html";
+                           var disqus_identifier = "htdpdi-wu-zhang-fu-hao-xin-xi.html";
                            (function() {
                                 var dsq = document.createElement('script');
                                 dsq.type = 'text/javascript'; dsq.async = true;
