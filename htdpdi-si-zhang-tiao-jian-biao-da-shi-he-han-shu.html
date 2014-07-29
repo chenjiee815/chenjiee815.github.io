@@ -114,8 +114,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-07-27T23:55:30.304716">
-        <i class="icon-calendar"></i>2014-07-27 23:55:30
+<abbr class="published" title="2014-07-29T16:41:19.386340">
+        <i class="icon-calendar"></i>2014-07-29 16:41:19
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -221,8 +221,11 @@
 <p>至于其它解法，也是在这两种解法的基础上演化而来。
 比如加入缓存机制，使用连续等等。</p>
 <pre class="code scheme literal-block">
+<span class="c1">;; 0等级奖赏标准</span>
 <span class="p">(</span><span class="k">define </span><span class="nv">LEVEL0_CONSUMPTION_STD</span> <span class="mi">500</span><span class="p">)</span>
+<span class="c1">;; 1等级奖赏标准</span>
 <span class="p">(</span><span class="k">define </span><span class="nv">LEVEL1_CONSUMPTION_STD</span> <span class="mi">1500</span><span class="p">)</span>
+<span class="c1">;; 2等级奖赏标准</span>
 <span class="p">(</span><span class="k">define </span><span class="nv">LEVEL2_CONSUMPTION_STD</span> <span class="mi">2500</span><span class="p">)</span>
 
 <span class="c1">;; pay-back: number -&gt; number</span>
@@ -248,27 +251,41 @@
                                  <span class="nv">LEVEL1_CONSUMPTION_STD</span><span class="p">))</span>
                       <span class="p">(</span><span class="nf">level3</span> <span class="p">(</span><span class="nb">- </span><span class="nv">year_consumption</span>
                                  <span class="nv">LEVEL2_CONSUMPTION_STD</span><span class="p">))))))</span>
-
+<span class="c1">;; level0: number -&gt; number</span>
+<span class="c1">;; 0等级奖赏额度</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">level0</span> <span class="nv">consumption</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">level</span> <span class="p">(</span><span class="nb">* </span><span class="mf">0.25</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">100</span><span class="p">))</span> <span class="nv">consumption</span><span class="p">))</span>
 
+<span class="c1">;; level1: number -&gt; number</span>
+<span class="c1">;; 1等级奖赏额度</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">level1</span> <span class="nv">consumption</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">level</span> <span class="p">(</span><span class="nb">* </span><span class="mf">0.50</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">100</span><span class="p">))</span> <span class="nv">consumption</span><span class="p">))</span>
 
+<span class="c1">;; level2: number -&gt; number</span>
+<span class="c1">;; 2等级奖赏额度</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">level2</span> <span class="nv">consumption</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">level</span> <span class="p">(</span><span class="nb">* </span><span class="mf">0.75</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">100</span><span class="p">))</span> <span class="nv">consumption</span><span class="p">))</span>
 
+<span class="c1">;; level3: number -&gt; number</span>
+<span class="c1">;; 3等级奖赏额度</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">level3</span> <span class="nv">consumption</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">level</span> <span class="p">(</span><span class="nb">* </span><span class="mf">1.0</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">100</span><span class="p">))</span> <span class="nv">consumption</span><span class="p">))</span>
 
+<span class="c1">;; level: number -&gt; number</span>
+<span class="c1">;; 根据等级奖赏比例来得出其奖赏额度</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">level</span> <span class="nv">rate</span> <span class="nv">consumption</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">* </span><span class="nv">rate</span> <span class="nv">consumption</span><span class="p">))</span>
 </pre>
 <pre class="code scheme literal-block">
+<span class="c1">;; 0等级奖赏标准</span>
 <span class="p">(</span><span class="k">define </span><span class="nv">LEVEL0_CONSUMPTION_STD</span> <span class="mi">500</span><span class="p">)</span>
+<span class="c1">;; 1等级奖赏标准</span>
 <span class="p">(</span><span class="k">define </span><span class="nv">LEVEL1_CONSUMPTION_STD</span> <span class="mi">1500</span><span class="p">)</span>
+<span class="c1">;; 2等级奖赏标准</span>
 <span class="p">(</span><span class="k">define </span><span class="nv">LEVEL2_CONSUMPTION_STD</span> <span class="mi">2500</span><span class="p">)</span>
 
+<span class="c1">;; pay-back: number -&gt; number</span>
+<span class="c1">;; 根据一年的消费额来得出其奖励金额</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">pay-back</span> <span class="nv">year_consumption</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">cond</span>
               <span class="p">((</span><span class="nb">&gt; </span><span class="nv">year_consumption</span> <span class="nv">LEVEL2_CONSUMPTION_STD</span><span class="p">)</span>
@@ -282,24 +299,37 @@
                   <span class="p">(</span><span class="nf">pay-back</span> <span class="nv">LEVE0_CONSUMPTION_STD</span><span class="p">)))</span>
               <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">level0</span> <span class="nv">year_consumption</span><span class="p">))))</span>
 
+<span class="c1">;; level0: number -&gt; number</span>
+<span class="c1">;; 0等级奖赏额度</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">level0</span> <span class="nv">consumption</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">level</span> <span class="p">(</span><span class="nb">* </span><span class="mf">0.25</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">100</span><span class="p">))</span> <span class="nv">consumption</span><span class="p">))</span>
 
+<span class="c1">;; level1: number -&gt; number</span>
+<span class="c1">;; 1等级奖赏额度</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">level1</span> <span class="nv">consumption</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">level</span> <span class="p">(</span><span class="nb">* </span><span class="mf">0.50</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">100</span><span class="p">))</span> <span class="nv">consumption</span><span class="p">))</span>
 
+<span class="c1">;; level2: number -&gt; number</span>
+<span class="c1">;; 2等级奖赏额度</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">level2</span> <span class="nv">consumption</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">level</span> <span class="p">(</span><span class="nb">* </span><span class="mf">0.75</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">100</span><span class="p">))</span> <span class="nv">consumption</span><span class="p">))</span>
 
+<span class="c1">;; level3: number -&gt; number</span>
+<span class="c1">;; 3等级奖赏额度</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">level3</span> <span class="nv">consumption</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">level</span> <span class="p">(</span><span class="nb">* </span><span class="mf">1.0</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">100</span><span class="p">))</span> <span class="nv">consumption</span><span class="p">))</span>
 
+<span class="c1">;; level: number -&gt; number</span>
+<span class="c1">;; 根据等级奖赏比例来得出其奖赏额度</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">level</span> <span class="nv">rate</span> <span class="nv">consumption</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">rate</span> <span class="nv">consumption</span><span class="p">))</span>
 </pre>
 </div>
 <div class="section" id="id7">
 <h3>习题4.4.4</h3>
 <pre class="code scheme literal-block">
+<span class="c1">;; how-many: number number number -&gt; number</span>
+<span class="c1">;; 根据方程ax^2 + bx + c = 0, 得出该方程解的个数</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">how-many</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">cond</span>
              <span class="p">((</span><span class="nb">&gt; </span><span class="p">(</span><span class="nb">* </span><span class="nv">b</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">a</span> <span class="nv">c</span><span class="p">))</span> <span class="mi">2</span><span class="p">)</span>
@@ -363,59 +393,14 @@
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-2">
-    <a href="/tag/package.html">
-        <i class="icon-tag icon-large"></i>package
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/setuptools.html">
-        <i class="icon-tag icon-large"></i>setuptools
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/lisp.html">
-        <i class="icon-tag icon-large"></i>lisp
-    </a>
-</li>
-<li class="tag-0">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
-    </a>
-</li>
 <li class="tag-4">
     <a href="/tag/setup.html">
         <i class="icon-tag icon-large"></i>setup
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/speak.html">
-        <i class="icon-tag icon-large"></i>speak
-    </a>
-</li>
-<li class="tag-4">
     <a href="/tag/pelican.html">
         <i class="icon-tag icon-large"></i>pelican
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/http.html">
-        <i class="icon-tag icon-large"></i>http
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/blog.html">
-        <i class="icon-tag icon-large"></i>blog
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/htdp.html">
-        <i class="icon-tag icon-large"></i>htdp
     </a>
 </li>
 <li class="tag-4">
@@ -433,9 +418,29 @@
         <i class="icon-tag icon-large"></i>MarkDown
     </a>
 </li>
+<li class="tag-1">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/htdp.html">
+        <i class="icon-tag icon-large"></i>htdp
+    </a>
+</li>
 <li class="tag-4">
-    <a href="/tag/restructuredtext.html">
-        <i class="icon-tag icon-large"></i>reStructuredText
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
     </a>
 </li>
 <li class="tag-4">
@@ -443,9 +448,34 @@
         <i class="icon-tag icon-large"></i>guile
     </a>
 </li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/setuptools.html">
+        <i class="icon-tag icon-large"></i>setuptools
+    </a>
+</li>
 <li class="tag-1">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
+    <a href="/tag/http.html">
+        <i class="icon-tag icon-large"></i>http
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
     </a>
 </li>
 

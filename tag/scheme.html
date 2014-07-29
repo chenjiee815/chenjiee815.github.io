@@ -100,11 +100,36 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/htdpdi-liu-zhang-fu-he-shu-ju-zhi-yi-jie-gou-ti.html">HTDP第六章：复合数据之一：结构体</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-07-29T17:05:14.745899">
+        <i class="icon-calendar"></i>2014-07-29 17:05:14
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/scheme.html"><i class="icon-folder-open"></i>scheme</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
+	<a href="/tag/htdp.html"><i class="icon-tag"></i>htdp</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="section" id="id1">
+<h2>结构体</h2>
+</div>
+
+                        <a class="btn primary xsmall" href="/htdpdi-liu-zhang-fu-he-shu-ju-zhi-yi-jie-gou-ti.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/htdpdi-wu-zhang-fu-hao-xin-xi.html">HTDP第五章：符号信息</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-07-28T23:23:44.256323">
-        <i class="icon-calendar"></i>2014-07-28 23:23:44
+<abbr class="published" title="2014-07-29T17:03:36.451996">
+        <i class="icon-calendar"></i>2014-07-29 17:03:36
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -119,6 +144,8 @@
                 <div class="summary"><div class="section" id="id1">
 <h2>习题5.1.1</h2>
 <pre class="code scheme literal-block">
+<span class="c1">;; replay: symbol -&gt; symbol</span>
+<span class="c1">;; 用布尔表达式来来表示问候与回答</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reply</span> <span class="nv">s</span><span class="p">)</span>
         <span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'GoodMorning</span><span class="p">)</span> <span class="ss">'Hi</span><span class="p">)</span>
             <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'HowAreYou?</span><span class="p">)</span> <span class="ss">'Fine</span><span class="p">)</span>
@@ -128,8 +155,13 @@
 </div>
 <div class="section" id="id2">
 <h2>习题5.1.2</h2>
-</div>
-
+<pre class="code scheme literal-block">
+<span class="c1">;; check-guess: number number -&gt; symbol</span>
+<span class="c1">;; 比较猜测的数和目的数得出猜测数是猜大了、是猜小了还是猜对了</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">check-guess</span> <span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">cond</span>
+         <span class="p">((</span><span class="nb">&lt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">'TooSmall</span><span class="p">)</span>
+         <span class="p">((</span><span class="nb">&gt; </span><span class="nv">guess</span> <span class="nv">target ...</span></pre></div>
                         <a class="btn primary xsmall" href="/htdpdi-wu-zhang-fu-hao-xin-xi.html">more ...</a>
                 </div>
         </div>
@@ -138,8 +170,8 @@
                 <h1><a href="/htdpdi-si-zhang-tiao-jian-biao-da-shi-he-han-shu.html">HTDP第四章：条件表达式和函数</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-07-27T23:55:30.304716">
-        <i class="icon-calendar"></i>2014-07-27 23:55:30
+<abbr class="published" title="2014-07-29T16:41:19.386340">
+        <i class="icon-calendar"></i>2014-07-29 16:41:19
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -419,59 +451,14 @@
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-2">
-    <a href="/tag/package.html">
-        <i class="icon-tag icon-large"></i>package
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/setuptools.html">
-        <i class="icon-tag icon-large"></i>setuptools
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/lisp.html">
-        <i class="icon-tag icon-large"></i>lisp
-    </a>
-</li>
-<li class="tag-0">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
-    </a>
-</li>
 <li class="tag-4">
     <a href="/tag/setup.html">
         <i class="icon-tag icon-large"></i>setup
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/speak.html">
-        <i class="icon-tag icon-large"></i>speak
-    </a>
-</li>
-<li class="tag-4">
     <a href="/tag/pelican.html">
         <i class="icon-tag icon-large"></i>pelican
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/http.html">
-        <i class="icon-tag icon-large"></i>http
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/blog.html">
-        <i class="icon-tag icon-large"></i>blog
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/htdp.html">
-        <i class="icon-tag icon-large"></i>htdp
     </a>
 </li>
 <li class="tag-4">
@@ -489,9 +476,29 @@
         <i class="icon-tag icon-large"></i>MarkDown
     </a>
 </li>
+<li class="tag-1">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/htdp.html">
+        <i class="icon-tag icon-large"></i>htdp
+    </a>
+</li>
 <li class="tag-4">
-    <a href="/tag/restructuredtext.html">
-        <i class="icon-tag icon-large"></i>reStructuredText
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
     </a>
 </li>
 <li class="tag-4">
@@ -499,9 +506,34 @@
         <i class="icon-tag icon-large"></i>guile
     </a>
 </li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/setuptools.html">
+        <i class="icon-tag icon-large"></i>setuptools
+    </a>
+</li>
 <li class="tag-1">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
+    <a href="/tag/http.html">
+        <i class="icon-tag icon-large"></i>http
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
     </a>
 </li>
 

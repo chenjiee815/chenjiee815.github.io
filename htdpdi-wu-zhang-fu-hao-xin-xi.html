@@ -114,8 +114,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-07-28T23:23:44.256323">
-        <i class="icon-calendar"></i>2014-07-28 23:23:44
+<abbr class="published" title="2014-07-29T17:03:36.451996">
+        <i class="icon-calendar"></i>2014-07-29 17:03:36
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -130,6 +130,8 @@
                 <div class="section" id="id1">
 <h2>习题5.1.1</h2>
 <pre class="code scheme literal-block">
+<span class="c1">;; replay: symbol -&gt; symbol</span>
+<span class="c1">;; 用布尔表达式来来表示问候与回答</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reply</span> <span class="nv">s</span><span class="p">)</span>
         <span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'GoodMorning</span><span class="p">)</span> <span class="ss">'Hi</span><span class="p">)</span>
             <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'HowAreYou?</span><span class="p">)</span> <span class="ss">'Fine</span><span class="p">)</span>
@@ -139,6 +141,66 @@
 </div>
 <div class="section" id="id2">
 <h2>习题5.1.2</h2>
+<pre class="code scheme literal-block">
+<span class="c1">;; check-guess: number number -&gt; symbol</span>
+<span class="c1">;; 比较猜测的数和目的数得出猜测数是猜大了、是猜小了还是猜对了</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">check-guess</span> <span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">cond</span>
+         <span class="p">((</span><span class="nb">&lt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">'TooSmall</span><span class="p">)</span>
+         <span class="p">((</span><span class="nb">&gt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">'TooLarge</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">else </span><span class="ss">'Perfect</span><span class="p">)))</span>
+</pre>
+</div>
+<div class="section" id="id3">
+<h2>习题5.1.3</h2>
+<pre class="code scheme literal-block">
+<span class="c1">;; check-guess3: number number number number -&gt; symbol</span>
+<span class="c1">;; 分别输入一个三位数的每位数，然后再进行猜大小</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">check-guess3</span> <span class="nv">n1</span> <span class="nv">n2</span> <span class="nv">n3</span> <span class="nv">target</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">let</span>
+            <span class="p">((</span><span class="nf">guess</span> <span class="p">(</span><span class="nf">number3</span> <span class="nv">n1</span> <span class="nv">n2</span> <span class="nv">n3</span><span class="p">)))</span>
+          <span class="p">(</span><span class="nf">cond</span>
+           <span class="p">((</span><span class="nb">&lt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">'TooSmall</span><span class="p">)</span>
+           <span class="p">((</span><span class="nb">&gt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">'TooLarge</span><span class="p">)</span>
+           <span class="p">(</span><span class="k">else </span><span class="ss">'Perfect</span><span class="p">))))</span>
+
+<span class="c1">;; number3: number number number -&gt; number</span>
+<span class="c1">;; 根据一个三位数每位数，得出其数</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">number3</span> <span class="nv">n1</span> <span class="nv">n2</span> <span class="nv">n3</span><span class="p">)</span>
+        <span class="p">(</span><span class="nb">+ </span><span class="nv">n1</span> <span class="p">(</span><span class="nb">* </span><span class="mi">10</span> <span class="nv">n2</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">100</span> <span class="nv">n3</span><span class="p">)))</span>
+</pre>
+</div>
+<div class="section" id="id4">
+<h2>习题5.1.4</h2>
+<pre class="code scheme literal-block">
+<span class="c1">;; what-kind: number number number -&gt; symbol</span>
+<span class="c1">;; 根据一个方程的三个系数得出该方程是否为退化方程，如果不是则该方程有几个解</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">what-kind</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">cond</span>
+         <span class="p">((</span><span class="nb">eq? </span><span class="nv">a</span> <span class="mi">0</span><span class="p">)</span> <span class="ss">'degenerate</span><span class="p">)</span>
+         <span class="p">((</span><span class="nb">&gt; </span><span class="p">(</span><span class="nb">* </span><span class="nv">b</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">a</span> <span class="nv">c</span><span class="p">))</span> <span class="ss">'two</span><span class="p">)</span>
+         <span class="p">((</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">* </span><span class="nv">b</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">a</span> <span class="nv">c</span><span class="p">))</span> <span class="ss">'one</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">else </span><span class="ss">'none</span><span class="p">)))</span>
+</pre>
+</div>
+<div class="section" id="id5">
+<h2>习题5.1.5</h2>
+<pre class="code scheme literal-block">
+<span class="c1">;; check-color: symbol symbol symbol symbol -&gt; symbol</span>
+<span class="c1">;; 猜颜色游戏，模块第一个人的行为</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">check-color</span> <span class="nv">t1</span> <span class="nv">t2</span> <span class="nv">g1</span> <span class="nv">g2</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">cond</span>
+         <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t1</span> <span class="nv">g1</span><span class="p">)</span>
+               <span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t2</span> <span class="nv">g2</span><span class="p">))</span>
+          <span class="ss">'Perfect</span><span class="p">)</span>
+         <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t1</span> <span class="nv">g1</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t2</span> <span class="nv">g2</span><span class="p">))</span>
+          <span class="ss">'OneColorAtCorrectPosition</span><span class="p">)</span>
+         <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t1</span> <span class="nv">g2</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t2</span> <span class="nv">g1</span><span class="p">))</span>
+          <span class="ss">'OneColorOccurs</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">else </span><span class="ss">'NothingCorrect</span><span class="p">)))</span>
+</pre>
 </div>
 
                 </div><!-- /.entry-content -->
@@ -195,59 +257,14 @@
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-2">
-    <a href="/tag/package.html">
-        <i class="icon-tag icon-large"></i>package
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/setuptools.html">
-        <i class="icon-tag icon-large"></i>setuptools
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/lisp.html">
-        <i class="icon-tag icon-large"></i>lisp
-    </a>
-</li>
-<li class="tag-0">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
-    </a>
-</li>
 <li class="tag-4">
     <a href="/tag/setup.html">
         <i class="icon-tag icon-large"></i>setup
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/speak.html">
-        <i class="icon-tag icon-large"></i>speak
-    </a>
-</li>
-<li class="tag-4">
     <a href="/tag/pelican.html">
         <i class="icon-tag icon-large"></i>pelican
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/http.html">
-        <i class="icon-tag icon-large"></i>http
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/blog.html">
-        <i class="icon-tag icon-large"></i>blog
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/htdp.html">
-        <i class="icon-tag icon-large"></i>htdp
     </a>
 </li>
 <li class="tag-4">
@@ -265,9 +282,29 @@
         <i class="icon-tag icon-large"></i>MarkDown
     </a>
 </li>
+<li class="tag-1">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/htdp.html">
+        <i class="icon-tag icon-large"></i>htdp
+    </a>
+</li>
 <li class="tag-4">
-    <a href="/tag/restructuredtext.html">
-        <i class="icon-tag icon-large"></i>reStructuredText
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
     </a>
 </li>
 <li class="tag-4">
@@ -275,9 +312,34 @@
         <i class="icon-tag icon-large"></i>guile
     </a>
 </li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/setuptools.html">
+        <i class="icon-tag icon-large"></i>setuptools
+    </a>
+</li>
 <li class="tag-1">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
+    <a href="/tag/http.html">
+        <i class="icon-tag icon-large"></i>http
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
     </a>
 </li>
 
