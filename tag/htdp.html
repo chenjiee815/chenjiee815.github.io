@@ -103,8 +103,8 @@
                 <h1><a href="/htdpdi-liu-zhang-fu-he-shu-ju-zhi-yi-jie-gou-ti.html">HTDP第六章：复合数据之一：结构体</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-07-29T17:05:14.745899">
-        <i class="icon-calendar"></i>2014-07-29 17:05:14
+<abbr class="published" title="2014-08-06T22:38:17.134303">
+        <i class="icon-calendar"></i>2014-08-06 22:38:17
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -117,9 +117,24 @@
 	<a href="/tag/htdp.html"><i class="icon-tag"></i>htdp</a>
 </footer><!-- /.post-info --></div>
                 <div class="summary"><div class="section" id="id1">
-<h2>结构体</h2>
-</div>
+<h2>补充练习：绘制简单图形</h2>
+<pre class="code scheme literal-block">
+<span class="c1">;; 红绿灯的大小</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">WIDTH</span> <span class="mi">50</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">HEIGHT</span> <span class="mi">160</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">BULB-RADIUS</span> <span class="mi">20</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">BULB-DISTANCE</span> <span class="mi">10</span><span class="p">)</span>
 
+<span class="c1">;; 灯泡的位置</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">X-BULBS</span> <span class="p">(</span><span class="nb">quotient </span><span class="nv">WIDTH</span> <span class="mi">2</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">Y-RED</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">BULB-DISTANCE</span> <span class="nv">BULB-RADIUS</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">Y-YELLOW</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">Y-RED</span> <span class="nv">BULB-DISTANCE</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">BULB-RADIUS</span><span class="p">)))</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">Y-GREEN</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">Y-YELLOW</span> <span class="nv">BULB-DISTANCE</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">BULB-RADIUS</span><span class="p">)))</span>
+
+<span class="c1">;; 绘制红灯亮时的灯光</span>
+<span class="p">(</span><span class="nf">start</span> <span class="nv">WIDTH</span> <span class="nv">HEIGHT</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">draw-solid-disk</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-RED</span><span class="p">)</span> <span class="nv">BULB-RADIUS</span> <span class="ss">'red</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">draw-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS ...</span></pre></div>
                         <a class="btn primary xsmall" href="/htdpdi-liu-zhang-fu-he-shu-ju-zhi-yi-jie-gou-ti.html">more ...</a>
                 </div>
         </div>
@@ -387,43 +402,8 @@
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
 <li class="tag-4">
-    <a href="/tag/setup.html">
-        <i class="icon-tag icon-large"></i>setup
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/pelican.html">
-        <i class="icon-tag icon-large"></i>pelican
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speech.html">
-        <i class="icon-tag icon-large"></i>speech
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/dna.html">
-        <i class="icon-tag icon-large"></i>dna
-    </a>
-</li>
-<li class="tag-4">
     <a href="/tag/markdown.html">
         <i class="icon-tag icon-large"></i>MarkDown
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/htdp.html">
-        <i class="icon-tag icon-large"></i>htdp
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/lisp.html">
-        <i class="icon-tag icon-large"></i>lisp
     </a>
 </li>
 <li class="tag-1">
@@ -432,28 +412,8 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/speak.html">
-        <i class="icon-tag icon-large"></i>speak
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/guile.html">
-        <i class="icon-tag icon-large"></i>guile
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/restructuredtext.html">
-        <i class="icon-tag icon-large"></i>reStructuredText
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/setuptools.html">
-        <i class="icon-tag icon-large"></i>setuptools
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
     </a>
 </li>
 <li class="tag-1">
@@ -462,13 +422,68 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/blog.html">
-        <i class="icon-tag icon-large"></i>blog
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speech.html">
+        <i class="icon-tag icon-large"></i>speech
     </a>
 </li>
 <li class="tag-2">
     <a href="/tag/package.html">
         <i class="icon-tag icon-large"></i>package
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/setuptools.html">
+        <i class="icon-tag icon-large"></i>setuptools
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/htdp.html">
+        <i class="icon-tag icon-large"></i>htdp
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
     </a>
 </li>
 
