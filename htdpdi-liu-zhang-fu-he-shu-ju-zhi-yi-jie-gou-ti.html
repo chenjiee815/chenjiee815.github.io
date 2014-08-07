@@ -114,8 +114,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-08-06T22:38:17.134303">
-        <i class="icon-calendar"></i>2014-08-06 22:38:17
+<abbr class="published" title="2014-08-07T08:19:50.881685">
+        <i class="icon-calendar"></i>2014-08-07 08:19:50
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -357,7 +357,6 @@
 </div>
 <div class="section" id="id12">
 <h3>习题6.5.2</h3>
-<img alt="" src="static/设计决窍精化.png" />
 <pre class="code scheme literal-block">
 <span class="p">(</span><span class="nf">define-struct</span> <span class="nv">time</span> <span class="p">(</span><span class="nf">hours</span> <span class="nv">minutes</span> <span class="nv">seconds</span><span class="p">))</span>
 <span class="c1">;; hours, minutes, seconds 都为一个整数</span>
@@ -391,33 +390,43 @@
 </div>
 <div class="section" id="id13">
 <h2>补充练习：圆和长方形的移动</h2>
+<p>作者将实现这个补充练习的要求：圆和长方形的移动，
+拆分成多个习题，每个习题基本是一个对应一个功能函数，
+当你做完所有习题，就能体会到作者来做这这个练习的做题思路了。
+并且每步的习题设计都是按照之前提出的 <strong>设计决窍</strong> 来执行的。</p>
+<p>所以一定要按步骤完成，不要为了做习题而做习题，
+而是掌握 <strong>设计决窍</strong> ，了解作者的设计思路/思想并模仿以及学会它。</p>
 <div class="section" id="id14">
 <h3>习题6.6.1</h3>
+<p>按照 <strong>设计决窍</strong> ,第一步先说明数据定义，并设计该数据定义的模板。</p>
 <pre class="code scheme literal-block">
-<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">cycle</span> <span class="p">(</span><span class="nf">point</span> <span class="nv">radius</span> <span class="nv">color</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">circle</span> <span class="p">(</span><span class="nf">point</span> <span class="nv">radius</span> <span class="nv">color</span><span class="p">))</span>
 <span class="c1">;; point为posn结构体，radius为一个整数，color为一个符号</span>
 
-<span class="c1">;; fun-for-cycle: cycle -&gt; ??</span>
-<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fun-for-cycle</span> <span class="nv">a-cycle</span><span class="p">)</span>
- <span class="o">...</span> <span class="p">(</span><span class="nf">cycle-point</span> <span class="nv">a-cycle</span><span class="p">)</span><span class="o">...</span>
- <span class="o">...</span> <span class="p">(</span><span class="nf">cycle-radius</span> <span class="nv">a-cycle</span><span class="p">)</span><span class="o">...</span>
- <span class="o">...</span> <span class="p">(</span><span class="nf">cycle-color</span> <span class="nv">a-color</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+<span class="c1">;; fun-for-circle: circle -&gt; ??</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fun-for-circle</span> <span class="nv">a-circle</span><span class="p">)</span>
+ <span class="o">...</span> <span class="p">(</span><span class="nf">circle-point</span> <span class="nv">a-circle</span><span class="p">)</span><span class="o">...</span>
+ <span class="o">...</span> <span class="p">(</span><span class="nf">circle-radius</span> <span class="nv">a-circle</span><span class="p">)</span><span class="o">...</span>
+ <span class="o">...</span> <span class="p">(</span><span class="nf">circle-color</span> <span class="nv">a-color</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
 </pre>
 </div>
 <div class="section" id="id15">
 <h3>习题6.6.2</h3>
+<p>从这一题开始就是作者的做题思路了，
+他将这一练习拆分成多个函数，如果让你自己做，你会有什么思路?</p>
 <pre class="code scheme literal-block">
-<span class="c1">;; draw-a-cycle: cycle -&gt; boolean</span>
+<span class="c1">;; draw-a-circle: circle -&gt; boolean</span>
 <span class="c1">;; 在屏幕上绘制一个圆</span>
 
-<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">draw-a-cycle</span> <span class="nv">cycle</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">draw-circle</span> <span class="p">(</span><span class="nf">cycle-point</span> <span class="nv">cycle</span><span class="p">)</span>
-                   <span class="p">(</span><span class="nf">cycle-radius</span> <span class="nv">cycle</span><span class="p">)</span>
-                   <span class="p">(</span><span class="nf">cycle-color</span> <span class="nv">cycle</span><span class="p">)))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">draw-a-circle</span> <span class="nv">circle</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">draw-circle</span> <span class="p">(</span><span class="nf">circle-point</span> <span class="nv">circle</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nf">circle-radius</span> <span class="nv">circle</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nf">circle-color</span> <span class="nv">circle</span><span class="p">)))</span>
 
+<span class="c1">;; 测试</span>
 <span class="p">(</span><span class="nf">start</span> <span class="mi">300</span> <span class="mi">300</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">draw-a-cycle</span> <span class="p">(</span><span class="nf">make-cycle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
-<span class="p">(</span><span class="nf">draw-a-cycle</span> <span class="p">(</span><span class="nf">make-cycle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">150</span> <span class="mi">150</span><span class="p">)</span> <span class="mi">10</span> <span class="ss">'yellow</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">draw-a-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">draw-a-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">150</span> <span class="mi">150</span><span class="p">)</span> <span class="mi">10</span> <span class="ss">'yellow</span><span class="p">))</span>
 </pre>
 </div>
 <div class="section" id="id16">
@@ -432,23 +441,65 @@
                 <span class="p">(</span><span class="nf">sqr</span> <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">posn-y</span> <span class="nv">posn-a</span><span class="p">)</span>
                         <span class="p">(</span><span class="nf">posn-y</span> <span class="nv">posn-b</span><span class="p">))))))</span>
 
+ <span class="c1">;; 测试</span>
 <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">posn-distance</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">))</span> <span class="mi">5</span><span class="p">)</span>
 
-<span class="c1">;; in-circle?: cycle posn -&gt; boolean</span>
+<span class="c1">;; in-circle?: circle posn -&gt; boolean</span>
 <span class="c1">;; 判断posn结构体表示的点是否在圆内</span>
 
-<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">in-circle?</span> <span class="nv">cycle</span> <span class="nv">posn</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">&lt;= </span><span class="p">(</span><span class="nf">posn-distance</span> <span class="p">(</span><span class="nf">cycle-point</span> <span class="nv">cycle</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">in-circle?</span> <span class="nv">circle</span> <span class="nv">posn</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">&lt;= </span><span class="p">(</span><span class="nf">posn-distance</span> <span class="p">(</span><span class="nf">circle-point</span> <span class="nv">circle</span><span class="p">)</span>
                           <span class="nv">posn</span><span class="p">)</span>
-           <span class="p">(</span><span class="nf">cycle-radius</span> <span class="nv">cycle</span><span class="p">)))</span>
+           <span class="p">(</span><span class="nf">circle-radius</span> <span class="nv">circle</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">in-circle?</span> <span class="p">(</span><span class="nf">make-cycle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">)</span>
+ <span class="c1">;; 测试</span>
+<span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">in-circle?</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">)</span>
               <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">110</span> <span class="mi">110</span><span class="p">))</span>
      <span class="no">#t</span><span class="p">)</span>
-
-<span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">in-circle?</span> <span class="p">(</span><span class="nf">make-cycle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">in-circle?</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">)</span>
               <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">200</span> <span class="mi">210</span><span class="p">))</span>
      <span class="no">#f</span><span class="p">)</span>
+</pre>
+</div>
+<div class="section" id="id17">
+<h3>习题6.6.4</h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; translate-circle: circle number -&gt; circle</span>
+<span class="c1">;; 根据原始的圆circle和一个数delta，</span>
+<span class="c1">;; 输出另外一个圆，其圆心位于原始圆的右边</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">translate-circle</span> <span class="nv">circle</span> <span class="nv">delta</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">posn-x</span> <span class="p">(</span><span class="nf">circle-point</span> <span class="nv">circle</span><span class="p">))</span>
+                                  <span class="nv">delta</span><span class="p">)</span>
+                               <span class="p">(</span><span class="nf">posn-y</span> <span class="p">(</span><span class="nf">circle-point</span> <span class="nv">circle</span><span class="p">)))</span>
+                    <span class="p">(</span><span class="nf">circle-radius</span> <span class="nv">circle</span><span class="p">)</span>
+                    <span class="p">(</span><span class="nf">circle-color</span> <span class="nv">circle</span><span class="p">)))</span>
+
+<span class="c1">;; 测试</span>
+<span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">translate-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">)</span> <span class="mi">200</span><span class="p">)</span>
+     <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">300</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+</pre>
+</div>
+<div class="section" id="id18">
+<h3>习题6.6.5</h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; clear-a-circle: circle -&gt; boolean</span>
+<span class="c1">;; 在画布上清除一个圆</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">clear-a-circle</span> <span class="nv">circle</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">clear-circle</span> <span class="p">(</span><span class="nf">circle-point</span> <span class="nv">circle</span><span class="p">)</span>
+                     <span class="p">(</span><span class="nf">circle-radius</span> <span class="nv">circle</span><span class="p">)</span>
+                     <span class="p">(</span><span class="nf">circle-color</span> <span class="nv">circle</span><span class="p">)))</span>
+
+<span class="c1">;; 测试</span>
+<span class="p">(</span><span class="nf">start</span> <span class="mi">300</span> <span class="mi">300</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">a-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">draw-a-circle</span> <span class="nv">a-circle</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">clear-a-circle</span> <span class="nv">a-circle</span><span class="p">)</span>
+</pre>
+</div>
+<div class="section" id="id19">
+<h3>习题6.6.6</h3>
+<pre class="code scheme literal-block">
+<span class="c1">;;</span>
 </pre>
 </div>
 </div>
@@ -508,13 +559,28 @@
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
 <li class="tag-4">
-    <a href="/tag/markdown.html">
-        <i class="icon-tag icon-large"></i>MarkDown
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
     </a>
 </li>
 <li class="tag-1">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
     </a>
 </li>
 <li class="tag-4">
@@ -523,28 +589,8 @@
     </a>
 </li>
 <li class="tag-1">
-    <a href="/tag/http.html">
-        <i class="icon-tag icon-large"></i>http
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/guile.html">
-        <i class="icon-tag icon-large"></i>guile
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speak.html">
-        <i class="icon-tag icon-large"></i>speak
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speech.html">
-        <i class="icon-tag icon-large"></i>speech
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/package.html">
-        <i class="icon-tag icon-large"></i>package
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
     </a>
 </li>
 <li class="tag-2">
@@ -553,13 +599,23 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/lisp.html">
-        <i class="icon-tag icon-large"></i>lisp
+    <a href="/tag/speech.html">
+        <i class="icon-tag icon-large"></i>speech
     </a>
 </li>
-<li class="tag-1">
-    <a href="/tag/htdp.html">
-        <i class="icon-tag icon-large"></i>htdp
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>MarkDown
     </a>
 </li>
 <li class="tag-4">
@@ -568,8 +624,8 @@
     </a>
 </li>
 <li class="tag-1">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
+    <a href="/tag/http.html">
+        <i class="icon-tag icon-large"></i>http
     </a>
 </li>
 <li class="tag-4">
@@ -577,19 +633,14 @@
         <i class="icon-tag icon-large"></i>dna
     </a>
 </li>
-<li class="tag-4">
-    <a href="/tag/restructuredtext.html">
-        <i class="icon-tag icon-large"></i>reStructuredText
+<li class="tag-1">
+    <a href="/tag/htdp.html">
+        <i class="icon-tag icon-large"></i>htdp
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/blog.html">
-        <i class="icon-tag icon-large"></i>blog
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
     </a>
 </li>
 
