@@ -114,8 +114,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-08-07T08:19:50.881685">
-        <i class="icon-calendar"></i>2014-08-07 08:19:50
+<abbr class="published" title="2014-08-07T23:19:20.540756">
+        <i class="icon-calendar"></i>2014-08-07 23:19:20
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -499,7 +499,92 @@
 <div class="section" id="id19">
 <h3>习题6.6.6</h3>
 <pre class="code scheme literal-block">
-<span class="c1">;;</span>
+<span class="c1">;; draw-and-clear-circle: circle -&gt; boolean</span>
+<span class="c1">;; 在画布上画出一个圆，然后过一段时间清除</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">draw-and-clear-circle</span> <span class="nv">circle</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">draw-a-circle</span> <span class="nv">circle</span><span class="p">)</span>
+            <span class="p">(</span><span class="nf">sleep-for-a-while</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="p">(</span><span class="nf">clear-a-circle</span> <span class="nv">circle</span><span class="p">)))</span>
+
+<span class="c1">;; 测试</span>
+<span class="p">(</span><span class="nf">start</span> <span class="mi">300</span> <span class="mi">300</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">draw-and-clear-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+
+<span class="c1">;; move-circle: number circle -&gt; circle</span>
+<span class="c1">;; 绘制并消除一个圆，再平移delta个像素</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">move-circle</span> <span class="nv">delta</span> <span class="nv">a-circle</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">((</span><span class="nf">draw-and-clear-circle</span> <span class="nv">a-circle</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">translate-circle</span> <span class="nv">a-circle</span> <span class="nv">delta</span><span class="p">))</span>
+        <span class="p">(</span><span class="k">else </span><span class="nv">a-circle</span><span class="p">)))</span>
+
+<span class="c1">;; 测试</span>
+<span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">100</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">draw-a-circle</span>
+ <span class="p">(</span><span class="nf">move-circle</span> <span class="mi">10</span>
+  <span class="p">(</span><span class="nf">move-circle</span> <span class="mi">10</span>
+   <span class="p">(</span><span class="nf">move-circle</span> <span class="mi">10</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">50</span><span class="p">)</span> <span class="mi">20</span> <span class="ss">'red</span><span class="p">)))))</span>
+</pre>
+</div>
+<div class="section" id="id20">
+<h3>习题6.6.7</h3>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">rectangle</span> <span class="p">(</span><span class="nf">nw-corner</span> <span class="nv">width</span> <span class="nv">height</span> <span class="nv">color</span><span class="p">))</span>
+<span class="c1">;; nw-color 为一个posn结构体</span>
+<span class="c1">;; width height 为数值</span>
+<span class="c1">;; color 为符号</span>
+
+<span class="c1">;; fun-for-rect: rectangle -&gt; ??</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fun-for-rect</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+ <span class="o">...</span> <span class="p">(</span><span class="nf">rectangle-nw-corner</span> <span class="nv">a-rectangle</span><span class="p">)</span><span class="o">...</span>
+ <span class="o">...</span> <span class="p">(</span><span class="nf">rectangle-width</span> <span class="nv">a-rectangle</span><span class="p">)</span><span class="o">...</span>
+ <span class="o">...</span> <span class="p">(</span><span class="nf">rectangle-height</span> <span class="nv">a-rectangle</span><span class="p">)</span><span class="o">...</span>
+ <span class="o">...</span> <span class="p">(</span><span class="nf">rectangle-color</span> <span class="nv">a-rectangle</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+</pre>
+</div>
+<div class="section" id="id21">
+<h3>习题6.6.8</h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; draw-a-rectangle: rectangle -&gt; boolean</span>
+<span class="c1">;; 在画布上画出一个实心长方形</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">draw-a-rectangle</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">draw-solid-rect</span> <span class="p">(</span><span class="nf">rectangle-nw-corner</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nf">rectangle-width</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nf">rectangle-height</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nf">rectangle-color</span> <span class="nv">a-rectangle</span><span class="p">)))</span>
+
+<span class="c1">;; 测试</span>
+<span class="p">(</span><span class="nf">start</span> <span class="mi">300</span> <span class="mi">300</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">draw-a-rectangle</span> <span class="p">(</span><span class="nf">make-rectangle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span>
+                                  <span class="mi">100</span>
+                                  <span class="mi">50</span>
+                                  <span class="ss">'red</span><span class="p">))</span>
+</pre>
+</div>
+<div class="section" id="id22">
+<h3>习题6.6.9</h3>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">distance</span> <span class="p">(</span><span class="nf">x</span> <span class="nv">y</span><span class="p">))</span>
+<span class="c1">;; x y 为数值</span>
+
+<span class="c1">;; fun-for-distance: distance -&gt; ??</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fun-for-distance</span> <span class="nv">a-distance</span><span class="p">)</span>
+ <span class="o">...</span> <span class="p">(</span><span class="nf">distance-x</span> <span class="nv">a-distance</span><span class="p">)</span><span class="o">...</span>
+ <span class="o">...</span> <span class="p">(</span><span class="nf">distance-y</span> <span class="nv">a-distance</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+
+<span class="c1">;; in-rectangle?: rectangle posn</span>
+<span class="c1">;; 判断一个像素是否在长方形内部</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">in-rectangle?</span> <span class="nv">a-rectangle</span> <span class="nv">point</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">let</span>
+         <span class="p">(</span><span class="nf">dis</span> <span class="p">(</span><span class="nf">make-distance</span>
+               <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">posn-x</span> <span class="nv">point</span><span class="p">)</span>
+                  <span class="p">(</span><span class="nf">posn-x</span> <span class="p">(</span><span class="nf">rectangle-nw-corner</span> <span class="nv">a-rectangle</span><span class="p">)))</span>
+               <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">posn-y</span> <span class="nv">point</span><span class="p">)</span>
+                  <span class="p">(</span><span class="nf">posn-y</span> <span class="p">(</span><span class="nf">rectangle-nw-corner</span> <span class="nv">a-rectangle</span><span class="p">)))))</span>
+         <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nf">distance-x</span> <span class="nv">dis</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+              <span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nf">distance-y</span> <span class="nv">dis</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+              <span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nf">distance-x</span> <span class="nv">dis</span><span class="p">)</span> <span class="p">(</span><span class="nf">rectangle-width</span> <span class="nv">a-rectangle</span><span class="p">))</span>
+              <span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nf">distance-y</span> <span class="nv">dis</span><span class="p">)</span> <span class="p">(</span><span class="nf">rectangle-height</span> <span class="nv">a-rectangle</span><span class="p">)))))</span>
 </pre>
 </div>
 </div>
@@ -559,6 +644,26 @@
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
 <li class="tag-4">
+    <a href="/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>MarkDown
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/htdp.html">
+        <i class="icon-tag icon-large"></i>htdp
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-4">
     <a href="/tag/speak.html">
         <i class="icon-tag icon-large"></i>speak
     </a>
@@ -568,29 +673,14 @@
         <i class="icon-tag icon-large"></i>scheme
     </a>
 </li>
-<li class="tag-2">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
-    </a>
-</li>
 <li class="tag-4">
     <a href="/tag/blog.html">
         <i class="icon-tag icon-large"></i>blog
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/lisp.html">
-        <i class="icon-tag icon-large"></i>lisp
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/setup.html">
-        <i class="icon-tag icon-large"></i>setup
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
     </a>
 </li>
 <li class="tag-2">
@@ -599,28 +689,28 @@
     </a>
 </li>
 <li class="tag-4">
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
+    </a>
+</li>
+<li class="tag-4">
     <a href="/tag/speech.html">
         <i class="icon-tag icon-large"></i>speech
     </a>
 </li>
-<li class="tag-4">
-    <a href="/tag/restructuredtext.html">
-        <i class="icon-tag icon-large"></i>reStructuredText
-    </a>
-</li>
 <li class="tag-2">
-    <a href="/tag/package.html">
-        <i class="icon-tag icon-large"></i>package
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/markdown.html">
-        <i class="icon-tag icon-large"></i>MarkDown
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
     </a>
 </li>
-<li class="tag-4">
-    <a href="/tag/pelican.html">
-        <i class="icon-tag icon-large"></i>pelican
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
     </a>
 </li>
 <li class="tag-1">
@@ -629,18 +719,13 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/dna.html">
-        <i class="icon-tag icon-large"></i>dna
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
     </a>
 </li>
-<li class="tag-1">
-    <a href="/tag/htdp.html">
-        <i class="icon-tag icon-large"></i>htdp
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/guile.html">
-        <i class="icon-tag icon-large"></i>guile
+<li class="tag-2">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
     </a>
 </li>
 
