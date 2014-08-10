@@ -70,6 +70,11 @@
 					</a>
                   </li>
                   <li >
+                    <a href="/category/flask_source_note.html">
+						<i class="icon-folder-open icon-large"></i>flask_source_note
+					</a>
+                  </li>
+                  <li >
                     <a href="/category/http.html">
 						<i class="icon-folder-open icon-large"></i>http
 					</a>
@@ -114,8 +119,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-08-07T23:19:20.540756">
-        <i class="icon-calendar"></i>2014-08-07 23:19:20
+<abbr class="published" title="2014-08-10T22:46:56.975893">
+        <i class="icon-calendar"></i>2014-08-10 22:46:56
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -587,6 +592,231 @@
               <span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nf">distance-y</span> <span class="nv">dis</span><span class="p">)</span> <span class="p">(</span><span class="nf">rectangle-height</span> <span class="nv">a-rectangle</span><span class="p">)))))</span>
 </pre>
 </div>
+<div class="section" id="id23">
+<h3>习题6.6.10</h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; translate-rectangle: rectangle -&gt; rectangle</span>
+<span class="c1">;; 根据原始的长方形和一个数delta，</span>
+<span class="c1">;; 输出另外一个长方形，其位于原始长方形的右边，</span>
+<span class="c1">;; 左上角和原长方形的左上角距离为delta</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">translate-rectangle</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">nw-corner</span> <span class="p">(</span><span class="nf">rectangle-nw-corner</span> <span class="nv">a-rectangle</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nf">make-rectangle</span>
+         <span class="p">(</span><span class="nf">make-posn</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">posn-x</span> <span class="nv">nw-corner</span><span class="p">)</span> <span class="nv">delta</span><span class="p">)</span>
+                       <span class="p">(</span><span class="nf">posn-y</span> <span class="nv">nw-corner</span><span class="p">))</span>
+         <span class="p">(</span><span class="nf">rectangle-width</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">rectangle-height</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">rectangle-color</span> <span class="nv">a-rectangle</span><span class="p">))))</span>
+
+<span class="c1">;; 测试</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">src-rectangle</span> <span class="p">(</span><span class="nf">make-rectangle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">100</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">new-rectangle</span> <span class="p">(</span><span class="nf">translate-rectangle</span> <span class="nv">src-rectangle</span> <span class="mi">20</span><span class="p">))</span>
+<span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">posn-x</span> <span class="p">(</span><span class="nf">rectangle-nw-corner</span> <span class="nv">src-rectangle</span><span class="p">))</span> <span class="mi">20</span><span class="p">)</span>
+   <span class="p">(</span><span class="nf">posn-x</span> <span class="p">(</span><span class="nf">rectangle-nw-corner</span> <span class="nv">new-rectangle</span><span class="p">)))</span>
+</pre>
+</div>
+<div class="section" id="id24">
+<h3>习题6.6.11</h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; clear-a-rectangle: rectangle -&gt; boolean</span>
+<span class="c1">;; 清除一个长方形</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">clear-a-rectangle</span> <span class="nv">rectangle</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">clear-solid-rect</span> <span class="p">(</span><span class="nf">rectangle-nw-corner</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nf">rectangle-width</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nf">rectangle-height</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nf">rectangle-color</span> <span class="nv">a-rectangle</span><span class="p">)))</span>
+
+<span class="c1">;; 测试</span>
+<span class="p">(</span><span class="nf">start</span> <span class="mi">300</span> <span class="mi">300</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">a-rectangle</span> <span class="p">(</span><span class="nf">make-rectangle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">100</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">draw-a-rectangle</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">clear-a-rectangle</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+</pre>
+</div>
+<div class="section" id="id25">
+<h3>习题6.6.12</h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; draw-and-clear-rectangle: rectangle -&gt; boolean</span>
+<span class="c1">;; 在画布上画出一个圆，然后过一段时间清除</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">draw-and-clear-rectangle</span> <span class="nv">rectangle</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">draw-a-rectangle</span> <span class="nv">rectangle</span><span class="p">)</span>
+            <span class="p">(</span><span class="nf">sleep-for-a-while</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="p">(</span><span class="nf">clear-a-rectangle</span> <span class="nv">rectangle</span><span class="p">)))</span>
+
+<span class="c1">;; 测试</span>
+<span class="p">(</span><span class="nf">start</span> <span class="mi">300</span> <span class="mi">300</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">draw-and-clear-rectangle</span> <span class="p">(</span><span class="nf">make-rectangle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">100</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+
+<span class="c1">;; move-rectangle: number rectangle -&gt; rectangle</span>
+<span class="c1">;; 绘制并清除一个长方形，然后平移delta个像素</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">move-rectangle</span> <span class="nv">delta</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">((</span><span class="nf">draw-and-clear-rectangle</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">translate-rectangle</span> <span class="nv">a-rectangle</span> <span class="nv">delta</span><span class="p">))</span>
+        <span class="p">(</span><span class="k">else </span><span class="nv">a-rectangle</span><span class="p">)))</span>
+
+<span class="c1">;; 创建一个长方形，并移动4次</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">a-rectangle</span> <span class="p">(</span><span class="nf">make-rectangle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">100</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nf">draw-a-rectangle</span>
+ <span class="p">(</span><span class="nf">move-rectangle</span> <span class="mi">10</span>
+  <span class="p">(</span><span class="nf">move-rectangle</span> <span class="mi">10</span>
+   <span class="p">(</span><span class="nf">move-rectangle</span> <span class="mi">10</span>
+    <span class="p">(</span><span class="nf">move-rectangle</span> <span class="mi">10</span> <span class="nv">a-rectangle</span><span class="p">)))))</span>
+</pre>
+</div>
+</div>
+<div class="section" id="id26">
+<h2>补充练习：刽子手游戏</h2>
+<div class="section" id="id27">
+<h3>习题6.7.1</h3>
+<p>这一题我是直接复制官方的答案，
+我压根没看懂它给的三个快照图片...</p>
+<pre class="code scheme literal-block">
+<span class="c1">;; draw-next-part: symbol -&gt; boolean</span>
+<span class="c1">;; 绘制人体的某一部分，</span>
+<span class="c1">;; 函数输入为以下七个符号之一:</span>
+<span class="c1">;; 'right-leg 'left-leg 'left-arm 'right-arm 'body 'head 'noose</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">draw-next-part</span> <span class="nv">body-part</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">cond</span>
+  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">'body</span><span class="p">)</span>
+   <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">60</span><span class="p">)</span>
+                    <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">130</span><span class="p">)</span>
+                    <span class="ss">'black</span><span class="p">)]</span>
+  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">'right-leg</span><span class="p">)</span>
+   <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">130</span><span class="p">)</span>
+                    <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">30</span> <span class="mi">170</span><span class="p">)</span>
+                    <span class="ss">'black</span><span class="p">)]</span>
+  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">'left-leg</span><span class="p">)</span>
+   <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">130</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">170</span> <span class="mi">170</span><span class="p">)</span>
+                   <span class="ss">'black</span><span class="p">)]</span>
+  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">'right-arm</span><span class="p">)</span>
+   <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">75</span><span class="p">)</span>
+                    <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">40</span> <span class="mi">65</span><span class="p">)</span>
+                    <span class="ss">'black</span><span class="p">)]</span>
+  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">'left-arm</span><span class="p">)</span>
+   <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">75</span><span class="p">)</span>
+                    <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">160</span> <span class="mi">65</span><span class="p">)</span>
+                    <span class="ss">'black</span><span class="p">)]</span>
+  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">'head</span><span class="p">)</span>
+   <span class="p">(</span><span class="nf">and</span>
+    <span class="p">(</span><span class="nf">draw-solid-disk</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">120</span> <span class="mi">50</span><span class="p">)</span> <span class="mi">30</span> <span class="ss">'red</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">115</span> <span class="mi">35</span><span class="p">)</span>
+                     <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">123</span> <span class="mi">43</span><span class="p">)</span>
+                     <span class="ss">'black</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">123</span> <span class="mi">35</span><span class="p">)</span>
+                     <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">115</span> <span class="mi">43</span><span class="p">)</span>
+                     <span class="ss">'black</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">131</span> <span class="mi">40</span><span class="p">)</span>
+                     <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">139</span> <span class="mi">48</span><span class="p">)</span>
+                     <span class="ss">'black</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">139</span> <span class="mi">40</span><span class="p">)</span>
+                     <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">131</span> <span class="mi">48</span><span class="p">)</span>
+                     <span class="ss">'black</span><span class="p">))]</span>
+  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">'noose</span><span class="p">)</span>
+   <span class="p">(</span><span class="nf">and</span>
+    <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">30</span><span class="p">)</span>
+                     <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">10</span><span class="p">)</span>
+                     <span class="ss">'black</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">10</span><span class="p">)</span>
+                     <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">0</span> <span class="mi">10</span><span class="p">)</span>
+                     <span class="ss">'black</span><span class="p">))]))</span>
+
+ <span class="c1">;; 测试</span>
+
+ <span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'noose</span><span class="p">)</span>
+
+ <span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'noose</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'head</span><span class="p">)</span>
+
+ <span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'noose</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'head</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'body</span><span class="p">)</span>
+
+ <span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'noose</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'head</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'body</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'right-arm</span><span class="p">)</span>
+
+ <span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'noose</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'head</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'body</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'right-arm</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'left-arm</span><span class="p">)</span>
+
+ <span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'noose</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'head</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'body</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'right-arm</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'left-arm</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'right-leg</span><span class="p">)</span>
+
+ <span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'noose</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'head</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'body</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'right-arm</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'left-arm</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'right-leg</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'left-leg</span><span class="p">)</span>
+</pre>
+</div>
+<div class="section" id="id28">
+<h3>习题6.7.2</h3>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">chars</span> <span class="p">(</span><span class="nf">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">))</span>
+<span class="c1">;; a, b, c 都是符号类型</span>
+
+<span class="c1">;; chars-template: a-chars -&gt; ???</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">chars-template</span> <span class="nv">a-chars</span><span class="p">)</span>
+ <span class="o">...</span> <span class="p">(</span><span class="nf">chars-a</span> <span class="nv">a-chars</span><span class="p">)</span><span class="o">...</span>
+ <span class="o">...</span> <span class="p">(</span><span class="nf">chars-b</span> <span class="nv">a-chars</span><span class="p">)</span><span class="o">...</span>
+ <span class="o">...</span> <span class="p">(</span><span class="nf">chars-c</span> <span class="nv">a-chars</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+</pre>
+</div>
+<div class="section" id="id29">
+<h3>习题6.7.3</h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; reveal: chars chars symbol -&gt; chars</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reveal</span> <span class="nv">chosen</span> <span class="nv">status</span> <span class="nv">char</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">make-chars</span>
+        <span class="p">(</span><span class="nf">cond</span>
+         <span class="p">((</span><span class="nf">symbol=?</span> <span class="p">(</span><span class="nf">chars-a</span> <span class="nv">chosen</span><span class="p">)</span>
+                    <span class="nv">char</span><span class="p">)</span>
+          <span class="nv">char</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">chars-a</span> <span class="nv">status</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nf">cond</span>
+         <span class="p">((</span><span class="nf">symbol=?</span> <span class="p">(</span><span class="nf">chars-b</span> <span class="nv">chosen</span><span class="p">)</span>
+                    <span class="nv">char</span><span class="p">)</span>
+          <span class="nv">char</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">chars-b</span> <span class="nv">status</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nf">cond</span>
+         <span class="p">((</span><span class="nf">symbol=?</span> <span class="p">(</span><span class="nf">chars-c</span> <span class="nv">chosen</span><span class="p">)</span>
+                    <span class="nv">char</span><span class="p">)</span>
+           <span class="nv">char</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">chars-c</span> <span class="nv">status</span><span class="p">)))))</span>
+
+<span class="c1">;; 测试</span>
+<span class="p">(</span><span class="nf">reveal</span> <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">'t</span> <span class="ss">'e</span> <span class="ss">'a</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">'_</span> <span class="ss">'e</span> <span class="ss">'_</span><span class="p">)</span>
+        <span class="ss">'u</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nf">reveal</span> <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">'a</span> <span class="ss">'l</span> <span class="ss">'e</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">'a</span> <span class="ss">'_</span> <span class="ss">'_</span><span class="p">)</span>
+        <span class="ss">'e</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nf">reveal</span> <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">'a</span> <span class="ss">'l</span> <span class="ss">'l</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">'_</span> <span class="ss">'_</span> <span class="ss">'_</span><span class="p">)</span>
+        <span class="ss">'l</span><span class="p">)</span>
+</pre>
+</div>
 </div>
 
                 </div><!-- /.entry-content -->
@@ -627,6 +857,11 @@
 </a>
 </li>
 <li>
+<a href="/category/flask_source_note.html">
+    <i class="icon-folder-open icon-large"></i>flask_source_note
+</a>
+</li>
+<li>
 <a href="/category/http.html">
     <i class="icon-folder-open icon-large"></i>http
 </a>
@@ -644,23 +879,43 @@
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
 <li class="tag-4">
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+<li class="tag-4">
     <a href="/tag/markdown.html">
         <i class="icon-tag icon-large"></i>MarkDown
     </a>
 </li>
 <li class="tag-1">
-    <a href="/tag/htdp.html">
-        <i class="icon-tag icon-large"></i>htdp
+    <a href="/tag/http.html">
+        <i class="icon-tag icon-large"></i>http
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/lisp.html">
-        <i class="icon-tag icon-large"></i>lisp
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
     </a>
 </li>
 <li class="tag-4">
     <a href="/tag/restructuredtext.html">
         <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/htdp.html">
+        <i class="icon-tag icon-large"></i>htdp
     </a>
 </li>
 <li class="tag-4">
@@ -673,24 +928,19 @@
         <i class="icon-tag icon-large"></i>scheme
     </a>
 </li>
-<li class="tag-4">
-    <a href="/tag/blog.html">
-        <i class="icon-tag icon-large"></i>blog
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/dna.html">
-        <i class="icon-tag icon-large"></i>dna
-    </a>
-</li>
 <li class="tag-2">
     <a href="/tag/setuptools.html">
         <i class="icon-tag icon-large"></i>setuptools
     </a>
 </li>
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
 <li class="tag-4">
-    <a href="/tag/setup.html">
-        <i class="icon-tag icon-large"></i>setup
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
     </a>
 </li>
 <li class="tag-4">
@@ -699,33 +949,18 @@
     </a>
 </li>
 <li class="tag-2">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/guile.html">
-        <i class="icon-tag icon-large"></i>guile
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/http.html">
-        <i class="icon-tag icon-large"></i>http
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
     </a>
 </li>
 <li class="tag-4">
     <a href="/tag/pelican.html">
         <i class="icon-tag icon-large"></i>pelican
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/package.html">
-        <i class="icon-tag icon-large"></i>package
     </a>
 </li>
 
