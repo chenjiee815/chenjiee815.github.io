@@ -105,6 +105,36 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/htdpdi-qi-zhang-shu-ju-de-duo-yang-xing.html">HTDP第七章：数据的多样性</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-08-10T23:01:37.033233">
+        <i class="icon-calendar"></i>2014-08-10 23:01:37
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/scheme.html"><i class="icon-folder-open"></i>scheme</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
+	<a href="/tag/htdp.html"><i class="icon-tag"></i>htdp</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="section" id="id1">
+<h2>数据混合与区分</h2>
+<p>之前设计的函数都是只能处理一种类型的数据。</p>
+<p>这章要讲的是同一个函数如何能处理不同的类型的数据。</p>
+<p>其实很简单，在函数的开头，
+通过一定的方法先判断一下传入的数据属于哪一类型即可。</p>
+<p>这种方式也有一种专业名词 <strong>内省</strong> 。</p>
+</div>
+
+                        <a class="btn primary xsmall" href="/htdpdi-qi-zhang-shu-ju-de-duo-yang-xing.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/htdpdi-liu-zhang-fu-he-shu-ju-zhi-yi-jie-gou-ti.html">HTDP第六章：复合数据之一：结构体</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -535,83 +565,6 @@ MIME类型原来是在邮件里面使用的，由于它很成熟也很好用，
                 </div>
         </div>
         <hr />
-        <div class="article">
-                <h1><a href="/httpquan-wei-zhi-nan-bi-ji-di-er-zhang-urlyu-zi-yuan.html">《HTTP权威指南》笔记 第二章 URL与资源</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2014-07-06T19:03:55.242360">
-        <i class="icon-calendar"></i>2014-07-06 19:03:55
-</abbr>
-<span class="label">By</span>
-<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
-<span class="label">Category</span>
-<a href="/category/http.html"><i class="icon-folder-open"></i>http</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/http.html"><i class="icon-tag"></i>http</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><img alt="" src="static/url.png" />
-<div class="contents topic" id="contents">
-<p class="topic-title first">Contents</p>
-<ul class="simple">
-<li><a class="reference internal" href="#url" id="id4">URL语法</a></li>
-<li><a class="reference internal" href="#id1" id="id5">相对URL</a></li>
-<li><a class="reference internal" href="#id2" id="id6">转义字符</a></li>
-<li><a class="reference internal" href="#id3" id="id7">保留字符</a></li>
-</ul>
-</div>
-<div class="section" id="url">
-<h2><a class="toc-backref" href="#id4">URL语法</a></h2>
-<p>大多数URL的格式：</p>
-<blockquote>
-&lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;&#64;&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt;</blockquote>
-<p>其中最重要的是scheme, host, path。</p>
-<img alt="" src="static/url_format.png" />
-</div>
-<div class="section" id="id1">
-<h2><a class="toc-backref" href="#id5">相对URL</a></h2>
-<p>有时候网页里面的URL不是绝对路径的，
-那么就会有相应的算法将之转换成绝对URL。</p>
-<img alt="" src="static/relative_url.png" />
-</div>
-<div class="section" id="id2">
-<h2><a class="toc-backref" href="#id6">转义字符</a></h2>
-<p>为了在URL中表示各种不安全的字符，
-需要在URL用转义字符来表示这些不安全的字符。</p>
-<p>这种转义表示法包含一个百分号，后面跟着两个表示字符ASCII码的16进制数。</p>
-<table border="1" class="docutils">
-<caption>一些编码字符举例</caption>
-<colgroup>
-<col width="17%" />
-<col width="17%" />
-<col width="67%" />
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">字符</th>
-<th class="head">ASCII码</th>
-<th class="head">示例URL</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td>~</td>
-<td>126(0x7E)</td>
-<td><a class="reference external" href="http://www.joes-hardware.com/%7Ejoe">http://www.joes-hardware.com/%7Ejoe</a></td>
-</tr>
-<tr><td>空格</td>
-<td>32(0x20)</td>
-<td><a class="reference external" href="http://www.joes-hardware.com/more%20tools.html">http://www.joes-hardware.com/more%20tools.html</a></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id3">
-<h2><a class="toc-backref" href="#id7">保留字符</a></h2>
-<p>在URL中 ...</p></div>
-                        <a class="btn primary xsmall" href="/httpquan-wei-zhi-nan-bi-ji-di-er-zhang-urlyu-zi-yuan.html">more ...</a>
-                </div>
-        </div>
-        <hr />
 
         <div class="pagination">
         <ul>
@@ -664,39 +617,34 @@ MIME类型原来是在邮件里面使用的，由于它很成熟也很好用，
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-4">
-    <a href="/tag/guile.html">
-        <i class="icon-tag icon-large"></i>guile
+<li class="tag-3">
+    <a href="/tag/setuptools.html">
+        <i class="icon-tag icon-large"></i>setuptools
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/blog.html">
-        <i class="icon-tag icon-large"></i>blog
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/markdown.html">
-        <i class="icon-tag icon-large"></i>MarkDown
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
     </a>
 </li>
 <li class="tag-1">
-    <a href="/tag/http.html">
-        <i class="icon-tag icon-large"></i>http
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/setup.html">
-        <i class="icon-tag icon-large"></i>setup
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
     </a>
 </li>
 <li class="tag-4">
     <a href="/tag/restructuredtext.html">
         <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
     </a>
 </li>
 <li class="tag-1">
@@ -709,24 +657,34 @@ MIME类型原来是在邮件里面使用的，由于它很成熟也很好用，
         <i class="icon-tag icon-large"></i>speak
     </a>
 </li>
-<li class="tag-1">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
-    </a>
-</li>
 <li class="tag-2">
-    <a href="/tag/setuptools.html">
-        <i class="icon-tag icon-large"></i>setuptools
-    </a>
-</li>
-<li class="tag-1">
     <a href="/tag/python.html">
         <i class="icon-tag icon-large"></i>python
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/dna.html">
-        <i class="icon-tag icon-large"></i>dna
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>MarkDown
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
+    </a>
+</li>
+<li class="tag-3">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/http.html">
+        <i class="icon-tag icon-large"></i>http
     </a>
 </li>
 <li class="tag-4">
@@ -740,13 +698,8 @@ MIME类型原来是在邮件里面使用的，由于它很成熟也很好用，
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/lisp.html">
-        <i class="icon-tag icon-large"></i>lisp
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/pelican.html">
-        <i class="icon-tag icon-large"></i>pelican
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
     </a>
 </li>
 
