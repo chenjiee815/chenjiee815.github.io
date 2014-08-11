@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>《HTTP权威指南》笔记 第二章 URL与资源</title>
+    <title>January Star - flask</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Chen Jie">
@@ -69,7 +69,7 @@
 						<i class="icon-folder-open icon-large"></i>dna
 					</a>
                   </li>
-                  <li class="active">
+                  <li >
                     <a href="/category/http.html">
 						<i class="icon-folder-open icon-large"></i>http
 					</a>
@@ -99,110 +99,59 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-<section id="content">
-        <article>
-                <header>
-                        <h1>
-                                <a href=""
-                                        rel="bookmark"
-                                        title="Permalink to 《HTTP权威指南》笔记 第二章 URL与资源">
-                                        《HTTP权威指南》笔记 第二章 URL与资源
-                                </a>
-                        </h1>
-                </header>
-                <div class="entry-content">
-                <div class="well">
-<footer class="post-info">
+        <div class="article">
+                <h1><a href="/flaskkuo-zhan-ji-zhi-wei-wan-dai-xu.html">Flask扩展机制（未完待续）</a></h1>
+                <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-07-06T19:03:55.242360">
-        <i class="icon-calendar"></i>2014-07-06 19:03:55
+<abbr class="published" title="2014-08-11T21:25:42.432524">
+        <i class="icon-calendar"></i>2014-08-11 21:25:42
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
 <span class="label">Category</span>
-<a href="/category/http.html"><i class="icon-folder-open"></i>http</a>.
+<a href="/category/python.html"><i class="icon-folder-open"></i>python</a>.
 
 
 <span class="label">Tags</span>
-	<a href="/tag/http.html"><i class="icon-tag"></i>http</a>
-</footer><!-- /.post-info -->                </div>
-                <img alt="" src="static/url.png" />
-<div class="contents topic" id="contents">
+	<a href="/tag/python.html"><i class="icon-tag"></i>python</a>
+	<a href="/tag/flask.html"><i class="icon-tag"></i>flask</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#url" id="id4">URL语法</a></li>
-<li><a class="reference internal" href="#id1" id="id5">相对URL</a></li>
-<li><a class="reference internal" href="#id2" id="id6">转义字符</a></li>
-<li><a class="reference internal" href="#id3" id="id7">保留字符</a></li>
+<li><a class="reference internal" href="#id1" id="id3">Flask扩展导入方式</a></li>
 </ul>
 </div>
-<div class="section" id="url">
-<h2><a class="toc-backref" href="#id4">URL语法</a></h2>
-<p>大多数URL的格式：</p>
-<blockquote>
-&lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;&#64;&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt;</blockquote>
-<p>其中最重要的是scheme, host, path。</p>
-<img alt="" src="static/url_format.png" />
-</div>
+<hr class="docutils" />
+<p>Flask的扩展包都列在了 <a class="reference external" href="http://flask.pocoo.org/extensions/">Flask扩展注册</a> 中。
+这些包本质都属于Python库，
+所以你都可以通过 <cite>easy_install</cite> 或者 <cite>pip</cite> 来进行安装。</p>
 <div class="section" id="id1">
-<h2><a class="toc-backref" href="#id5">相对URL</a></h2>
-<p>有时候网页里面的URL不是绝对路径的，
-那么就会有相应的算法将之转换成绝对URL。</p>
-<img alt="" src="static/relative_url.png" />
-</div>
-<div class="section" id="id2">
-<h2><a class="toc-backref" href="#id6">转义字符</a></h2>
-<p>为了在URL中表示各种不安全的字符，
-需要在URL用转义字符来表示这些不安全的字符。</p>
-<p>这种转义表示法包含一个百分号，后面跟着两个表示字符ASCII码的16进制数。</p>
-<table border="1" class="docutils">
-<caption>一些编码字符举例</caption>
-<colgroup>
-<col width="17%" />
-<col width="17%" />
-<col width="67%" />
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">字符</th>
-<th class="head">ASCII码</th>
-<th class="head">示例URL</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td>~</td>
-<td>126(0x7E)</td>
-<td><a class="reference external" href="http://www.joes-hardware.com/%7Ejoe">http://www.joes-hardware.com/%7Ejoe</a></td>
-</tr>
-<tr><td>空格</td>
-<td>32(0x20)</td>
-<td><a class="reference external" href="http://www.joes-hardware.com/more%20tools.html">http://www.joes-hardware.com/more%20tools.html</a></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id3">
-<h2><a class="toc-backref" href="#id7">保留字符</a></h2>
-<p>在URL中，有几个字符被保留起来，有特殊的用途。</p>
-<img alt="" src="static/reserved_and_restricted_characters.png" />
+<h2><a class="toc-backref" href="#id3">Flask扩展导入方式</a></h2>
+<p>Flask扩展的导入方式在Flask 0.8版本前后还是有点区别的。</p>
+<p>如果你使用的是Flask 0.8或者其更新的版本，你可以通过：</p>
+<pre class="code python literal-block">
+<span class="kn">from</span> <span class="nn">flast.ext</span> <span class="kn">import</span> <span class="n">ext_name</span>
+</pre>
+<p>的方式来导入扩展包。</p>
+<p>如果你使用的是比Flask 0.8旧的版本，
+你只能通过直接导入扩展包的名称来导入了。</p>
+<p>但是Flask官方还是提供了一个兼容模块用来兼容老版本的Flask。
+你可以从这里下载： <a class="reference external" href="https://github.com/mitsuhiko/flask/raw/master/scripts/flaskext_compat.py">flaskext_compat.py</a></p>
+<p>使用方法:</p>
+<pre class="code python literal-block">
+<span class="kn">import</span> <span class="nn">flaskext_compat</span>
+<span class="n">flaskext_compat</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">flast.ext</span> <span class="kn">import</span> <span class="n">ext_name</span>
+</pre>
 </div>
 
-                </div><!-- /.entry-content -->
-                <div class="comments">
-                <h2>Comments !</h2>
-                        <div id="disqus_thread"></div>
-                        <script type="text/javascript">
-                           var disqus_identifier = "httpquan-wei-zhi-nan-bi-ji-di-er-zhang-urlyu-zi-yuan.html";
-                           (function() {
-                                var dsq = document.createElement('script');
-                                dsq.type = 'text/javascript'; dsq.async = true;
-                                dsq.src = 'http://chenjiee815blog.disqus.com/embed.js';
-                                (document.getElementsByTagName('head')[0] ||
-                                 document.getElementsByTagName('body')[0]).appendChild(dsq);
-                          })();
-                        </script>
+                        <a class="btn primary xsmall" href="/flaskkuo-zhan-ji-zhi-wei-wan-dai-xu.html">more ...</a>
                 </div>
-        </article>
-</section>
+        </div>
+        <hr />
+
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">

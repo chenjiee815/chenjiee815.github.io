@@ -70,11 +70,6 @@
 					</a>
                   </li>
                   <li >
-                    <a href="/category/flask_source_note.html">
-						<i class="icon-folder-open icon-large"></i>flask_source_note
-					</a>
-                  </li>
-                  <li >
                     <a href="/category/http.html">
 						<i class="icon-folder-open icon-large"></i>http
 					</a>
@@ -119,8 +114,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-08-11T08:31:44.621113">
-        <i class="icon-calendar"></i>2014-08-11 08:31:44
+<abbr class="published" title="2014-08-11T22:13:05.073161">
+        <i class="icon-calendar"></i>2014-08-11 22:13:05
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -132,8 +127,37 @@
 	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
 	<a href="/tag/htdp.html"><i class="icon-tag"></i>htdp</a>
 </footer><!-- /.post-info -->                </div>
-                <div class="section" id="id1">
-<h2>数据混合与区分</h2>
+                <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id16">数据混合与区分</a><ul>
+<li><a class="reference internal" href="#id2" id="id17">习题7.1.3</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3" id="id18">设计处理混合数据的函数</a><ul>
+<li><a class="reference internal" href="#id4" id="id19">习题7.2.1</a></li>
+<li><a class="reference internal" href="#id5" id="id20">习题7.2.2</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6" id="id21">再论函数复合</a><ul>
+<li><a class="reference internal" href="#id7" id="id22">习题7.3.1</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id8" id="id23">补充练习：图形的移动</a><ul>
+<li><a class="reference internal" href="#id9" id="id24">习题7.4.1</a></li>
+<li><a class="reference internal" href="#id10" id="id25">习题7.4.2</a></li>
+<li><a class="reference internal" href="#id11" id="id26">习题7.4.3</a></li>
+<li><a class="reference internal" href="#id12" id="id27">习题7.4.4</a></li>
+<li><a class="reference internal" href="#id13" id="id28">习题7.4.5</a></li>
+<li><a class="reference internal" href="#id14" id="id29">习题7.4.6</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id15" id="id30">输入错误</a></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id16">数据混合与区分</a></h2>
 <p>之前设计的函数都是只能处理一种类型的数据。</p>
 <p>这章要讲的是同一个函数如何能处理不同的类型的数据。</p>
 <p>其实很简单，在函数的开头，
@@ -154,29 +178,22 @@
         <span class="p">((</span><span class="nf">circle?</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nf">circle-radius</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="nv">PI</span><span class="p">))))</span>
 </pre>
 <div class="section" id="id2">
-<h3>习题7.1.3</h3>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/HTDP_note/chapter_7.rst</tt>, line 35)</p>
-<p>Error in &quot;code&quot; directive:
-maximum 1 argument(s) allowed, 24 supplied.</p>
-<pre class="literal-block">
-.. code:: scheme
-   ;; area: a-shape -&gt; number
-   ;; 传入一个图形来获取其面积（只支持正方形、圆形）
-   (define (area a-shape)
-          (cond
-           ((square? a-shape) (sqr (square-length a-shape)))
-           ((circle? a-shape) (* (sqr (circle-radius a-shape)) PI))))
-
+<h3><a class="toc-backref" href="#id17">习题7.1.3</a></h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; area: a-shape -&gt; number</span>
+<span class="c1">;; 传入一个图形来获取其面积（只支持正方形、圆形）</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area</span> <span class="nv">a-shape</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">((</span><span class="nf">square?</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="p">(</span><span class="nf">sqr</span> <span class="p">(</span><span class="nf">square-length</span> <span class="nv">a-shape</span><span class="p">)))</span>
+        <span class="p">((</span><span class="nf">circle?</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">sqr</span> <span class="p">(</span><span class="nf">circle-radius</span> <span class="nv">a-shape</span><span class="p">))</span> <span class="nv">PI</span><span class="p">))))</span>
 </pre>
 </div>
 </div>
-</div>
 <div class="section" id="id3">
-<h2>设计处理混合数据的函数</h2>
+<h2><a class="toc-backref" href="#id18">设计处理混合数据的函数</a></h2>
 <img alt="" src="static/处理混合数据的函数.png" />
 <div class="section" id="id4">
-<h3>习题7.2.1</h3>
+<h3><a class="toc-backref" href="#id19">习题7.2.1</a></h3>
 <pre class="code scheme literal-block">
 <span class="p">(</span><span class="nf">define-struct</span> <span class="nv">spider</span> <span class="p">(</span><span class="nf">legs</span> <span class="nv">space</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">define-struct</span> <span class="nv">elephant</span> <span class="p">(</span><span class="nf">space</span><span class="p">))</span>
@@ -211,7 +228,7 @@ maximum 1 argument(s) allowed, 24 supplied.</p>
 </pre>
 </div>
 <div class="section" id="id5">
-<h3>习题7.2.2</h3>
+<h3><a class="toc-backref" href="#id20">习题7.2.2</a></h3>
 <pre class="code scheme literal-block">
 <span class="p">(</span><span class="nf">define-struct</span> <span class="nv">bus</span> <span class="p">(</span><span class="nf">area</span> <span class="nv">passengers</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">define-struct</span> <span class="nv">luxurycar</span> <span class="p">(</span><span class="nf">area</span> <span class="nv">passengers</span><span class="p">))</span>
@@ -245,6 +262,183 @@ maximum 1 argument(s) allowed, 24 supplied.</p>
 </pre>
 </div>
 </div>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id21">再论函数复合</a></h2>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id22">习题7.3.1</a></h3>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="k">define </span><span class="nv">PI</span> <span class="mf">3.14</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">circle</span> <span class="p">(</span><span class="nf">center</span> <span class="nv">radius</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">square</span> <span class="p">(</span><span class="nf">nw</span> <span class="nv">length</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">rectangle</span> <span class="p">(</span><span class="nf">nw</span> <span class="nv">width</span> <span class="nv">length</span><span class="p">))</span>
+<span class="c1">;; shape 是下列三者之一</span>
+<span class="c1">;; 1. 结构体: (make-circle c r)</span>
+<span class="c1">;;    c是posn结构体，s是数值n</span>
+<span class="c1">;; 2. 结构体：(make-square n l)</span>
+<span class="c1">;;    n是posn结构体，l是数值</span>
+<span class="c1">;; 3. 结构体：(make-rectangle n w l)</span>
+<span class="c1">;;    n是posn结构体，w, l是数值</span>
+
+<span class="c1">;; perimeter: shape -&gt; number</span>
+<span class="c1">;; 计算a-shape的周长</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">perimeter</span> <span class="nv">a-shape</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">[(</span><span class="nf">circle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nf">circle-radius</span> <span class="nv">a-shape</span><span class="p">))</span> <span class="nv">PI</span><span class="p">)]</span>
+        <span class="p">[(</span><span class="nf">square?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">square-length</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="mi">4</span><span class="p">)]</span>
+        <span class="p">[(</span><span class="nf">rectangle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">rectangle-width</span> <span class="nv">a-shape</span><span class="p">)</span>
+                 <span class="p">(</span><span class="nf">rectangle-length</span> <span class="nv">a-shape</span><span class="p">)))]))</span>
+</pre>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="k">define </span><span class="nv">PI</span> <span class="mf">3.14</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">circle</span> <span class="p">(</span><span class="nf">center</span> <span class="nv">radius</span><span class="p">))</span>
+<span class="c1">;; 结构体: (make-circle c r)</span>
+<span class="c1">;; c是posn结构体，s是数值n</span>
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">square</span> <span class="p">(</span><span class="nf">nw</span> <span class="nv">length</span><span class="p">))</span>
+<span class="c1">;; 结构体：(make-square n l)</span>
+<span class="c1">;; n是posn结构体，l是数值</span>
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">rectangle</span> <span class="p">(</span><span class="nf">nw</span> <span class="nv">width</span> <span class="nv">length</span><span class="p">))</span>
+<span class="c1">;; 结构体：(make-rectangle n w l)</span>
+<span class="c1">;; n是posn结构体，w, l是数值</span>
+
+<span class="c1">;; shape是下列三者之一</span>
+<span class="c1">;; 1. circle</span>
+<span class="c1">;; 2. square</span>
+<span class="c1">;; 3. rectangle</span>
+
+<span class="c1">;; perimeter: shape -&gt; number</span>
+<span class="c1">;; 计算a-shape的周长</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">perimeter</span> <span class="nv">a-shape</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">[(</span><span class="nf">circle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">perimeter-circle</span> <span class="nv">a-shape</span><span class="p">)]</span>
+        <span class="p">[(</span><span class="nf">square?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">perimeter-square</span> <span class="nv">a-shape</span><span class="p">)]</span>
+        <span class="p">[(</span><span class="nf">rectangle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">perimeter-rectangle</span> <span class="nv">a-shape</span><span class="p">)]))</span>
+
+<span class="c1">;; perimeter-circle: circle -&gt; number</span>
+<span class="c1">;; 计算circle的周长</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">perimeter-circle</span> <span class="nv">a-circle</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nf">circle-radius</span> <span class="nv">a-circle</span><span class="p">))</span> <span class="nv">PI</span><span class="p">))</span>
+
+<span class="c1">;; perimeter-square: square -&gt; number</span>
+<span class="c1">;; 计算square的周长</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">perimeter-square</span> <span class="nv">a-square</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">square-length</span> <span class="nv">a-square</span><span class="p">)</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1">;; perimeter-rectangle: rectangle -&gt; number</span>
+<span class="c1">;; 计算rectangle的周长</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">perimeter-rectangle</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">rectangle-width</span> <span class="nv">a-rectangle</span><span class="p">)</span>
+               <span class="p">(</span><span class="nf">rectangle-length</span> <span class="nv">a-rectangle</span><span class="p">))))</span>
+</pre>
+</div>
+</div>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id23">补充练习：图形的移动</a></h2>
+<p>这章的练习是6.6章节的扩展。</p>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id24">习题7.4.1</a></h3>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">circle</span> <span class="p">(</span><span class="nf">point</span> <span class="nv">radius</span> <span class="nv">color</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">rectangle</span> <span class="p">(</span><span class="nf">nw-corner</span> <span class="nv">width</span> <span class="nv">height</span> <span class="nv">color</span><span class="p">))</span>
+<span class="c1">;; shape 是下列二者之一</span>
+<span class="c1">;; 1. 结构体: (make-circle point radius color)</span>
+<span class="c1">;;    point为posn结构体，radius为一个整数，color为一个符号</span>
+<span class="c1">;; 2. 结构体：(make-rectangle nw-corner width height color)</span>
+<span class="c1">;;    nw-color 为一个posn结构体</span>
+<span class="c1">;;    width height 为数值</span>
+<span class="c1">;;    color 为符号</span>
+
+<span class="c1">;; 模板</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fun-for-shape</span> <span class="nv">a-shape</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">[(</span><span class="nf">circle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="o">...</span><span class="p">(</span><span class="nf">circle-point</span> <span class="nv">a-shape</span><span class="p">)</span><span class="o">...</span>
+         <span class="o">...</span><span class="p">(</span><span class="nf">circle-radius</span> <span class="nv">a-shape</span><span class="p">)</span><span class="o">...</span>
+         <span class="o">...</span><span class="p">(</span><span class="nf">circle-color</span> <span class="nv">a-shape</span><span class="p">)</span><span class="o">...</span><span class="p">]</span>
+        <span class="p">[(</span><span class="nf">rectangle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="o">...</span><span class="p">(</span><span class="nf">rectangle-nw-corner</span> <span class="nv">a-shape</span><span class="p">)</span><span class="o">...</span>
+         <span class="o">...</span><span class="p">(</span><span class="nf">rectangle-width</span> <span class="nv">a-shape</span><span class="p">)</span><span class="o">...</span>
+         <span class="o">...</span><span class="p">(</span><span class="nf">rectangle-height</span> <span class="nv">a-shape</span><span class="p">)</span><span class="o">...</span>
+         <span class="o">...</span><span class="p">(</span><span class="nf">rectangle-color</span> <span class="nv">a-shape</span><span class="p">)</span><span class="o">...</span><span class="p">]))</span>
+</pre>
+</div>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id25">习题7.4.2</a></h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; draw-shape: shape -&gt; boolean</span>
+<span class="c1">;; 将一个图形画到画布上</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">draw-shape</span> <span class="nv">a-shape</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">[(</span><span class="nf">circle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">draw-a-circle</span> <span class="nv">a-shape</span><span class="p">)]</span>
+        <span class="p">[(</span><span class="nf">rectangle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">draw-a-rectangle</span> <span class="nv">a-shape</span><span class="p">)]))</span>
+</pre>
+</div>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id26">习题7.4.3</a></h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; translate-shape: shape number -&gt; shape</span>
+<span class="c1">;; 根据原始的图形和一个数delta，</span>
+<span class="c1">;; 输出另外一个图形，其位于原始图形的右边</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">translate-shape</span> <span class="nv">a-shape</span> <span class="nv">delta</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">[(</span><span class="nf">circle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">translate-circle</span> <span class="nv">a-shape</span> <span class="nv">delta</span><span class="p">)]</span>
+        <span class="p">[(</span><span class="nf">rectangle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">translate-rectangle</span> <span class="nv">a-shape</span> <span class="nv">delta</span><span class="p">)]))</span>
+</pre>
+</div>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id27">习题7.4.4</a></h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; clear-shape: shape -&gt; boolean</span>
+<span class="c1">;; 在画布上清除一个图形</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">clear-shape</span> <span class="nv">a-shape</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">[(</span><span class="nf">circle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">clear-a-circle</span> <span class="nv">a-shape</span><span class="p">)]</span>
+        <span class="p">[(</span><span class="nf">rectangle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">clear-a-rectangle</span> <span class="nv">a-shape</span><span class="p">)]))</span>
+</pre>
+</div>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id28">习题7.4.5</a></h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; draw-and-clear-shape: shape -&gt; boolean</span>
+<span class="c1">;; 在画布上画出一个图形，然后过一段时间清除</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">draw-and-clear-shape</span> <span class="nv">a-shape</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">[(</span><span class="nf">circle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">draw-and-clear-circle</span> <span class="nv">a-shape</span><span class="p">)]</span>
+        <span class="p">[(</span><span class="nf">rectangle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">draw-and-clear-rectangle</span> <span class="nv">a-shape</span><span class="p">)]))</span>
+</pre>
+</div>
+<div class="section" id="id14">
+<h3><a class="toc-backref" href="#id29">习题7.4.6</a></h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; move-shape: delta shape -&gt; shape</span>
+<span class="c1">;; 绘制并消除一个图形，再平移delta个像素</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">move-shape</span> <span class="nv">delta</span> <span class="nv">a-shape</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">[(</span><span class="nf">circle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">move-circle</span> <span class="nv">a-shape</span><span class="p">)]</span>
+        <span class="p">[(</span><span class="nf">rectangle?</span> <span class="nv">a-shape</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">move-rectangle</span> <span class="nv">a-shape</span><span class="p">)]))</span>
+</pre>
+</div>
+</div>
+<div class="section" id="id15">
+<h2><a class="toc-backref" href="#id30">输入错误</a></h2>
+</div>
 
                 </div><!-- /.entry-content -->
                 <div class="comments">
@@ -268,24 +462,18 @@ maximum 1 argument(s) allowed, 24 supplied.</p>
                 <div class="span3 well sidebar-nav" id="sidebar">
 <ul class="nav nav-list">
 <li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
-    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
-    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
-    <li><a href="http://jinja.pocoo.org/"><i class="icon-external-link"></i>Jinja2</a></li>
-    <li><a href="#"><i class="icon-external-link"></i>You can modify those links in your config file</a></li>
+    <li><a href="http://blog.csdn.net/gzlaiyonghao/"><i class="icon-external-link"></i>赖勇浩的编程私伙局</a></li>
 <li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
 <li><a href="/" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
-    <li><a href="#"><i class="icon-You can add links in your config file-sign icon-large"></i>You can add links in your config file</a></li>
-    <li><a href="#"><i class="icon-Another social link-sign icon-large"></i>Another social link</a></li>
+    <li><a href="https://github.com/chenjiee815"><i class="icon-My GitHub-sign icon-large"></i>My GitHub</a></li>
+    <li><a href="http://weekly.pychina.org/"><i class="icon-蟒周刊-sign icon-large"></i>蟒周刊</a></li>
+    <li><a href="http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html"><i class="icon-Idiomatic Python-sign icon-large"></i>Idiomatic Python</a></li>
+    <li><a href="https://python-guide-zh.readthedocs.org/en/latest/"><i class="icon-Python指南-sign icon-large"></i>Python指南</a></li>
 
 <li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
 <li>
 <a href="/category/dna.html">
     <i class="icon-folder-open icon-large"></i>dna
-</a>
-</li>
-<li>
-<a href="/category/flask_source_note.html">
-    <i class="icon-folder-open icon-large"></i>flask_source_note
 </a>
 </li>
 <li>
@@ -305,19 +493,9 @@ maximum 1 argument(s) allowed, 24 supplied.</p>
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-1">
-    <a href="/tag/htdp.html">
-        <i class="icon-tag icon-large"></i>htdp
-    </a>
-</li>
 <li class="tag-4">
-    <a href="/tag/speak.html">
-        <i class="icon-tag icon-large"></i>speak
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
     </a>
 </li>
 <li class="tag-3">
@@ -325,24 +503,59 @@ maximum 1 argument(s) allowed, 24 supplied.</p>
         <i class="icon-tag icon-large"></i>setuptools
     </a>
 </li>
-<li class="tag-2">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/guile.html">
-        <i class="icon-tag icon-large"></i>guile
-    </a>
-</li>
 <li class="tag-4">
     <a href="/tag/blog.html">
         <i class="icon-tag icon-large"></i>blog
     </a>
 </li>
+<li class="tag-1">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speech.html">
+        <i class="icon-tag icon-large"></i>speech
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/flask.html">
+        <i class="icon-tag icon-large"></i>flask
+    </a>
+</li>
 <li class="tag-2">
     <a href="/tag/http.html">
         <i class="icon-tag icon-large"></i>http
+    </a>
+</li>
+<li class="tag-3">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/htdp.html">
+        <i class="icon-tag icon-large"></i>htdp
     </a>
 </li>
 <li class="tag-4">
@@ -356,33 +569,13 @@ maximum 1 argument(s) allowed, 24 supplied.</p>
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/setup.html">
-        <i class="icon-tag icon-large"></i>setup
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
     </a>
 </li>
 <li class="tag-4">
     <a href="/tag/markdown.html">
         <i class="icon-tag icon-large"></i>MarkDown
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/lisp.html">
-        <i class="icon-tag icon-large"></i>lisp
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/dna.html">
-        <i class="icon-tag icon-large"></i>dna
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speech.html">
-        <i class="icon-tag icon-large"></i>speech
-    </a>
-</li>
-<li class="tag-3">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
     </a>
 </li>
 <li class="tag-2">

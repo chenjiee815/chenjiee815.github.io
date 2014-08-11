@@ -70,11 +70,6 @@
 					</a>
                   </li>
                   <li >
-                    <a href="/category/flask_source_note.html">
-						<i class="icon-folder-open icon-large"></i>flask_source_note
-					</a>
-                  </li>
-                  <li >
                     <a href="/category/http.html">
 						<i class="icon-folder-open icon-large"></i>http
 					</a>
@@ -108,8 +103,8 @@
                 <h1><a href="/htdpdi-qi-zhang-shu-ju-de-duo-yang-xing.html">HTDP第七章：数据的多样性</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-08-11T08:31:44.621113">
-        <i class="icon-calendar"></i>2014-08-11 08:31:44
+<abbr class="published" title="2014-08-11T22:13:05.073161">
+        <i class="icon-calendar"></i>2014-08-11 22:13:05
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -121,8 +116,37 @@
 	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
 	<a href="/tag/htdp.html"><i class="icon-tag"></i>htdp</a>
 </footer><!-- /.post-info --></div>
-                <div class="summary"><div class="section" id="id1">
-<h2>数据混合与区分</h2>
+                <div class="summary"><div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id16">数据混合与区分</a><ul>
+<li><a class="reference internal" href="#id2" id="id17">习题7.1.3</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3" id="id18">设计处理混合数据的函数</a><ul>
+<li><a class="reference internal" href="#id4" id="id19">习题7.2.1</a></li>
+<li><a class="reference internal" href="#id5" id="id20">习题7.2.2</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6" id="id21">再论函数复合</a><ul>
+<li><a class="reference internal" href="#id7" id="id22">习题7.3.1</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id8" id="id23">补充练习：图形的移动</a><ul>
+<li><a class="reference internal" href="#id9" id="id24">习题7.4.1</a></li>
+<li><a class="reference internal" href="#id10" id="id25">习题7.4.2</a></li>
+<li><a class="reference internal" href="#id11" id="id26">习题7.4.3</a></li>
+<li><a class="reference internal" href="#id12" id="id27">习题7.4.4</a></li>
+<li><a class="reference internal" href="#id13" id="id28">习题7.4.5</a></li>
+<li><a class="reference internal" href="#id14" id="id29">习题7.4.6</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id15" id="id30">输入错误</a></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id16">数据混合与区分</a></h2>
 <p>之前设计的函数都是只能处理一种类型的数据。</p>
 <p>这章要讲的是同一个函数如何能处理不同的类型的数据。</p>
 <p>其实很简单，在函数的开头，
@@ -130,22 +154,7 @@
 <pre class="code scheme literal-block">
 <span class="p">(</span><span class="k">define </span><span class="nv">PI</span> <span class="mf">3.14</span><span class="p">)</span>
 
-<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">square</span> <span class="p">(</span><span class="nf">nw</span> <span class="nv">length</span><span class="p">))</span>
-<span class="c1">;; nw为posn结构体， length为数值</span>
-<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">circle</span> <span class="p">(</span><span class="nf">center</span> <span class="nv">radius</span><span class="p">))</span>
-<span class="c1">;; center为posn结构体， radius为数值</span>
-
-<span class="c1">;; perimeter: a-shape -&gt; number</span>
-<span class="c1">;; 传入一个图形来获取其周长（只支持正方形、圆形）</span>
-<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">perimeter</span> <span class="nv">a-shape</span><span class="p">)</span>
-       <span class="p">(</span><span class="nf">cond</span>
-        <span class="p">((</span><span class="nf">square?</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">square-length</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="mi">4</span><span class="p">))</span>
-        <span class="p">((</span><span class="nf">circle?</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nf">circle-radius</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="nv">PI</span><span class="p">))))</span>
-</pre>
-<div class="section" id="id2">
-<h3>习题7.1.3</h3>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 ...</p></div></div></div>
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">square</span> <span class="p">(</span><span class="nf">nw ...</span></pre></div>
                         <a class="btn primary xsmall" href="/htdpdi-qi-zhang-shu-ju-de-duo-yang-xing.html">more ...</a>
                 </div>
         </div>
@@ -154,8 +163,8 @@
                 <h1><a href="/htdpdi-liu-zhang-fu-he-shu-ju-zhi-yi-jie-gou-ti.html">HTDP第六章：复合数据之一：结构体</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-08-10T22:46:56.975893">
-        <i class="icon-calendar"></i>2014-08-10 22:46:56
+<abbr class="published" title="2014-08-11T22:07:01.307665">
+        <i class="icon-calendar"></i>2014-08-11 22:07:01
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -334,175 +343,33 @@
                 </div>
         </div>
         <hr />
-        <div class="article">
-                <h1><a href="/htdpdi-yi-zhang-xue-sheng-lao-shi-he-ji-suan-ji.html">HTDP第一章：学生、老师和计算机</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2014-07-27T13:36:45.907425">
-        <i class="icon-calendar"></i>2014-07-27 13:36:45
-</abbr>
-<span class="label">By</span>
-<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
-<span class="label">Category</span>
-<a href="/category/scheme.html"><i class="icon-folder-open"></i>scheme</a>.
 
-
-<span class="label">Tags</span>
-	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
-	<a href="/tag/htdp.html"><i class="icon-tag"></i>htdp</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>第一章对程序设计这个概念作了一个简单介绍。</p>
-<p>本书主要使用的是Scheme语言的一种方言，叫做Racket。</p>
-<p>我在这里简单说介绍一下 <strong>HTDP</strong> 用到的教学软件包。</p>
-<ul class="simple">
-<li>从 <a class="reference external" href="http://download.racket-lang.org/">Racket官方网站</a> 下载最新版本的Racket软件。</li>
-<li>运行命令 <cite>drracket</cite> 。</li>
-<li>在 <cite>语言</cite> 中 <cite>选择语言...</cite> 选择 <cite>教学语言(ctl-T)</cite> 。</li>
-<li>级别随便选择，我一开始做习题就是选择 <cite>初级</cite> 。</li>
-<li>然后根据课后习题的要求，在 <cite>语言</cite> 中选择 <cite>加载教学包...</cite> 。</li>
-</ul>
-
-                        <a class="btn primary xsmall" href="/htdpdi-yi-zhang-xue-sheng-lao-shi-he-ji-suan-ji.html">more ...</a>
-                </div>
+        <div class="pagination">
+        <ul>
+                        <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+                        <li class="active"><a href="/category/scheme.html">1</a></li>
+                        <li class=""><a href="/category/scheme2.html">2</a></li>
+                        <li class="next"><a href="/category/scheme2.html">Next &rarr;</a></li>
+        </ul>
         </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/htdpdi-san-zhang-cheng-xu-jiu-shi-han-shu-jia-shang-bian-liang-ding-yi.html">HTDP第三章：程序就是函数加上变量定义</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2014-07-27T10:35:05.941386">
-        <i class="icon-calendar"></i>2014-07-27 10:35:05
-</abbr>
-<span class="label">By</span>
-<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
-<span class="label">Category</span>
-<a href="/category/scheme.html"><i class="icon-folder-open"></i>scheme</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
-	<a href="/tag/htdp.html"><i class="icon-tag"></i>htdp</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><div class="section" id="id1">
-<h2>函数复合</h2>
-<p>电影院定制电影票价格的代码如下：</p>
-<pre class="code scheme literal-block">
-<span class="c1">;; profit: number -&gt; number</span>
-<span class="c1">;; 利润</span>
-<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">profit</span> <span class="nv">ticket-price</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
-          <span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)))</span>
-
-<span class="c1">;; revenue: number -&gt; number</span>
-<span class="c1">;; 收入</span>
-<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
-          <span class="nv">ticket-price</span><span class="p">))</span>
-
-<span class="c1">;; cost: number -&gt; number</span>
-<span class="c1">;; 支出</span>
-<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">+ </span><span class="mi">180</span> <span class="p">(</span><span class="nb">* </span><span class="mf">0.04</span> <span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">))))</span>
-
-<span class="c1">;; attendees: number -&gt; number</span>
-<span class="c1">;; 观众数</span>
-<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">+ </span><span class="mi">120</span> <span class="p">(</span><span class="nb">* </span><span class="mi">10</span> <span class="p">(</span><span class="nb">- </span><span class="mf">5.0</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="mi">15</span><span class="p">)))</span>
-</pre>
-<p>上面是使用辅助函数实现的代码。由该问题引出一条程序设计原则 ...</p></div>
-                        <a class="btn primary xsmall" href="/htdpdi-san-zhang-cheng-xu-jiu-shi-han-shu-jia-shang-bian-liang-ding-yi.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="/thelittleschemerbi-ji.html">TheLittleSchemer笔记</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2014-06-22T00:00:00">
-        <i class="icon-calendar"></i>2014-06-22 00:00:00
-</abbr>
-<span class="label">By</span>
-<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
-<span class="label">Category</span>
-<a href="/category/scheme.html"><i class="icon-folder-open"></i>scheme</a>.
-
-
-<span class="label">Tags</span>
-	<a href="/tag/lisp.html"><i class="icon-tag"></i>lisp</a>
-	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
-	<a href="/tag/guile.html"><i class="icon-tag"></i>guile</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><div class="contents topic" id="contents">
-<p class="topic-title first">Contents</p>
-<ul class="simple">
-<li><a class="reference internal" href="#id1" id="id23">总纲</a><ul>
-<li><a class="reference internal" href="#scheme" id="id24">scheme十戒</a></li>
-<li><a class="reference internal" href="#id2" id="id25">scheme五律</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#toys" id="id26">第一章: Toys</a><ul>
-<li><a class="reference internal" href="#id3" id="id27">基本概念</a></li>
-<li><a class="reference internal" href="#id4" id="id28">其它概念</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#do-it-do-it-again-and-again-and-again" id="id29">第二章: Do It, Do It Again, and Again, and Again…</a><ul>
-<li><a class="reference internal" href="#lat" id="id30">lat操作</a><ul>
-<li><a class="reference internal" href="#id5" id="id31">基本概念</a></li>
-<li><a class="reference internal" href="#id6" id="id32">应用</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#cons-the-magnificent" id="id33">第三章: Cons the Magnificent</a><ul>
-<li><a class="reference internal" href="#id7" id="id34">lat操作</a><ul>
-<li><a class="reference internal" href="#id8" id="id35">应用</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#numbers-games" id="id36">第四章: Numbers Games</a><ul>
-<li><a class="reference internal" href="#id9" id="id37">数字操作</a><ul>
-<li><a class="reference internal" href="#id10" id="id38">基本概念</a></li>
-<li><a class="reference internal" href="#id11" id="id39">应用</a></li>
-<li><a class="reference internal" href="#id12" id="id40">综合操作</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#oh-my-gawd-it-s-full-of-stars" id="id41">第五章: *Oh My Gawd*: It's Full of Stars</a></li>
-<li><a class="reference internal" href="#shadows" id="id42">第六章: Shadows</a><ul>
-<li><a class="reference internal" href="#id13" id="id43">应用</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#friends-and-relations" id="id44">第七章: Friends and Relations ...</a></li></ul></div>
-                        <a class="btn primary xsmall" href="/thelittleschemerbi-ji.html">more ...</a>
-                </div>
-        </div>
-        <hr />
 
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">
 <ul class="nav nav-list">
 <li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
-    <li><a href="http://getpelican.com/"><i class="icon-external-link"></i>Pelican</a></li>
-    <li><a href="http://python.org/"><i class="icon-external-link"></i>Python.org</a></li>
-    <li><a href="http://jinja.pocoo.org/"><i class="icon-external-link"></i>Jinja2</a></li>
-    <li><a href="#"><i class="icon-external-link"></i>You can modify those links in your config file</a></li>
+    <li><a href="http://blog.csdn.net/gzlaiyonghao/"><i class="icon-external-link"></i>赖勇浩的编程私伙局</a></li>
 <li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
 <li><a href="/" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
-    <li><a href="#"><i class="icon-You can add links in your config file-sign icon-large"></i>You can add links in your config file</a></li>
-    <li><a href="#"><i class="icon-Another social link-sign icon-large"></i>Another social link</a></li>
+    <li><a href="https://github.com/chenjiee815"><i class="icon-My GitHub-sign icon-large"></i>My GitHub</a></li>
+    <li><a href="http://weekly.pychina.org/"><i class="icon-蟒周刊-sign icon-large"></i>蟒周刊</a></li>
+    <li><a href="http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html"><i class="icon-Idiomatic Python-sign icon-large"></i>Idiomatic Python</a></li>
+    <li><a href="https://python-guide-zh.readthedocs.org/en/latest/"><i class="icon-Python指南-sign icon-large"></i>Python指南</a></li>
 
 <li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
 <li>
 <a href="/category/dna.html">
     <i class="icon-folder-open icon-large"></i>dna
-</a>
-</li>
-<li>
-<a href="/category/flask_source_note.html">
-    <i class="icon-folder-open icon-large"></i>flask_source_note
 </a>
 </li>
 <li>
@@ -522,19 +389,9 @@
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-1">
-    <a href="/tag/htdp.html">
-        <i class="icon-tag icon-large"></i>htdp
-    </a>
-</li>
 <li class="tag-4">
-    <a href="/tag/speak.html">
-        <i class="icon-tag icon-large"></i>speak
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
     </a>
 </li>
 <li class="tag-3">
@@ -542,24 +399,59 @@
         <i class="icon-tag icon-large"></i>setuptools
     </a>
 </li>
-<li class="tag-2">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/guile.html">
-        <i class="icon-tag icon-large"></i>guile
-    </a>
-</li>
 <li class="tag-4">
     <a href="/tag/blog.html">
         <i class="icon-tag icon-large"></i>blog
     </a>
 </li>
+<li class="tag-1">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speech.html">
+        <i class="icon-tag icon-large"></i>speech
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/flask.html">
+        <i class="icon-tag icon-large"></i>flask
+    </a>
+</li>
 <li class="tag-2">
     <a href="/tag/http.html">
         <i class="icon-tag icon-large"></i>http
+    </a>
+</li>
+<li class="tag-3">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/htdp.html">
+        <i class="icon-tag icon-large"></i>htdp
     </a>
 </li>
 <li class="tag-4">
@@ -573,33 +465,13 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/setup.html">
-        <i class="icon-tag icon-large"></i>setup
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
     </a>
 </li>
 <li class="tag-4">
     <a href="/tag/markdown.html">
         <i class="icon-tag icon-large"></i>MarkDown
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/lisp.html">
-        <i class="icon-tag icon-large"></i>lisp
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/dna.html">
-        <i class="icon-tag icon-large"></i>dna
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speech.html">
-        <i class="icon-tag icon-large"></i>speech
-    </a>
-</li>
-<li class="tag-3">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
     </a>
 </li>
 <li class="tag-2">
