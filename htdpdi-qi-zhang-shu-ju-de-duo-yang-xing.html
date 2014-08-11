@@ -119,8 +119,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-08-11T07:48:56.134039">
-        <i class="icon-calendar"></i>2014-08-11 07:48:56
+<abbr class="published" title="2014-08-11T08:31:44.621113">
+        <i class="icon-calendar"></i>2014-08-11 08:31:44
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -138,6 +138,112 @@
 <p>这章要讲的是同一个函数如何能处理不同的类型的数据。</p>
 <p>其实很简单，在函数的开头，
 通过一定的方法先判断一下传入的数据属于哪一类型即可。</p>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="k">define </span><span class="nv">PI</span> <span class="mf">3.14</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">square</span> <span class="p">(</span><span class="nf">nw</span> <span class="nv">length</span><span class="p">))</span>
+<span class="c1">;; nw为posn结构体， length为数值</span>
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">circle</span> <span class="p">(</span><span class="nf">center</span> <span class="nv">radius</span><span class="p">))</span>
+<span class="c1">;; center为posn结构体， radius为数值</span>
+
+<span class="c1">;; perimeter: a-shape -&gt; number</span>
+<span class="c1">;; 传入一个图形来获取其周长（只支持正方形、圆形）</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">perimeter</span> <span class="nv">a-shape</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">((</span><span class="nf">square?</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">square-length</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="mi">4</span><span class="p">))</span>
+        <span class="p">((</span><span class="nf">circle?</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nf">circle-radius</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="nv">PI</span><span class="p">))))</span>
+</pre>
+<div class="section" id="id2">
+<h3>习题7.1.3</h3>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/HTDP_note/chapter_7.rst</tt>, line 35)</p>
+<p>Error in &quot;code&quot; directive:
+maximum 1 argument(s) allowed, 24 supplied.</p>
+<pre class="literal-block">
+.. code:: scheme
+   ;; area: a-shape -&gt; number
+   ;; 传入一个图形来获取其面积（只支持正方形、圆形）
+   (define (area a-shape)
+          (cond
+           ((square? a-shape) (sqr (square-length a-shape)))
+           ((circle? a-shape) (* (sqr (circle-radius a-shape)) PI))))
+
+</pre>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>设计处理混合数据的函数</h2>
+<img alt="" src="static/处理混合数据的函数.png" />
+<div class="section" id="id4">
+<h3>习题7.2.1</h3>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">spider</span> <span class="p">(</span><span class="nf">legs</span> <span class="nv">space</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">elephant</span> <span class="p">(</span><span class="nf">space</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">monkey</span> <span class="p">(</span><span class="nf">intelligence</span> <span class="nv">space</span><span class="p">))</span>
+<span class="c1">;; animal是下列三者之一</span>
+<span class="c1">;; 1. 结构体：(make-spider l s)</span>
+<span class="c1">;;    l为数值，s为数值</span>
+<span class="c1">;; 2. 结构体：(make-elephant s)</span>
+<span class="c1">;;    s为数值</span>
+<span class="c1">;; 3. 结构体：(make-monkey (i s))</span>
+<span class="c1">;;    i为数值，s为数值</span>
+
+<span class="c1">;; 模板</span>
+<span class="c1">;; (define (f a-animal)</span>
+<span class="c1">;;        (cond</span>
+<span class="c1">;;         ((spider? a-animal) ...(spider-space a-animal)...)</span>
+<span class="c1">;;         ((elephant? a-animal) ...(elephant-space a-animal)...)</span>
+<span class="c1">;;         ((monkey? a-animal) ...(monkey-space)...)))</span>
+
+<span class="c1">;; fits?: animal, number -&gt; boolean</span>
+<span class="c1">;; 判断笼子是否能容得下一个动物</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fits?</span> <span class="nv">animal</span> <span class="nv">cage-area</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">[(</span><span class="nf">spider?</span> <span class="nv">animal</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">spider-space</span> <span class="nv">animal</span><span class="p">)</span> <span class="nv">cage-area</span><span class="p">)]</span>
+        <span class="p">[(</span><span class="nf">elephant?</span> <span class="nv">animal</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">elephant-space</span> <span class="nv">animal</span><span class="p">)</span> <span class="nv">cage-area</span><span class="p">)]</span>
+        <span class="p">[(</span><span class="nf">monkey?</span> <span class="nv">animal</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">monkey-space</span> <span class="nv">animal</span><span class="p">)</span> <span class="nv">cage-area</span><span class="p">)]))</span>
+
+<span class="c1">;; 测试</span>
+<span class="p">(</span><span class="nf">fits?</span> <span class="p">(</span><span class="nf">make-spider</span> <span class="mi">6</span> <span class="mi">10</span><span class="p">)</span> <span class="mi">500</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">fits?</span> <span class="p">(</span><span class="nf">make-elephant</span> <span class="mi">10000</span><span class="p">)</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">fits?</span> <span class="p">(</span><span class="nf">make-monkey</span> <span class="mi">30</span> <span class="mi">1000</span><span class="p">)</span> <span class="mi">800</span><span class="p">)</span>
+</pre>
+</div>
+<div class="section" id="id5">
+<h3>习题7.2.2</h3>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">bus</span> <span class="p">(</span><span class="nf">area</span> <span class="nv">passengers</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">luxurycar</span> <span class="p">(</span><span class="nf">area</span> <span class="nv">passengers</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">coach</span> <span class="p">(</span><span class="nf">area</span> <span class="nv">passengers</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">subway</span> <span class="p">(</span><span class="nf">area</span> <span class="nv">passengers</span><span class="p">))</span>
+<span class="c1">;; vehicle是以下四者之一</span>
+<span class="c1">;; 1. 结构体：(make-bus a p)</span>
+<span class="c1">;;    a, p都为数值</span>
+<span class="c1">;; 2. 结构体：(make-luxurycar a p)</span>
+<span class="c1">;;    a, p都为数值</span>
+<span class="c1">;; 3. 结构体：(make-coach a p)</span>
+<span class="c1">;;    a, p都为数值</span>
+<span class="c1">;; 4. 结构体：(make-subway a p)</span>
+<span class="c1">;;    a, p都为数值</span>
+
+<span class="c1">;; 模板</span>
+<span class="c1">;; (define (f a-vehicle)</span>
+<span class="c1">;;        (cond</span>
+<span class="c1">;;         [(bus? a-vehicle)</span>
+<span class="c1">;;          ...(bus-area a-vehicle)...</span>
+<span class="c1">;;          ...(bus-passengers a-vehicle)...]</span>
+<span class="c1">;;         [(luxurycar? a-vehicle)</span>
+<span class="c1">;;          ...(luxurycar-area a-vehicle)...</span>
+<span class="c1">;;          ...(luxurycar-passengers a-vehicle)...]</span>
+<span class="c1">;;         [(coach? a-vehicle)</span>
+<span class="c1">;;          ...(coach-area a-vehicle)...</span>
+<span class="c1">;;          ...(coach-passengers a-vehicle)...]</span>
+<span class="c1">;;          [(subway? a-vehicle)</span>
+<span class="c1">;;           ...(subway-area a-vehicle)...</span>
+<span class="c1">;;           ...(subway-passengers a-vehicle)...]))</span>
+</pre>
+</div>
 </div>
 
                 </div><!-- /.entry-content -->
@@ -200,38 +306,18 @@
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
 <li class="tag-1">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
+    <a href="/tag/htdp.html">
+        <i class="icon-tag icon-large"></i>htdp
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/pelican.html">
-        <i class="icon-tag icon-large"></i>pelican
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/dna.html">
-        <i class="icon-tag icon-large"></i>dna
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/guile.html">
-        <i class="icon-tag icon-large"></i>guile
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
-    </a>
-</li>
-<li class="tag-3">
-    <a href="/tag/pip.html">
-        <i class="icon-tag icon-large"></i>pip
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
     </a>
 </li>
 <li class="tag-1">
-    <a href="/tag/htdp.html">
-        <i class="icon-tag icon-large"></i>htdp
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
     </a>
 </li>
 <li class="tag-3">
@@ -239,39 +325,19 @@
         <i class="icon-tag icon-large"></i>setuptools
     </a>
 </li>
-<li class="tag-4">
-    <a href="/tag/setup.html">
-        <i class="icon-tag icon-large"></i>setup
+<li class="tag-2">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/restructuredtext.html">
-        <i class="icon-tag icon-large"></i>reStructuredText
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speech.html">
-        <i class="icon-tag icon-large"></i>speech
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
     </a>
 </li>
 <li class="tag-4">
     <a href="/tag/blog.html">
         <i class="icon-tag icon-large"></i>blog
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/markdown.html">
-        <i class="icon-tag icon-large"></i>MarkDown
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/package.html">
-        <i class="icon-tag icon-large"></i>package
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speak.html">
-        <i class="icon-tag icon-large"></i>speak
     </a>
 </li>
 <li class="tag-2">
@@ -280,8 +346,48 @@
     </a>
 </li>
 <li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/markdown.html">
+        <i class="icon-tag icon-large"></i>MarkDown
+    </a>
+</li>
+<li class="tag-4">
     <a href="/tag/lisp.html">
         <i class="icon-tag icon-large"></i>lisp
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speech.html">
+        <i class="icon-tag icon-large"></i>speech
+    </a>
+</li>
+<li class="tag-3">
+    <a href="/tag/pip.html">
+        <i class="icon-tag icon-large"></i>pip
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
     </a>
 </li>
 
