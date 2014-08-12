@@ -100,6 +100,109 @@
       <div class="row">
         <div class="span9" id="content">
         <div class="article">
+                <h1><a href="/htdpdi-wu-zhang-fu-hao-xin-xi.html">HTDP第五章：符号信息</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-07-29T17:03:36.451996">
+        <i class="icon-calendar"></i>2014-07-29 17:03:36
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/scheme.html"><i class="icon-folder-open"></i>scheme</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
+	<a href="/tag/htdp.html"><i class="icon-tag"></i>htdp</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="section" id="id1">
+<h2>习题5.1.1</h2>
+<pre class="code scheme literal-block">
+<span class="c1">;; replay: symbol -&gt; symbol</span>
+<span class="c1">;; 用布尔表达式来来表示问候与回答</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reply</span> <span class="nv">s</span><span class="p">)</span>
+        <span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'GoodMorning</span><span class="p">)</span> <span class="ss">'Hi</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'HowAreYou?</span><span class="p">)</span> <span class="ss">'Fine</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'GoodAternoon</span><span class="p">)</span> <span class="ss">'INeedANap</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'GoodEvening</span><span class="p">)</span> <span class="ss">'BoyAmITired</span><span class="p">)))</span>
+</pre>
+</div>
+<div class="section" id="id2">
+<h2>习题5.1.2</h2>
+<pre class="code scheme literal-block">
+<span class="c1">;; check-guess: number number -&gt; symbol</span>
+<span class="c1">;; 比较猜测的数和目的数得出猜测数是猜大了、是猜小了还是猜对了</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">check-guess</span> <span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">cond</span>
+         <span class="p">((</span><span class="nb">&lt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">'TooSmall</span><span class="p">)</span>
+         <span class="p">((</span><span class="nb">&gt; </span><span class="nv">guess</span> <span class="nv">target ...</span></pre></div>
+                        <a class="btn primary xsmall" href="/htdpdi-wu-zhang-fu-hao-xin-xi.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
+                <h1><a href="/htdpdi-si-zhang-tiao-jian-biao-da-shi-he-han-shu.html">HTDP第四章：条件表达式和函数</a></h1>
+                <div class="well small"><footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-07-29T16:41:19.386340">
+        <i class="icon-calendar"></i>2014-07-29 16:41:19
+</abbr>
+<span class="label">By</span>
+<a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
+<span class="label">Category</span>
+<a href="/category/scheme.html"><i class="icon-folder-open"></i>scheme</a>.
+
+
+<span class="label">Tags</span>
+	<a href="/tag/scheme.html"><i class="icon-tag"></i>scheme</a>
+	<a href="/tag/htdp.html"><i class="icon-tag"></i>htdp</a>
+</footer><!-- /.post-info --></div>
+                <div class="summary"><div class="section" id="id1">
+<h2>布尔类型和关系</h2>
+<p>这一小段主要介绍了Scheme中有关布尔运算的知识，
+为下面的段落打基础。</p>
+</div>
+<div class="section" id="id2">
+<h2>条件和条件函数</h2>
+<p>虽然书中给出了第二种语法，但是Racket以下两种都是支持的。</p>
+<p>然后我又试了Scheme的另外一个方言Guile，也是两者都支持的。</p>
+<p>这都属于语法而已，没必要在这里纠结，只要了解它支持即可。</p>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="nf">cond</span>
+       <span class="p">((</span><span class="nf">condition1</span><span class="p">)</span> <span class="nv">expresssion1</span><span class="p">)</span>
+       <span class="p">((</span><span class="nf">condition2</span><span class="p">)</span> <span class="nv">expresssion2</span><span class="p">)</span>
+       <span class="o">...</span>
+       <span class="p">(</span><span class="k">else </span><span class="nv">else_expression</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="p">(</span><span class="nf">cond</span>
+       <span class="p">[(</span><span class="nf">condition1</span><span class="p">)</span> <span class="nv">expression1</span><span class="p">]</span>
+       <span class="p">[(</span><span class="nf">condition2</span><span class="p">)</span> <span class="nv">expression2</span><span class="p">]</span>
+       <span class="o">...</span>
+       <span class="p">[</span><span class="k">else </span><span class="nv">else_expression2</span><span class="p">]</span>
+<span class="p">)</span>
+</pre>
+</div>
+<div class="section" id="id3">
+<h2>条件函数的设计</h2>
+<div class="section" id="id4">
+<h3>习题4.4.1</h3>
+<pre class="code scheme literal-block">
+<span class="c1">;; interest: number -&gt; number</span>
+<span class="c1">;; 根据存款得出年存款收益（本金+利息）</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">interest</span> <span class="nv">amount</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="nv">amount</span> <span class="p">(</span><span class="nf">rate-amount</span> <span class="nv">amount</span><span class="p">)))</span>
+
+<span class="c1">;; rate-amount: number -&gt; number</span>
+<span class="c1">;; 根据存款得出其利息</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">rate-amount</span> <span class="nv">amount</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">amount</span> <span class="p">(</span><span class="nf">rate ...</span></pre></div></div>
+                        <a class="btn primary xsmall" href="/htdpdi-si-zhang-tiao-jian-biao-da-shi-he-han-shu.html">more ...</a>
+                </div>
+        </div>
+        <hr />
+        <div class="article">
                 <h1><a href="/htdpdi-yi-zhang-xue-sheng-lao-shi-he-ji-suan-ji.html">HTDP第一章：学生、老师和计算机</a></h1>
                 <div class="well small"><footer class="post-info">
 <span class="label">Date</span>
@@ -259,13 +362,19 @@
                 <div class="span3 well sidebar-nav" id="sidebar">
 <ul class="nav nav-list">
 <li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="https://github.com/chenjiee815"><i class="icon-external-link"></i>My GitHub</a></li>
     <li><a href="http://blog.csdn.net/gzlaiyonghao/"><i class="icon-external-link"></i>赖勇浩的编程私伙局</a></li>
+    <li><a href="http://docs.python-guide.org/en/latest/"><i class="icon-external-link"></i>The Hitchhiker’s Guide to Python</a></li>
+    <li><a href="http://wklken.me/"><i class="icon-external-link"></i>WKLKEN PYTHON</a></li>
+    <li><a href="https://pyzh.readthedocs.org/en/latest/index.html"><i class="icon-external-link"></i>PyZh</a></li>
+    <li><a href="https://python-guide-zh.readthedocs.org/en/latest/"><i class="icon-external-link"></i>Python指南</a></li>
+    <li><a href="http://weekly.pychina.org/"><i class="icon-external-link"></i>蟒周刊</a></li>
+    <li><a href="http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html"><i class="icon-external-link"></i>Idiomatic Python</a></li>
+    <li><a href="http://docs.torriacg.org/projects"><i class="icon-external-link"></i>Python文档翻译计划</a></li>
 <li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
 <li><a href="/" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
-    <li><a href="https://github.com/chenjiee815"><i class="icon-My GitHub-sign icon-large"></i>My GitHub</a></li>
-    <li><a href="http://weekly.pychina.org/"><i class="icon-蟒周刊-sign icon-large"></i>蟒周刊</a></li>
-    <li><a href="http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html"><i class="icon-Idiomatic Python-sign icon-large"></i>Idiomatic Python</a></li>
-    <li><a href="https://python-guide-zh.readthedocs.org/en/latest/"><i class="icon-Python指南-sign icon-large"></i>Python指南</a></li>
+    <li><a href="http://www.htdp.org/"><i class="icon-HTDP-sign icon-large"></i>HTDP</a></li>
+    <li><a href="http://mitpress.mit.edu/sicp/"><i class="icon-SICP-sign icon-large"></i>SICP</a></li>
 
 <li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
 <li>
@@ -291,8 +400,43 @@
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
 <li class="tag-4">
-    <a href="/tag/lisp.html">
-        <i class="icon-tag icon-large"></i>lisp
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/http.html">
+        <i class="icon-tag icon-large"></i>http
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
     </a>
 </li>
 <li class="tag-3">
@@ -301,48 +445,8 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/blog.html">
-        <i class="icon-tag icon-large"></i>blog
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speech.html">
-        <i class="icon-tag icon-large"></i>speech
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/setup.html">
-        <i class="icon-tag icon-large"></i>setup
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/dna.html">
-        <i class="icon-tag icon-large"></i>dna
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speak.html">
-        <i class="icon-tag icon-large"></i>speak
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/flask.html">
-        <i class="icon-tag icon-large"></i>flask
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/http.html">
-        <i class="icon-tag icon-large"></i>http
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
     </a>
 </li>
 <li class="tag-3">
@@ -356,18 +460,13 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/pelican.html">
-        <i class="icon-tag icon-large"></i>pelican
+    <a href="/tag/speech.html">
+        <i class="icon-tag icon-large"></i>speech
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/restructuredtext.html">
-        <i class="icon-tag icon-large"></i>reStructuredText
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/guile.html">
-        <i class="icon-tag icon-large"></i>guile
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
     </a>
 </li>
 <li class="tag-4">
@@ -375,9 +474,19 @@
         <i class="icon-tag icon-large"></i>MarkDown
     </a>
 </li>
-<li class="tag-2">
-    <a href="/tag/package.html">
-        <i class="icon-tag icon-large"></i>package
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/flask.html">
+        <i class="icon-tag icon-large"></i>flask
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
     </a>
 </li>
 

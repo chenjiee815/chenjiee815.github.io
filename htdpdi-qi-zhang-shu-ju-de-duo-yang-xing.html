@@ -114,8 +114,8 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2014-08-11T22:13:05.073161">
-        <i class="icon-calendar"></i>2014-08-11 22:13:05
+<abbr class="published" title="2014-08-12T07:58:51.669858">
+        <i class="icon-calendar"></i>2014-08-12 07:58:51
 </abbr>
 <span class="label">By</span>
 <a href="/author/chen-jie.html"><i class="icon-user"></i>Chen Jie</a>
@@ -130,34 +130,39 @@
                 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#id1" id="id16">数据混合与区分</a><ul>
-<li><a class="reference internal" href="#id2" id="id17">习题7.1.3</a></li>
+<li><a class="reference internal" href="#id1" id="id19">数据混合与区分</a><ul>
+<li><a class="reference internal" href="#id2" id="id20">习题7.1.3</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id3" id="id18">设计处理混合数据的函数</a><ul>
-<li><a class="reference internal" href="#id4" id="id19">习题7.2.1</a></li>
-<li><a class="reference internal" href="#id5" id="id20">习题7.2.2</a></li>
+<li><a class="reference internal" href="#id3" id="id21">设计处理混合数据的函数</a><ul>
+<li><a class="reference internal" href="#id4" id="id22">习题7.2.1</a></li>
+<li><a class="reference internal" href="#id5" id="id23">习题7.2.2</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id6" id="id21">再论函数复合</a><ul>
-<li><a class="reference internal" href="#id7" id="id22">习题7.3.1</a></li>
+<li><a class="reference internal" href="#id6" id="id24">再论函数复合</a><ul>
+<li><a class="reference internal" href="#id7" id="id25">习题7.3.1</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id8" id="id23">补充练习：图形的移动</a><ul>
-<li><a class="reference internal" href="#id9" id="id24">习题7.4.1</a></li>
-<li><a class="reference internal" href="#id10" id="id25">习题7.4.2</a></li>
-<li><a class="reference internal" href="#id11" id="id26">习题7.4.3</a></li>
-<li><a class="reference internal" href="#id12" id="id27">习题7.4.4</a></li>
-<li><a class="reference internal" href="#id13" id="id28">习题7.4.5</a></li>
-<li><a class="reference internal" href="#id14" id="id29">习题7.4.6</a></li>
+<li><a class="reference internal" href="#id8" id="id26">补充练习：图形的移动</a><ul>
+<li><a class="reference internal" href="#id9" id="id27">习题7.4.1</a></li>
+<li><a class="reference internal" href="#id10" id="id28">习题7.4.2</a></li>
+<li><a class="reference internal" href="#id11" id="id29">习题7.4.3</a></li>
+<li><a class="reference internal" href="#id12" id="id30">习题7.4.4</a></li>
+<li><a class="reference internal" href="#id13" id="id31">习题7.4.5</a></li>
+<li><a class="reference internal" href="#id14" id="id32">习题7.4.6</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id15" id="id30">输入错误</a></li>
+<li><a class="reference internal" href="#id15" id="id33">输入错误</a><ul>
+<li><a class="reference internal" href="#id16" id="id34">习题7.5.1</a></li>
+<li><a class="reference internal" href="#id17" id="id35">习题7.5.2</a></li>
+<li><a class="reference internal" href="#id18" id="id36">习题7.5.3</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="id1">
-<h2><a class="toc-backref" href="#id16">数据混合与区分</a></h2>
+<h2><a class="toc-backref" href="#id19">数据混合与区分</a></h2>
 <p>之前设计的函数都是只能处理一种类型的数据。</p>
 <p>这章要讲的是同一个函数如何能处理不同的类型的数据。</p>
 <p>其实很简单，在函数的开头，
@@ -178,7 +183,7 @@
         <span class="p">((</span><span class="nf">circle?</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nf">circle-radius</span> <span class="nv">a-shape</span><span class="p">)</span> <span class="nv">PI</span><span class="p">))))</span>
 </pre>
 <div class="section" id="id2">
-<h3><a class="toc-backref" href="#id17">习题7.1.3</a></h3>
+<h3><a class="toc-backref" href="#id20">习题7.1.3</a></h3>
 <pre class="code scheme literal-block">
 <span class="c1">;; area: a-shape -&gt; number</span>
 <span class="c1">;; 传入一个图形来获取其面积（只支持正方形、圆形）</span>
@@ -190,10 +195,10 @@
 </div>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id18">设计处理混合数据的函数</a></h2>
+<h2><a class="toc-backref" href="#id21">设计处理混合数据的函数</a></h2>
 <img alt="" src="static/处理混合数据的函数.png" />
 <div class="section" id="id4">
-<h3><a class="toc-backref" href="#id19">习题7.2.1</a></h3>
+<h3><a class="toc-backref" href="#id22">习题7.2.1</a></h3>
 <pre class="code scheme literal-block">
 <span class="p">(</span><span class="nf">define-struct</span> <span class="nv">spider</span> <span class="p">(</span><span class="nf">legs</span> <span class="nv">space</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">define-struct</span> <span class="nv">elephant</span> <span class="p">(</span><span class="nf">space</span><span class="p">))</span>
@@ -228,7 +233,7 @@
 </pre>
 </div>
 <div class="section" id="id5">
-<h3><a class="toc-backref" href="#id20">习题7.2.2</a></h3>
+<h3><a class="toc-backref" href="#id23">习题7.2.2</a></h3>
 <pre class="code scheme literal-block">
 <span class="p">(</span><span class="nf">define-struct</span> <span class="nv">bus</span> <span class="p">(</span><span class="nf">area</span> <span class="nv">passengers</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">define-struct</span> <span class="nv">luxurycar</span> <span class="p">(</span><span class="nf">area</span> <span class="nv">passengers</span><span class="p">))</span>
@@ -263,9 +268,9 @@
 </div>
 </div>
 <div class="section" id="id6">
-<h2><a class="toc-backref" href="#id21">再论函数复合</a></h2>
+<h2><a class="toc-backref" href="#id24">再论函数复合</a></h2>
 <div class="section" id="id7">
-<h3><a class="toc-backref" href="#id22">习题7.3.1</a></h3>
+<h3><a class="toc-backref" href="#id25">习题7.3.1</a></h3>
 <pre class="code scheme literal-block">
 <span class="p">(</span><span class="k">define </span><span class="nv">PI</span> <span class="mf">3.14</span><span class="p">)</span>
 
@@ -340,10 +345,10 @@
 </div>
 </div>
 <div class="section" id="id8">
-<h2><a class="toc-backref" href="#id23">补充练习：图形的移动</a></h2>
+<h2><a class="toc-backref" href="#id26">补充练习：图形的移动</a></h2>
 <p>这章的练习是6.6章节的扩展。</p>
 <div class="section" id="id9">
-<h3><a class="toc-backref" href="#id24">习题7.4.1</a></h3>
+<h3><a class="toc-backref" href="#id27">习题7.4.1</a></h3>
 <pre class="code scheme literal-block">
 <span class="p">(</span><span class="nf">define-struct</span> <span class="nv">circle</span> <span class="p">(</span><span class="nf">point</span> <span class="nv">radius</span> <span class="nv">color</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">define-struct</span> <span class="nv">rectangle</span> <span class="p">(</span><span class="nf">nw-corner</span> <span class="nv">width</span> <span class="nv">height</span> <span class="nv">color</span><span class="p">))</span>
@@ -370,7 +375,7 @@
 </pre>
 </div>
 <div class="section" id="id10">
-<h3><a class="toc-backref" href="#id25">习题7.4.2</a></h3>
+<h3><a class="toc-backref" href="#id28">习题7.4.2</a></h3>
 <pre class="code scheme literal-block">
 <span class="c1">;; draw-shape: shape -&gt; boolean</span>
 <span class="c1">;; 将一个图形画到画布上</span>
@@ -383,7 +388,7 @@
 </pre>
 </div>
 <div class="section" id="id11">
-<h3><a class="toc-backref" href="#id26">习题7.4.3</a></h3>
+<h3><a class="toc-backref" href="#id29">习题7.4.3</a></h3>
 <pre class="code scheme literal-block">
 <span class="c1">;; translate-shape: shape number -&gt; shape</span>
 <span class="c1">;; 根据原始的图形和一个数delta，</span>
@@ -397,7 +402,7 @@
 </pre>
 </div>
 <div class="section" id="id12">
-<h3><a class="toc-backref" href="#id27">习题7.4.4</a></h3>
+<h3><a class="toc-backref" href="#id30">习题7.4.4</a></h3>
 <pre class="code scheme literal-block">
 <span class="c1">;; clear-shape: shape -&gt; boolean</span>
 <span class="c1">;; 在画布上清除一个图形</span>
@@ -410,7 +415,7 @@
 </pre>
 </div>
 <div class="section" id="id13">
-<h3><a class="toc-backref" href="#id28">习题7.4.5</a></h3>
+<h3><a class="toc-backref" href="#id31">习题7.4.5</a></h3>
 <pre class="code scheme literal-block">
 <span class="c1">;; draw-and-clear-shape: shape -&gt; boolean</span>
 <span class="c1">;; 在画布上画出一个图形，然后过一段时间清除</span>
@@ -423,7 +428,7 @@
 </pre>
 </div>
 <div class="section" id="id14">
-<h3><a class="toc-backref" href="#id29">习题7.4.6</a></h3>
+<h3><a class="toc-backref" href="#id32">习题7.4.6</a></h3>
 <pre class="code scheme literal-block">
 <span class="c1">;; move-shape: delta shape -&gt; shape</span>
 <span class="c1">;; 绘制并消除一个图形，再平移delta个像素</span>
@@ -437,7 +442,43 @@
 </div>
 </div>
 <div class="section" id="id15">
-<h2><a class="toc-backref" href="#id30">输入错误</a></h2>
+<h2><a class="toc-backref" href="#id33">输入错误</a></h2>
+<div class="section" id="id16">
+<h3><a class="toc-backref" href="#id34">习题7.5.1</a></h3>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="k">define </span><span class="nv">PI</span> <span class="mf">3.14</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-of-disk</span> <span class="nv">r</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">PI</span> <span class="p">(</span><span class="nb">* </span><span class="nv">r</span> <span class="nv">r</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">checked-area-of-disk</span> <span class="nv">v</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">[(</span><span class="k">and </span><span class="p">(</span><span class="nb">number? </span><span class="nv">v</span><span class="p">)</span> <span class="p">(</span><span class="nb">&gt; </span><span class="nv">v</span> <span class="mi">0</span><span class="p">))</span> <span class="p">(</span><span class="nf">area-of-disk</span> <span class="nv">v</span><span class="p">)]</span>
+        <span class="p">[</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="ss">'check-area-of-disk</span> <span class="s">&quot;positive number expected&quot;</span><span class="p">)]))</span>
+</pre>
+</div>
+<div class="section" id="id17">
+<h3><a class="toc-backref" href="#id35">习题7.5.2</a></h3>
+<p>懒得到各章节找对应的函数了。</p>
+</div>
+<div class="section" id="id18">
+<h3><a class="toc-backref" href="#id36">习题7.5.3</a></h3>
+<pre class="code scheme literal-block">
+<span class="p">(</span><span class="nf">define-struct</span> <span class="nv">vec</span> <span class="p">(</span><span class="nf">x</span> <span class="nv">y</span><span class="p">))</span>
+<span class="c1">;; 结构体: (make-vec x y)</span>
+<span class="c1">;; x, y 都为正数</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">positive-number?</span> <span class="nv">v</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">number? </span><span class="nv">v</span><span class="p">)</span> <span class="p">(</span><span class="nb">&gt; </span><span class="nv">v</span> <span class="mi">0</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">check-make-vec</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">[(</span><span class="k">and </span><span class="p">(</span><span class="nf">positive-number?</span> <span class="nv">x</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">positive-number?</span> <span class="nv">y</span><span class="p">))</span>
+         <span class="p">(</span><span class="nf">make-vec</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)]</span>
+        <span class="p">[</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="ss">'check-make-vec</span> <span class="s">&quot;positive number expected&quot;</span><span class="p">)]))</span>
+</pre>
+</div>
 </div>
 
                 </div><!-- /.entry-content -->
@@ -462,13 +503,19 @@
                 <div class="span3 well sidebar-nav" id="sidebar">
 <ul class="nav nav-list">
 <li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
+    <li><a href="https://github.com/chenjiee815"><i class="icon-external-link"></i>My GitHub</a></li>
     <li><a href="http://blog.csdn.net/gzlaiyonghao/"><i class="icon-external-link"></i>赖勇浩的编程私伙局</a></li>
+    <li><a href="http://docs.python-guide.org/en/latest/"><i class="icon-external-link"></i>The Hitchhiker’s Guide to Python</a></li>
+    <li><a href="http://wklken.me/"><i class="icon-external-link"></i>WKLKEN PYTHON</a></li>
+    <li><a href="https://pyzh.readthedocs.org/en/latest/index.html"><i class="icon-external-link"></i>PyZh</a></li>
+    <li><a href="https://python-guide-zh.readthedocs.org/en/latest/"><i class="icon-external-link"></i>Python指南</a></li>
+    <li><a href="http://weekly.pychina.org/"><i class="icon-external-link"></i>蟒周刊</a></li>
+    <li><a href="http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html"><i class="icon-external-link"></i>Idiomatic Python</a></li>
+    <li><a href="http://docs.torriacg.org/projects"><i class="icon-external-link"></i>Python文档翻译计划</a></li>
 <li class="nav-header"><h4><i class="icon-home icon-large"></i> social</h4></li>
 <li><a href="/" rel="alternate"><i class="icon-bookmark icon-large"></i>atom feed</a></li>
-    <li><a href="https://github.com/chenjiee815"><i class="icon-My GitHub-sign icon-large"></i>My GitHub</a></li>
-    <li><a href="http://weekly.pychina.org/"><i class="icon-蟒周刊-sign icon-large"></i>蟒周刊</a></li>
-    <li><a href="http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html"><i class="icon-Idiomatic Python-sign icon-large"></i>Idiomatic Python</a></li>
-    <li><a href="https://python-guide-zh.readthedocs.org/en/latest/"><i class="icon-Python指南-sign icon-large"></i>Python指南</a></li>
+    <li><a href="http://www.htdp.org/"><i class="icon-HTDP-sign icon-large"></i>HTDP</a></li>
+    <li><a href="http://mitpress.mit.edu/sicp/"><i class="icon-SICP-sign icon-large"></i>SICP</a></li>
 
 <li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
 <li>
@@ -494,8 +541,43 @@
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
 <li class="tag-4">
-    <a href="/tag/lisp.html">
-        <i class="icon-tag icon-large"></i>lisp
+    <a href="/tag/blog.html">
+        <i class="icon-tag icon-large"></i>blog
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/package.html">
+        <i class="icon-tag icon-large"></i>package
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/restructuredtext.html">
+        <i class="icon-tag icon-large"></i>reStructuredText
+    </a>
+</li>
+<li class="tag-2">
+    <a href="/tag/http.html">
+        <i class="icon-tag icon-large"></i>http
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/guile.html">
+        <i class="icon-tag icon-large"></i>guile
+    </a>
+</li>
+<li class="tag-1">
+    <a href="/tag/scheme.html">
+        <i class="icon-tag icon-large"></i>scheme
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/pelican.html">
+        <i class="icon-tag icon-large"></i>pelican
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/dna.html">
+        <i class="icon-tag icon-large"></i>dna
     </a>
 </li>
 <li class="tag-3">
@@ -504,48 +586,8 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/blog.html">
-        <i class="icon-tag icon-large"></i>blog
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/scheme.html">
-        <i class="icon-tag icon-large"></i>scheme
-    </a>
-</li>
-<li class="tag-1">
-    <a href="/tag/python.html">
-        <i class="icon-tag icon-large"></i>python
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speech.html">
-        <i class="icon-tag icon-large"></i>speech
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/setup.html">
-        <i class="icon-tag icon-large"></i>setup
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/dna.html">
-        <i class="icon-tag icon-large"></i>dna
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/speak.html">
-        <i class="icon-tag icon-large"></i>speak
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/flask.html">
-        <i class="icon-tag icon-large"></i>flask
-    </a>
-</li>
-<li class="tag-2">
-    <a href="/tag/http.html">
-        <i class="icon-tag icon-large"></i>http
+    <a href="/tag/lisp.html">
+        <i class="icon-tag icon-large"></i>lisp
     </a>
 </li>
 <li class="tag-3">
@@ -559,18 +601,13 @@
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/pelican.html">
-        <i class="icon-tag icon-large"></i>pelican
+    <a href="/tag/speech.html">
+        <i class="icon-tag icon-large"></i>speech
     </a>
 </li>
 <li class="tag-4">
-    <a href="/tag/restructuredtext.html">
-        <i class="icon-tag icon-large"></i>reStructuredText
-    </a>
-</li>
-<li class="tag-4">
-    <a href="/tag/guile.html">
-        <i class="icon-tag icon-large"></i>guile
+    <a href="/tag/setup.html">
+        <i class="icon-tag icon-large"></i>setup
     </a>
 </li>
 <li class="tag-4">
@@ -578,9 +615,19 @@
         <i class="icon-tag icon-large"></i>MarkDown
     </a>
 </li>
-<li class="tag-2">
-    <a href="/tag/package.html">
-        <i class="icon-tag icon-large"></i>package
+<li class="tag-1">
+    <a href="/tag/python.html">
+        <i class="icon-tag icon-large"></i>python
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/flask.html">
+        <i class="icon-tag icon-large"></i>flask
+    </a>
+</li>
+<li class="tag-4">
+    <a href="/tag/speak.html">
+        <i class="icon-tag icon-large"></i>speak
     </a>
 </li>
 
