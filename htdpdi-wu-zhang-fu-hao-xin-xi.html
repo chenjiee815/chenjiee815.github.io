@@ -14,12 +14,12 @@
 
 <meta property="og:title" content="HTDP第五章：符号信息 "/>
 <meta property="og:url" content="/htdpdi-wu-zhang-fu-hao-xin-xi.html" />
-<meta property="og:description" content="习题5.1.1 ;; replay: symbol -&gt; symbol ;; 用布尔表达式来来表示问候与回答 (define (reply s) (or (and (symbol=? s &#39;GoodMorning) &#39;Hi) (and (symbol=? s &#39;HowAreYou?) &#39;Fine) (and (symbol=? s &#39;GoodAternoon) &#39;INeedANap) (and (symbol=? s &#39;GoodEvening) &#39;BoyAmITired))) 习题5.1.2 ;; check-guess: number number -&gt; symbol ;; 比较猜测的数和目的数得出猜测数是猜大了、是猜小了还是猜对了 (define (check-guess guess target) (cond ((&lt; guess target) &#39;TooSmall) ((&gt; guess target ..." />
+<meta property="og:description" content="习题5.1.1 1 2 3 4 5 6 7;; replay: symbol -&gt; symbol ;; 用布尔表达式来来表示问候与回答 (define (reply s) (or (and (symbol=? s &#39;GoodMorning) &#39;Hi) (and (symbol=? s &#39;HowAreYou?) &#39;Fine) (and (symbol=? s &#39;GoodAternoon) &#39;INeedANap) (and (symbol=? s &#39;GoodEvening) &#39;BoyAmITired))) 习题5.1.2 1 2 3 4 5 6 7;; check-guess: number ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-07-29T17:03:36.451996" />
+<meta property="og:article:published_time" content="2014-08-16T09:13:19.165926" />
 <meta name="twitter:title" content="HTDP第五章：符号信息 ">
-<meta name="twitter:description" content="习题5.1.1 ;; replay: symbol -&gt; symbol ;; 用布尔表达式来来表示问候与回答 (define (reply s) (or (and (symbol=? s &#39;GoodMorning) &#39;Hi) (and (symbol=? s &#39;HowAreYou?) &#39;Fine) (and (symbol=? s &#39;GoodAternoon) &#39;INeedANap) (and (symbol=? s &#39;GoodEvening) &#39;BoyAmITired))) 习题5.1.2 ;; check-guess: number number -&gt; symbol ;; 比较猜测的数和目的数得出猜测数是猜大了、是猜小了还是猜对了 (define (check-guess guess target) (cond ((&lt; guess target) &#39;TooSmall) ((&gt; guess target ...">
+<meta name="twitter:description" content="习题5.1.1 1 2 3 4 5 6 7;; replay: symbol -&gt; symbol ;; 用布尔表达式来来表示问候与回答 (define (reply s) (or (and (symbol=? s &#39;GoodMorning) &#39;Hi) (and (symbol=? s &#39;HowAreYou?) &#39;Fine) (and (symbol=? s &#39;GoodAternoon) &#39;INeedANap) (and (symbol=? s &#39;GoodEvening) &#39;BoyAmITired))) 习题5.1.2 1 2 3 4 5 6 7;; check-guess: number ...">
 
         <title>HTDP第五章：符号信息  · January Star
 </title>
@@ -79,79 +79,119 @@
             
             <div class="section" id="id1">
 <h2>习题5.1.1</h2>
-<pre class="code scheme literal-block">
-<span class="c1">;; replay: symbol -&gt; symbol</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">;; replay: symbol -&gt; symbol</span>
 <span class="c1">;; 用布尔表达式来来表示问候与回答</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reply</span> <span class="nv">s</span><span class="p">)</span>
-        <span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'GoodMorning</span><span class="p">)</span> <span class="ss">'Hi</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'HowAreYou?</span><span class="p">)</span> <span class="ss">'Fine</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'GoodAternoon</span><span class="p">)</span> <span class="ss">'INeedANap</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'GoodEvening</span><span class="p">)</span> <span class="ss">'BoyAmITired</span><span class="p">)))</span>
-</pre>
-</div>
+        <span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">&#39;GoodMorning</span><span class="p">)</span> <span class="ss">&#39;Hi</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">&#39;HowAreYou?</span><span class="p">)</span> <span class="ss">&#39;Fine</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">&#39;GoodAternoon</span><span class="p">)</span> <span class="ss">&#39;INeedANap</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">&#39;GoodEvening</span><span class="p">)</span> <span class="ss">&#39;BoyAmITired</span><span class="p">)))</span>
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id2">
 <h2>习题5.1.2</h2>
-<pre class="code scheme literal-block">
-<span class="c1">;; check-guess: number number -&gt; symbol</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">;; check-guess: number number -&gt; symbol</span>
 <span class="c1">;; 比较猜测的数和目的数得出猜测数是猜大了、是猜小了还是猜对了</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">check-guess</span> <span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span>
         <span class="p">(</span><span class="nf">cond</span>
-         <span class="p">((</span><span class="nb">&lt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">'TooSmall</span><span class="p">)</span>
-         <span class="p">((</span><span class="nb">&gt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">'TooLarge</span><span class="p">)</span>
-         <span class="p">(</span><span class="k">else </span><span class="ss">'Perfect</span><span class="p">)))</span>
-</pre>
-</div>
+         <span class="p">((</span><span class="nb">&lt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">&#39;TooSmall</span><span class="p">)</span>
+         <span class="p">((</span><span class="nb">&gt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">&#39;TooLarge</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">else </span><span class="ss">&#39;Perfect</span><span class="p">)))</span>
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id3">
 <h2>习题5.1.3</h2>
-<pre class="code scheme literal-block">
-<span class="c1">;; check-guess3: number number number number -&gt; symbol</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">;; check-guess3: number number number number -&gt; symbol</span>
 <span class="c1">;; 分别输入一个三位数的每位数，然后再进行猜大小</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">check-guess3</span> <span class="nv">n1</span> <span class="nv">n2</span> <span class="nv">n3</span> <span class="nv">target</span><span class="p">)</span>
         <span class="p">(</span><span class="nf">let</span>
             <span class="p">((</span><span class="nf">guess</span> <span class="p">(</span><span class="nf">number3</span> <span class="nv">n1</span> <span class="nv">n2</span> <span class="nv">n3</span><span class="p">)))</span>
           <span class="p">(</span><span class="nf">cond</span>
-           <span class="p">((</span><span class="nb">&lt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">'TooSmall</span><span class="p">)</span>
-           <span class="p">((</span><span class="nb">&gt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">'TooLarge</span><span class="p">)</span>
-           <span class="p">(</span><span class="k">else </span><span class="ss">'Perfect</span><span class="p">))))</span>
+           <span class="p">((</span><span class="nb">&lt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">&#39;TooSmall</span><span class="p">)</span>
+           <span class="p">((</span><span class="nb">&gt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">&#39;TooLarge</span><span class="p">)</span>
+           <span class="p">(</span><span class="k">else </span><span class="ss">&#39;Perfect</span><span class="p">))))</span>
 
 <span class="c1">;; number3: number number number -&gt; number</span>
 <span class="c1">;; 根据一个三位数每位数，得出其数</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">number3</span> <span class="nv">n1</span> <span class="nv">n2</span> <span class="nv">n3</span><span class="p">)</span>
         <span class="p">(</span><span class="nb">+ </span><span class="nv">n1</span> <span class="p">(</span><span class="nb">* </span><span class="mi">10</span> <span class="nv">n2</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">100</span> <span class="nv">n3</span><span class="p">)))</span>
-</pre>
-</div>
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id4">
 <h2>习题5.1.4</h2>
-<pre class="code scheme literal-block">
-<span class="c1">;; what-kind: number number number -&gt; symbol</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">;; what-kind: number number number -&gt; symbol</span>
 <span class="c1">;; 根据一个方程的三个系数得出该方程是否为退化方程，如果不是则该方程有几个解</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">what-kind</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
         <span class="p">(</span><span class="nf">cond</span>
-         <span class="p">((</span><span class="nb">eq? </span><span class="nv">a</span> <span class="mi">0</span><span class="p">)</span> <span class="ss">'degenerate</span><span class="p">)</span>
-         <span class="p">((</span><span class="nb">&gt; </span><span class="p">(</span><span class="nb">* </span><span class="nv">b</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">a</span> <span class="nv">c</span><span class="p">))</span> <span class="ss">'two</span><span class="p">)</span>
-         <span class="p">((</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">* </span><span class="nv">b</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">a</span> <span class="nv">c</span><span class="p">))</span> <span class="ss">'one</span><span class="p">)</span>
-         <span class="p">(</span><span class="k">else </span><span class="ss">'none</span><span class="p">)))</span>
-</pre>
-</div>
+         <span class="p">((</span><span class="nb">eq? </span><span class="nv">a</span> <span class="mi">0</span><span class="p">)</span> <span class="ss">&#39;degenerate</span><span class="p">)</span>
+         <span class="p">((</span><span class="nb">&gt; </span><span class="p">(</span><span class="nb">* </span><span class="nv">b</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">a</span> <span class="nv">c</span><span class="p">))</span> <span class="ss">&#39;two</span><span class="p">)</span>
+         <span class="p">((</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">* </span><span class="nv">b</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">a</span> <span class="nv">c</span><span class="p">))</span> <span class="ss">&#39;one</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">else </span><span class="ss">&#39;none</span><span class="p">)))</span>
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id5">
 <h2>习题5.1.5</h2>
-<pre class="code scheme literal-block">
-<span class="c1">;; check-color: symbol symbol symbol symbol -&gt; symbol</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">;; check-color: symbol symbol symbol symbol -&gt; symbol</span>
 <span class="c1">;; 猜颜色游戏，模块第一个人的行为</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">check-color</span> <span class="nv">t1</span> <span class="nv">t2</span> <span class="nv">g1</span> <span class="nv">g2</span><span class="p">)</span>
         <span class="p">(</span><span class="nf">cond</span>
          <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t1</span> <span class="nv">g1</span><span class="p">)</span>
                <span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t2</span> <span class="nv">g2</span><span class="p">))</span>
-          <span class="ss">'Perfect</span><span class="p">)</span>
+          <span class="ss">&#39;Perfect</span><span class="p">)</span>
          <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t1</span> <span class="nv">g1</span><span class="p">)</span>
               <span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t2</span> <span class="nv">g2</span><span class="p">))</span>
-          <span class="ss">'OneColorAtCorrectPosition</span><span class="p">)</span>
+          <span class="ss">&#39;OneColorAtCorrectPosition</span><span class="p">)</span>
          <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t1</span> <span class="nv">g2</span><span class="p">)</span>
               <span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t2</span> <span class="nv">g1</span><span class="p">))</span>
-          <span class="ss">'OneColorOccurs</span><span class="p">)</span>
-         <span class="p">(</span><span class="k">else </span><span class="ss">'NothingCorrect</span><span class="p">)))</span>
-</pre>
-</div>
+          <span class="ss">&#39;OneColorOccurs</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">else </span><span class="ss">&#39;NothingCorrect</span><span class="p">)))</span>
+</pre></div>
+</td></tr></table></div>
 
             
             
@@ -160,7 +200,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-07-29T17:03:36.451996">Jul 29, 2014</time>
+            <time pubdate="pubdate" datetime="2014-08-16T09:13:19.165926">Aug 16, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#scheme-ref">scheme</a>
             <h4>Tags</h4>

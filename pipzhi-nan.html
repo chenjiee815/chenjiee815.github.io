@@ -144,56 +144,49 @@
 <h2><a class="toc-backref" href="#id34">安装pip</a></h2>
 <p>可以下载 <a class="reference external" href="https://bootstrap.pypa.io/get-pip.py/">get-pip.py</a> ，
 运行命令：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>python get-pip.py
-</pre>
-<p>如果setuptools没有安装，该命令同时也会安装它。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>python get-pip.py
+</pre></div>
+</td></tr></table><p>如果setuptools没有安装，该命令同时也会安装它。</p>
 <p>如果已经安装了setuptools库，那么可以通过easy_install安装：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>easy_install pip
-</pre>
-</div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>easy_install pip
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id2">
 <h2><a class="toc-backref" href="#id35">升级pip</a></h2>
 <p>在Linux系统上：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip insall -U pip
-</pre>
-<p>在Windows系统上：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>python -m pip install -U pip
-</pre>
-</div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip insall -U pip
+</pre></div>
+</td></tr></table><p>在Windows系统上：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>python -m pip install -U pip
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id36">常用命令介绍</a></h2>
 <ul>
 <li><p class="first">安装包</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip install SomePackage
-</pre>
-</li>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install SomePackage
+</pre></div>
+</td></tr></table></li>
 <li><p class="first">升级包</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip install --upgrade SomePackage
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install --upgrade SomePackage
 
 <span class="nv">$ </span>pip install -U SomePackage
-</pre>
-</li>
+</pre></div>
+</td></tr></table></li>
 <li><p class="first">删除包</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip uninstall SomePackage
-</pre>
-</li>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip uninstall SomePackage
+</pre></div>
+</td></tr></table></li>
 <li><p class="first">查看某个包安装了哪些文件</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip show --files SomePackage
-</pre>
-</li>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip show --files SomePackage
+</pre></div>
+</td></tr></table></li>
 <li><p class="first">列出哪些包过期了，或者说是有新的版本了</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip list --outdated
-</pre>
-</li>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip list --outdated
+</pre></div>
+</td></tr></table></li>
 </ul>
 </div>
 <div class="section" id="id4">
@@ -212,31 +205,36 @@
 <p>配置文件的格式类似于INI文件。</p>
 <p>当你想添加一个对所有命令都生效的参数时，
 可以将该配置放置在 <cite>[global]</cite> 段中。例如：</p>
-<pre class="code ini literal-block">
-<span class="k">[global]</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">[global]</span>
 <span class="na">timeout</span> <span class="o">=</span> <span class="s">60</span>
 <span class="na">index-url</span> <span class="o">=</span> <span class="s">http://pypi.douban.com/simple</span>
-</pre>
-<p>如果你想针对pip的某个子命令进行配置的话，
+</pre></div>
+</td></tr></table><p>如果你想针对pip的某个子命令进行配置的话，
 可以将该子命令名称当作段名称，该段内的配置与
 <cite>[global]</cite> 中的配置冲突则会覆盖之。</p>
 <ul>
 <li><p class="first">比如 <cite>freeze</cite> 子命令：</p>
-<pre class="code ini literal-block">
-<span class="k">[freeze]</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">[freeze]</span>
 <span class="na">timeout</span> <span class="o">=</span> <span class="s">10</span>
-</pre>
-</li>
+</pre></div>
+</td></tr></table></li>
 <li><p class="first">比如 <cite>install</cite> 子命令：</p>
-<pre class="code ini literal-block">
-<span class="k">[install]</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">[install]</span>
 <span class="na">ignore-installed</span> <span class="o">=</span> <span class="s">true</span>
 <span class="na">no-dependencies</span> <span class="o">=</span> <span class="s">yes</span>
-<span class="na">find-links</span> <span class="o">=</span><span class="s">
-       http://mirror1.example.com
-       http://mirror2.example.com</span>
-</pre>
-</li>
+<span class="na">find-links</span> <span class="o">=</span><span class="s"></span>
+<span class="s">       http://mirror1.example.com</span>
+<span class="s">       http://mirror2.example.com</span>
+</pre></div>
+</td></tr></table></li>
 </ul>
 </div>
 <div class="section" id="id6">
@@ -245,24 +243,21 @@
 它的格式为： <cite>PIP_&lt;UPPER_LONG_NAME&gt;</cite> 。</p>
 <ul>
 <li><p class="first">比如设置超时：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span><span class="nb">export </span><span class="nv">PIP_DEFAULT_TIMEOUT</span><span class="o">=</span>60
-</pre>
-<p>其效果等于：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip --default-timeout<span class="o">=</span>60 <span class="o">[</span>...<span class="o">]</span>
-</pre>
-</li>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">export </span><span class="nv">PIP_DEFAULT_TIMEOUT</span><span class="o">=</span>60
+</pre></div>
+</td></tr></table><p>其效果等于：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip --default-timeout<span class="o">=</span>60 <span class="o">[</span>...<span class="o">]</span>
+</pre></div>
+</td></tr></table></li>
 <li><p class="first">比如设置find-links：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span><span class="nb">export </span><span class="nv">PIP_FIND_LINKS</span><span class="o">=</span><span class="s2">&quot;http://mirror1.example.com http://mirror2.example.com&quot;</span>
-</pre>
-<p>其效果等于：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip install --find-links<span class="o">=</span>http://mirror1.example.com
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">export </span><span class="nv">PIP_FIND_LINKS</span><span class="o">=</span><span class="s2">&quot;http://mirror1.example.com http://mirror2.example.com&quot;</span>
+</pre></div>
+</td></tr></table><p>其效果等于：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install --find-links<span class="o">=</span>http://mirror1.example.com
 --find-links<span class="o">=</span>http://mirror2.example.com
-</pre>
-</li>
+</pre></div>
+</td></tr></table></li>
 </ul>
 </div>
 <div class="section" id="id7">
@@ -278,25 +273,32 @@
 <h3><a class="toc-backref" href="#id41">命令的自动补全</a></h3>
 <p>用过bash/zsh环境的人都知道有自动补全功能。</p>
 <p>pip命令想要自动补全功能的话，可以运行以下命令：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip completion --bash &gt;&gt; ~/.profile
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip completion --bash &gt;&gt; ~/.profile
 
 <span class="nv">$ </span>pip completion --zsh &gt;&gt; ~/.zprofile
-</pre>
-<p>加入到profile文件后，需要重新进入bash/zsh环境才能生效，
+</pre></div>
+</td></tr></table><p>加入到profile文件后，需要重新进入bash/zsh环境才能生效，
 你也可以运行以下命令，立即生效自动补全功能：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span><span class="nb">eval</span> <span class="s2">&quot;`pip completion --bash`&quot;</span>
-</pre>
-</div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">eval</span> <span class="s2">&quot;`pip completion --bash`&quot;</span>
+</pre></div>
+</td></tr></table></div>
 </div>
 <div class="section" id="pip-install">
 <h2><a class="toc-backref" href="#id42">pip install</a></h2>
 <p>安装Python包</p>
 <div class="section" id="id9">
 <h3><a class="toc-backref" href="#id43">使用方法</a></h3>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip install <span class="o">[</span>options<span class="o">]</span> &lt;requirement specifier&gt; ...
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install <span class="o">[</span>options<span class="o">]</span> &lt;requirement specifier&gt; ...
 
 <span class="nv">$ </span>pip install <span class="o">[</span>options<span class="o">]</span> -r &lt;requirements file&gt; ...
 
@@ -305,53 +307,51 @@
 <span class="nv">$ </span>pip install <span class="o">[</span>options<span class="o">]</span> <span class="o">[</span>-e<span class="o">]</span> &lt;<span class="nb">local </span>project path&gt; ...
 
 <span class="nv">$ </span>pip install <span class="o">[</span>options<span class="o">]</span> &lt;archive url/path&gt; ...
-</pre>
-</div>
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id10">
 <h3><a class="toc-backref" href="#id44">本地快速安装</a></h3>
 <ol class="arabic simple">
 <li>下载你所需要的所有的Python包</li>
 </ol>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip install --download &lt;DIR&gt; -r requirements.txt
-</pre>
-<ol class="arabic simple" start="2">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install --download &lt;DIR&gt; -r requirements.txt
+</pre></div>
+</td></tr></table><ol class="arabic simple" start="2">
 <li>使用以下命令即可安装刚才下载到本地的Python包</li>
 </ol>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip install --no-index --find-links<span class="o">=[</span>file://<span class="o">]</span>&lt;DIR&gt; -r requirements.txt
-</pre>
-</div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install --no-index --find-links<span class="o">=[</span>file://<span class="o">]</span>&lt;DIR&gt; -r requirements.txt
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id11">
 <h3><a class="toc-backref" href="#id45">非递归式升级</a></h3>
 <p>其实就是只升级你需要的包，但是该包所依赖的包不安装/升级。</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip install --upgrade --no-deps SomePackage
-</pre>
-</div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install --upgrade --no-deps SomePackage
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id12">
 <h3><a class="toc-backref" href="#id46">特定用户安装</a></h3>
 <p>从Python2.6开始，Python就支持将Python包安装到指定的用户目录了。</p>
 <p>该用户的目录默认值是由 <cite>site.USER_BASE</cite> 所指定的。</p>
 <p>如果想覆盖该值，则使用环境变量 <cite>PYTHONUSERBASE</cite> 。</p>
 <p>可以通过 <cite>--user</cite> 参数来指定特定用户。</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span><span class="nb">export </span><span class="nv">PYTHONUSERBASE</span><span class="o">=</span>/myappenv
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">export </span><span class="nv">PYTHONUSERBASE</span><span class="o">=</span>/myappenv
 <span class="nv">$ </span>pip install --user SomePackage
-</pre>
-</div>
+</pre></div>
+</td></tr></table></div>
 </div>
 <div class="section" id="pip-uninstall">
 <h2><a class="toc-backref" href="#id47">pip uninstall</a></h2>
 <p>卸载Python包</p>
 <div class="section" id="id13">
 <h3><a class="toc-backref" href="#id48">使用方法</a></h3>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip uninstall <span class="o">[</span>options<span class="o">]</span> &lt;package&gt; ...
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip uninstall <span class="o">[</span>options<span class="o">]</span> &lt;package&gt; ...
 
 <span class="nv">$ </span>pip uninstall <span class="o">[</span>options<span class="o">]</span> -r &lt;requirements file&gt; ...
-</pre>
-</div>
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id14">
 <h3><a class="toc-backref" href="#id49">已知缺陷</a></h3>
 <p>目前已知的两种无法正常删除的情况：</p>
@@ -384,10 +384,9 @@
 <p>将当前Python环境所有的安装包名输出成requirements格式。</p>
 <div class="section" id="id16">
 <h3><a class="toc-backref" href="#id52">使用方法</a></h3>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip freeze <span class="o">[</span>options<span class="o">]</span>
-</pre>
-</div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip freeze <span class="o">[</span>options<span class="o">]</span>
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id17">
 <h3><a class="toc-backref" href="#id53">参数</a></h3>
 <table class="docutils option-list" frame="void" rules="none">
@@ -421,14 +420,12 @@ requirement文件中有的Python包名则不再显示。</li>
 <h3><a class="toc-backref" href="#id54">常见应用场景</a></h3>
 <p>当你需要将一个virtualenv环境中复制到另外一个virtualenv环境时，
 你可以先在源virtualenv环境运行命令：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip freeze &gt; requirements.txt
-</pre>
-<p>然后再进入目的virtualenv环境运行命令：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip install -r requirements.txt
-</pre>
-<p>这样就完成了虚拟环境的复制过程。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip freeze &gt; requirements.txt
+</pre></div>
+</td></tr></table><p>然后再进入目的virtualenv环境运行命令：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install -r requirements.txt
+</pre></div>
+</td></tr></table><p>这样就完成了虚拟环境的复制过程。</p>
 <p>这时可能有人会问，virtualenv环境不就是一个目录么，
 直接拷贝一下，不就一个跟原来一样的新的virtualenv环境么？</p>
 <blockquote>
@@ -447,10 +444,9 @@ Python版本或者操作系统不一样，
 <p>可编辑的包是啥意思？暂时还不清楚。</p>
 <div class="section" id="id19">
 <h3><a class="toc-backref" href="#id56">使用方法</a></h3>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip list <span class="o">[</span>options<span class="o">]</span>
-</pre>
-</div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip list <span class="o">[</span>options<span class="o">]</span>
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id20">
 <h3><a class="toc-backref" href="#id57">参数</a></h3>
 <table class="docutils option-list" frame="void" rules="none">
@@ -515,10 +511,9 @@ Python版本或者操作系统不一样，
 <p>列出一个或者多个包的信息</p>
 <div class="section" id="id21">
 <h3><a class="toc-backref" href="#id59">使用方法</a></h3>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip show <span class="o">[</span>options<span class="o">]</span> &lt;package&gt; ...
-</pre>
-</div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip show <span class="o">[</span>options<span class="o">]</span> &lt;package&gt; ...
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id22">
 <h3><a class="toc-backref" href="#id60">参数</a></h3>
 <table class="docutils option-list" frame="void" rules="none">
@@ -538,10 +533,9 @@ Python版本或者操作系统不一样，
 Python包名或者其简要描述中包含关键字（&lt;query&gt;）的Python包。</p>
 <div class="section" id="id23">
 <h3><a class="toc-backref" href="#id62">使用方法</a></h3>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip search <span class="o">[</span>options<span class="o">]</span> &lt;query&gt;
-</pre>
-</div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip search <span class="o">[</span>options<span class="o">]</span> &lt;query&gt;
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id24">
 <h3><a class="toc-backref" href="#id63">参数</a></h3>
 <table class="docutils option-list" frame="void" rules="none">
@@ -563,8 +557,15 @@ Python包名或者其简要描述中包含关键字（&lt;query&gt;）的Python�
 <p>如果想更多了解wheel，请看 <a class="reference external" href="http://wheel.readthedocs.org/en/latest/">wheel官方文档</a> 。</p>
 <div class="section" id="id25">
 <h3><a class="toc-backref" href="#id65">使用方法</a></h3>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip pip wheel <span class="o">[</span>options<span class="o">]</span> &lt;requirement specifier&gt; ...
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip pip wheel <span class="o">[</span>options<span class="o">]</span> &lt;requirement specifier&gt; ...
 
 <span class="nv">$ </span>pip wheel <span class="o">[</span>options<span class="o">]</span> -r &lt;requirements file&gt; ...
 
@@ -573,8 +574,8 @@ Python包名或者其简要描述中包含关键字（&lt;query&gt;）的Python�
 <span class="nv">$ </span>pip wheel <span class="o">[</span>options<span class="o">]</span> &lt;<span class="nb">local </span>project path&gt; ...
 
 <span class="nv">$ </span>pip wheel <span class="o">[</span>options<span class="o">]</span> &lt;archive url/path&gt; ...
-</pre>
-</div>
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id26">
 <h3><a class="toc-backref" href="#id66">参数</a></h3>
 <table class="docutils option-list" frame="void" rules="none">
@@ -657,11 +658,11 @@ Python包名或者其简要描述中包含关键字（&lt;query&gt;）的Python�
 <h3><a class="toc-backref" href="#id67">常见应用场景</a></h3>
 <p>先将需要的所有第三方Python包打包到本地目录，
 然后再从本地目录直接安装之前已经打包好的wheel格式的Python包。</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip wheel --wheel-dir<span class="o">=</span>/tmp/wheelhouse SomePackage
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip wheel --wheel-dir<span class="o">=</span>/tmp/wheelhouse SomePackage
 <span class="nv">$ </span>pip install --no-index --find-links<span class="o">=</span>/tmp/wheelhouse SomePackage
-</pre>
-</div>
+</pre></div>
+</td></tr></table></div>
 </div>
 <div class="section" id="id28">
 <h2><a class="toc-backref" href="#id68">其它</a></h2>
@@ -674,16 +675,15 @@ Python包名或者其简要描述中包含关键字（&lt;query&gt;）的Python�
 <li><a class="reference external" href="http://pypi.mirrors.ustc.edu.cn/">中国科学技术大学PyPI</a></li>
 </ul>
 <p>可以用pip的 <cite>-i</cite> 参数来指定镜像源。</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip install gevent -i http://pypi.douban.com/simple
-</pre>
-<p>如果不想每次手动指定，且永久有效的话，
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install gevent -i http://pypi.douban.com/simple
+</pre></div>
+</td></tr></table><p>如果不想每次手动指定，且永久有效的话，
 可以写入到pip的配置文件中。</p>
-<pre class="code ini literal-block">
-<span class="k">[global]</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">[global]</span>
 <span class="na">index-url</span> <span class="o">=</span> <span class="s">http://pypi.douban.com/simple</span>
-</pre>
-</div>
+</pre></div>
+</td></tr></table></div>
 </div>
 
             

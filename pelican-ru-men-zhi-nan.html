@@ -125,10 +125,9 @@
 <p><strong>Pelican</strong> 的安装还是很简单的，
 因为它属于Python的一个第三方库，
 所以直接一条命令即可：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip install pelican
-</pre>
-<p>如果系统报没有 <cite>pip</cite> 这个命令，
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install pelican
+</pre></div>
+</td></tr></table><p>如果系统报没有 <cite>pip</cite> 这个命令，
 你可以点击 <a class="reference external" href="https://pip.pypa.io/en/latest/installing.html/">pip的安装文档</a> 。</p>
 <div class="section" id="id3">
 <h3><a class="toc-backref" href="#id11">依赖</a></h3>
@@ -155,19 +154,19 @@
 <div class="section" id="id4">
 <h2><a class="toc-backref" href="#id12">更新</a></h2>
 <p><strong>Pelican</strong> 的更新还是一样依赖于 <cite>pip</cite> 命令：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>pip install -U pelican
-</pre>
-</div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip install -U pelican
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id5">
 <h2><a class="toc-backref" href="#id13">创建 <strong>Pelican</strong> 工程目录</a></h2>
 <p>首先创建一个 <strong>Pelican</strong> 工程目录 <em>myblog</em> （目录名称自定义）：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>mkdir myblog
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>mkdir myblog
 <span class="nv">$ </span><span class="nb">cd </span>myblog
 <span class="nv">$ </span>pelican-quickstart
-</pre>
-<p>运行 <cite>pelican-quickstart</cite> 后会有一堆的提示信息。</p>
+</pre></div>
+</td></tr></table><p>运行 <cite>pelican-quickstart</cite> 后会有一堆的提示信息。</p>
 <ul class="simple">
 <li>Where do you want to create your new web site?
 你想在哪里创建你的网站，默认当前目录</li>
@@ -208,16 +207,21 @@ blog/
 <p><strong>Pelican</strong> 尽可能地会从文件系统中来获取信息（比如，获取文章分类的方式）。
 但是你最好在文件的元数据中提供。</p>
 <p>下面以 <strong>reStructuredText</strong> 为例。</p>
-<pre class="code rst literal-block">
-<span class="gh">=============</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="gh">=============</span>
 <span class="gh">|PL| 指南</span>
 <span class="gh">=============</span>
 
 <span class="nc">:date:</span> <span class="nf">2014-06-22 10:00</span>
 <span class="nc">:tags:</span> <span class="nf">pelican, python, blog</span>
 <span class="nc">:category:</span> <span class="nf">学习</span>
-</pre>
-<div class="tip">
+</pre></div>
+</td></tr></table><div class="tip">
 <p class="first admonition-title">Tip</p>
 <p>除了标题外，其它元素都不是必须的。</p>
 <p>如果没有日期， <strong>Pelican</strong> 是以对应文件的修改时间为日期。</p>
@@ -227,20 +231,39 @@ blog/
 <h3><a class="toc-backref" href="#id15">语法高亮</a></h3>
 <p><strong>Pelican</strong> 使用Pyments来支持语法高亮，
 所以你可以在你的 <strong>reStructuredText</strong> 文档里使用如下方法：</p>
-<pre class="code rst literal-block">
-<span class="p">..</span> <span class="ow">code</span><span class="p">::</span> identifier
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> identifier
 
    your code
-</pre>
-<p>其中 <cite>identifier</cite> 必须存在与这个列表中 <a class="reference external" href="http://pygments.org/docs/lexers/">list of available lexers</a>
+</pre></div>
+</td></tr></table><p>其中 <cite>identifier</cite> 必须存在与这个列表中 <a class="reference external" href="http://pygments.org/docs/lexers/">list of available lexers</a>
 的字段匹配。</p>
 </div>
 </div>
 <div class="section" id="makefile">
 <h2><a class="toc-backref" href="#id16">Makefile</a></h2>
 <p>你可以直接在之前创建的 <strong>Pelican</strong> 的工程目录里面执行 <cite>make</cite> 命令：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>make
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>make
 Makefile <span class="k">for </span>a pelican Web site
 
 Usage:
@@ -260,8 +283,8 @@ make cf_upload                   upload the web site via Cloud Files
 make github                      upload the web site via gh-pages
 
 Set the DEBUG variable to 1 to <span class="nb">enable </span>debugging, e.g. make <span class="nv">DEBUG</span><span class="o">=</span>1 html
-</pre>
-<p><strong>Pelican</strong> 的作者将所有 <strong>Pelican</strong> 的用到的功能都封装进去了。
+</pre></div>
+</td></tr></table><p><strong>Pelican</strong> 的作者将所有 <strong>Pelican</strong> 的用到的功能都封装进去了。
 你可以不用理会 <strong>Pelican</strong> 提供的其它命令是如何使用的，
 直接使用 <cite>make</cite> 的各种子命令就可以了。</p>
 <p>关于各个子命令，我下面穿插着讲到。
@@ -305,10 +328,9 @@ Set the DEBUG variable to 1 to <span class="nb">enable </span>debugging, e.g. ma
 <h2><a class="toc-backref" href="#id24">develop_server.sh</a></h2>
 <p>该命令开启一个测试用的服务器。
 基本使用方法：</p>
-<pre class="code bash literal-block">
-<span class="nv">$ </span>./develop_server.sh <span class="o">(</span>start|stop|restart<span class="o">)</span> <span class="o">[</span>port<span class="o">]</span>
-</pre>
-<p>可以看到，它的使用方法也是比较简单的：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>./develop_server.sh <span class="o">(</span>start|stop|restart<span class="o">)</span> <span class="o">[</span>port<span class="o">]</span>
+</pre></div>
+</td></tr></table><p>可以看到，它的使用方法也是比较简单的：</p>
 <ul class="simple">
 <li>start 开启一个测试服务器，启动成功后，服务器会在后台运行</li>
 <li>stop 停止一个测试服务器</li>

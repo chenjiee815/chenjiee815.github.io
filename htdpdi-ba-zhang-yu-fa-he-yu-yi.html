@@ -17,7 +17,7 @@
 <meta property="og:description" content="Contents Scheme的词汇 Scheme的文法 习题8.2.1 习题8.2.2 习题8.2.3 习题8.2.4 Scheme的含义 错误 布尔值表达式 变量定义 结构体的定义 Beginning Student Scheme的完整语法 Scheme的词汇 &lt;var&gt; = x|area-of-disk|... &lt;con&gt; = true|false &#39;a|&#39;b|... 1|-1|3/5|2.12|... &lt;prm&gt; = +|-|... Scheme的文法 &lt;def&gt; = (define (&lt;var&gt; &lt;var&gt; ... &lt;var&gt;) (exp)) &lt;exp&gt; = &lt;var&gt; | &lt;con&gt; | (&lt;prm ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-08-12T22:55:07.923340" />
+<meta property="og:article:published_time" content="2014-08-16T09:13:19.272712" />
 <meta name="twitter:title" content="HTDP第八章：语法和语义 ">
 <meta name="twitter:description" content="Contents Scheme的词汇 Scheme的文法 习题8.2.1 习题8.2.2 习题8.2.3 习题8.2.4 Scheme的含义 错误 布尔值表达式 变量定义 结构体的定义 Beginning Student Scheme的完整语法 Scheme的词汇 &lt;var&gt; = x|area-of-disk|... &lt;con&gt; = true|false &#39;a|&#39;b|... 1|-1|3/5|2.12|... &lt;prm&gt; = +|-|... Scheme的文法 &lt;def&gt; = (define (&lt;var&gt; &lt;var&gt; ... &lt;var&gt;) (exp)) &lt;exp&gt; = &lt;var&gt; | &lt;con&gt; | (&lt;prm ...">
 
@@ -197,8 +197,17 @@
 &lt;exp&gt; = (and &lt;exp&gt; &lt;exp&gt;)
         | (or &lt;exp&gt; &lt;exp&gt;)
 </pre>
-<pre class="code scheme literal-block">
-<span class="p">(</span><span class="k">and </span><span class="nv">&lt;exp-1&gt;</span> <span class="nv">&lt;exp-2&gt;</span><span class="p">)</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">and </span><span class="nv">&lt;exp-1&gt;</span> <span class="nv">&lt;exp-2&gt;</span><span class="p">)</span>
 <span class="c1">;; ==</span>
 <span class="p">(</span><span class="nf">cond</span>
  <span class="p">[</span><span class="nv">&lt;exp-1&gt;</span> <span class="nv">&lt;exp-2&gt;</span><span class="p">]</span>
@@ -209,8 +218,8 @@
 <span class="p">(</span><span class="nf">cond</span>
  <span class="p">[</span><span class="nv">&lt;exp-1&gt;</span> <span class="nv">true</span><span class="p">]</span>
  <span class="p">[</span><span class="k">else </span><span class="nv">&lt;exp-2&gt;</span><span class="p">])</span>
-</pre>
-</div>
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id9">
 <h2><a class="toc-backref" href="#id20">变量定义</a></h2>
 <pre class="literal-block">
@@ -249,7 +258,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-08-12T22:55:07.923340">Aug 12, 2014</time>
+            <time pubdate="pubdate" datetime="2014-08-16T09:13:19.272712">Aug 16, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#scheme-ref">scheme</a>
             <h4>Tags</h4>
