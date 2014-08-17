@@ -17,7 +17,7 @@
 <meta property="og:description" content="Contents 返回表的函数 习题10.1.1 习题10.1.2 习题10.1.3 习题10.1.4 习题10.1.5 返回表的函数 习题10.1.1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15;; hours-&gt;wages: list-of-numbers -&gt; list-of-numbers ;; 由周工作时间表得到周工资表 (define (hours-&gt;wages alon) (cond [(empty? alon) empty] [else ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-08-18T00:03:35.794062" />
+<meta property="og:article:published_time" content="2014-08-18T06:55:48.576683" />
 <meta name="twitter:title" content="HTDP第十章：表的进一步处理 ">
 <meta name="twitter:description" content="Contents 返回表的函数 习题10.1.1 习题10.1.2 习题10.1.3 习题10.1.4 习题10.1.5 返回表的函数 习题10.1.1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15;; hours-&gt;wages: list-of-numbers -&gt; list-of-numbers ;; 由周工作时间表得到周工资表 (define (hours-&gt;wages alon) (cond [(empty? alon) empty] [else ...">
 
@@ -128,47 +128,48 @@
 </td></tr></table></div>
 <div class="section" id="id3">
 <h3><a class="toc-backref" href="#id9">习题10.1.2</a></h3>
-<p>对alon中的每个周工作时间进行检查，确保没有&gt;100
-.. code-block:: scheme</p>
-<blockquote>
-<p>;; hours-&gt;wages: list-of-numbers -&gt; list-of-numbers
-;; 由周工作时间表得到周工资表
-(define (hours-&gt;wages alon)</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/scheme/HTDP/chapter_10.rst</tt>, line 42)</p>
-Unexpected indentation.</div>
-<blockquote>
-<dl class="docutils">
-<dt>(cond</dt>
-<dd><p class="first">[(empty? alon) empty]
-[else (cons (wage (first alon))</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/scheme/HTDP/chapter_10.rst</tt>, line 45)</p>
-Unexpected indentation.</div>
-<blockquote class="last">
-(hours-&gt;wages (rest alon)))]))</blockquote>
-</dd>
-</dl>
-</blockquote>
-<p>(define PER_HOUR_WAGE 14)
-;; 每小时工资</p>
-<p>(define MAX_HOURS 100)
-;; 每周最大工作小时数</p>
-<p>;; wage: number -&gt; number
-;; 根据工时计算工资
-(define (wage h)</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/scheme/HTDP/chapter_10.rst</tt>, line 56)</p>
-Unexpected indentation.</div>
-<blockquote>
-<dl class="docutils">
-<dt>(cond</dt>
-<dd>[(&gt; h MAX_HOURS) (error 'wage &quot;too many hours&quot;)]
-[else (* PER_HOUR_WAGE h)]))</dd>
-</dl>
-</blockquote>
-</blockquote>
-</div>
+<p>对alon中的每个周工作时间进行检查，确保没有&gt;100</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">;; hours-&gt;wages: list-of-numbers -&gt; list-of-numbers</span>
+<span class="c1">;; 由周工作时间表得到周工资表</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">hours-&gt;wages</span> <span class="nv">alon</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">cond</span>
+         <span class="p">[(</span><span class="nf">empty?</span> <span class="nv">alon</span><span class="p">)</span> <span class="nv">empty</span><span class="p">]</span>
+         <span class="p">[</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">wage</span> <span class="p">(</span><span class="nf">first</span> <span class="nv">alon</span><span class="p">))</span>
+                     <span class="p">(</span><span class="nf">hours-&gt;wages</span> <span class="p">(</span><span class="nf">rest</span> <span class="nv">alon</span><span class="p">)))]))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">PER_HOUR_WAGE</span> <span class="mi">14</span><span class="p">)</span>
+<span class="c1">;; 每小时工资</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">MAX_HOURS</span> <span class="mi">100</span><span class="p">)</span>
+<span class="c1">;; 每周最大工作小时数</span>
+
+<span class="c1">;; wage: number -&gt; number</span>
+<span class="c1">;; 根据工时计算工资</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">wage</span> <span class="nv">h</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">cond</span>
+         <span class="p">[(</span><span class="nb">&gt; </span><span class="nv">h</span> <span class="nv">MAX_HOURS</span><span class="p">)</span> <span class="p">(</span><span class="nf">error</span> <span class="ss">&#39;wage</span> <span class="s">&quot;too many hours&quot;</span><span class="p">)]</span>
+         <span class="p">[</span><span class="k">else </span><span class="p">(</span><span class="nb">* </span><span class="nv">PER_HOUR_WAGE</span> <span class="nv">h</span><span class="p">)]))</span>
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="id4">
 <h3><a class="toc-backref" href="#id10">习题10.1.3</a></h3>
 <p>解题思路和10.1.2是一样的。</p>
@@ -195,7 +196,7 @@ Unexpected indentation.</div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-08-18T00:03:35.794062">Aug 18, 2014</time>
+            <time pubdate="pubdate" datetime="2014-08-18T06:55:48.576683">Aug 18, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#scheme-ref">scheme</a>
             <h4>Tags</h4>
