@@ -14,12 +14,12 @@
 
 <meta property="og:title" content="Python打包工具对比 "/>
 <meta property="og:url" content="/pythonda-bao-gong-ju-dui-bi.html" />
-<meta property="og:description" content="我先给出对比结果： 推荐使用setuptools + pip 具体原因看下文。 distutils 目前属于Python标准库的一部分。 只适用于非常简单的应用场景，建议使用setuptools。 setuptools setuptools是对distutils的增强, 尤其是引入了包依赖管理。 setuptools可以为Python包创建egg文件。 包含包目录内的数据文件。 自动包含包目录内的所有的包，而不用在setup.py中列举。 自动包含包内和发布有关的所有相关文件，而不用创建一个MANIFEST.in文件。 自动生成经过包装的脚本或Windows执行文件。 支持Pyrex，即在可以setup.py中列出.pyx文件，而最终用户无须安装Pyrex。 支持上传到PyPI。 可以部署开发模式，使项目在sys.path中。 用新命令或setup()参数扩展distutils，为多个项目发布/重用扩展。 基本满足大型项目的安装和发布。 setuptools的诸多功能下面会有具体讲解。 distribute 由于setuptools初期开发进度缓慢, 不支持 Python3, 代码混乱, 一帮程序员另起炉灶, fork并且重构setuptools代码, 增加功能。 然后2013年8月，distribute又合并回setuptools 0.7。 easy_install setuptools和distribute自带的安装脚本。 只支持从 ..." />
+<meta property="og:description" content="Contents distutils setuptools distribute easy_install pip distutils2 我先给出对比结果： 推荐使用 setuptools + pip 具体原因看下文。 distutils 目前属于Python标准库的一部分。 只适用于非常简单的应用场景，建议使用 setuptools 。 setuptools setuptools是对distutils的增强, 尤其是引入了包依赖管理。 setuptools可以为Python包创建egg文件。 包含包目录内的数据文件。 自动包含包目录内的所有的包，而不用在setup.py中列举。 自动包含包内和发布有关的所有相关文件，而不用创建一个MANIFEST.in文件。 自动生成经过包装的脚本或Windows执行文件。 支持Pyrex，即在可以setup.py中列出.pyx文件，而最终用户无须安装Pyrex。 支持上传到PyPI。 可以部署开发模式，使项目在sys.path中。 用新命令或setup()参数扩展distutils，为多个项目发布/重用扩展。 基本满足大型项目的安装和发布。 setuptools的诸多功能下面会有具体讲解。 distribute 由于setuptools初期开发进度缓慢, 不支持 Python3, 代码混乱,一帮程序员另起炉灶 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-06-22T00:00:00" />
+<meta property="og:article:published_time" content="2014-08-16T09:26:50.845955" />
 <meta name="twitter:title" content="Python打包工具对比 ">
-<meta name="twitter:description" content="我先给出对比结果： 推荐使用setuptools + pip 具体原因看下文。 distutils 目前属于Python标准库的一部分。 只适用于非常简单的应用场景，建议使用setuptools。 setuptools setuptools是对distutils的增强, 尤其是引入了包依赖管理。 setuptools可以为Python包创建egg文件。 包含包目录内的数据文件。 自动包含包目录内的所有的包，而不用在setup.py中列举。 自动包含包内和发布有关的所有相关文件，而不用创建一个MANIFEST.in文件。 自动生成经过包装的脚本或Windows执行文件。 支持Pyrex，即在可以setup.py中列出.pyx文件，而最终用户无须安装Pyrex。 支持上传到PyPI。 可以部署开发模式，使项目在sys.path中。 用新命令或setup()参数扩展distutils，为多个项目发布/重用扩展。 基本满足大型项目的安装和发布。 setuptools的诸多功能下面会有具体讲解。 distribute 由于setuptools初期开发进度缓慢, 不支持 Python3, 代码混乱, 一帮程序员另起炉灶, fork并且重构setuptools代码, 增加功能。 然后2013年8月，distribute又合并回setuptools 0.7。 easy_install setuptools和distribute自带的安装脚本。 只支持从 ...">
+<meta name="twitter:description" content="Contents distutils setuptools distribute easy_install pip distutils2 我先给出对比结果： 推荐使用 setuptools + pip 具体原因看下文。 distutils 目前属于Python标准库的一部分。 只适用于非常简单的应用场景，建议使用 setuptools 。 setuptools setuptools是对distutils的增强, 尤其是引入了包依赖管理。 setuptools可以为Python包创建egg文件。 包含包目录内的数据文件。 自动包含包目录内的所有的包，而不用在setup.py中列举。 自动包含包内和发布有关的所有相关文件，而不用创建一个MANIFEST.in文件。 自动生成经过包装的脚本或Windows执行文件。 支持Pyrex，即在可以setup.py中列出.pyx文件，而最终用户无须安装Pyrex。 支持上传到PyPI。 可以部署开发模式，使项目在sys.path中。 用新命令或setup()参数扩展distutils，为多个项目发布/重用扩展。 基本满足大型项目的安装和发布。 setuptools的诸多功能下面会有具体讲解。 distribute 由于setuptools初期开发进度缓慢, 不支持 Python3, 代码混乱,一帮程序员另起炉灶 ...">
 
         <title>Python打包工具对比  · January Star
 </title>
@@ -77,20 +77,31 @@
         <div class="span8 offset2 article-content">
 
             
-            <dl class="docutils">
-<dt>我先给出对比结果：</dt>
-<dd>推荐使用setuptools + pip</dd>
-</dl>
+            <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#distutils" id="id1">distutils</a></li>
+<li><a class="reference internal" href="#setuptools" id="id2">setuptools</a></li>
+<li><a class="reference internal" href="#distribute" id="id3">distribute</a></li>
+<li><a class="reference internal" href="#easy-install" id="id4">easy_install</a></li>
+<li><a class="reference internal" href="#pip" id="id5">pip</a></li>
+<li><a class="reference internal" href="#distutils2" id="id6">distutils2</a></li>
+</ul>
+</div>
+<hr class="docutils" />
+<p>我先给出对比结果：</p>
+<blockquote>
+推荐使用 <strong>setuptools</strong> + <strong>pip</strong></blockquote>
 <p>具体原因看下文。</p>
 <div class="section" id="distutils">
-<h2>distutils</h2>
+<h2><a class="toc-backref" href="#id1">distutils</a></h2>
 <ul class="simple">
 <li>目前属于Python标准库的一部分。</li>
-<li>只适用于非常简单的应用场景，建议使用setuptools。</li>
+<li>只适用于非常简单的应用场景，建议使用 <strong>setuptools</strong> 。</li>
 </ul>
 </div>
 <div class="section" id="setuptools">
-<h2>setuptools</h2>
+<h2><a class="toc-backref" href="#id2">setuptools</a></h2>
 <ul class="simple">
 <li>setuptools是对distutils的增强, 尤其是引入了包依赖管理。</li>
 <li>setuptools可以为Python包创建egg文件。</li>
@@ -107,22 +118,21 @@
 <p>setuptools的诸多功能下面会有具体讲解。</p>
 </div>
 <div class="section" id="distribute">
-<h2>distribute</h2>
+<h2><a class="toc-backref" href="#id3">distribute</a></h2>
 <ul class="simple">
-<li>由于setuptools初期开发进度缓慢, 不支持 Python3, 代码混乱,
-一帮程序员另起炉灶, fork并且重构setuptools代码, 增加功能。</li>
+<li>由于setuptools初期开发进度缓慢, 不支持 Python3, 代码混乱,一帮程序员另起炉灶, fork并且重构setuptools代码, 增加功能。</li>
 <li>然后2013年8月，distribute又合并回setuptools 0.7。</li>
 </ul>
 </div>
 <div class="section" id="easy-install">
-<h2>easy_install</h2>
+<h2><a class="toc-backref" href="#id4">easy_install</a></h2>
 <ul class="simple">
 <li>setuptools和distribute自带的安装脚本。</li>
 <li>只支持从 <a class="reference external" href="https://pypi.python.org/pypi/">PyPI</a> 下载安装Python包。</li>
 </ul>
 </div>
 <div class="section" id="pip">
-<h2>pip</h2>
+<h2><a class="toc-backref" href="#id5">pip</a></h2>
 <ul class="simple">
 <li>pip的目标非常明确：取代easy_install。</li>
 <li>支持安装、卸载包。</li>
@@ -131,7 +141,7 @@
 <p>pip的功能之强大，可以看下面专门讲解PIP的章节。</p>
 </div>
 <div class="section" id="distutils2">
-<h2>distutils2</h2>
+<h2><a class="toc-backref" href="#id6">distutils2</a></h2>
 <ul class="simple">
 <li>它本来应该成为Python3的标准库packaging，
 在其它Python版本里叫做distutils2。</li>
@@ -146,7 +156,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-06-22T00:00:00">Jun 22, 2014</time>
+            <time pubdate="pubdate" datetime="2014-08-16T09:26:50.845955">Aug 16, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#python-ref">python</a>
             <h4>Tags</h4>
@@ -158,7 +168,7 @@
                     <span>2</span>
 </a></li>
                 <li><a href="/tags.html#python-ref">python
-                    <span>5</span>
+                    <span>6</span>
 </a></li>
                 <li><a href="/tags.html#setuptools-ref">setuptools
                     <span>2</span>
