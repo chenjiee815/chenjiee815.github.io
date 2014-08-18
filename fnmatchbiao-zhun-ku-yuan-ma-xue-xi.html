@@ -17,7 +17,7 @@
 <meta property="og:description" content="Contents 简介 代码解析 代码吐槽 总结 简介 fnmatch模块提供了以下几个函数： filter 输入 一个文件名列表和一个指定模式（仅支持Shell通配符） 输出 一个符合指定模式的文件名列表 fnmatch 输入 一个文件名和一个指定模式（仅支持Shell通配符） 输出 该文件名是否匹配指定模式 说明 具体行为和平台相关，比如某些平台忽略大小写等等 fnmatchcase 输入 一个文件名和一个指定模式（仅支持Shell通配符） 输出 该文件名是否匹配指定模式 说明 大小写敏感 translate 输入 Shell通配符格式的模式字符串 输出 正则格式的模式字符串 代码解析 fnmatch库的还是很简单的，代码加注释才100行多一点。 它主要做的工作就是比较一个给定的文件名和给定的模式字符串，判断两者是否相等。 然后围绕这个功能，提供一系列的相关函数。 至于如何判断两者相等，它的做法是： 使用 正则表达式 既然要使用 正则表达式 ，那么就要考虑如何将一个Shell通配符格式的字符串转换成正则了。 这个功能就是由 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-08-18T18:28:45.874185" />
+<meta property="og:article:published_time" content="2014-08-18T18:47:30.482292" />
 <meta name="twitter:title" content="fnmatch标准库源码学习 ">
 <meta name="twitter:description" content="Contents 简介 代码解析 代码吐槽 总结 简介 fnmatch模块提供了以下几个函数： filter 输入 一个文件名列表和一个指定模式（仅支持Shell通配符） 输出 一个符合指定模式的文件名列表 fnmatch 输入 一个文件名和一个指定模式（仅支持Shell通配符） 输出 该文件名是否匹配指定模式 说明 具体行为和平台相关，比如某些平台忽略大小写等等 fnmatchcase 输入 一个文件名和一个指定模式（仅支持Shell通配符） 输出 该文件名是否匹配指定模式 说明 大小写敏感 translate 输入 Shell通配符格式的模式字符串 输出 正则格式的模式字符串 代码解析 fnmatch库的还是很简单的，代码加注释才100行多一点。 它主要做的工作就是比较一个给定的文件名和给定的模式字符串，判断两者是否相等。 然后围绕这个功能，提供一系列的相关函数。 至于如何判断两者相等，它的做法是： 使用 正则表达式 既然要使用 正则表达式 ，那么就要考虑如何将一个Shell通配符格式的字符串转换成正则了。 这个功能就是由 ...">
 
@@ -413,27 +413,23 @@
 </td></tr></table><p>嗯，这样就差不多了。</p>
 </li>
 <li><p class="first"><cite>filter</cite> 内部的主要逻辑和 <cite>fnmatchcase</cite> 差不多么，为什么不复用？</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">posixpath</span>
-<span class="n">IS_POSIX</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span> <span class="ow">is</span> <span class="n">posixpath</span>
-
-<span class="k">def</span> <span class="nf">fnfilter</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">pat</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">_fnmatch</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-        <span class="n">normname</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="n">IS_POSIX</span> <span class="k">else</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normcase</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">fnmatchcase</span><span class="p">(</span><span class="n">normname</span><span class="p">,</span> <span class="n">pat</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span> <span class="k">if</span> <span class="n">_fnmatch</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">fnfilter</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">pat</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span> <span class="k">if</span> <span class="n">fnmatch</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
     <span class="c"># 版本2</span>
-    <span class="c"># return filter(_fnmatch, names)</span>
+    <span class="c"># return filter(fnmatch, names)</span>
+
+<span class="k">def</span> <span class="nf">fnfiltercase</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">pat</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span> <span class="k">if</span> <span class="n">fnmatchcase</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="c"># 版本2</span>
+    <span class="c"># return filter(fnmatchcase, names)</span>
 </pre></div>
 </td></tr></table><p>怎么样，比原来的代码清晰太多了吧。</p>
 </li>
@@ -477,7 +473,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-08-18T18:28:45.874185">Aug 18, 2014</time>
+            <time pubdate="pubdate" datetime="2014-08-18T18:47:30.482292">Aug 18, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
