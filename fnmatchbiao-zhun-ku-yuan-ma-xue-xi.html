@@ -17,7 +17,7 @@
 <meta property="og:description" content="Contents 简介 代码解析 代码吐槽 总结 简介 fnmatch模块提供了以下几个函数： filter 输入 一个文件名列表和一个指定模式（仅支持Shell通配符） 输出 一个符合指定模式的文件名列表 fnmatch 输入 一个文件名和一个指定模式（仅支持Shell通配符） 输出 该文件名是否匹配指定模式 说明 具体行为和平台相关，比如某些平台忽略大小写等等 fnmatchcase 输入 一个文件名和一个指定模式（仅支持Shell通配符） 输出 该文件名是否匹配指定模式 说明 大小写敏感 translate 输入 Shell通配符格式的模式字符串 输出 正则格式的模式字符串 代码解析 fnmatch库的还是很简单的，代码加注释才100行多一点。 它主要做的工作就是比较一个给定的文件名和给定的模式字符串，判断两者是否相等。 然后围绕这个功能，提供一系列的相关函数。 至于如何判断两者相等，它的做法是： 使用 正则表达式 既然要使用 正则表达式 ，那么就要考虑如何将一个Shell通配符格式的字符串转换成正则了。 这个功能就是由 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-08-18T18:02:00.062020" />
+<meta property="og:article:published_time" content="2014-08-18T18:28:45.874185" />
 <meta name="twitter:title" content="fnmatch标准库源码学习 ">
 <meta name="twitter:description" content="Contents 简介 代码解析 代码吐槽 总结 简介 fnmatch模块提供了以下几个函数： filter 输入 一个文件名列表和一个指定模式（仅支持Shell通配符） 输出 一个符合指定模式的文件名列表 fnmatch 输入 一个文件名和一个指定模式（仅支持Shell通配符） 输出 该文件名是否匹配指定模式 说明 具体行为和平台相关，比如某些平台忽略大小写等等 fnmatchcase 输入 一个文件名和一个指定模式（仅支持Shell通配符） 输出 该文件名是否匹配指定模式 说明 大小写敏感 translate 输入 Shell通配符格式的模式字符串 输出 正则格式的模式字符串 代码解析 fnmatch库的还是很简单的，代码加注释才100行多一点。 它主要做的工作就是比较一个给定的文件名和给定的模式字符串，判断两者是否相等。 然后围绕这个功能，提供一系列的相关函数。 至于如何判断两者相等，它的做法是： 使用 正则表达式 既然要使用 正则表达式 ，那么就要考虑如何将一个Shell通配符格式的字符串转换成正则了。 这个功能就是由 ...">
 
@@ -360,7 +360,12 @@
 36
 37
 38
-39</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">LimitedCache</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+39
+40
+41
+42
+43
+44</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">LimitedCache</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">LimitedCache</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
@@ -391,14 +396,19 @@
         <span class="n">CACHE</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">re_obj</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">re_obj</span>
 
-    <span class="n">re_obj</span> <span class="o">=</span> <span class="n">CACHE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pat</span><span class="p">)</span> <span class="ow">or</span> <span class="n">_cache_pat</span><span class="p">(</span><span class="n">pat</span><span class="p">)</span>
-    <span class="k">return</span> <span class="k">lambda</span> <span class="n">name</span><span class="p">,</span> <span class="n">pat</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">re_obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">lambda</span> <span class="n">name</span><span class="p">,</span> <span class="n">pat</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">CACHE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pat</span><span class="p">)</span> <span class="ow">or</span> <span class="n">_cache_pat</span><span class="p">(</span><span class="n">pat</span><span class="p">))</span>
 
 <span class="n">fnmatchcase</span> <span class="o">=</span> <span class="n">cache_pat</span><span class="p">(</span><span class="k">lambda</span> <span class="n">name</span><span class="p">,</span> <span class="n">re_obj</span><span class="p">:</span> <span class="n">re_obj</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">)</span>
+<span class="c"># 版本2</span>
 <span class="c"># def fnmatchcase(name, pat):</span>
 <span class="c">#     def _fnmatchcase(name, re_obj):</span>
 <span class="c">#         return re_obj.match(name) is not None</span>
 <span class="c">#     return cache_pat(_fnmatchcase)(name, pat)</span>
+<span class="c">#</span>
+<span class="c"># 版本3（问题：修改了fnmatchcase的参数）</span>
+<span class="c"># @cache_pat</span>
+<span class="c"># def fnmatchcase(name, re_obj):</span>
+<span class="c">#      return re_obj.match(name) is not None</span>
 </pre></div>
 </td></tr></table><p>嗯，这样就差不多了。</p>
 </li>
@@ -412,7 +422,8 @@
  7
  8
  9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">posixpath</span>
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">posixpath</span>
 <span class="n">IS_POSIX</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span> <span class="ow">is</span> <span class="n">posixpath</span>
 
 <span class="k">def</span> <span class="nf">fnfilter</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">pat</span><span class="p">):</span>
@@ -421,6 +432,7 @@
         <span class="k">return</span> <span class="n">fnmatchcase</span><span class="p">(</span><span class="n">normname</span><span class="p">,</span> <span class="n">pat</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span> <span class="k">if</span> <span class="n">_fnmatch</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="c"># 版本2</span>
     <span class="c"># return filter(_fnmatch, names)</span>
 </pre></div>
 </td></tr></table><p>怎么样，比原来的代码清晰太多了吧。</p>
@@ -465,7 +477,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-08-18T18:02:00.062020">Aug 18, 2014</time>
+            <time pubdate="pubdate" datetime="2014-08-18T18:28:45.874185">Aug 18, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
