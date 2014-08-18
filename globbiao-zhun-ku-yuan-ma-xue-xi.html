@@ -14,12 +14,12 @@
 
 <meta property="og:title" content="glob标准库源码学习 "/>
 <meta property="og:url" content="/globbiao-zhun-ku-yuan-ma-xue-xi.html" />
-<meta property="og:description" content="Contents 简介 代码解析 代码吐槽 简介 glob库提供了以下两个函数： glob 输入 文件路径模式字符串（仅支持Shell通配符） 输出 和模式字符串匹配的真实文件名列表 iglob 输入 文件路径模式字符串（仅支持Shell通配符） 输出 和模式字符串匹配的真实文件名列表迭代器 代码解析 glob库中最重要函数就是 iglob 函数了。 glob 函数其实也是调用 iglob 来实现的。 1 2def glob(pathname): return list(iglob(pathname)) 那么接下就主讲 iglob 这个函数。 首先我们分析一下传入的文件路径模式字符串有几种情况： 文件路径模式字符串中没有Shell通配符 文件路径模式字符串中有Shell通配符 dirname没有Shell通配符，basename有Shell通配符 dirname有Shell通配符，basename没有Shell通配符 dirname有Shell通配符，basename有Shell通配符 dirname没有Shell通配符，basename没有Shell通配符 根据以上的分析 ..." />
+<meta property="og:description" content="Contents 简介 代码解析 代码吐槽 总结 简介 glob库提供了以下两个函数： glob 输入 文件路径模式字符串（仅支持Shell通配符） 输出 和模式字符串匹配的真实文件名列表 iglob 输入 文件路径模式字符串（仅支持Shell通配符） 输出 和模式字符串匹配的真实文件名列表迭代器 代码解析 glob库中最重要函数就是 iglob 函数了。 glob 函数其实也是调用 iglob 来实现的。 1 2def glob(pathname): return list(iglob(pathname)) 那么接下就主讲 iglob 这个函数。 首先我们分析一下传入的文件路径模式字符串有几种情况： 文件路径模式字符串中没有Shell通配符 文件路径模式字符串中有Shell通配符 这种情况还要再细分： dirname没有Shell通配符，basename有Shell通配符 dirname有Shell通配符，basename没有Shell通配符 dirname有Shell通配符，basename有Shell通配符 经过以上分析 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-08-18T23:09:41.618186" />
+<meta property="og:article:published_time" content="2014-08-18T23:34:33.614072" />
 <meta name="twitter:title" content="glob标准库源码学习 ">
-<meta name="twitter:description" content="Contents 简介 代码解析 代码吐槽 简介 glob库提供了以下两个函数： glob 输入 文件路径模式字符串（仅支持Shell通配符） 输出 和模式字符串匹配的真实文件名列表 iglob 输入 文件路径模式字符串（仅支持Shell通配符） 输出 和模式字符串匹配的真实文件名列表迭代器 代码解析 glob库中最重要函数就是 iglob 函数了。 glob 函数其实也是调用 iglob 来实现的。 1 2def glob(pathname): return list(iglob(pathname)) 那么接下就主讲 iglob 这个函数。 首先我们分析一下传入的文件路径模式字符串有几种情况： 文件路径模式字符串中没有Shell通配符 文件路径模式字符串中有Shell通配符 dirname没有Shell通配符，basename有Shell通配符 dirname有Shell通配符，basename没有Shell通配符 dirname有Shell通配符，basename有Shell通配符 dirname没有Shell通配符，basename没有Shell通配符 根据以上的分析 ...">
+<meta name="twitter:description" content="Contents 简介 代码解析 代码吐槽 总结 简介 glob库提供了以下两个函数： glob 输入 文件路径模式字符串（仅支持Shell通配符） 输出 和模式字符串匹配的真实文件名列表 iglob 输入 文件路径模式字符串（仅支持Shell通配符） 输出 和模式字符串匹配的真实文件名列表迭代器 代码解析 glob库中最重要函数就是 iglob 函数了。 glob 函数其实也是调用 iglob 来实现的。 1 2def glob(pathname): return list(iglob(pathname)) 那么接下就主讲 iglob 这个函数。 首先我们分析一下传入的文件路径模式字符串有几种情况： 文件路径模式字符串中没有Shell通配符 文件路径模式字符串中有Shell通配符 这种情况还要再细分： dirname没有Shell通配符，basename有Shell通配符 dirname有Shell通配符，basename没有Shell通配符 dirname有Shell通配符，basename有Shell通配符 经过以上分析 ...">
 
         <title>glob标准库源码学习  · January Star
 </title>
@@ -80,14 +80,15 @@
             <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#id1" id="id4">简介</a></li>
-<li><a class="reference internal" href="#id2" id="id5">代码解析</a></li>
-<li><a class="reference internal" href="#id3" id="id6">代码吐槽</a></li>
+<li><a class="reference internal" href="#id1" id="id5">简介</a></li>
+<li><a class="reference internal" href="#id2" id="id6">代码解析</a></li>
+<li><a class="reference internal" href="#id3" id="id7">代码吐槽</a></li>
+<li><a class="reference internal" href="#id4" id="id8">总结</a></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="id1">
-<h2><a class="toc-backref" href="#id4">简介</a></h2>
+<h2><a class="toc-backref" href="#id5">简介</a></h2>
 <p>glob库提供了以下两个函数：</p>
 <ul>
 <li><p class="first">glob</p>
@@ -125,7 +126,7 @@
 </ul>
 </div>
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id5">代码解析</a></h2>
+<h2><a class="toc-backref" href="#id6">代码解析</a></h2>
 <p>glob库中最重要函数就是 <cite>iglob</cite> 函数了。
 <cite>glob</cite> 函数其实也是调用 <cite>iglob</cite> 来实现的。</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -134,16 +135,27 @@
 </pre></div>
 </td></tr></table><p>那么接下就主讲 <cite>iglob</cite> 这个函数。</p>
 <p>首先我们分析一下传入的文件路径模式字符串有几种情况：</p>
+<ul>
+<li><p class="first">文件路径模式字符串中没有Shell通配符</p>
+</li>
+<li><p class="first">文件路径模式字符串中有Shell通配符</p>
+<p>这种情况还要再细分：</p>
 <ul class="simple">
-<li>文件路径模式字符串中没有Shell通配符</li>
-<li>文件路径模式字符串中有Shell通配符<ul>
+<li>dirname没有Shell通配符，basename有Shell通配符</li>
+<li>dirname有Shell通配符，basename没有Shell通配符</li>
+<li>dirname有Shell通配符，basename有Shell通配符</li>
+</ul>
+</li>
+</ul>
+<p>经过以上分析，我们为了函数的参数统一，可以将上面的几种情况，归纳如下：</p>
+<blockquote>
+<ul class="simple">
 <li>dirname没有Shell通配符，basename有Shell通配符</li>
 <li>dirname有Shell通配符，basename没有Shell通配符</li>
 <li>dirname有Shell通配符，basename有Shell通配符</li>
 <li>dirname没有Shell通配符，basename没有Shell通配符</li>
 </ul>
-</li>
-</ul>
+</blockquote>
 <p>根据以上的分析，我们就可以得出需要以下几个辅助函数：</p>
 <blockquote>
 <table border="1" class="docutils">
@@ -251,8 +263,8 @@
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id6">代码吐槽</a></h2>
-<p>还是按照我上面的解析思路来，添加两个辅助函数 <cite>glob2</cite> 和 <cite>glob3</cite></p>
+<h2><a class="toc-backref" href="#id7">代码吐槽</a></h2>
+<p>还是按照我上面的解析思路来，添加两个辅助函数 <cite>glob2</cite> 和 <cite>glob3</cite> ，这样 <cite>iglob</cite> 函数的逻辑就比较清楚了，完全按照我上面的解析思路来的。</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -303,28 +315,8 @@
 48
 49
 50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">iglob</span><span class="p">(</span><span class="n">pathname</span><span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_magic</span><span class="p">(</span><span class="n">pathname</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">lexists</span><span class="p">(</span><span class="n">pathname</span><span class="p">):</span>
-            <span class="k">yield</span> <span class="n">pathname</span>
-        <span class="k">return</span>
-
+51</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">iglob</span><span class="p">(</span><span class="n">pathname</span><span class="p">):</span>
     <span class="n">dirname</span><span class="p">,</span> <span class="n">basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">pathname</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">dirname</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">glob1</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">,</span> <span class="n">basename</span><span class="p">):</span>
-            <span class="k">yield</span> <span class="n">name</span>
-        <span class="k">return</span>
-
     <span class="k">if</span> <span class="n">dirname</span> <span class="o">!=</span> <span class="n">pathname</span> <span class="ow">and</span> <span class="n">has_magic</span><span class="p">(</span><span class="n">dirname</span><span class="p">):</span>
         <span class="n">glob_func</span> <span class="o">=</span> <span class="n">glob3</span> <span class="k">if</span> <span class="n">has_magic</span><span class="p">(</span><span class="n">basename</span><span class="p">)</span> <span class="k">else</span> <span class="n">glob2</span>
     <span class="k">else</span><span class="p">:</span>
@@ -376,6 +368,10 @@
     <span class="p">]</span>
 </pre></div>
 </td></tr></table></div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id8">总结</a></h2>
+<p>即然用到递归了，就要用得干净利落点。</p>
+</div>
 
             
             
@@ -384,7 +380,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-08-18T23:09:41.618186">Aug 18, 2014</time>
+            <time pubdate="pubdate" datetime="2014-08-18T23:34:33.614072">Aug 18, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
