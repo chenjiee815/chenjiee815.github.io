@@ -17,7 +17,7 @@
 <meta property="og:description" content="tuple的创建，不是少个逗号么 1 2 3 4 5 6 7 8In [36]: a = (); type(a) Out[36]: tuple In [37]: a = (1); type(a) Out[37]: int In [38]: a = (1,); type(a) Out[38]: tuple 在Python中，括号的功能主要是来进行组合的，而不是用来创建元组的。比如： 1 2In [47]: a=(&#34;first;&#34; &#34;second;&#34;); a Out[47 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-08-19T15:25:00.383504" />
+<meta property="og:article:published_time" content="2014-08-22T13:48:58.449580" />
 <meta name="twitter:title" content="那些年我们踩过的跟Python有关的坑 ">
 <meta name="twitter:description" content="tuple的创建，不是少个逗号么 1 2 3 4 5 6 7 8In [36]: a = (); type(a) Out[36]: tuple In [37]: a = (1); type(a) Out[37]: int In [38]: a = (1,); type(a) Out[38]: tuple 在Python中，括号的功能主要是来进行组合的，而不是用来创建元组的。比如： 1 2In [47]: a=(&#34;first;&#34; &#34;second;&#34;); a Out[47 ...">
 
@@ -102,10 +102,127 @@
 </pre></div>
 </td></tr></table></li>
 <li><p class="first">装饰过后了，我的func_name呢？</p>
-</li>
-<li><p class="first">自定义异常无法正常Pickle反序列化</p>
+<p>Python中不仅可以使用自带的 <cite>&#64;staticmethod</cite> 等来进行装饰，还可以自己写装饰器来进行装饰。</p>
+<p>但是装饰完的函数还是原来的函数么？</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_wrapper</span>
+
+<span class="k">def</span> <span class="nf">aa</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">&quot;aa&quot;</span>
+
+<span class="nd">@wrapper</span>
+<span class="k">def</span> <span class="nf">bb</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">&quot;bb&quot;</span>
+</pre></div>
+</td></tr></table><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="go">In [11]: aa.func_name</span>
+<span class="go">Out[11]: &#39;aa&#39;</span>
+
+<span class="go">In [12]: bb.func_name</span>
+<span class="go">Out[12]: &#39;_wrapper&#39;</span>
+</pre></div>
+</td></tr></table><p>经过装饰的函数，它的 <cite>func_name</cite> 已经发生了变化，说明它已经不是原来的函数定义了。</p>
+<p>那么如何解决经过装饰的函数还拥有原来的一此属性呢？</p>
+<blockquote>
+<p>使用 <cite>functools.wraps</cite></p>
+</blockquote>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">functools</span>
+
+<span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="nd">@functools.wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_wrapper</span>
+
+<span class="k">def</span> <span class="nf">aa</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">&quot;aa&quot;</span>
+
+<span class="nd">@wrapper</span>
+<span class="k">def</span> <span class="nf">bb</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">&quot;bb&quot;</span>
+</pre></div>
+</td></tr></table><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="go">In [11]: aa.func_name</span>
+<span class="go">Out[11]: &#39;aa&#39;</span>
+
+<span class="go">In [12]: bb.func_name</span>
+<span class="go">Out[12]: &#39;bb&#39;</span>
+</pre></div>
+</td></tr></table><div class="tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">如果某个函数之间已经装饰过了，然后改变装饰器，则原来的函数仍然是使用改变之前的装饰器。</p>
+</div>
 </li>
 <li><p class="first">bool(gevent.spawn(lambda: True)): True? or False?</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre>def aa():
+    return &quot;aa&quot;
+
+aa_spawn = None
+aa_spawn = gevent.spawn(aa)
+print bool(aa_spawn) == True
+</pre></div>
+</td></tr></table><p>上面的代码最后结果是True么？</p>
+<blockquote>
+<p>是</p>
+</blockquote>
+<p>好，咱们接着看。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">aa</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">&quot;aa&quot;</span>
+
+<span class="n">aa_spawn</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">aa_spawn</span> <span class="o">=</span> <span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>
+<span class="n">aa_spawn</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="k">print</span> <span class="nb">bool</span><span class="p">(</span><span class="n">aa_spawn</span><span class="p">)</span> <span class="o">==</span> <span class="bp">True</span>
+</pre></div>
+</td></tr></table><p>上面的代码最后结果是True么？</p>
+<blockquote>
+<p>难道不是么，我X，还真不是。</p>
+</blockquote>
+<p>怎么回事啊？</p>
+<blockquote>
+<p>这个就要看 <cite>bool</cite> 函数的内部判断逻辑了。</p>
 <p>以下情况会被认为是False，其他的情况是True。</p>
 <ul class="simple">
 <li>None</li>
@@ -115,6 +232,44 @@
 <li>any empty mapping, for example, {}.</li>
 <li>instances of user-defined classes, if the class defines a __nonzero__() or __len__() method, when that method returns the integer zero or bool value False.</li>
 </ul>
+<p>这时候咱们再看一下 <cite>aa_spawn</cite> 这个对象。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="go">In [25]: dir(aa_spawn)</span>
+<span class="go">Out[25]:</span>
+<span class="go">[&#39;GreenletExit&#39;,</span>
+<span class="go"> &#39;__class__&#39;,</span>
+<span class="go"> ... ...</span>
+<span class="go"> &#39;__module__&#39;,</span>
+<span class="go"> &#39;__new__&#39;,</span>
+<span class="go"> &#39;__nonzero__&#39;,</span>
+<span class="go"> &#39;__reduce__&#39;,</span>
+<span class="go"> ... ...]</span>
+</pre></div>
+</td></tr></table><p>哦，我看到 <cite>__nonzero__</cite> 这个属性了。当gevent.greenlet对象还没运行时，该属性为 <cite>True</cite> ，但当它执行完了，该属性就会变成 <cite>False</cite> 了。</p>
+<p>SO，判断一个对象是否为真，千万要小心使用诸如以下形式的自动判断啊：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">if</span> <span class="n">some_instance</span><span class="p">:</span>
+    <span class="n">do_something</span><span class="p">()</span>
+
+<span class="n">some_instance</span> <span class="ow">and</span> <span class="n">do_something</span><span class="p">()</span>
+
+<span class="n">some_instance</span> <span class="ow">or</span> <span class="n">do_something</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></blockquote>
+</li>
+<li><p class="first">自定义异常无法正常Pickle反序列化</p>
 </li>
 </ul>
 
@@ -125,7 +280,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-08-19T15:25:00.383504">Aug 19, 2014</time>
+            <time pubdate="pubdate" datetime="2014-08-22T13:48:58.449580">Aug 22, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="/categories.html#others-ref">others</a>
 <h4>Contact</h4>
