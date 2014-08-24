@@ -5,29 +5,50 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/index.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/a-little-java-a-few-patternsqian-yan.html</loc>
+<lastmod>2014-08-24T21:58:03-00:00</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/a-little-java-a-few-patterns-xu-yan.html</loc>
+<lastmod>2014-08-24T21:57:47-00:00</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/a-little-java-a-few-patterns-javaxiao-yong.html</loc>
+<lastmod>2014-08-24T21:57:40-00:00</lastmod>
+<changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -215,147 +236,161 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/dna.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/category/http.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/category/java.html</loc>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/category/life.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/category/python.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/category/scheme.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/category/zhi-ye-sheng-ya.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/pelican.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/markdown.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/pip.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/http.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/speak.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/zhi-ye.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<loc>/tag/java.html</loc>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/keng.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/flask.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/restructuredtext.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/blog.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/speech.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/scheme.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/stdlibs.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/python.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/oop.html</loc>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/dna.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -369,21 +404,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/package.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/career.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/setup.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -396,22 +417,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/tag/setup.html</loc>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/zhi-ye.html</loc>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/career.html</loc>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/tag/htdp.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/setuptools.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/author/chen-jie.html</loc>
-<lastmod>2014-08-23T15:18:18-00:00</lastmod>
+<lastmod>2014-08-24T21:58:21-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
