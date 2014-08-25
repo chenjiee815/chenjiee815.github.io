@@ -13,7 +13,7 @@
 <meta name="keywords" content="python, stdlibs, Python, " />
 
 <meta property="og:title" content="fnmatch标准库源码学习 "/>
-<meta property="og:url" content="/fnmatchbiao-zhun-ku-yuan-ma-xue-xi.html" />
+<meta property="og:url" content="http://chenjiee815.github.io/fnmatchbiao-zhun-ku-yuan-ma-xue-xi.html" />
 <meta property="og:description" content="Contents 简介 代码解析 代码吐槽 总结 简介 fnmatch模块提供了以下几个函数： filter 输入 一个文件名列表和一个指定模式（仅支持Shell通配符） 输出 一个符合指定模式的文件名列表 fnmatch 输入 一个文件名和一个指定模式（仅支持Shell通配符） 输出 该文件名是否匹配指定模式 说明 具体行为和平台相关，比如某些平台忽略大小写等等 fnmatchcase 输入 一个文件名和一个指定模式（仅支持Shell通配符） 输出 该文件名是否匹配指定模式 说明 大小写敏感 translate 输入 Shell通配符格式的模式字符串 输出 正则格式的模式字符串 代码解析 fnmatch库的还是很简单的，代码加注释才100行多一点。 它主要做的工作就是比较一个给定的文件名和给定的模式字符串，判断两者是否相等。 然后围绕这个功能，提供一系列的相关函数。 至于如何判断两者相等，它的做法是： 使用 正则表达式 既然要使用 正则表达式 ，那么就要考虑如何将一个Shell通配符格式的字符串转换成正则了。 这个功能就是由 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
@@ -25,10 +25,10 @@
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/custom.css" media="screen">
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -49,14 +49,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="/"><span class=site-name>January Star</span></a>
+                    <a class="brand" href="http://chenjiee815.github.io/"><span class=site-name>January Star</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="">Home</a></li>
-                            <li ><a href="/categories.html">Categories</a></li>
-                            <li ><a href="/tags.html">Tags</a></li>
-                            <li ><a href="/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            <li ><a href="http://chenjiee815.github.io">Home</a></li>
+                            <li ><a href="http://chenjiee815.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://chenjiee815.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://chenjiee815.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://chenjiee815.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
                         </ul>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="/fnmatchbiao-zhun-ku-yuan-ma-xue-xi.html"> fnmatch标准库源码学习  </a></h1>
+    <h1><a href="http://chenjiee815.github.io/fnmatchbiao-zhun-ku-yuan-ma-xue-xi.html"> fnmatch标准库源码学习  </a></h1>
     </header>
 </div>
 
@@ -467,7 +467,40 @@
 </div>
 
             
-            
+            <section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://chenjiee815.github.io/fnmatchbiao-zhun-ku-yuan-ma-xue-xi.html#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'chenjiee815_blog';
+        var disqus_identifier = 'http://chenjiee815.github.io/fnmatchbiao-zhun-ku-yuan-ma-xue-xi.html';
+    var disqus_url = 'http://chenjiee815.github.io/fnmatchbiao-zhun-ku-yuan-ma-xue-xi.html';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
             <hr/>
         </div>
         <section>
@@ -475,13 +508,13 @@
             <h4>Published</h4>
             <time pubdate="pubdate" datetime="2014-08-18T18:47:30.482292">Aug 18, 2014</time>
             <h4>Category</h4>
-            <a class="category-link" href="/categories.html#python-ref">Python</a>
+            <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="/tags.html#python-ref">python
+                <li><a href="http://chenjiee815.github.io/tags.html#python-ref">python
                     <span>8</span>
 </a></li>
-                <li><a href="/tags.html#stdlibs-ref">stdlibs
+                <li><a href="http://chenjiee815.github.io/tags.html#stdlibs-ref">stdlibs
                     <span>2</span>
 </a></li>
             </ul>
@@ -516,7 +549,45 @@
             }
         </script>
 
-    
+            <script type="text/javascript">
+var disqus_shortname = 'chenjiee815_blog';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
     </body>
     <!-- Theme: Elegant built for Pelican
     License : http://oncrashreboot.com/pelican-elegant -->

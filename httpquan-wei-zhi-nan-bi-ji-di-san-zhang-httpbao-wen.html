@@ -13,7 +13,7 @@
 <meta name="keywords" content="http, http, " />
 
 <meta property="og:title" content="《HTTP权威指南》笔记 第三章 HTTP报文 "/>
-<meta property="og:url" content="/httpquan-wei-zhi-nan-bi-ji-di-san-zhang-httpbao-wen.html" />
+<meta property="og:url" content="http://chenjiee815.github.io/httpquan-wei-zhi-nan-bi-ji-di-san-zhang-httpbao-wen.html" />
 <meta property="og:description" content="Contents 起始行 请求行 响应行 状态码 首部 主体 起始行 所有的HTTP报文都以一个起始行作为开始。 请求报文的起始行（请求行）说明： 要做些什么 。 响应报文的起始行（响应行）说明： 发生了什么 。 请求行 包含一个方法和一个请求URL。 这个方法描述了服务器应该执行的操作， 请求URL描述了要对哪个资源执行这个方法。 此外，它还包含了客户端使用HTTP版本。 响应行 包含服务器使用HTTP版本、数字状态码及其对应的原因短语。 所有这些字段通过空格来进行分隔。 状态码 状态码表示为三位数字。 200~299之间的状态码表示成功。 300~399之间的状态码表示资源已经被移走。 400~499之间的状态码表示客户端请求出错。 500~599之间的状态码表示服务器响应出错。 首部 本质上是一些KeyValue对的列表。 将长的首部行分为多行可以提高可读性， 多出来的每行前面至少要有一个空格或者制表符。 主体 主体是HTTP要传输的具体内容。" />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
@@ -25,10 +25,10 @@
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/custom.css" media="screen">
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -49,14 +49,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="/"><span class=site-name>January Star</span></a>
+                    <a class="brand" href="http://chenjiee815.github.io/"><span class=site-name>January Star</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="">Home</a></li>
-                            <li ><a href="/categories.html">Categories</a></li>
-                            <li ><a href="/tags.html">Tags</a></li>
-                            <li ><a href="/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            <li ><a href="http://chenjiee815.github.io">Home</a></li>
+                            <li ><a href="http://chenjiee815.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://chenjiee815.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://chenjiee815.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://chenjiee815.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
                         </ul>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="/httpquan-wei-zhi-nan-bi-ji-di-san-zhang-httpbao-wen.html"> 《HTTP权威指南》笔记 第三章 HTTP报文  </a></h1>
+    <h1><a href="http://chenjiee815.github.io/httpquan-wei-zhi-nan-bi-ji-di-san-zhang-httpbao-wen.html"> 《HTTP权威指南》笔记 第三章 HTTP报文  </a></h1>
     </header>
 </div>
 
@@ -130,7 +130,40 @@
 </div>
 
             
-            
+            <section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://chenjiee815.github.io/httpquan-wei-zhi-nan-bi-ji-di-san-zhang-httpbao-wen.html#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'chenjiee815_blog';
+        var disqus_identifier = 'http://chenjiee815.github.io/httpquan-wei-zhi-nan-bi-ji-di-san-zhang-httpbao-wen.html';
+    var disqus_url = 'http://chenjiee815.github.io/httpquan-wei-zhi-nan-bi-ji-di-san-zhang-httpbao-wen.html';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
             <hr/>
         </div>
         <section>
@@ -138,10 +171,10 @@
             <h4>Published</h4>
             <time pubdate="pubdate" datetime="2014-08-16T09:10:44.211456">Aug 16, 2014</time>
             <h4>Category</h4>
-            <a class="category-link" href="/categories.html#http-ref">http</a>
+            <a class="category-link" href="http://chenjiee815.github.io/categories.html#http-ref">http</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="/tags.html#http-ref">http
+                <li><a href="http://chenjiee815.github.io/tags.html#http-ref">http
                     <span>4</span>
 </a></li>
             </ul>
@@ -176,7 +209,45 @@
             }
         </script>
 
-    
+            <script type="text/javascript">
+var disqus_shortname = 'chenjiee815_blog';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
     </body>
     <!-- Theme: Elegant built for Pelican
     License : http://oncrashreboot.com/pelican-elegant -->
