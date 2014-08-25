@@ -77,7 +77,7 @@
         <div class="span8 offset2 article-content">
 
             
-            <html><body><div class="section" id="id1">
+            <div class="section" id="id1">
 <h2> 补充练习：绘制简单图形 </h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -109,9 +109,9 @@
 
 <span class="c1">;; 绘制红灯亮时的灯光 </span>
 <span class="p">(</span><span class="nf">start</span> <span class="nv">WIDTH</span> <span class="nv">HEIGHT</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">draw-solid-disk</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-RED</span><span class="p">)</span> <span class="nv">BULB-RADIUS</span> <span class="ss">'red</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">draw-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-YELLOW</span><span class="p">)</span> <span class="nv">BULB-RADIUS</span> <span class="ss">'yellow</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">draw-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-GREEN</span><span class="p">)</span> <span class="nv">BULB-RADIUS</span> <span class="ss">'green</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">draw-solid-disk</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-RED</span><span class="p">)</span> <span class="nv">BULB-RADIUS</span> <span class="ss">&#39;red</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">draw-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-YELLOW</span><span class="p">)</span> <span class="nv">BULB-RADIUS</span> <span class="ss">&#39;yellow</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">draw-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-GREEN</span><span class="p">)</span> <span class="nv">BULB-RADIUS</span> <span class="ss">&#39;green</span><span class="p">)</span>
 </pre></div>
 </td></tr></table><div class="section" id="id2">
 <h3> 习题 6.2.2</h3>
@@ -155,39 +155,39 @@
 <span class="c1">;; 关闭对应颜色的红绿灯 </span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">clear-bulb</span> <span class="nv">color</span><span class="p">)</span>
         <span class="p">(</span><span class="nf">cond</span>
-         <span class="p">((</span><span class="nf">symbol=?</span> <span class="nv">color</span> <span class="ss">'red</span><span class="p">)</span> <span class="p">(</span><span class="nf">clear-red-bulb</span><span class="p">))</span>
-         <span class="p">((</span><span class="nf">symbol=?</span> <span class="nv">color</span> <span class="ss">'green</span><span class="p">)</span> <span class="p">(</span><span class="nf">clear-green-bulb</span><span class="p">))</span>
-         <span class="p">((</span><span class="nf">symbol=?</span> <span class="nv">color</span> <span class="ss">'yellow</span><span class="p">)</span> <span class="p">(</span><span class="nf">clear-yellow-bulb</span><span class="p">))))</span>
+         <span class="p">((</span><span class="nf">symbol=?</span> <span class="nv">color</span> <span class="ss">&#39;red</span><span class="p">)</span> <span class="p">(</span><span class="nf">clear-red-bulb</span><span class="p">))</span>
+         <span class="p">((</span><span class="nf">symbol=?</span> <span class="nv">color</span> <span class="ss">&#39;green</span><span class="p">)</span> <span class="p">(</span><span class="nf">clear-green-bulb</span><span class="p">))</span>
+         <span class="p">((</span><span class="nf">symbol=?</span> <span class="nv">color</span> <span class="ss">&#39;yellow</span><span class="p">)</span> <span class="p">(</span><span class="nf">clear-yellow-bulb</span><span class="p">))))</span>
 
 <span class="c1">;; clear-red-bulb</span>
 <span class="c1">;; 关闭红灯 </span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">clear-red-bulb</span><span class="p">)</span>
        <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">clear-solid-disk</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-RED</span><span class="p">)</span>
                               <span class="nv">BULB-RADIUS</span>
-                              <span class="ss">'red</span><span class="p">)</span>
+                              <span class="ss">&#39;red</span><span class="p">)</span>
             <span class="p">(</span><span class="nf">draw-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-RED</span><span class="p">)</span>
                          <span class="nv">BULB-RADIUS</span>
-                         <span class="ss">'red</span><span class="p">)))</span>
+                         <span class="ss">&#39;red</span><span class="p">)))</span>
 
 <span class="c1">;; clear-yellow-bulb</span>
 <span class="c1">;; 关闭黄灯 </span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">clear-yellow-bulb</span><span class="p">)</span>
        <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">clear-solid-disk</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-YELLOW</span><span class="p">)</span>
                               <span class="nv">BULB-RADIUS</span>
-                              <span class="ss">'yellow</span><span class="p">)</span>
+                              <span class="ss">&#39;yellow</span><span class="p">)</span>
             <span class="p">(</span><span class="nf">draw-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-YELLOW</span><span class="p">)</span>
                          <span class="nv">BULB-RADIUS</span>
-                         <span class="ss">'yellow</span><span class="p">)))</span>
+                         <span class="ss">&#39;yellow</span><span class="p">)))</span>
 
 <span class="c1">;; clear-green-bulb</span>
 <span class="c1">;; 关闭绿灯 </span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">clear-green-bulb</span><span class="p">)</span>
        <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">clear-solid-disk</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-GREEN</span><span class="p">)</span>
                               <span class="nv">BULB-RADIUS</span>
-                              <span class="ss">'green</span><span class="p">)</span>
+                              <span class="ss">&#39;green</span><span class="p">)</span>
             <span class="p">(</span><span class="nf">draw-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-GREEN</span><span class="p">)</span>
                          <span class="nv">BULB-RADIUS</span>
-                         <span class="ss">'green</span><span class="p">)))</span>
+                         <span class="ss">&#39;green</span><span class="p">)))</span>
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="id3">
@@ -223,30 +223,30 @@
 <span class="c1">;; 打开对应颜色的红绿灯 </span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">draw-bulb</span> <span class="nv">color</span><span class="p">)</span>
         <span class="p">(</span><span class="nf">cond</span>
-         <span class="p">((</span><span class="nf">symbol=?</span> <span class="nv">color</span> <span class="ss">'red</span><span class="p">)</span> <span class="p">(</span><span class="nf">draw-red-bulb</span><span class="p">))</span>
-         <span class="p">((</span><span class="nf">symbol=?</span> <span class="nv">color</span> <span class="ss">'green</span><span class="p">)</span> <span class="p">(</span><span class="nf">draw-green-bulb</span><span class="p">))</span>
-         <span class="p">((</span><span class="nf">symbol=?</span> <span class="nv">color</span> <span class="ss">'yellow</span><span class="p">)</span> <span class="p">(</span><span class="nf">draw-yellow-bulb</span><span class="p">))))</span>
+         <span class="p">((</span><span class="nf">symbol=?</span> <span class="nv">color</span> <span class="ss">&#39;red</span><span class="p">)</span> <span class="p">(</span><span class="nf">draw-red-bulb</span><span class="p">))</span>
+         <span class="p">((</span><span class="nf">symbol=?</span> <span class="nv">color</span> <span class="ss">&#39;green</span><span class="p">)</span> <span class="p">(</span><span class="nf">draw-green-bulb</span><span class="p">))</span>
+         <span class="p">((</span><span class="nf">symbol=?</span> <span class="nv">color</span> <span class="ss">&#39;yellow</span><span class="p">)</span> <span class="p">(</span><span class="nf">draw-yellow-bulb</span><span class="p">))))</span>
 
 <span class="c1">;; draw-red-bulb</span>
 <span class="c1">;; 打开红灯 </span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">draw-red-bulb</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">draw-solid-disk</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-RED</span><span class="p">)</span>
                         <span class="nv">BULB-RADIUS</span>
-                        <span class="ss">'red</span><span class="p">))</span>
+                        <span class="ss">&#39;red</span><span class="p">))</span>
 
 <span class="c1">;; draw-yellow-bulb</span>
 <span class="c1">;; 打开黄灯 </span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">draw-yellow-bulb</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">draw-solid-disk</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-YELLOW</span><span class="p">)</span>
                         <span class="nv">BULB-RADIUS</span>
-                        <span class="ss">'yellow</span><span class="p">))</span>
+                        <span class="ss">&#39;yellow</span><span class="p">))</span>
 
 <span class="c1">;; draw-green-bulb</span>
 <span class="c1">;; 打开绿灯 </span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">draw-green-bulb</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">draw-solid-disk</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="nv">X-BULBS</span> <span class="nv">Y-GREEN</span><span class="p">)</span>
                         <span class="nv">BULB-RADIUS</span>
-                        <span class="ss">'green</span><span class="p">))</span>
+                        <span class="ss">&#39;green</span><span class="p">))</span>
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="id4">
@@ -278,15 +278,15 @@
 <span class="c1">;; 将当前红绿灯颜色救困扶危为下一颜色 </span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">next</span> <span class="nv">current-color</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">cond</span>
-        <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">current-color</span> <span class="ss">'red</span><span class="p">)</span>
-              <span class="p">(</span><span class="nf">switch</span> <span class="ss">'red</span> <span class="ss">'green</span><span class="p">))</span>
-          <span class="ss">'green</span><span class="p">)</span>
-        <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">current-color</span> <span class="ss">'yellow</span><span class="p">)</span>
-              <span class="p">(</span><span class="nf">switch</span> <span class="ss">'yellow</span> <span class="ss">'red</span><span class="p">))</span>
-         <span class="ss">'red</span><span class="p">)</span>
-        <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">current-color</span> <span class="ss">'green</span><span class="p">)</span>
-              <span class="p">(</span><span class="nf">switch</span> <span class="ss">'green</span> <span class="ss">'yellow</span><span class="p">))</span>
-         <span class="ss">'yellow</span><span class="p">)))</span>
+        <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">current-color</span> <span class="ss">&#39;red</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">switch</span> <span class="ss">&#39;red</span> <span class="ss">&#39;green</span><span class="p">))</span>
+          <span class="ss">&#39;green</span><span class="p">)</span>
+        <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">current-color</span> <span class="ss">&#39;yellow</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">switch</span> <span class="ss">&#39;yellow</span> <span class="ss">&#39;red</span><span class="p">))</span>
+         <span class="ss">&#39;red</span><span class="p">)</span>
+        <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">current-color</span> <span class="ss">&#39;green</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">switch</span> <span class="ss">&#39;green</span> <span class="ss">&#39;yellow</span><span class="p">))</span>
+         <span class="ss">&#39;yellow</span><span class="p">)))</span>
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -323,19 +323,19 @@
 16
 17
 18</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="nf">define-struct</span> <span class="nv">movie</span> <span class="p">(</span><span class="nf">title</span> <span class="nv">producer</span><span class="p">))</span>
-<span class="p">(</span><span class="k">define </span><span class="nv">m</span> <span class="p">(</span><span class="nf">make-movie</span> <span class="ss">'title</span> <span class="ss">'producer</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">m</span> <span class="p">(</span><span class="nf">make-movie</span> <span class="ss">&#39;title</span> <span class="ss">&#39;producer</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">movie-title</span> <span class="nv">m</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">movie-producer</span> <span class="nv">m</span><span class="p">)</span>
 
 <span class="p">(</span><span class="nf">define-struct</span> <span class="nv">boyfriend</span> <span class="p">(</span><span class="nf">name</span> <span class="nv">hair</span> <span class="nv">eyes</span> <span class="nv">phone</span><span class="p">))</span>
-<span class="p">(</span><span class="k">define </span><span class="nv">d</span> <span class="p">(</span><span class="nf">make-boyfriend</span> <span class="ss">'name</span> <span class="ss">'hair</span> <span class="ss">'eyes</span> <span class="ss">'phone</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">d</span> <span class="p">(</span><span class="nf">make-boyfriend</span> <span class="ss">&#39;name</span> <span class="ss">&#39;hair</span> <span class="ss">&#39;eyes</span> <span class="ss">&#39;phone</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">boyfriend-name</span> <span class="nv">d</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">boyfriend-hair</span> <span class="nv">d</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">boyfriend-eyes</span> <span class="nv">d</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">boyfriend-phone</span> <span class="nv">d</span><span class="p">)</span>
 
 <span class="p">(</span><span class="nf">define-struct</span> <span class="nv">cheerleader</span> <span class="p">(</span><span class="nf">name</span> <span class="nv">number</span><span class="p">))</span>
-<span class="p">(</span><span class="k">define </span><span class="nv">r</span> <span class="p">(</span><span class="nf">make-cheerleader</span> <span class="ss">'name</span> <span class="ss">'number</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">r</span> <span class="p">(</span><span class="nf">make-cheerleader</span> <span class="ss">&#39;name</span> <span class="ss">&#39;number</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">cheerleader-name</span> <span class="nv">r</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">cheerleader-number</span> <span class="nv">r</span><span class="p">)</span>
 
@@ -380,7 +380,7 @@
 </div>
 <div class="section" id="id10">
 <h2> 设计处理复合数据的函数 </h2>
-<img alt="" src="scheme/HTDP/static/ 设计诀窍精化 .png"/>
+<img alt="" src="scheme/HTDP/static/ 设计诀窍精化 .png" />
 <div class="section" id="id11">
 <h3> 习题 6.5.1</h3>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -571,8 +571,8 @@
 
 <span class="c1">;; 测试 </span>
 <span class="p">(</span><span class="nf">start</span> <span class="mi">300</span> <span class="mi">300</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">draw-a-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
-<span class="p">(</span><span class="nf">draw-a-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">150</span> <span class="mi">150</span><span class="p">)</span> <span class="mi">10</span> <span class="ss">'yellow</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">draw-a-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">&#39;red</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">draw-a-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">150</span> <span class="mi">150</span><span class="p">)</span> <span class="mi">10</span> <span class="ss">&#39;yellow</span><span class="p">))</span>
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="id16">
@@ -624,10 +624,10 @@
            <span class="p">(</span><span class="nf">circle-radius</span> <span class="nv">circle</span><span class="p">)))</span>
 
  <span class="c1">;; 测试 </span>
-<span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">in-circle?</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">in-circle?</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">&#39;red</span><span class="p">)</span>
               <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">110</span> <span class="mi">110</span><span class="p">))</span>
      <span class="no">#t</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">in-circle?</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">in-circle?</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">&#39;red</span><span class="p">)</span>
               <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">200</span> <span class="mi">210</span><span class="p">))</span>
      <span class="no">#f</span><span class="p">)</span>
 </pre></div>
@@ -657,8 +657,8 @@
                     <span class="p">(</span><span class="nf">circle-color</span> <span class="nv">circle</span><span class="p">)))</span>
 
 <span class="c1">;; 测试 </span>
-<span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">translate-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">)</span> <span class="mi">200</span><span class="p">)</span>
-     <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">300</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+<span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">translate-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">&#39;red</span><span class="p">)</span> <span class="mi">200</span><span class="p">)</span>
+     <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">300</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">&#39;red</span><span class="p">))</span>
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="id18">
@@ -683,7 +683,7 @@
 
 <span class="c1">;; 测试 </span>
 <span class="p">(</span><span class="nf">start</span> <span class="mi">300</span> <span class="mi">300</span><span class="p">)</span>
-<span class="p">(</span><span class="k">define </span><span class="nv">a-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">a-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">&#39;red</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">draw-a-circle</span> <span class="nv">a-circle</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">clear-a-circle</span> <span class="nv">a-circle</span><span class="p">)</span>
 </pre></div>
@@ -723,7 +723,7 @@
 
 <span class="c1">;; 测试 </span>
 <span class="p">(</span><span class="nf">start</span> <span class="mi">300</span> <span class="mi">300</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">draw-and-clear-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">draw-and-clear-circle</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">50</span> <span class="ss">&#39;red</span><span class="p">))</span>
 
 <span class="c1">;; move-circle: number circle -&gt; circle</span>
 <span class="c1">;; 绘制并消除一个圆，再平移 delta 个像素 </span>
@@ -738,7 +738,7 @@
 <span class="p">(</span><span class="nf">draw-a-circle</span>
  <span class="p">(</span><span class="nf">move-circle</span> <span class="mi">10</span>
   <span class="p">(</span><span class="nf">move-circle</span> <span class="mi">10</span>
-   <span class="p">(</span><span class="nf">move-circle</span> <span class="mi">10</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">50</span><span class="p">)</span> <span class="mi">20</span> <span class="ss">'red</span><span class="p">)))))</span>
+   <span class="p">(</span><span class="nf">move-circle</span> <span class="mi">10</span> <span class="p">(</span><span class="nf">make-circle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">50</span><span class="p">)</span> <span class="mi">20</span> <span class="ss">&#39;red</span><span class="p">)))))</span>
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="id20">
@@ -794,7 +794,7 @@
 <span class="p">(</span><span class="nf">draw-a-rectangle</span> <span class="p">(</span><span class="nf">make-rectangle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span>
                                   <span class="mi">100</span>
                                   <span class="mi">50</span>
-                                  <span class="ss">'red</span><span class="p">))</span>
+                                  <span class="ss">&#39;red</span><span class="p">))</span>
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="id22">
@@ -875,7 +875,7 @@
          <span class="p">(</span><span class="nf">rectangle-color</span> <span class="nv">a-rectangle</span><span class="p">))))</span>
 
 <span class="c1">;; 测试 </span>
-<span class="p">(</span><span class="k">define </span><span class="nv">src-rectangle</span> <span class="p">(</span><span class="nf">make-rectangle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">100</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">src-rectangle</span> <span class="p">(</span><span class="nf">make-rectangle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">100</span> <span class="mi">50</span> <span class="ss">&#39;red</span><span class="p">))</span>
 <span class="p">(</span><span class="k">define </span><span class="nv">new-rectangle</span> <span class="p">(</span><span class="nf">translate-rectangle</span> <span class="nv">src-rectangle</span> <span class="mi">20</span><span class="p">))</span>
 <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">posn-x</span> <span class="p">(</span><span class="nf">rectangle-nw-corner</span> <span class="nv">src-rectangle</span><span class="p">))</span> <span class="mi">20</span><span class="p">)</span>
    <span class="p">(</span><span class="nf">posn-x</span> <span class="p">(</span><span class="nf">rectangle-nw-corner</span> <span class="nv">new-rectangle</span><span class="p">)))</span>
@@ -905,7 +905,7 @@
 
 <span class="c1">;; 测试 </span>
 <span class="p">(</span><span class="nf">start</span> <span class="mi">300</span> <span class="mi">300</span><span class="p">)</span>
-<span class="p">(</span><span class="k">define </span><span class="nv">a-rectangle</span> <span class="p">(</span><span class="nf">make-rectangle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">100</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">a-rectangle</span> <span class="p">(</span><span class="nf">make-rectangle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">100</span> <span class="mi">50</span> <span class="ss">&#39;red</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">draw-a-rectangle</span> <span class="nv">a-rectangle</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">clear-a-rectangle</span> <span class="nv">a-rectangle</span><span class="p">)</span>
 </pre></div>
@@ -947,7 +947,7 @@
 
 <span class="c1">;; 测试 </span>
 <span class="p">(</span><span class="nf">start</span> <span class="mi">300</span> <span class="mi">300</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">draw-and-clear-rectangle</span> <span class="p">(</span><span class="nf">make-rectangle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">100</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">draw-and-clear-rectangle</span> <span class="p">(</span><span class="nf">make-rectangle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">100</span> <span class="mi">50</span> <span class="ss">&#39;red</span><span class="p">))</span>
 
 <span class="c1">;; move-rectangle: number rectangle -&gt; rectangle</span>
 <span class="c1">;; 绘制并清除一个长方形，然后平移 delta 个像素 </span>
@@ -958,7 +958,7 @@
         <span class="p">(</span><span class="k">else </span><span class="nv">a-rectangle</span><span class="p">)))</span>
 
 <span class="c1">;; 创建一个长方形，并移动 4 次 </span>
-<span class="p">(</span><span class="k">define </span><span class="nv">a-rectangle</span> <span class="p">(</span><span class="nf">make-rectangle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">100</span> <span class="mi">50</span> <span class="ss">'red</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">a-rectangle</span> <span class="p">(</span><span class="nf">make-rectangle</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">100</span><span class="p">)</span> <span class="mi">100</span> <span class="mi">50</span> <span class="ss">&#39;red</span><span class="p">))</span>
 
 <span class="p">(</span><span class="nf">draw-a-rectangle</span>
  <span class="p">(</span><span class="nf">move-rectangle</span> <span class="mi">10</span>
@@ -1069,96 +1069,96 @@
 93</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">;; draw-next-part: symbol -&gt; boolean</span>
 <span class="c1">;; 绘制人体的某一部分，</span>
 <span class="c1">;; 函数输入为以下七个符号之一 :</span>
-<span class="c1">;; 'right-leg 'left-leg 'left-arm 'right-arm 'body 'head 'noose</span>
+<span class="c1">;; &#39;right-leg &#39;left-leg &#39;left-arm &#39;right-arm &#39;body &#39;head &#39;noose</span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">draw-next-part</span> <span class="nv">body-part</span><span class="p">)</span>
  <span class="p">(</span><span class="nf">cond</span>
-  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">'body</span><span class="p">)</span>
+  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">&#39;body</span><span class="p">)</span>
    <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">60</span><span class="p">)</span>
                     <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">130</span><span class="p">)</span>
-                    <span class="ss">'black</span><span class="p">)]</span>
-  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">'right-leg</span><span class="p">)</span>
+                    <span class="ss">&#39;black</span><span class="p">)]</span>
+  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">&#39;right-leg</span><span class="p">)</span>
    <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">130</span><span class="p">)</span>
                     <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">30</span> <span class="mi">170</span><span class="p">)</span>
-                    <span class="ss">'black</span><span class="p">)]</span>
-  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">'left-leg</span><span class="p">)</span>
+                    <span class="ss">&#39;black</span><span class="p">)]</span>
+  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">&#39;left-leg</span><span class="p">)</span>
    <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">130</span><span class="p">)</span>
                    <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">170</span> <span class="mi">170</span><span class="p">)</span>
-                   <span class="ss">'black</span><span class="p">)]</span>
-  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">'right-arm</span><span class="p">)</span>
+                   <span class="ss">&#39;black</span><span class="p">)]</span>
+  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">&#39;right-arm</span><span class="p">)</span>
    <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">75</span><span class="p">)</span>
                     <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">40</span> <span class="mi">65</span><span class="p">)</span>
-                    <span class="ss">'black</span><span class="p">)]</span>
-  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">'left-arm</span><span class="p">)</span>
+                    <span class="ss">&#39;black</span><span class="p">)]</span>
+  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">&#39;left-arm</span><span class="p">)</span>
    <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">75</span><span class="p">)</span>
                     <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">160</span> <span class="mi">65</span><span class="p">)</span>
-                    <span class="ss">'black</span><span class="p">)]</span>
-  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">'head</span><span class="p">)</span>
+                    <span class="ss">&#39;black</span><span class="p">)]</span>
+  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">&#39;head</span><span class="p">)</span>
    <span class="p">(</span><span class="nf">and</span>
-    <span class="p">(</span><span class="nf">draw-solid-disk</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">120</span> <span class="mi">50</span><span class="p">)</span> <span class="mi">30</span> <span class="ss">'red</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">draw-solid-disk</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">120</span> <span class="mi">50</span><span class="p">)</span> <span class="mi">30</span> <span class="ss">&#39;red</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">115</span> <span class="mi">35</span><span class="p">)</span>
                      <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">123</span> <span class="mi">43</span><span class="p">)</span>
-                     <span class="ss">'black</span><span class="p">)</span>
+                     <span class="ss">&#39;black</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">123</span> <span class="mi">35</span><span class="p">)</span>
                      <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">115</span> <span class="mi">43</span><span class="p">)</span>
-                     <span class="ss">'black</span><span class="p">)</span>
+                     <span class="ss">&#39;black</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">131</span> <span class="mi">40</span><span class="p">)</span>
                      <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">139</span> <span class="mi">48</span><span class="p">)</span>
-                     <span class="ss">'black</span><span class="p">)</span>
+                     <span class="ss">&#39;black</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">139</span> <span class="mi">40</span><span class="p">)</span>
                      <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">131</span> <span class="mi">48</span><span class="p">)</span>
-                     <span class="ss">'black</span><span class="p">))]</span>
-  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">'noose</span><span class="p">)</span>
+                     <span class="ss">&#39;black</span><span class="p">))]</span>
+  <span class="p">[(</span><span class="nb">eq? </span><span class="nv">body-part</span> <span class="ss">&#39;noose</span><span class="p">)</span>
    <span class="p">(</span><span class="nf">and</span>
     <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">30</span><span class="p">)</span>
                      <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">10</span><span class="p">)</span>
-                     <span class="ss">'black</span><span class="p">)</span>
+                     <span class="ss">&#39;black</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">draw-solid-line</span> <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">100</span> <span class="mi">10</span><span class="p">)</span>
                      <span class="p">(</span><span class="nf">make-posn</span> <span class="mi">0</span> <span class="mi">10</span><span class="p">)</span>
-                     <span class="ss">'black</span><span class="p">))]))</span>
+                     <span class="ss">&#39;black</span><span class="p">))]))</span>
 
  <span class="c1">;; 测试 </span>
 
  <span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'noose</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;noose</span><span class="p">)</span>
 
  <span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'noose</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'head</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;noose</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;head</span><span class="p">)</span>
 
  <span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'noose</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'head</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'body</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;noose</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;head</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;body</span><span class="p">)</span>
 
  <span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'noose</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'head</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'body</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'right-arm</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;noose</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;head</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;body</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;right-arm</span><span class="p">)</span>
 
  <span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'noose</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'head</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'body</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'right-arm</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'left-arm</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;noose</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;head</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;body</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;right-arm</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;left-arm</span><span class="p">)</span>
 
  <span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'noose</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'head</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'body</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'right-arm</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'left-arm</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'right-leg</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;noose</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;head</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;body</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;right-arm</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;left-arm</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;right-leg</span><span class="p">)</span>
 
  <span class="p">(</span><span class="nf">start</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'noose</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'head</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'body</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'right-arm</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'left-arm</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'right-leg</span><span class="p">)</span>
- <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">'left-leg</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;noose</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;head</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;body</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;right-arm</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;left-arm</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;right-leg</span><span class="p">)</span>
+ <span class="p">(</span><span class="nf">draw-next-part</span> <span class="ss">&#39;left-leg</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="id28">
@@ -1232,21 +1232,21 @@
          <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">chars-c</span> <span class="nv">status</span><span class="p">)))))</span>
 
 <span class="c1">;; 测试 </span>
-<span class="p">(</span><span class="nf">reveal</span> <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">'t</span> <span class="ss">'e</span> <span class="ss">'a</span><span class="p">)</span>
-        <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">'_</span> <span class="ss">'e</span> <span class="ss">'_</span><span class="p">)</span>
-        <span class="ss">'u</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">reveal</span> <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">&#39;t</span> <span class="ss">&#39;e</span> <span class="ss">&#39;a</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">&#39;_</span> <span class="ss">&#39;e</span> <span class="ss">&#39;_</span><span class="p">)</span>
+        <span class="ss">&#39;u</span><span class="p">)</span>
 
-<span class="p">(</span><span class="nf">reveal</span> <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">'a</span> <span class="ss">'l</span> <span class="ss">'e</span><span class="p">)</span>
-        <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">'a</span> <span class="ss">'_</span> <span class="ss">'_</span><span class="p">)</span>
-        <span class="ss">'e</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">reveal</span> <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">&#39;a</span> <span class="ss">&#39;l</span> <span class="ss">&#39;e</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">&#39;a</span> <span class="ss">&#39;_</span> <span class="ss">&#39;_</span><span class="p">)</span>
+        <span class="ss">&#39;e</span><span class="p">)</span>
 
-<span class="p">(</span><span class="nf">reveal</span> <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">'a</span> <span class="ss">'l</span> <span class="ss">'l</span><span class="p">)</span>
-        <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">'_</span> <span class="ss">'_</span> <span class="ss">'_</span><span class="p">)</span>
-        <span class="ss">'l</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">reveal</span> <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">&#39;a</span> <span class="ss">&#39;l</span> <span class="ss">&#39;l</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">make-chars</span> <span class="ss">&#39;_</span> <span class="ss">&#39;_</span> <span class="ss">&#39;_</span><span class="p">)</span>
+        <span class="ss">&#39;l</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
 </div>
-</body></html>
+
             
             <section>
 <div class="accordion" id="accordion2">

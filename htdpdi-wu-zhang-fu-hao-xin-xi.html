@@ -77,7 +77,7 @@
         <div class="span8 offset2 article-content">
 
             
-            <html><body><div class="section" id="id1">
+            <div class="section" id="id1">
 <h2> 习题 5.1.1</h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -88,10 +88,10 @@
 7</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">;; replay: symbol -&gt; symbol</span>
 <span class="c1">;; 用布尔表达式来来表示问候与回答 </span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reply</span> <span class="nv">s</span><span class="p">)</span>
-        <span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'GoodMorning</span><span class="p">)</span> <span class="ss">'Hi</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'HowAreYou?</span><span class="p">)</span> <span class="ss">'Fine</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'GoodAternoon</span><span class="p">)</span> <span class="ss">'INeedANap</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">'GoodEvening</span><span class="p">)</span> <span class="ss">'BoyAmITired</span><span class="p">)))</span>
+        <span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">&#39;GoodMorning</span><span class="p">)</span> <span class="ss">&#39;Hi</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">&#39;HowAreYou?</span><span class="p">)</span> <span class="ss">&#39;Fine</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">&#39;GoodAternoon</span><span class="p">)</span> <span class="ss">&#39;INeedANap</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">s</span> <span class="ss">&#39;GoodEvening</span><span class="p">)</span> <span class="ss">&#39;BoyAmITired</span><span class="p">)))</span>
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="id2">
@@ -106,9 +106,9 @@
 <span class="c1">;; 比较猜测的数和目的数得出猜测数是猜大了、是猜小了还是猜对了 </span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">check-guess</span> <span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span>
         <span class="p">(</span><span class="nf">cond</span>
-         <span class="p">((</span><span class="nb">&lt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">'TooSmall</span><span class="p">)</span>
-         <span class="p">((</span><span class="nb">&gt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">'TooLarge</span><span class="p">)</span>
-         <span class="p">(</span><span class="k">else </span><span class="ss">'Perfect</span><span class="p">)))</span>
+         <span class="p">((</span><span class="nb">&lt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">&#39;TooSmall</span><span class="p">)</span>
+         <span class="p">((</span><span class="nb">&gt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">&#39;TooLarge</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">else </span><span class="ss">&#39;Perfect</span><span class="p">)))</span>
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="id3">
@@ -132,9 +132,9 @@
         <span class="p">(</span><span class="nf">let</span>
             <span class="p">((</span><span class="nf">guess</span> <span class="p">(</span><span class="nf">number3</span> <span class="nv">n1</span> <span class="nv">n2</span> <span class="nv">n3</span><span class="p">)))</span>
           <span class="p">(</span><span class="nf">cond</span>
-           <span class="p">((</span><span class="nb">&lt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">'TooSmall</span><span class="p">)</span>
-           <span class="p">((</span><span class="nb">&gt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">'TooLarge</span><span class="p">)</span>
-           <span class="p">(</span><span class="k">else </span><span class="ss">'Perfect</span><span class="p">))))</span>
+           <span class="p">((</span><span class="nb">&lt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">&#39;TooSmall</span><span class="p">)</span>
+           <span class="p">((</span><span class="nb">&gt; </span><span class="nv">guess</span> <span class="nv">target</span><span class="p">)</span> <span class="ss">&#39;TooLarge</span><span class="p">)</span>
+           <span class="p">(</span><span class="k">else </span><span class="ss">&#39;Perfect</span><span class="p">))))</span>
 
 <span class="c1">;; number3: number number number -&gt; number</span>
 <span class="c1">;; 根据一个三位数每位数，得出其数 </span>
@@ -155,10 +155,10 @@
 <span class="c1">;; 根据一个方程的三个系数得出该方程是否为退化方程，如果不是则该方程有几个解 </span>
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">what-kind</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
         <span class="p">(</span><span class="nf">cond</span>
-         <span class="p">((</span><span class="nb">eq? </span><span class="nv">a</span> <span class="mi">0</span><span class="p">)</span> <span class="ss">'degenerate</span><span class="p">)</span>
-         <span class="p">((</span><span class="nb">&gt; </span><span class="p">(</span><span class="nb">* </span><span class="nv">b</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">a</span> <span class="nv">c</span><span class="p">))</span> <span class="ss">'two</span><span class="p">)</span>
-         <span class="p">((</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">* </span><span class="nv">b</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">a</span> <span class="nv">c</span><span class="p">))</span> <span class="ss">'one</span><span class="p">)</span>
-         <span class="p">(</span><span class="k">else </span><span class="ss">'none</span><span class="p">)))</span>
+         <span class="p">((</span><span class="nb">eq? </span><span class="nv">a</span> <span class="mi">0</span><span class="p">)</span> <span class="ss">&#39;degenerate</span><span class="p">)</span>
+         <span class="p">((</span><span class="nb">&gt; </span><span class="p">(</span><span class="nb">* </span><span class="nv">b</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">a</span> <span class="nv">c</span><span class="p">))</span> <span class="ss">&#39;two</span><span class="p">)</span>
+         <span class="p">((</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">* </span><span class="nv">b</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="nv">a</span> <span class="nv">c</span><span class="p">))</span> <span class="ss">&#39;one</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">else </span><span class="ss">&#39;none</span><span class="p">)))</span>
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="id5">
@@ -182,17 +182,17 @@
         <span class="p">(</span><span class="nf">cond</span>
          <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t1</span> <span class="nv">g1</span><span class="p">)</span>
                <span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t2</span> <span class="nv">g2</span><span class="p">))</span>
-          <span class="ss">'Perfect</span><span class="p">)</span>
+          <span class="ss">&#39;Perfect</span><span class="p">)</span>
          <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t1</span> <span class="nv">g1</span><span class="p">)</span>
               <span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t2</span> <span class="nv">g2</span><span class="p">))</span>
-          <span class="ss">'OneColorAtCorrectPosition</span><span class="p">)</span>
+          <span class="ss">&#39;OneColorAtCorrectPosition</span><span class="p">)</span>
          <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t1</span> <span class="nv">g2</span><span class="p">)</span>
               <span class="p">(</span><span class="nf">symbol=?</span> <span class="nv">t2</span> <span class="nv">g1</span><span class="p">))</span>
-          <span class="ss">'OneColorOccurs</span><span class="p">)</span>
-         <span class="p">(</span><span class="k">else </span><span class="ss">'NothingCorrect</span><span class="p">)))</span>
+          <span class="ss">&#39;OneColorOccurs</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">else </span><span class="ss">&#39;NothingCorrect</span><span class="p">)))</span>
 </pre></div>
 </td></tr></table></div>
-</body></html>
+
             
             <section>
 <div class="accordion" id="accordion2">

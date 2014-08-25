@@ -77,7 +77,7 @@
         <div class="span8 offset2 article-content">
 
             
-            <html><body><div class="section" id="id2">
+            <div class="section" id="id2">
 <h2> 文字版本 </h2>
 <p><strong> 生命是一段漫长的旅程 </strong></p>
 <pre class="literal-block">
@@ -235,12 +235,12 @@
 
 <span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="s">"UNKNOWN"</span>
-    <span class="n">THOUGHT</span> <span class="o">=</span> <span class="s">"THOUGHT"</span>
-    <span class="n">LOST</span> <span class="o">=</span> <span class="s">"LOST"</span>
-    <span class="n">WON</span> <span class="o">=</span> <span class="s">"WON"</span>
-    <span class="n">DIED</span> <span class="o">=</span> <span class="s">"DIED"</span>
-    <span class="n">FELL</span> <span class="o">=</span> <span class="s">"FELL"</span>
+    <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="s">&quot;UNKNOWN&quot;</span>
+    <span class="n">THOUGHT</span> <span class="o">=</span> <span class="s">&quot;THOUGHT&quot;</span>
+    <span class="n">LOST</span> <span class="o">=</span> <span class="s">&quot;LOST&quot;</span>
+    <span class="n">WON</span> <span class="o">=</span> <span class="s">&quot;WON&quot;</span>
+    <span class="n">DIED</span> <span class="o">=</span> <span class="s">&quot;DIED&quot;</span>
+    <span class="n">FELL</span> <span class="o">=</span> <span class="s">&quot;FELL&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lose_interval</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">win_interval</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">fall_interval</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Person</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
@@ -251,7 +251,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__fall_interval</span> <span class="o">=</span> <span class="n">fall_interval</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s">"Person: {0}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__status</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s">&quot;Person: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__status</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -293,9 +293,9 @@
 
 <span class="k">class</span> <span class="nc">Thing</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="s">'UNKNOWN'</span>
-    <span class="n">REGRETS</span> <span class="o">=</span> <span class="s">'REGRETS'</span>
-    <span class="n">NO_REGRETS</span> <span class="o">=</span> <span class="s">'NO REGRETS'</span>
+    <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="s">&#39;UNKNOWN&#39;</span>
+    <span class="n">REGRETS</span> <span class="o">=</span> <span class="s">&#39;REGRETS&#39;</span>
+    <span class="n">NO_REGRETS</span> <span class="o">=</span> <span class="s">&#39;NO REGRETS&#39;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Thing</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
@@ -360,13 +360,13 @@
     <span class="n">life</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
     <span class="k">print</span> <span class="n">life</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></li>
 </ul>
 </div>
-</body></html>
+
             
             <section>
 <div class="accordion" id="accordion2">
