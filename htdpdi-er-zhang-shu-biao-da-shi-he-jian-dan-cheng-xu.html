@@ -14,12 +14,12 @@
 
 <meta property="og:title" content="HTDP第二章：数、表达式和简单程序 "/>
 <meta property="og:url" content="http://chenjiee815.github.io/htdpdi-er-zhang-shu-biao-da-shi-he-jian-dan-cheng-xu.html" />
-<meta property="og:description" content="这一章开始4小段简单介绍了一下Racket/Scheme语法。 Racket/Scheme的语法相当简单，所以廖廖几页就说完了。 相关的习题也是讲解： 各种不符合Racket/Scheme语法情况下的代码的运行出错提示是什么。 2.5段则给出了一个 设计诀窍 表格。 其实就是设计一个函数的具体步骤有哪些。 程序设计原则 这里我也具体列出下面每章都会提及的程序设计原则。 辅助函数原则 对在表述中所提到的或在进行实例计算中所发现的每种依赖关系 都使用一个辅助函数进行明确表达。 变量定义原则 给频繁使用的常量定义一个名字，并在程序中使用。 表达式计算原则 简化最外（最左的）可以计算的表达式。" />
+<meta property="og:description" content="这一章开始 4 小段简单介绍了一下 Racket/Scheme 语法。 Racket/Scheme 的语法相当简单，所以廖廖几页就说完了。 相关的习题也是讲解： 各种不符合 Racket/Scheme 语法情况下的代码的运行出错提示是什么。 2.5 段则给出了一个 设计诀窍 表格。 其实就是设计一个函数的具体步骤有哪些。 程序设计原则 这里我也具体列出下面每章都会提及的程序设计原则。 辅助函数原则 对在表述中所提到的或在进行实例计算中所发现的每种依赖关系 都使用一个辅助函数进行明确表达。 变量定义原则 给频繁使用的常量定义一个名字，并在程序中使用。 表达式计算原则 简化最外（最左的）可以计算的表达式。" />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
 <meta property="og:article:published_time" content="2014-08-16T09:13:19.110161" />
 <meta name="twitter:title" content="HTDP第二章：数、表达式和简单程序 ">
-<meta name="twitter:description" content="这一章开始4小段简单介绍了一下Racket/Scheme语法。 Racket/Scheme的语法相当简单，所以廖廖几页就说完了。 相关的习题也是讲解： 各种不符合Racket/Scheme语法情况下的代码的运行出错提示是什么。 2.5段则给出了一个 设计诀窍 表格。 其实就是设计一个函数的具体步骤有哪些。 程序设计原则 这里我也具体列出下面每章都会提及的程序设计原则。 辅助函数原则 对在表述中所提到的或在进行实例计算中所发现的每种依赖关系 都使用一个辅助函数进行明确表达。 变量定义原则 给频繁使用的常量定义一个名字，并在程序中使用。 表达式计算原则 简化最外（最左的）可以计算的表达式。">
+<meta name="twitter:description" content="这一章开始 4 小段简单介绍了一下 Racket/Scheme 语法。 Racket/Scheme 的语法相当简单，所以廖廖几页就说完了。 相关的习题也是讲解： 各种不符合 Racket/Scheme 语法情况下的代码的运行出错提示是什么。 2.5 段则给出了一个 设计诀窍 表格。 其实就是设计一个函数的具体步骤有哪些。 程序设计原则 这里我也具体列出下面每章都会提及的程序设计原则。 辅助函数原则 对在表述中所提到的或在进行实例计算中所发现的每种依赖关系 都使用一个辅助函数进行明确表达。 变量定义原则 给频繁使用的常量定义一个名字，并在程序中使用。 表达式计算原则 简化最外（最左的）可以计算的表达式。">
 
         <title>HTDP第二章：数、表达式和简单程序  · January Star
 </title>
@@ -77,29 +77,29 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>这一章开始4小段简单介绍了一下Racket/Scheme语法。</p>
-<p>Racket/Scheme的语法相当简单，所以廖廖几页就说完了。</p>
-<p>相关的习题也是讲解：</p>
+            <html><body><p> 这一章开始 4 小段简单介绍了一下 Racket/Scheme 语法。</p>
+<p>Racket/Scheme 的语法相当简单，所以廖廖几页就说完了。</p>
+<p> 相关的习题也是讲解：</p>
 <blockquote>
-各种不符合Racket/Scheme语法情况下的代码的运行出错提示是什么。</blockquote>
-<p>2.5段则给出了一个 <cite>设计诀窍</cite> 表格。
+各种不符合 Racket/Scheme 语法情况下的代码的运行出错提示是什么。</blockquote>
+<p>2.5 段则给出了一个 <cite> 设计诀窍 </cite> 表格。
 其实就是设计一个函数的具体步骤有哪些。</p>
-<img alt="" src="scheme/HTDP/static/设计诀窍.png" />
+<img alt="" src="scheme/HTDP/static/ 设计诀窍 .png"/>
 <div class="section" id="id1">
-<h2>程序设计原则</h2>
-<p>这里我也具体列出下面每章都会提及的程序设计原则。</p>
-<p><strong>辅助函数原则</strong></p>
+<h2> 程序设计原则 </h2>
+<p> 这里我也具体列出下面每章都会提及的程序设计原则。</p>
+<p><strong> 辅助函数原则 </strong></p>
 <blockquote>
 对在表述中所提到的或在进行实例计算中所发现的每种依赖关系
 都使用一个辅助函数进行明确表达。</blockquote>
-<p><strong>变量定义原则</strong></p>
+<p><strong> 变量定义原则 </strong></p>
 <blockquote>
 给频繁使用的常量定义一个名字，并在程序中使用。</blockquote>
-<p><strong>表达式计算原则</strong></p>
+<p><strong> 表达式计算原则 </strong></p>
 <blockquote>
 简化最外（最左的）可以计算的表达式。</blockquote>
 </div>
-
+</body></html>
             
             <section>
 <div class="accordion" id="accordion2">

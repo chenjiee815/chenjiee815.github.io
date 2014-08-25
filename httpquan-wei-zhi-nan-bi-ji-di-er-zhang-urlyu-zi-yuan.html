@@ -14,12 +14,12 @@
 
 <meta property="og:title" content="《HTTP权威指南》笔记 第二章 URL与资源 "/>
 <meta property="og:url" content="http://chenjiee815.github.io/httpquan-wei-zhi-nan-bi-ji-di-er-zhang-urlyu-zi-yuan.html" />
-<meta property="og:description" content="Contents URL语法 相对URL 转义字符 保留字符 URL语法 大多数URL的格式： &lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt; 其中最重要的是scheme, host, path。 相对URL 有时候网页里面的URL不是绝对路径的， 那么就会有相应的算法将之转换成绝对URL。 转义字符 为了在URL中表示各种不安全的字符， 需要在URL用转义字符来表示这些不安全的字符。 这种转义表示法包含一个百分号，后面跟着两个表示字符ASCII码的16进制数。 一些编码字符举例 字符 ASCII码 示例URL ~ 126(0x7E) http://www.joes-hardware.com/%7Ejoe 空格 32(0x20) http://www.joes-hardware.com/more%20tools.html 保留字符 在URL中 ..." />
+<meta property="og:description" content="URL 语法 大多数 URL 的格式： &lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt; 其中最重要的是 scheme, host, path。 相对 URL 有时候网页里面的 URL 不是绝对路径的， 那么就会有相应的算法将之转换成绝对 URL。 转义字符 为了在 URL 中表示各种不安全的字符， 需要在 URL 用转义字符来表示这些不安全的字符。 这种转义表示法包含一个百分号，后面跟着两个表示字符 ASCII 码的 16 进制数。 一些编码字符举例 字符 ASCII 码 示例 URL ~ 126(0x7E) http://www.joes-hardware.com ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
 <meta property="og:article:published_time" content="2014-08-16T09:10:44.206287" />
 <meta name="twitter:title" content="《HTTP权威指南》笔记 第二章 URL与资源 ">
-<meta name="twitter:description" content="Contents URL语法 相对URL 转义字符 保留字符 URL语法 大多数URL的格式： &lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt; 其中最重要的是scheme, host, path。 相对URL 有时候网页里面的URL不是绝对路径的， 那么就会有相应的算法将之转换成绝对URL。 转义字符 为了在URL中表示各种不安全的字符， 需要在URL用转义字符来表示这些不安全的字符。 这种转义表示法包含一个百分号，后面跟着两个表示字符ASCII码的16进制数。 一些编码字符举例 字符 ASCII码 示例URL ~ 126(0x7E) http://www.joes-hardware.com/%7Ejoe 空格 32(0x20) http://www.joes-hardware.com/more%20tools.html 保留字符 在URL中 ...">
+<meta name="twitter:description" content="URL 语法 大多数 URL 的格式： &lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt; 其中最重要的是 scheme, host, path。 相对 URL 有时候网页里面的 URL 不是绝对路径的， 那么就会有相应的算法将之转换成绝对 URL。 转义字符 为了在 URL 中表示各种不安全的字符， 需要在 URL 用转义字符来表示这些不安全的字符。 这种转义表示法包含一个百分号，后面跟着两个表示字符 ASCII 码的 16 进制数。 一些编码字符举例 字符 ASCII 码 示例 URL ~ 126(0x7E) http://www.joes-hardware.com ...">
 
         <title>《HTTP权威指南》笔记 第二章 URL与资源  · January Star
 </title>
@@ -74,49 +74,55 @@
 </div>
 
 <div class="row-fluid">
-        <div class="span8 offset2 article-content">
-
-            
-            <img alt="" src="http_definitive_guide/static/url.png" />
-<div class="contents topic" id="contents">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#url" id="id4">URL语法</a></li>
-<li><a class="reference internal" href="#id1" id="id5">相对URL</a></li>
-<li><a class="reference internal" href="#id2" id="id6">转义字符</a></li>
-<li><a class="reference internal" href="#id3" id="id7">保留字符</a></li>
+<li><a class="reference internal" href="#url" id="id4">URL 语法 </a></li>
+<li><a class="reference internal" href="#id1" id="id5"> 相对 URL</a></li>
+<li><a class="reference internal" href="#id2" id="id6"> 转义字符 </a></li>
+<li><a class="reference internal" href="#id3" id="id7"> 保留字符 </a></li>
 </ul>
 </div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            <html><body><img alt="" src="http_definitive_guide/static/url.png"/>
+
 <div class="section" id="url">
-<h2><a class="toc-backref" href="#id4">URL语法</a></h2>
-<p>大多数URL的格式：</p>
+<h2><a class="toc-backref" href="#id4">URL 语法 </a></h2>
+<p> 大多数 URL 的格式：</p>
 <blockquote>
-&lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;&#64;&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt;</blockquote>
-<p>其中最重要的是scheme, host, path。</p>
-<img alt="" src="http_definitive_guide/static/url_format.png" />
+&lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt;</blockquote>
+<p> 其中最重要的是 scheme, host, path。</p>
+<img alt="" src="http_definitive_guide/static/url_format.png"/>
 </div>
 <div class="section" id="id1">
-<h2><a class="toc-backref" href="#id5">相对URL</a></h2>
-<p>有时候网页里面的URL不是绝对路径的，
-那么就会有相应的算法将之转换成绝对URL。</p>
-<img alt="" src="http_definitive_guide/static/relative_url.png" />
+<h2><a class="toc-backref" href="#id5"> 相对 URL</a></h2>
+<p> 有时候网页里面的 URL 不是绝对路径的，
+那么就会有相应的算法将之转换成绝对 URL。</p>
+<img alt="" src="http_definitive_guide/static/relative_url.png"/>
 </div>
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id6">转义字符</a></h2>
-<p>为了在URL中表示各种不安全的字符，
-需要在URL用转义字符来表示这些不安全的字符。</p>
-<p>这种转义表示法包含一个百分号，后面跟着两个表示字符ASCII码的16进制数。</p>
+<h2><a class="toc-backref" href="#id6"> 转义字符 </a></h2>
+<p> 为了在 URL 中表示各种不安全的字符，
+需要在 URL 用转义字符来表示这些不安全的字符。</p>
+<p> 这种转义表示法包含一个百分号，后面跟着两个表示字符 ASCII 码的 16 进制数。</p>
 <table border="1" class="docutils">
-<caption>一些编码字符举例</caption>
+<caption> 一些编码字符举例 </caption>
 <colgroup>
-<col width="17%" />
-<col width="17%" />
-<col width="67%" />
+<col width="17%"></col>
+<col width="17%"></col>
+<col width="67%"></col>
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">字符</th>
-<th class="head">ASCII码</th>
-<th class="head">示例URL</th>
+<tr><th class="head"> 字符 </th>
+<th class="head">ASCII 码 </th>
+<th class="head"> 示例 URL</th>
 </tr>
 </thead>
 <tbody valign="top">
@@ -124,7 +130,7 @@
 <td>126(0x7E)</td>
 <td><a class="reference external" href="http://www.joes-hardware.com/%7Ejoe">http://www.joes-hardware.com/%7Ejoe</a></td>
 </tr>
-<tr><td>空格</td>
+<tr><td> 空格 </td>
 <td>32(0x20)</td>
 <td><a class="reference external" href="http://www.joes-hardware.com/more%20tools.html">http://www.joes-hardware.com/more%20tools.html</a></td>
 </tr>
@@ -132,11 +138,11 @@
 </table>
 </div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id7">保留字符</a></h2>
-<p>在URL中，有几个字符被保留起来，有特殊的用途。</p>
-<img alt="" src="http_definitive_guide/static/reserved_and_restricted_characters.png" />
+<h2><a class="toc-backref" href="#id7"> 保留字符 </a></h2>
+<p> 在 URL 中，有几个字符被保留起来，有特殊的用途。</p>
+<img alt="" src="http_definitive_guide/static/reserved_and_restricted_characters.png"/>
 </div>
-
+</body></html>
             
             <section>
 <div class="accordion" id="accordion2">
