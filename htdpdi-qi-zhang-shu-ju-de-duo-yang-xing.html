@@ -17,7 +17,7 @@
 <meta property="og:description" content="数据混合与区分 之前设计的函数都是只能处理一种类型的数据。 这章要讲的是同一个函数如何能处理不同的类型的数据。 其实很简单，在函数的开头， 通过一定的方法先判断一下传入的数据属于哪一类型即可。 1 2 3 4 5 6 7 8 9 10 11 12 13(define PI 3.14) (define-struct square (nw length)) ;; nw 为 posn 结构体， length 为数值 (define-struct circle (center radius)) ;; center 为 posn 结构体， radius 为数值 ;; perimeter: a-shape -&gt; number ;; 传入一个图形来获取其周长（只支持正方形、圆形） (define ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-08-16T09:13:19.258427" />
+<meta property="og:article:published_time" content="2014-08-28T20:51:34.883602" />
 <meta name="twitter:title" content="HTDP第七章：数据的多样性 ">
 <meta name="twitter:description" content="数据混合与区分 之前设计的函数都是只能处理一种类型的数据。 这章要讲的是同一个函数如何能处理不同的类型的数据。 其实很简单，在函数的开头， 通过一定的方法先判断一下传入的数据属于哪一类型即可。 1 2 3 4 5 6 7 8 9 10 11 12 13(define PI 3.14) (define-struct square (nw length)) ;; nw 为 posn 结构体， length 为数值 (define-struct circle (center radius)) ;; center 为 posn 结构体， radius 为数值 ;; perimeter: a-shape -&gt; number ;; 传入一个图形来获取其周长（只支持正方形、圆形） (define ...">
 
@@ -167,7 +167,7 @@
 </div>
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id21"> 设计处理混合数据的函数 </a></h2>
-<img alt="" src="scheme/HTDP/static/ 处理混合数据的函数 .png"/>
+<img alt="" src="/scheme/HTDP/static/ 处理混合数据的函数 .png"/>
 <div class="section" id="id4">
 <h3><a class="toc-backref" href="#id22"> 习题 7.2.1</a></h3>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -679,7 +679,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-08-16T09:13:19.258427">Aug 16, 2014</time>
+            <time pubdate="pubdate" datetime="2014-08-28T20:51:34.883602">Aug 28, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="http://chenjiee815.github.io/categories.html#scheme-ref">scheme</a>
             <h4>Tags</h4>
