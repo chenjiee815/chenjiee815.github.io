@@ -17,7 +17,7 @@
 <meta property="og:description" content="简介 string 库里面的大部分函数其实算是弃用了。 因为从 Python1.6 开始，那些函数都已经都已经在内置的 string 对象里实现了。 所以接下我所要讲解的代码就基本不包括这些函数了，何况它们也是比较简单好懂的。 常量定义 1 2 3 4 5 6 7 8 9 10 11 12whitespace = &#39; \t\n\r\v\f&#39; lowercase = &#39;abcdefghijklmnopqrstuvwxyz&#39; uppercase = &#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39; letters = lowercase + uppercase ascii_lowercase = lowercase ascii_uppercase = uppercase ascii_letters = ascii_lowercase + ascii_uppercase digits = &#39;0123456789&#39; hexdigits = digits + &#39;abcdef ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-08-29T23:02:31.308303" />
+<meta property="og:article:published_time" content="2014-08-29T23:18:48.708052" />
 <meta name="twitter:title" content="string标准库源码学习 ">
 <meta name="twitter:description" content="简介 string 库里面的大部分函数其实算是弃用了。 因为从 Python1.6 开始，那些函数都已经都已经在内置的 string 对象里实现了。 所以接下我所要讲解的代码就基本不包括这些函数了，何况它们也是比较简单好懂的。 常量定义 1 2 3 4 5 6 7 8 9 10 11 12whitespace = &#39; \t\n\r\v\f&#39; lowercase = &#39;abcdefghijklmnopqrstuvwxyz&#39; uppercase = &#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39; letters = lowercase + uppercase ascii_lowercase = lowercase ascii_uppercase = uppercase ascii_letters = ascii_lowercase + ascii_uppercase digits = &#39;0123456789&#39; hexdigits = digits + &#39;abcdef ...">
 
@@ -83,7 +83,8 @@
 <li><a class="reference internal" href="#id1" id="id4"> 简介 </a></li>
 <li><a class="reference internal" href="#id2" id="id5"> 常量定义 </a></li>
 <li><a class="reference internal" href="#maketrans" id="id6">maketrans</a></li>
-<li><a class="reference internal" href="#id3" id="id7"> 总结 </a></li>
+<li><a class="reference internal" href="#strop" id="id7">strop</a></li>
+<li><a class="reference internal" href="#id3" id="id8"> 总结 </a></li>
 </ul>
 </div>
         </nav>
@@ -125,7 +126,7 @@
 <span class="n">punctuation</span> <span class="o">=</span> <span class="s">"""!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~"""</span>
 <span class="n">printable</span> <span class="o">=</span> <span class="n">digits</span> <span class="o">+</span> <span class="n">letters</span> <span class="o">+</span> <span class="n">punctuation</span> <span class="o">+</span> <span class="n">whitespace</span>
 </pre></div>
-</td></tr></table><p> 代码中上来就是一系列常用的常量定义，这没有好看的。知道就行，以后需要用到直接用（比如生成随机字符串啊，和 <cite>random</cite> 配合使用）。</p>
+</td></tr></table><p> 代码中上来就是一系列常用的常量定义，和 <cite>ctypes.h</cite> 中的定义相同，这没有好看的。知道就行，以后需要用到直接用（比如生成随机字符串啊，和 <cite>random</cite> 配合使用）。</p>
 </div>
 <div class="section" id="maketrans">
 <h2><a class="toc-backref" href="#id6">maketrans</a></h2>
@@ -207,7 +208,9 @@
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">_idmap</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">chr</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">256</span><span class="p">))</span>
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">_ASCII_COUNT</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">_IDMAP</span> <span class="o">=</span> <span class="p">[</span><span class="nb">chr</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">_ASCII_COUNT</span><span class="p">)]</span>
 
 <span class="k">def</span> <span class="nf">maketrans</span><span class="p">(</span><span class="n">fromstr</span><span class="p">,</span> <span class="n">tostr</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fromstr</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tostr</span><span class="p">):</span>
@@ -217,7 +220,7 @@
     <span class="c"># 如果字符 C 在 fromstr 中，则替换为 tostr 中对应 index 的字符 </span>
     <span class="c"># 否则返回字符 C 本身 </span>
     <span class="n">sub_c</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="nb">next</span><span class="p">((</span><span class="n">t</span> <span class="k">for</span> <span class="n">f</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">frm_to</span> <span class="k">if</span> <span class="n">f</span> <span class="o">==</span> <span class="n">c</span><span class="p">),</span> <span class="n">c</span><span class="p">)</span>
-    <span class="k">return</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">sub_c</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">_idmap</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">sub_c</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">_IDMAP</span><span class="p">))</span>
 </pre></div>
 </td></tr></table><p> 好了，刚才说到效率，那么两者效率相差多少呢？</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -236,8 +239,22 @@
 </pre></div>
 </td></tr></table><p> 是不是比较恐怖，40+ 倍的差距啊，所以说标准库的代码为了效率优化，还是下了功夫的。</p>
 </div>
+<div class="section" id="strop">
+<h2><a class="toc-backref" href="#id7">strop</a></h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">strop</span> <span class="kn">import</span> <span class="n">maketrans</span><span class="p">,</span> <span class="n">lowercase</span><span class="p">,</span> <span class="n">uppercase</span><span class="p">,</span> <span class="n">whitespace</span>
+    <span class="n">letters</span> <span class="o">=</span> <span class="n">lowercase</span> <span class="o">+</span> <span class="n">uppercase</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</td></tr></table><p><cite>string</cite> 库还会检查当前 Python 实现中是否有 <cite>strop</cite> 库，如果有，则加载该库中的部分函数。该库为一个内置库，一些字符串操作比 <cite>string</cite> 库快 100～1000 倍。</p>
+</div>
 <div class="section" id="id3">
-<h2><a class="toc-backref" href="#id7"> 总结 </a></h2>
+<h2><a class="toc-backref" href="#id8"> 总结 </a></h2>
 </div>
 
             
@@ -280,7 +297,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-08-29T23:02:31.308303">Aug 29, 2014</time>
+            <time pubdate="pubdate" datetime="2014-08-29T23:18:48.708052">Aug 29, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
