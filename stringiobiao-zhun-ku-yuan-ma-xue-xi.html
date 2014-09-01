@@ -13,7 +13,7 @@
 <meta name="keywords" content="python, stdlibs, Python, " />
 
 <meta property="og:title" content="StringIO标准库源码学习 "/>
-<meta property="og:url" content="/stringiobiao-zhun-ku-yuan-ma-xue-xi.html" />
+<meta property="og:url" content="http://chenjiee815.github.io/stringiobiao-zhun-ku-yuan-ma-xue-xi.html" />
 <meta property="og:description" content="简介 StringIO 有一个 C 语言实现的版本 cStringIO 。 C 语言版本更快，但不是能创建子类，因为 C 语言版本实现为一个方法了。 StringIO 主要是用来模拟一个 file 对象的行为的。 代码注释里说 Using a real file is often faster (but less convenient). 之前我还困惑 StringIO 不是相当于一个内存对象么，真实的文件对象需要操作磁盘啊，怎么反而更快？ 后来我在 Stack Overflow 上问一下，原来是指代码执行的速度， Python 的内置文件对象是用 C 语言实现的。而 StringIO 是用 Python 代码实现的，当然慢了。 代码注释里还说 Seeking far ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
@@ -25,10 +25,10 @@
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/custom.css" media="screen">
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -49,14 +49,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="/"><span class=site-name>January Star</span></a>
+                    <a class="brand" href="http://chenjiee815.github.io/"><span class=site-name>January Star</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="">Home</a></li>
-                            <li ><a href="/categories.html">Categories</a></li>
-                            <li ><a href="/tags.html">Tags</a></li>
-                            <li ><a href="/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            <li ><a href="http://chenjiee815.github.io">Home</a></li>
+                            <li ><a href="http://chenjiee815.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://chenjiee815.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://chenjiee815.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://chenjiee815.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
                         </ul>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="/stringiobiao-zhun-ku-yuan-ma-xue-xi.html"> StringIO标准库源码学习  </a></h1>
+    <h1><a href="http://chenjiee815.github.io/stringiobiao-zhun-ku-yuan-ma-xue-xi.html"> StringIO标准库源码学习  </a></h1>
     </header>
 </div>
 
@@ -675,7 +675,40 @@ insert real null bytes that occupy space in the buffer.
 </td></tr></table></div>
 
             
-            
+            <section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://chenjiee815.github.io/stringiobiao-zhun-ku-yuan-ma-xue-xi.html#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'chenjiee815blog';
+        var disqus_identifier = 'http://chenjiee815.github.io/stringiobiao-zhun-ku-yuan-ma-xue-xi.html';
+    var disqus_url = 'http://chenjiee815.github.io/stringiobiao-zhun-ku-yuan-ma-xue-xi.html';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
             <hr/>
         </div>
         <section>
@@ -683,13 +716,13 @@ insert real null bytes that occupy space in the buffer.
             <h4>Published</h4>
             <time pubdate="pubdate" datetime="2014-09-01T15:00:04.225133">Sep 1, 2014</time>
             <h4>Category</h4>
-            <a class="category-link" href="/categories.html#python-ref">Python</a>
+            <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="/tags.html#python-ref">python
+                <li><a href="http://chenjiee815.github.io/tags.html#python-ref">python
                     <span>10</span>
 </a></li>
-                <li><a href="/tags.html#stdlibs-ref">stdlibs
+                <li><a href="http://chenjiee815.github.io/tags.html#stdlibs-ref">stdlibs
                     <span>4</span>
 </a></li>
             </ul>
@@ -724,7 +757,45 @@ insert real null bytes that occupy space in the buffer.
             }
         </script>
 
-    
+            <script type="text/javascript">
+var disqus_shortname = 'chenjiee815blog';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
     </body>
     <!-- Theme: Elegant built for Pelican
     License : http://oncrashreboot.com/pelican-elegant -->
