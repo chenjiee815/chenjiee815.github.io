@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Chen Jie" />
+        <meta name="copyright" content="Chen Jie" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="scheme, htdp, scheme, " />
+
+<meta property="og:title" content="HTDP第三章：程序就是函数加上变量定义 "/>
+<meta property="og:url" content="/htdpdi-san-zhang-cheng-xu-jiu-shi-han-shu-jia-shang-bian-liang-ding-yi.html" />
+<meta property="og:description" content="函数复合 电影院定制电影票价格的代码如下： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21;; profit: number -&gt; number ;; 利润 (define (profit ticket-price) (- (revenue ticket-price) (cost ticket-price))) ;; revenue: number -&gt; number ;; 收入 (define (revenue ticket-price) (* (attendees ticket-price) ticket-price)) ;; cost: number -&gt; number ;; 支出 (define (cost ..." />
+<meta property="og:site_name" content="January Star" />
+<meta property="og:article:author" content="Chen Jie" />
+<meta property="og:article:published_time" content="2014-08-28T20:51:34.760176" />
+<meta name="twitter:title" content="HTDP第三章：程序就是函数加上变量定义 ">
+<meta name="twitter:description" content="函数复合 电影院定制电影票价格的代码如下： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21;; profit: number -&gt; number ;; 利润 (define (profit ticket-price) (- (revenue ticket-price) (cost ticket-price))) ;; revenue: number -&gt; number ;; 收入 (define (revenue ticket-price) (* (attendees ticket-price) ticket-price)) ;; cost: number -&gt; number ;; 支出 (define (cost ...">
+
+        <title>HTDP第三章：程序就是函数加上变量定义  · January Star
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-52167018-1', 'auto');
+    ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <div class="span1"></div>
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/"><span class=site-name>January Star</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="">Home</a></li>
+                            <li ><a href="/categories.html">Categories</a></li>
+                            <li ><a href="/tags.html">Tags</a></li>
+                            <li ><a href="/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="/htdpdi-san-zhang-cheng-xu-jiu-shi-han-shu-jia-shang-bian-liang-ding-yi.html"> HTDP第三章：程序就是函数加上变量定义  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <div class="section" id="id1">
+<h2> 函数复合 </h2>
+<p> 电影院定制电影票价格的代码如下：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">;; profit: number -&gt; number</span>
+<span class="c1">;; 利润 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">profit</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)))</span>
+
+<span class="c1">;; revenue: number -&gt; number</span>
+<span class="c1">;; 收入 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
+          <span class="nv">ticket-price</span><span class="p">))</span>
+
+<span class="c1">;; cost: number -&gt; number</span>
+<span class="c1">;; 支出 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="mi">180</span> <span class="p">(</span><span class="nb">* </span><span class="mf">0.04</span> <span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">))))</span>
+
+<span class="c1">;; attendees: number -&gt; number</span>
+<span class="c1">;; 观众数 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="mi">120</span> <span class="p">(</span><span class="nb">* </span><span class="mi">10</span> <span class="p">(</span><span class="nb">- </span><span class="mf">5.0</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="mi">15</span><span class="p">)))</span>
+</pre></div>
+</td></tr></table><p> 上面是使用辅助函数实现的代码。由该问题引出一条程序设计原则：</p>
+<p><strong> 辅助函数原则 </strong></p>
+<blockquote>
+对在表述中所提到的或在进行实例计算中所发现的每种依赖关系
+都使用一个辅助函数进行明确表达。</blockquote>
+<p> 习题 3.14，这一题能够很明显看到使用辅助函数的好处，
+虽然需求改变，但是只需要改变 cost 函数的具体算法即可。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">;; profit: number -&gt; number</span>
+<span class="c1">;; 利润 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">profit</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)))</span>
+
+<span class="c1">;; revenue: number -&gt; number</span>
+<span class="c1">;; 收入 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
+          <span class="nv">ticket-price</span><span class="p">))</span>
+
+<span class="c1">;; cost: number -&gt; number</span>
+<span class="c1">;; 支出 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">+ </span><span class="mf">0.04</span> <span class="mf">1.5</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)))</span>
+
+<span class="c1">;; attendees: number -&gt; number</span>
+<span class="c1">;; 观众数 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="mi">120</span> <span class="p">(</span><span class="nb">* </span><span class="mi">10</span> <span class="p">(</span><span class="nb">- </span><span class="mf">5.0</span> <span class="nv">ticket-price</span><span class="p">)</span> <span class="mi">15</span><span class="p">)))</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="id2">
+<h2> 变量定义 </h2>
+<p><strong> 变量定义原则 </strong></p>
+<blockquote>
+给频繁使用的常量定义一个名字，并在程序中使用。</blockquote>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">FILM_COST</span> <span class="mi">180</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">ATTENDEES_COST</span> <span class="mf">0.04</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">ATTENDEES_AT_MAX_TICKET_PRICE</span> <span class="mi">120</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">MAX_TICKET_PRICE</span> <span class="mf">5.0</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">PER_ADD_ATTENDEES_NUM</span> <span class="mi">15</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">PER_SUB_TICKET_PRICE</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1">;; profit: number -&gt; number</span>
+<span class="c1">;; 利润 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">profit</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)))</span>
+
+<span class="c1">;; revenue: number -&gt; number</span>
+<span class="c1">;; 收入 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">revenue</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
+          <span class="nv">ticket-price</span><span class="p">))</span>
+
+<span class="c1">;; cost: number -&gt; number</span>
+<span class="c1">;; 支出 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cost</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="nv">FILM_COST</span>
+          <span class="p">(</span><span class="nb">* </span><span class="nv">ATTENDEES_COST</span>
+             <span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">))))</span>
+
+<span class="c1">;; attendees: number -&gt; number</span>
+<span class="c1">;; 观众数 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">attendees</span> <span class="nv">ticket-price</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="nv">ATTENDEES_AT_MAX_TICKET_PRICE</span>
+          <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">/ </span><span class="nv">PER_ADD_ATTENDEES_NUM</span>
+                <span class="nv">PER_SUB_TICKET_PRICE</span><span class="p">)</span>
+             <span class="p">(</span><span class="nb">- </span><span class="nv">MAX_TICKET_PRICE</span> <span class="nv">ticket-price</span><span class="p">))))</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="id3">
+<h2> 函数复合练习 </h2>
+<div class="section" id="id4">
+<h3> 习题 3.3.1</h3>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">;; british-&gt;metric: number -&gt; number</span>
+<span class="c1">;; 英制转换成公制 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">british-&gt;metric</span> <span class="nv">reduced_unit</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">reduced_unit</span> <span class="nv">num</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">INCHES-&gt;CM_UNIT</span> <span class="mf">2.54</span><span class="p">)</span>
+
+<span class="c1">;; inches-&gt;cm: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">inches-&gt;cm</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">british-&gt;metric</span> <span class="nv">INCHES-&gt;CM_UNIT</span> <span class="nv">num</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">FEET-&gt;INCHES_UNIT</span> <span class="mi">12</span><span class="p">)</span>
+
+<span class="c1">;; feet-&gt;inches: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">feet-&gt;inches</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">british-&gt;metric</span> <span class="nv">FEET-&gt;INCHES_UNIT</span> <span class="nv">num</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">YARDS-&gt;FEET_UNIT</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">;; yards-&gt;feet: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">yards-&gt;feet</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">british-&gt;metric</span> <span class="nv">YARDS-&gt;FEET_UNIT</span> <span class="nv">num</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">RODS-&gt;YARDS_UNIT</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1">;; rods-&gt;yards: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">rods-&gt;yards</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">british-&gt;metric</span> <span class="nv">RODS-&gt;YARDS_UNIT</span> <span class="nv">num</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">FURLONGS-&gt;RODS_UNIT</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="c1">;; furlongs-&gt;rods: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">furlongs-&gt;rods</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">british-&gt;metric</span> <span class="nv">FURLONGS-&gt;RODS_UNIT</span> <span class="nv">num</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">MILES-&gt;FURLONGS_UNIT</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="c1">;; miles-&gt;furlongs: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">miles-&gt;furlongs</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">british-&gt;metric</span> <span class="nv">MILES-&gt;FURLONGS_UNIT</span> <span class="nv">num</span><span class="p">))</span>
+
+<span class="c1">;; feet-&gt;cm: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">feet-&gt;cm</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">inches-&gt;cm</span> <span class="p">(</span><span class="nf">feet-&gt;inches</span> <span class="nv">num</span><span class="p">)))</span>
+
+<span class="c1">;; yards-&gt;cm: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">yards-&gt;cm</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">inches-&gt;cm</span> <span class="p">(</span><span class="nf">feet-&gt;inches</span> <span class="p">(</span><span class="nf">yards-&gt;feet</span> <span class="nv">num</span><span class="p">))))</span>
+
+<span class="c1">;; yards-&gt;cm: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">rods-&gt;inches</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">feet-&gt;inches</span> <span class="p">(</span><span class="nf">yards-&gt;feet</span> <span class="p">(</span><span class="nf">rods-&gt;yards</span> <span class="nv">num</span><span class="p">))))</span>
+
+<span class="c1">;; yards-&gt;cm: number -&gt; number</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">miles-&gt;feet</span> <span class="nv">num</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">yards-&gt;feet</span> <span class="p">(</span><span class="nf">rods-&gt;yards</span> <span class="p">(</span><span class="nf">furlongs-&gt;rods</span> <span class="p">(</span><span class="nf">miles-&gt;furlongs</span> <span class="nv">num</span><span class="p">)))))</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="id5">
+<h3> 习题 3.3.2</h3>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">PI</span> <span class="mf">3.14</span><span class="p">)</span>
+
+<span class="c1">;; volume-cylinder: number -&gt; number</span>
+<span class="c1">;; 求圆柱体体积 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">volume-cylinder</span> <span class="nv">radius</span> <span class="nv">height</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">PI</span> <span class="p">(</span><span class="nb">* </span><span class="nv">radius</span> <span class="nv">radius</span><span class="p">)</span> <span class="nv">height</span><span class="p">))</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="id6">
+<h3> 习题 3.3.3</h3>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">PI</span> <span class="mf">3.14</span><span class="p">)</span>
+
+<span class="c1">;; circumference-bottem: number -&gt; number</span>
+<span class="c1">;; 底部的周长 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">circumference-bottem</span> <span class="nv">radius</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">PI</span> <span class="nv">radius</span><span class="p">))</span>
+
+<span class="c1">;; area-bottem: number -&gt; number</span>
+<span class="c1">;; 底部面积 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-bottem</span> <span class="nv">radius</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">PI</span> <span class="p">(</span><span class="nb">* </span><span class="nv">radius</span> <span class="nv">radius</span><span class="p">)))</span>
+
+<span class="c1">;; area-flank: number number -&gt; number</span>
+<span class="c1">;; 侧面积 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-flank</span> <span class="nv">radius</span> <span class="nv">height</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">height</span> <span class="p">(</span><span class="nf">circumference-bottem</span> <span class="nv">radius</span><span class="p">)))</span>
+
+<span class="c1">;; area-cylinder: number number -&gt; number</span>
+<span class="c1">;; 求圆柱体的表面积 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-cylinder</span> <span class="nv">radius</span> <span class="nv">height</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">area-flank</span> <span class="nv">radius</span> <span class="nv">height</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nf">area-bottem</span> <span class="nv">radius</span><span class="p">))))</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="id7">
+<h3> 习题 3.3.4</h3>
+<div class="section" id="id8">
+<h4> 单一函数版本 </h4>
+<p>Pass</p>
+</div>
+<div class="section" id="id9">
+<h4> 辅助函数版本 </h4>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">PI</span> <span class="mf">3.14</span><span class="p">)</span>
+
+<span class="c1">;; area-pipe: number number number -&gt; number</span>
+<span class="c1">;; 管道（中空的圆柱体）的表面积 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-pipe</span> <span class="nv">inner_radius</span> <span class="nv">length</span> <span class="nv">thickness</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">outer_radius</span> <span class="p">(</span><span class="nf">outer-radius</span> <span class="nv">inner_radius</span> <span class="nv">thickness</span><span class="p">)))</span>
+            <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">outer-area-flank</span> <span class="nv">length</span> <span class="nv">outer_radius</span><span class="p">)</span>
+               <span class="p">(</span><span class="nf">inner-area-flank</span> <span class="nv">length</span> <span class="nv">inner_radius</span><span class="p">)</span>
+               <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nf">area-ring</span> <span class="nv">outer_radius</span> <span class="nv">inner_radius</span><span class="p">)))))</span>
+
+<span class="c1">;; outer-area-flank: number number -&gt; number</span>
+<span class="c1">;; 外部的侧面积 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">outer-area-flank</span> <span class="nv">length</span> <span class="nv">outer_radius</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">area-flank</span> <span class="nv">outer_radius</span> <span class="nv">length</span><span class="p">))</span>
+
+<span class="c1">;; inner-area-flank: number number -&gt; number</span>
+<span class="c1">;; 内部的侧面积 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">inner-area-flank</span> <span class="nv">length</span> <span class="nv">inner_radius</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">area-flank</span> <span class="nv">inner_radius</span> <span class="nv">length</span><span class="p">))</span>
+
+<span class="c1">;; area-ring: number number -&gt; number</span>
+<span class="c1">;; 空心圆的面积 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-ring</span> <span class="nv">outer_radius</span> <span class="nv">inner_radius</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">area-cycle</span> <span class="nv">outer_radius</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">area-cycle</span> <span class="nv">inner_radius</span><span class="p">)))</span>
+
+<span class="c1">;; outer-radius: number number -&gt; number</span>
+<span class="c1">;; 外半径 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">outer-radius</span> <span class="nv">inner_radius</span> <span class="nv">thickness</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="nv">inner_radius</span> <span class="nv">thickness</span><span class="p">))</span>
+
+<span class="c1">;; area-flank: number number -&gt; number</span>
+<span class="c1">;; 侧面积 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-flank</span> <span class="nv">radius</span> <span class="nv">height</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">height</span> <span class="p">(</span><span class="nf">circumference-cycle</span> <span class="nv">radius</span><span class="p">)))</span>
+
+<span class="c1">;; area-cycle: number -&gt; number</span>
+<span class="c1">;; 圆面积 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">area-cycle</span> <span class="nv">radius</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">PI</span> <span class="p">(</span><span class="nb">* </span><span class="nv">radius</span> <span class="nv">radius</span><span class="p">)))</span>
+
+<span class="c1">;; circumference-cycle: number -&gt; number</span>
+<span class="c1">;; 圆周长 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">circumference-cycle</span> <span class="nv">radius</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">PI</span> <span class="nv">radius</span><span class="p">))</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id10">
+<h3> 习题 3.3.5</h3>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">G</span> <span class="mf">9.8</span><span class="p">)</span> <span class="c1">;; 重力加速度 </span>
+
+<span class="c1">;; height: number -&gt; number</span>
+<span class="c1">;; 计算火箭升空后在给定时刻所到达的高度 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">height</span> <span class="nv">sec</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nf">speed</span> <span class="nv">sec</span><span class="p">)</span> <span class="nv">sec</span><span class="p">))</span>
+
+<span class="c1">;; speed: number -&gt; number</span>
+<span class="c1">;; 计算火箭升空后在给定时刻所到达的速度 </span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">speed</span> <span class="nv">sec</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">G</span> <span class="nv">sec</span><span class="p">))</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="id11">
+<h3> 习题 3.3.6</h3>
+<p>Pass</p>
+</div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2014-08-28T20:51:34.760176">Aug 28, 2014</time>
+            <h4>Category</h4>
+            <a class="category-link" href="/categories.html#scheme-ref">scheme</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="/tags.html#htdp-ref">htdp
+                    <span>10</span>
+</a></li>
+                <li><a href="/tags.html#scheme-ref">scheme
+                    <span>11</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://www.htdp.org/" title="My HTDP Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-htdp sidebar-social-links"></i></a>
+    <a href="http://mitpress.mit.edu/sicp/" title="My SICP Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-sicp sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>

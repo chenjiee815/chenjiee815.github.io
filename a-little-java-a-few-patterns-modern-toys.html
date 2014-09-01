@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Chen Jie" />
+        <meta name="copyright" content="Chen Jie" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="java, oop, java, " />
+
+<meta property="og:title" content="A Little Java, A Few Patterns: Modern Toys "/>
+<meta property="og:url" content="/a-little-java-a-few-patterns-modern-toys.html" />
+<meta property="og:description" content="这一章节，作者主要想通过一系列的对话，让你了解到类型是什么东东。以及如何使用 Java 定义类型。 类型是什么？ 类型是一类值的集合的命名 abstract 、 class 、 extends 各代表什么？ abstract 引入了数据类型 class 引入了变体类型 extends 将以上两者联系起来 Tip 第一条建议 当你想要明确一类数据时，使用 abstract class XXX {} 来定义数据类型 使用 class XXX extends XXX {} 来定义其变体类型" />
+<meta property="og:site_name" content="January Star" />
+<meta property="og:article:author" content="Chen Jie" />
+<meta property="og:article:published_time" content="2014-08-28T20:51:34.423176" />
+<meta name="twitter:title" content="A Little Java, A Few Patterns: Modern Toys ">
+<meta name="twitter:description" content="这一章节，作者主要想通过一系列的对话，让你了解到类型是什么东东。以及如何使用 Java 定义类型。 类型是什么？ 类型是一类值的集合的命名 abstract 、 class 、 extends 各代表什么？ abstract 引入了数据类型 class 引入了变体类型 extends 将以上两者联系起来 Tip 第一条建议 当你想要明确一类数据时，使用 abstract class XXX {} 来定义数据类型 使用 class XXX extends XXX {} 来定义其变体类型">
+
+        <title>A Little Java, A Few Patterns: Modern Toys  · January Star
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/theme/css/custom.css" media="screen">
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-52167018-1', 'auto');
+    ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <div class="span1"></div>
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/"><span class=site-name>January Star</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="">Home</a></li>
+                            <li ><a href="/categories.html">Categories</a></li>
+                            <li ><a href="/tags.html">Tags</a></li>
+                            <li ><a href="/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="/a-little-java-a-few-patterns-modern-toys.html"> A Little Java, A Few Patterns: Modern Toys  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <p> 这一章节，作者主要想通过一系列的对话，让你了解到类型是什么东东。以及如何使用 Java 定义类型。</p>
+<hr class="docutils" />
+<p> 类型是什么？</p>
+<blockquote>
+类型是一类值的集合的命名 </blockquote>
+<p><cite>abstract</cite> 、 <cite>class</cite> 、 <cite>extends</cite> 各代表什么？</p>
+<blockquote>
+<p><cite>abstract</cite> 引入了数据类型 </p>
+<p><cite>class</cite> 引入了变体类型 </p>
+<p><cite>extends</cite> 将以上两者联系起来 </p>
+</blockquote>
+<div class="tip">
+<p class="first admonition-title">Tip</p>
+<p><strong> 第一条建议 </strong></p>
+<p> 当你想要明确一类数据时，使用 <cite>abstract class XXX {}</cite> 来定义数据类型 </p>
+<p class="last"> 使用 <cite>class XXX extends XXX {}</cite> 来定义其变体类型 </p>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2014-08-28T20:51:34.423176">Aug 28, 2014</time>
+            <h4>Category</h4>
+            <a class="category-link" href="/categories.html#java-ref">java</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="/tags.html#java-ref">java
+                    <span>8</span>
+</a></li>
+                <li><a href="/tags.html#oop-ref">oop
+                    <span>8</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://www.htdp.org/" title="My HTDP Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-htdp sidebar-social-links"></i></a>
+    <a href="http://mitpress.mit.edu/sicp/" title="My SICP Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-sicp sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
