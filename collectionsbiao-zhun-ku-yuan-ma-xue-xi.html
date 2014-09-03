@@ -17,7 +17,7 @@
 <meta property="og:description" content="简介 collections 库包含两个文件 collections.py 和 _abcoll.py 。 至于为什么要拆分成两个文件， collections 库在文件一开始就在注释里写到： For bootstrapping reasons, the collection ABCs are defined in _abcoll.py. They should however be considered an integral part of collections.py. 我刚开始找不出它这个 bootstrapping reasons, 后来 google 了一下，发现这个 bootstrapping reasons 的解释。 不过这个链接里说 collections 会引用 os ， 而 os 又会引用 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-09-03T11:25:26.849175" />
+<meta property="og:article:published_time" content="2014-09-03T11:30:53.822033" />
 <meta name="twitter:title" content="collections标准库源码学习 ">
 <meta name="twitter:description" content="简介 collections 库包含两个文件 collections.py 和 _abcoll.py 。 至于为什么要拆分成两个文件， collections 库在文件一开始就在注释里写到： For bootstrapping reasons, the collection ABCs are defined in _abcoll.py. They should however be considered an integral part of collections.py. 我刚开始找不出它这个 bootstrapping reasons, 后来 google 了一下，发现这个 bootstrapping reasons 的解释。 不过这个链接里说 collections 会引用 os ， 而 os 又会引用 ...">
 
@@ -80,8 +80,8 @@
         <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#id1" id="id10"> 简介 </a></li>
-<li><a class="reference internal" href="#ordereddict" id="id11">OrderedDict</a></li>
+<li><a class="reference internal" href="#id1" id="id2"> 简介 </a></li>
+<li><a class="reference internal" href="#ordereddict" id="id3">OrderedDict</a></li>
 </ul>
 </div>
         </nav>
@@ -92,7 +92,7 @@
             
 <hr class="docutils"/>
 <div class="section" id="id1">
-<h2><a class="toc-backref" href="#id10"> 简介 </a></h2>
+<h2><a class="toc-backref" href="#id2"> 简介 </a></h2>
 <p><cite>collections</cite> 库包含两个文件 <cite>collections.py</cite> 和  <cite>_abcoll.py</cite> 。</p>
 <p> 至于为什么要拆分成两个文件， <cite>collections</cite> 库在文件一开始就在注释里写到：</p>
 <pre class="literal-block">
@@ -105,7 +105,7 @@ They should however be considered an integral part of collections.py.
 <p> 好吧，这个问题咱先不追究了，还是分析主要代码要紧。</p>
 </div>
 <div class="section" id="ordereddict">
-<h2><a class="toc-backref" href="#id11">OrderedDict</a></h2>
+<h2><a class="toc-backref" href="#id3">OrderedDict</a></h2>
 <p><cite>OrderedDict</cite> ，一看名字就知道，它会记住每个 Key 的插入顺序。当然，它还是一个 <cite>dict</cite> ，所以从 <cite>dict</cite> 继承也是理所当然的。</p>
 <p> 它只从 <cite>dict</cite> 类继承了 <cite>__getitem__</cite> 、 <cite>__len__</cite> 、 <cite>__contains__</cite> 和 <cite>get</cite> 。其它的操作都是顺序敏感的，所以需要重载。</p>
 <p> 它的时间复杂度还是和 <cite>dict</cite> 是一样的。</p>
@@ -116,333 +116,395 @@ They should however be considered an integral part of collections.py.
 <p> 使用 self.__map 来保存 Key 值和对应的双端循环链表中的节点的映射关系 .</p>
 <p> 使用继承的 dict 功能来保存 Key 和对应 Value 的映射关系 .</p>
 </blockquote>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 51)</p>
-<p>Content block expected for the "code-block" directive; none found.</p>
-<pre class="literal-block">
-.. code-block:: python
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">OrderedDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+        <span class="sd">""" 这里虽然提供了 `kwds` ，但是不建议传入多个命名参数 </span>
+<span class="sd">        因为这些参数的顺序是随意的，不是按照你传入的顺序来的 </span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">'expected at most 1 arguments, got </span><span class="si">%d</span><span class="s">'</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__root</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="c"># 哨兵元素 </span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__root</span> <span class="o">=</span> <span class="n">root</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="c"># 双端循环链表 </span>
+            <span class="n">root</span><span class="p">[:]</span> <span class="o">=</span> <span class="p">[</span><span class="n">root</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__update</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
 
-</pre>
-</div>
-<dl class="docutils">
-<dt>class OrderedDict(dict):</dt>
-<dd><dl class="first docutils">
-<dt>def __init__(self, <a href="#id2"><span class="problematic" id="id3">*</span></a>args, <a href="#id4"><span class="problematic" id="id5">**</span></a>kwds):</dt>
-<dd><div class="first system-message" id="id2">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 68); <em><a href="#id3">backlink</a></em></p>
-Inline emphasis start-string without end-string.</div>
-<div class="system-message" id="id4">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 68); <em><a href="#id5">backlink</a></em></p>
-Inline strong start-string without end-string.</div>
-<p>""" 这里虽然提供了 <cite>kwds</cite> ，但是不建议传入多个命名参数
-因为这些参数的顺序是随意的，不是按照你传入的顺序来的
-"""
-if len(args) &gt; 1:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 59)</p>
-Unexpected indentation.</div>
-<blockquote>
-raise TypeError('expected at most 1 arguments, got %d' % len(args))</blockquote>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 60)</p>
-Block quote ends without a blank line; unexpected unindent.</div>
-<dl class="docutils">
-<dt>try:</dt>
-<dd>self.__root</dd>
-<dt>except AttributeError:</dt>
-<dd># 哨兵元素
-self.__root = root = []
-# 双端循环链表
-root[:] = [root, root, None]
-self.__map = {}</dd>
-</dl>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 68)</p>
-Definition list ends without a blank line; unexpected unindent.</div>
-<p>self.__update(<a href="#id6"><span class="problematic" id="id7">*</span></a>args, <a href="#id8"><span class="problematic" id="id9">**</span></a>kwds)</p>
-<div class="system-message" id="id6">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 68); <em><a href="#id7">backlink</a></em></p>
-Inline emphasis start-string without end-string.</div>
-<div class="last system-message" id="id8">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 68); <em><a href="#id9">backlink</a></em></p>
-Inline strong start-string without end-string.</div>
-</dd>
-<dt>def __setitem__(self, key, value, dict_setitem=dict.__setitem__):</dt>
-<dd><p class="first">'od.__setitem__(i, y) &lt;==&gt; od[i]=y'
-if key not in self:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 73)</p>
-Unexpected indentation.</div>
-<blockquote>
-# 向链表中插入新的 Key 节点
-# self.__map 中添加 Key 和 Key 节点的映射关系
-root = self.__root
-last = root[0]
-last[1] = root[0] = self.__map[key] = [last, root, key]</blockquote>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 78)</p>
-Block quote ends without a blank line; unexpected unindent.</div>
-<p class="last"># 使用继承的 dict 功能来保存 Key 和对应 Value 的映射关系
-return dict_setitem(self, key, value)</p>
-</dd>
-<dt>def __delitem__(self, key, dict_delitem=dict.__delitem__):</dt>
-<dd>'od.__delitem__(y) &lt;==&gt; del od[y]'
-dict_delitem(self, key)
-# 先从映射关系中根据 Key 找到 Key 节点 , 然后再删除双端循环列表对应的 Key 节点
-link_prev, link_next, _ = self.__map.pop(key)
-link_prev[1] = link_next                        # update link_prev[NEXT]
-link_next[0] = link_prev                        # update link_next[PREV]</dd>
-<dt>def __iter__(self):</dt>
-<dd><p class="first">'od.__iter__() &lt;==&gt; iter(od)'
-# Traverse the linked list in order.
-root = self.__root
-curr = root[1]                                  # start at the first node
-while curr is not root:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 95)</p>
-Unexpected indentation.</div>
-<blockquote class="last">
-yield curr[2]                               # yield the curr[KEY]
-curr = curr[1]                              # move to next node</blockquote>
-</dd>
-<dt>def __reversed__(self):</dt>
-<dd><p class="first">'od.__reversed__() &lt;==&gt; reversed(od)'
-# Traverse the linked list in reverse order.
-root = self.__root
-curr = root[0]                                  # start at the last node
-while curr is not root:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 104)</p>
-Unexpected indentation.</div>
-<blockquote class="last">
-yield curr[2]                               # yield the curr[KEY]
-curr = curr[0]                              # move to previous node</blockquote>
-</dd>
-<dt>def clear(self):</dt>
-<dd>'od.clear() -&gt; None.  Remove all items from od.'
-root = self.__root
-root[:] = [root, root, None]
-self.__map.clear()
-dict.clear(self)</dd>
-</dl>
-<p># 以下的操作方法 , 都不依赖于对链表和 self.__map 的操作了
-# 可以说上面那些方法是底层 API, 下面的是高层 API
-def keys(self):</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 117)</p>
-Unexpected indentation.</div>
-<blockquote>
-'od.keys() -&gt; list of keys in od'
-return list(self)</blockquote>
-<dl class="docutils">
-<dt>def values(self):</dt>
-<dd>'od.values() -&gt; list of values in od'
-return [self[key] for key in self]</dd>
-<dt>def items(self):</dt>
-<dd>'od.items() -&gt; list of (key, value) pairs in od'
-return [(key, self[key]) for key in self]</dd>
-<dt>def iterkeys(self):</dt>
-<dd>'od.iterkeys() -&gt; an iterator over the keys in od'
-return iter(self)</dd>
-<dt>def itervalues(self):</dt>
-<dd><p class="first">'od.itervalues -&gt; an iterator over the values in od'
-for k in self:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 135)</p>
-Unexpected indentation.</div>
-<blockquote class="last">
-yield self[k]</blockquote>
-</dd>
-<dt>def iteritems(self):</dt>
-<dd><p class="first">'od.iteritems -&gt; an iterator over the (key, value) pairs in od'
-for k in self:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 140)</p>
-Unexpected indentation.</div>
-<blockquote class="last">
-yield (k, self[k])</blockquote>
-</dd>
-</dl>
-<p>update = MutableMapping.update</p>
-<p># 再命名一个 <cite>__update</cite> 是专门给 __init__ 用的
-# 不然，用户继承该类并重载了 __update，就对该类产生了破坏
-__update = update</p>
-<p># 该 Object 实例在 Python 中是独一无二的
-__marker = object()</p>
-<dl class="docutils">
-<dt>def pop(self, key, default=__marker):</dt>
-<dd><p class="first">'''od.pop(k[,d]) -&gt; v, remove specified key and return the corresponding
-value.  If key is not found, d is returned if given, otherwise KeyError
-is raised.</p>
-<p>'''
-if key in self:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 158)</p>
-Unexpected indentation.</div>
-<blockquote>
-result = self[key]
-del self[key]
-return result</blockquote>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 161)</p>
-Block quote ends without a blank line; unexpected unindent.</div>
-<dl class="docutils">
-<dt>if default is self.__marker:</dt>
-<dd>raise KeyError(key)</dd>
-</dl>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 163)</p>
-Definition list ends without a blank line; unexpected unindent.</div>
-<p class="last">return default</p>
-</dd>
-<dt>def setdefault(self, key, default=None):</dt>
-<dd><p class="first">'od.setdefault(k[,d]) -&gt; od.get(k,d), also set od[k]=d if k not in od'
-if key in self:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 168)</p>
-Unexpected indentation.</div>
-<blockquote>
-return self[key]</blockquote>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 169)</p>
-Block quote ends without a blank line; unexpected unindent.</div>
-<p class="last">self[key] = default
-return default</p>
-</dd>
-<dt>def popitem(self, last=True):</dt>
-<dd><p class="first">'''od.popitem() -&gt; (k, v), return and remove a (key, value) pair.
-Pairs are returned in LIFO order if last is true or FIFO order if false.</p>
-<p>'''
-if not self:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 178)</p>
-Unexpected indentation.</div>
-<blockquote>
-raise KeyError('dictionary is empty')</blockquote>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 179)</p>
-Block quote ends without a blank line; unexpected unindent.</div>
-<p class="last">key = next(reversed(self) if last else iter(self))
-value = self.pop(key)
-return key, value</p>
-</dd>
-<dt>def __repr__(self, _repr_running={}):</dt>
-<dd><p class="first">'od.__repr__() &lt;==&gt; repr(od)'
-call_key = id(self), _get_ident()
-if call_key in _repr_running:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 187)</p>
-Unexpected indentation.</div>
-<blockquote>
-return '...'</blockquote>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 188)</p>
-Block quote ends without a blank line; unexpected unindent.</div>
-<p>_repr_running[call_key] = 1
-try:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 190)</p>
-Unexpected indentation.</div>
-<blockquote>
-<dl class="docutils">
-<dt>if not self:</dt>
-<dd>return '%s()' % (self.__class__.__name__,)</dd>
-</dl>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 192)</p>
-Definition list ends without a blank line; unexpected unindent.</div>
-<p>return '%s(%r)' % (self.__class__.__name__, self.items())</p>
-</blockquote>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 193)</p>
-Block quote ends without a blank line; unexpected unindent.</div>
-<dl class="last docutils">
-<dt>finally:</dt>
-<dd>del _repr_running[call_key]</dd>
-</dl>
-</dd>
-<dt>def __reduce__(self):</dt>
-<dd><p class="first"> 可以让 Pickle 进行序列化和反序列化
-items = [[k, self[k]] for k in self]
-inst_dict = vars(self).copy()
-for k in vars(OrderedDict()):</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 201)</p>
-Unexpected indentation.</div>
-<blockquote>
-inst_dict.pop(k, None)</blockquote>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 202)</p>
-Block quote ends without a blank line; unexpected unindent.</div>
-<dl class="docutils">
-<dt>if inst_dict:</dt>
-<dd>return (self.__class__, (items,), inst_dict)</dd>
-</dl>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 204)</p>
-Definition list ends without a blank line; unexpected unindent.</div>
-<p class="last">return self.__class__, (items,)</p>
-</dd>
-<dt>def copy(self):</dt>
-<dd>'od.copy() -&gt; a shallow copy of od'
-return self.__class__(self)</dd>
-</dl>
-<p>@classmethod
-def fromkeys(cls, iterable, value=None):</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 212)</p>
-Unexpected indentation.</div>
-<blockquote>
-<p>'''OD.fromkeys(S[, v]) -&gt; New ordered dictionary with keys from S.
-If not specified, the value defaults to None.</p>
-<p>'''
-self = cls()
-for key in iterable:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 218)</p>
-Unexpected indentation.</div>
-<blockquote>
-self[key] = value</blockquote>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 219)</p>
-Block quote ends without a blank line; unexpected unindent.</div>
-<p>return self</p>
-</blockquote>
-<dl class="docutils">
-<dt>def __eq__(self, other):</dt>
-<dd><p class="first">'''od.__eq__(y) &lt;==&gt; od==y.  Comparison to another OD is order-sensitive
-while comparison to a regular mapping is order-insensitive.</p>
-<p>'''
-if isinstance(other, OrderedDict):</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 227)</p>
-Unexpected indentation.</div>
-<blockquote>
-return dict.__eq__(self, other) and all(_imap(_eq, self, other))</blockquote>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/stdlibs/collections.rst</tt>, line 228)</p>
-Block quote ends without a blank line; unexpected unindent.</div>
-<p class="last">return dict.__eq__(self, other)</p>
-</dd>
-<dt>def __ne__(self, other):</dt>
-<dd>'od.__ne__(y) &lt;==&gt; od!=y'
-return not self == other</dd>
-</dl>
-<p># -- the following methods support python 3.x style dictionary views --</p>
-<dl class="last docutils">
-<dt>def viewkeys(self):</dt>
-<dd>"od.viewkeys() -&gt; a set-like object providing a view on od's keys"
-return KeysView(self)</dd>
-<dt>def viewvalues(self):</dt>
-<dd>"od.viewvalues() -&gt; an object providing a view on od's values"
-return ValuesView(self)</dd>
-<dt>def viewitems(self):</dt>
-<dd>"od.viewitems() -&gt; a set-like object providing a view on od's items"
-return ItemsView(self)</dd>
-</dl>
-</dd>
-</dl>
-<p> 上面的底层 API 可以将双端循环链表抽象出来 </p>
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">dict_setitem</span><span class="o">=</span><span class="nb">dict</span><span class="o">.</span><span class="n">__setitem__</span><span class="p">):</span>
+        <span class="s">'od.__setitem__(i, y) &lt;==&gt; od[i]=y'</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="c"># 向链表中插入新的 Key 节点 </span>
+            <span class="c"># self.__map 中添加 Key 和 Key 节点的映射关系 </span>
+            <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__root</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">last</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__map</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">last</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">]</span>
+        <span class="c"># 使用继承的 dict 功能来保存 Key 和对应 Value 的映射关系 </span>
+        <span class="k">return</span> <span class="n">dict_setitem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">dict_delitem</span><span class="o">=</span><span class="nb">dict</span><span class="o">.</span><span class="n">__delitem__</span><span class="p">):</span>
+        <span class="s">'od.__delitem__(y) &lt;==&gt; del od[y]'</span>
+        <span class="n">dict_delitem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="c"># 先从映射关系中根据 Key 找到 Key 节点 , 然后再删除双端循环列表对应的 Key 节点 </span>
+        <span class="n">link_prev</span><span class="p">,</span> <span class="n">link_next</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__map</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">link_prev</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">link_next</span>                        <span class="c"># update link_prev[NEXT]</span>
+        <span class="n">link_next</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">link_prev</span>                        <span class="c"># update link_next[PREV]</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">'od.__iter__() &lt;==&gt; iter(od)'</span>
+        <span class="c"># Traverse the linked list in order.</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__root</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="n">root</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>                                  <span class="c"># start at the first node</span>
+        <span class="k">while</span> <span class="n">curr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">curr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>                               <span class="c"># yield the curr[KEY]</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>                              <span class="c"># move to next node</span>
+
+    <span class="k">def</span> <span class="nf">__reversed__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">'od.__reversed__() &lt;==&gt; reversed(od)'</span>
+        <span class="c"># Traverse the linked list in reverse order.</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__root</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>                                  <span class="c"># start at the last node</span>
+        <span class="k">while</span> <span class="n">curr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">curr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>                               <span class="c"># yield the curr[KEY]</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>                              <span class="c"># move to previous node</span>
+
+    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">'od.clear() -&gt; None.  Remove all items from od.'</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__root</span>
+        <span class="n">root</span><span class="p">[:]</span> <span class="o">=</span> <span class="p">[</span><span class="n">root</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__map</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="nb">dict</span><span class="o">.</span><span class="n">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="c"># 以下的操作方法 , 都不依赖于对链表和 self.__map 的操作了 </span>
+    <span class="c"># 可以说上面那些方法是底层 API, 下面的是高层 API</span>
+    <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">'od.keys() -&gt; list of keys in od'</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">'od.values() -&gt; list of values in od'</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">'od.items() -&gt; list of (key, value) pairs in od'</span>
+        <span class="k">return</span> <span class="p">[(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">iterkeys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">'od.iterkeys() -&gt; an iterator over the keys in od'</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">itervalues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">'od.itervalues -&gt; an iterator over the values in od'</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">iteritems</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">'od.iteritems -&gt; an iterator over the (key, value) pairs in od'</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+
+    <span class="n">update</span> <span class="o">=</span> <span class="n">MutableMapping</span><span class="o">.</span><span class="n">update</span>
+
+    <span class="c"># 再命名一个 `__update` 是专门给 __init__ 用的 </span>
+    <span class="c"># 不然，用户继承该类并重载了 __update，就对该类产生了破坏 </span>
+    <span class="n">__update</span> <span class="o">=</span> <span class="n">update</span>
+
+    <span class="c"># 该 Object 实例在 Python 中是独一无二的 </span>
+    <span class="n">__marker</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">__marker</span><span class="p">):</span>
+        <span class="sd">'''od.pop(k[,d]) -&gt; v, remove specified key and return the corresponding</span>
+<span class="sd">        value.  If key is not found, d is returned if given, otherwise KeyError</span>
+<span class="sd">        is raised.</span>
+
+<span class="sd">        '''</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">result</span>
+        <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">__marker</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">default</span>
+
+    <span class="k">def</span> <span class="nf">setdefault</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="s">'od.setdefault(k[,d]) -&gt; od.get(k,d), also set od[k]=d if k not in od'</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">default</span>
+        <span class="k">return</span> <span class="n">default</span>
+
+    <span class="k">def</span> <span class="nf">popitem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">'''od.popitem() -&gt; (k, v), return and remove a (key, value) pair.</span>
+<span class="sd">        Pairs are returned in LIFO order if last is true or FIFO order if false.</span>
+
+<span class="sd">        '''</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s">'dictionary is empty'</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="k">if</span> <span class="n">last</span> <span class="k">else</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_repr_running</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="s">'od.__repr__() &lt;==&gt; repr(od)'</span>
+        <span class="n">call_key</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="n">_get_ident</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">call_key</span> <span class="ow">in</span> <span class="n">_repr_running</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">'...'</span>
+        <span class="n">_repr_running</span><span class="p">[</span><span class="n">call_key</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s">'</span><span class="si">%s</span><span class="s">()'</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,)</span>
+            <span class="k">return</span> <span class="s">'</span><span class="si">%s</span><span class="s">(</span><span class="si">%r</span><span class="s">)'</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">_repr_running</span><span class="p">[</span><span class="n">call_key</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__reduce__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="err"> 可以让 </span><span class="n">Pickle</span><span class="err"> 进行序列化和反序列化 </span>
+        <span class="n">items</span> <span class="o">=</span> <span class="p">[[</span><span class="n">k</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">]</span>
+        <span class="n">inst_dict</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">()):</span>
+            <span class="n">inst_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">inst_dict</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">,</span> <span class="p">(</span><span class="n">items</span><span class="p">,),</span> <span class="n">inst_dict</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">,</span> <span class="p">(</span><span class="n">items</span><span class="p">,)</span>
+
+    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">'od.copy() -&gt; a shallow copy of od'</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">fromkeys</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">'''OD.fromkeys(S[, v]) -&gt; New ordered dictionary with keys from S.</span>
+<span class="sd">        If not specified, the value defaults to None.</span>
+
+<span class="sd">        '''</span>
+        <span class="bp">self</span> <span class="o">=</span> <span class="n">cls</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">'''od.__eq__(y) &lt;==&gt; od==y.  Comparison to another OD is order-sensitive</span>
+<span class="sd">        while comparison to a regular mapping is order-insensitive.</span>
+
+<span class="sd">        '''</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">OrderedDict</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="o">.</span><span class="n">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">_imap</span><span class="p">(</span><span class="n">_eq</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="o">.</span><span class="n">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="s">'od.__ne__(y) &lt;==&gt; od!=y'</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span>
+
+    <span class="c"># -- the following methods support python 3.x style dictionary views --</span>
+
+    <span class="k">def</span> <span class="nf">viewkeys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"od.viewkeys() -&gt; a set-like object providing a view on od's keys"</span>
+        <span class="k">return</span> <span class="n">KeysView</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">viewvalues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"od.viewvalues() -&gt; an object providing a view on od's values"</span>
+        <span class="k">return</span> <span class="n">ValuesView</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">viewitems</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"od.viewitems() -&gt; a set-like object providing a view on od's items"</span>
+        <span class="k">return</span> <span class="n">ItemsView</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+</td></tr></table><p> 上面的底层 API 可以将双端循环链表抽象出来 </p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -623,7 +685,7 @@ return ItemsView(self)</dd>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-09-03T11:25:26.849175">Sep 3, 2014</time>
+            <time pubdate="pubdate" datetime="2014-09-03T11:30:53.822033">Sep 3, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
