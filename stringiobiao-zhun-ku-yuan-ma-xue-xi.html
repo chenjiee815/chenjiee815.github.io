@@ -17,7 +17,7 @@
 <meta property="og:description" content="简介 StringIO 有一个 C 语言实现的版本 cStringIO 。 C 语言版本更快，但不是能创建子类，因为 C 语言版本实现为一个方法了。 StringIO 主要是用来模拟一个 file 对象的行为的。 代码注释里说 Using a real file is often faster (but less convenient). 之前我还困惑 StringIO 不是相当于一个内存对象么，真实的文件对象需要操作磁盘啊，怎么反而更快？ 后来我在 Stack Overflow 上问一下，原来是指代码执行的速度， Python 的内置文件对象是用 C 语言实现的。而 StringIO 是用 Python 代码实现的，当然慢了。 代码注释里还说 Seeking far ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-09-01T15:00:04.225133" />
+<meta property="og:article:published_time" content="2014-09-02T07:25:10.910144" />
 <meta name="twitter:title" content="StringIO标准库源码学习 ">
 <meta name="twitter:description" content="简介 StringIO 有一个 C 语言实现的版本 cStringIO 。 C 语言版本更快，但不是能创建子类，因为 C 语言版本实现为一个方法了。 StringIO 主要是用来模拟一个 file 对象的行为的。 代码注释里说 Using a real file is often faster (but less convenient). 之前我还困惑 StringIO 不是相当于一个内存对象么，真实的文件对象需要操作磁盘啊，怎么反而更快？ 后来我在 Stack Overflow 上问一下，原来是指代码执行的速度， Python 的内置文件对象是用 C 语言实现的。而 StringIO 是用 Python 代码实现的，当然慢了。 代码注释里还说 Seeking far ...">
 
@@ -445,7 +445,12 @@ insert real null bytes that occupy space in the buffer.
 223
 224
 225
-226</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">StringIO</span><span class="p">:</span>
+226
+227
+228
+229
+230
+231</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">StringIO</span><span class="p">:</span>
     <span class="sd">"""class StringIO([buffer])</span>
 
 <span class="sd">    使用 StringIO 时要注意：不能混用 Unicode 字符串和 8 字节字符串。</span>
@@ -460,6 +465,9 @@ insert real null bytes that occupy space in the buffer.
             <span class="n">buf</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">buf</span> <span class="o">=</span> <span class="n">buf</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>
+        <span class="c"># 这个列表主要是写入数据的时候，先保存在该列表里 </span>
+        <span class="c"># 到真实用时，再转换成 self.buf</span>
+        <span class="c"># 算是减少两个字符串相加的操作，也就是减少内存分配 </span>
         <span class="bp">self</span><span class="o">.</span><span class="n">buflist</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">closed</span> <span class="o">=</span> <span class="bp">False</span>
@@ -620,6 +628,8 @@ insert real null bytes that occupy space in the buffer.
             <span class="bp">self</span><span class="o">.</span><span class="n">buflist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">spos</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
             <span class="k">return</span>
+        <span class="c"># 这一行代码就解释为什么我上面写的的第一段代码 </span>
+        <span class="c"># 会产生那样的结果 </span>
         <span class="k">if</span> <span class="n">spos</span> <span class="o">&gt;</span> <span class="n">slen</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">buflist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">'</span><span class="se">\0</span><span class="s">'</span><span class="o">*</span><span class="p">(</span><span class="n">spos</span> <span class="o">-</span> <span class="n">slen</span><span class="p">))</span>
             <span class="n">slen</span> <span class="o">=</span> <span class="n">spos</span>
@@ -714,16 +724,16 @@ insert real null bytes that occupy space in the buffer.
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-09-01T15:00:04.225133">Sep 1, 2014</time>
+            <time pubdate="pubdate" datetime="2014-09-02T07:25:10.910144">Sep 2, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="http://chenjiee815.github.io/tags.html#python-ref">python
-                    <span>10</span>
+                    <span>11</span>
 </a></li>
                 <li><a href="http://chenjiee815.github.io/tags.html#stdlibs-ref">stdlibs
-                    <span>4</span>
+                    <span>5</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
