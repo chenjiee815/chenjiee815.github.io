@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Chen Jie" />
+        <meta name="copyright" content="Chen Jie" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="python, stdlibs, Python, " />
+
+<meta property="og:title" content="bisect标准库源码学习 "/>
+<meta property="og:url" content="http://chenjiee815.github.io/bisectbiao-zhun-ku-yuan-ma-xue-xi.html" />
+<meta property="og:description" content="简介 这个库还是比较简单的。 基本的要点有两个： 它内部的所有操作都使用 二分查找法 它操作的所有序列都要求为升序，且操作最好为线性表（即数组，如果使用 list，性能不佳） 它提供的函数分为两类： bisect bisect_left bisect_right 查找某元素在序列中的插入位置 如果某元素在序列中已存在， bisect_left 则返回该元素左边的位置， bisect_right 返回该元素右边的位置 1bisect = bisect_right # 向后兼容 insort insort_left insort_right 将某元素插入到序列中 如果某元素在序列中已存在 , insort_left 插入到该元素的左边，insort_right 插入到该元素的右边 1insort = insort_right # 向后兼容 当然，如果直接使用 Python 来实现这些功能，性能是不怎么样的，所以在源码中，一开始给出了 Python 版本的定义，但是在文件最后，还是会尝试导入 C ..." />
+<meta property="og:site_name" content="January Star" />
+<meta property="og:article:author" content="Chen Jie" />
+<meta property="og:article:published_time" content="2014-09-17T20:46:36.102898" />
+<meta name="twitter:title" content="bisect标准库源码学习 ">
+<meta name="twitter:description" content="简介 这个库还是比较简单的。 基本的要点有两个： 它内部的所有操作都使用 二分查找法 它操作的所有序列都要求为升序，且操作最好为线性表（即数组，如果使用 list，性能不佳） 它提供的函数分为两类： bisect bisect_left bisect_right 查找某元素在序列中的插入位置 如果某元素在序列中已存在， bisect_left 则返回该元素左边的位置， bisect_right 返回该元素右边的位置 1bisect = bisect_right # 向后兼容 insort insort_left insort_right 将某元素插入到序列中 如果某元素在序列中已存在 , insort_left 插入到该元素的左边，insort_right 插入到该元素的右边 1insort = insort_right # 向后兼容 当然，如果直接使用 Python 来实现这些功能，性能是不怎么样的，所以在源码中，一开始给出了 Python 版本的定义，但是在文件最后，还是会尝试导入 C ...">
+
+        <title>bisect标准库源码学习  · January Star
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/custom.css" media="screen">
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-52167018-1', 'auto');
+    ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <div class="span1"></div>
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://chenjiee815.github.io/"><span class=site-name>January Star</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://chenjiee815.github.io">Home</a></li>
+                            <li ><a href="http://chenjiee815.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://chenjiee815.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://chenjiee815.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://chenjiee815.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://chenjiee815.github.io/bisectbiao-zhun-ku-yuan-ma-xue-xi.html"> bisect标准库源码学习  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id2"> 简介 </a></li>
+<li><a class="reference internal" href="#bisect-bisect-right" id="id3">bisect&amp;&amp;bisect_right</a></li>
+<li><a class="reference internal" href="#bisect-left" id="id4">bisect_left</a></li>
+<li><a class="reference internal" href="#insort-insort-right" id="id5">insort&amp;&amp;insort_right</a></li>
+<li><a class="reference internal" href="#insort-left" id="id6">insort_left</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<hr class="docutils"/>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id2"> 简介 </a></h2>
+<p> 这个库还是比较简单的。</p>
+<p> 基本的要点有两个：</p>
+<ol class="arabic simple">
+<li> 它内部的所有操作都使用 <strong> 二分查找法 </strong></li>
+<li> 它操作的所有序列都要求为升序，且操作最好为线性表（即数组，如果使用 list，性能不佳）</li>
+</ol>
+<p> 它提供的函数分为两类：</p>
+<ol class="arabic">
+<li><p class="first"><cite>bisect</cite> <cite>bisect_left</cite> <cite>bisect_right</cite></p>
+<p> 查找某元素在序列中的插入位置 </p>
+<p> 如果某元素在序列中已存在， <cite>bisect_left</cite> 则返回该元素左边的位置， <cite>bisect_right</cite> 返回该元素右边的位置 </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">bisect</span> <span class="o">=</span> <span class="n">bisect_right</span>   <span class="c"># 向后兼容 </span>
+</pre></div>
+</td></tr></table></li>
+<li><p class="first"><cite>insort</cite> <cite>insort_left</cite> <cite>insort_right</cite></p>
+<p> 将某元素插入到序列中 </p>
+<p> 如果某元素在序列中已存在 , <cite>insort_left</cite> 插入到该元素的左边，<cite>insort_right</cite> 插入到该元素的右边 </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">insort</span> <span class="o">=</span> <span class="n">insort_right</span>   <span class="c"># 向后兼容 </span>
+</pre></div>
+</td></tr></table></li>
+</ol>
+<p> 当然，如果直接使用 Python 来实现这些功能，性能是不怎么样的，所以在源码中，一开始给出了 Python 版本的定义，但是在文件最后，还是会尝试导入 C 语言版本。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">_bisect</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="bisect-bisect-right">
+<h2><a class="toc-backref" href="#id3">bisect&amp;&amp;bisect_right</a></h2>
+<p>bisect_right 的签名还是很简单的：</p>
+<blockquote>
+<p><cite>a</cite> 为操作的序列 </p>
+<p><cite>x</cite> 为某元素 </p>
+<p><cite>lo</cite> <cite>hi</cite> 用来指定 <cite>a</cite> 中的开始查找和结束查找位置，默认是指整个 <cite>a</cite> 序列 </p>
+</blockquote>
+<p> 原代码实现（Python 版本）：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">'lo must be non-negative'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">hi</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">hi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span><span class="o">+</span><span class="n">hi</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span> <span class="c"># 使用 floor 除法，保证 a[mid] 不会抛出 IndexError</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
+        <span class="k">else</span><span class="p">:</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">lo</span>
+</pre></div>
+</td></tr></table><p> 上面的源代码没啥好解释的，知道 <strong> 二分查找 </strong> 是啥，基本就能懂了。</p>
+<p> 但是我还是想用递归思想重写一遍。</p>
+<p> 因为二分查找的算法定义是什么样子，它对应的代码就是什么样子，能够和定义一一对应，一眼就能看明白。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">help_mybisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">lo</span> <span class="o">&gt;</span> <span class="n">hi</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">lo</span>
+
+    <span class="n">mid_index</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span> <span class="o">+</span> <span class="n">hi</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">mid_index</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">mid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">mid_index</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">mid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">help_mybisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">mid_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">help_mybisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">mid_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">mybisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">'lo must be non-negative'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">hi</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">hi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">help_mybisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span>
+</pre></div>
+</td></tr></table><p> 嗯，咱们比较一下两者的性能。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">164</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">array</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">165</span><span class="p">]:</span> <span class="n">a</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s">"i"</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">178</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="o">-</span><span class="n">n10000</span> <span class="o">-</span><span class="n">r100</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="mi">10000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">100</span><span class="p">:</span> <span class="mf">1.45</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">179</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="o">-</span><span class="n">n10000</span> <span class="o">-</span><span class="n">r100</span> <span class="n">mybisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="mi">10000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">100</span><span class="p">:</span> <span class="mf">2.86</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span>
+</pre></div>
+</td></tr></table><p> 性能相差两倍左右 ... ...，SO，我还挺希望 Python 的解释器有尾递归优化的，甚至尾调用优化。</p>
+</div>
+<div class="section" id="bisect-left">
+<h2><a class="toc-backref" href="#id4">bisect_left</a></h2>
+<p> 原代码实现（Python 版本）：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">'lo must be non-negative'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">hi</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">hi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span><span class="o">+</span><span class="n">hi</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+        <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">:</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
+    <span class="k">return</span> <span class="n">lo</span>
+</pre></div>
+</td></tr></table><p> 使用递归来实现一下：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">help_mybisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">lo</span> <span class="o">&gt;</span> <span class="n">hi</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">lo</span>
+
+    <span class="n">mid_index</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span> <span class="o">+</span> <span class="n">hi</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">mid_index</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">mid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">mid_index</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">mid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">help_mybisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">mid_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">help_mybisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">mid_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">mybisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">'lo must be non-negative'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">hi</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">hi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">help_mybisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span>
+</pre></div>
+</td></tr></table><p><cite>help_mybisect_left</cite> <cite>help_mybisect_right</cite>  大体差不多么，将公共部分抽出来，用连续的概念，再添加一个参数 <cite>continue_func</cite> 。用来处理 help_mybisect 的结果。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">help_mybisect</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">,</span> <span class="n">continue_func</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">lo</span> <span class="o">&gt;</span> <span class="n">hi</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">lo</span>
+
+    <span class="n">mid_index</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span> <span class="o">+</span> <span class="n">hi</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">mid_index</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">mid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">continue_func</span><span class="p">(</span><span class="n">mid_index</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">mid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">help_mybisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">mid_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">help_mybisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">mid_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span>
+
+<span class="n">help_mybisect_left</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">:</span> <span class="n">help_mybisect</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">num</span><span class="p">:</span> <span class="n">num</span><span class="p">)</span>
+
+<span class="n">help_mybisect_right</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">:</span> <span class="n">help_mybisect</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">num</span><span class="p">:</span> <span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="insort-insort-right">
+<h2><a class="toc-backref" href="#id5">insort&amp;&amp;insort_right</a></h2>
+<p> 这个函数的代码基本上就是先用 <cite>bisect_right</cite> 查找出需要插入的位置，然后调用 <cite>a.insert</cite> 即可。</p>
+</div>
+<div class="section" id="insort-left">
+<h2><a class="toc-backref" href="#id6">insort_left</a></h2>
+<p> 这个函数的代码基本上就是先用 <cite>bisect_left</cite> 查找出需要插入的位置，然后调用 <cite>a.insert</cite> 即可。</p>
+</div>
+
+            
+            <section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://chenjiee815.github.io/bisectbiao-zhun-ku-yuan-ma-xue-xi.html#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'chenjiee815blog';
+        var disqus_identifier = 'http://chenjiee815.github.io/bisectbiao-zhun-ku-yuan-ma-xue-xi.html';
+    var disqus_url = 'http://chenjiee815.github.io/bisectbiao-zhun-ku-yuan-ma-xue-xi.html';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2014-09-17T20:46:36.102898">Sep 17, 2014</time>
+            <h4>Category</h4>
+            <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">Python</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://chenjiee815.github.io/tags.html#python-ref">python
+                    <span>14</span>
+</a></li>
+                <li><a href="http://chenjiee815.github.io/tags.html#stdlibs-ref">stdlibs
+                    <span>7</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://www.htdp.org/" title="My HTDP Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-htdp sidebar-social-links"></i></a>
+    <a href="http://mitpress.mit.edu/sicp/" title="My SICP Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-sicp sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'chenjiee815blog';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
