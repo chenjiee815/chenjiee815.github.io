@@ -17,7 +17,7 @@
 <meta property="og:description" content="简介 这个库还是比较简单的。 基本的要点有两个： 它内部的所有操作都使用 二分查找法 它操作的所有序列都要求为升序，且操作最好为线性表（即数组，如果使用 list，性能不佳） 它提供的函数分为两类： bisect bisect_left bisect_right 查找某元素在序列中的插入位置 如果某元素在序列中已存在， bisect_left 则返回该元素左边的位置， bisect_right 返回该元素右边的位置 1bisect = bisect_right # 向后兼容 insort insort_left insort_right 将某元素插入到序列中 如果某元素在序列中已存在 , insort_left 插入到该元素的左边，insort_right 插入到该元素的右边 1insort = insort_right # 向后兼容 当然，如果直接使用 Python 来实现这些功能，性能是不怎么样的，所以在源码中，一开始给出了 Python 版本的定义，但是在文件最后，还是会尝试导入 C ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-09-17T20:46:36.102898" />
+<meta property="og:article:published_time" content="2014-09-24T23:36:48.147731" />
 <meta name="twitter:title" content="bisect标准库源码学习 ">
 <meta name="twitter:description" content="简介 这个库还是比较简单的。 基本的要点有两个： 它内部的所有操作都使用 二分查找法 它操作的所有序列都要求为升序，且操作最好为线性表（即数组，如果使用 list，性能不佳） 它提供的函数分为两类： bisect bisect_left bisect_right 查找某元素在序列中的插入位置 如果某元素在序列中已存在， bisect_left 则返回该元素左边的位置， bisect_right 返回该元素右边的位置 1bisect = bisect_right # 向后兼容 insort insort_left insort_right 将某元素插入到序列中 如果某元素在序列中已存在 , insort_left 插入到该元素的左边，insort_right 插入到该元素的右边 1insort = insort_right # 向后兼容 当然，如果直接使用 Python 来实现这些功能，性能是不怎么样的，所以在源码中，一开始给出了 Python 版本的定义，但是在文件最后，还是会尝试导入 C ...">
 
@@ -194,7 +194,7 @@
     <span class="k">if</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">'lo must be non-negative'</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">hi</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">hi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">hi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">help_mybisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span>
 </pre></div>
 </td></tr></table><p> 嗯，咱们比较一下两者的性能。</p>
@@ -363,7 +363,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-09-17T20:46:36.102898">Sep 17, 2014</time>
+            <time pubdate="pubdate" datetime="2014-09-24T23:36:48.147731">Sep 24, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
