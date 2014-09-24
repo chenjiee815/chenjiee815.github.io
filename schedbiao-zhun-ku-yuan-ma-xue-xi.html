@@ -17,7 +17,7 @@
 <meta property="og:description" content="简介 sched 提供了一个具有事件调度机制的类 scheduler 。 不过该模块在文件的开头简介里就说明了： 该类的每个实例内部会维护一个队列。 但是该类并不是线程安全的。 如果想要线程安全，你必须自己根据 scheduler 来定制一个， 或者在多线程环境里，使用单例模式来解决线程安全问题。 官方文档里建议使用 threading.Timer 来延时执行某个方法，可以达到类似于 sched 的效果，同时也是线程安全的。 从上面的介绍就可以看出， scheduler 不支持多线程，所以它内部的阻塞以及事件回调函数的执行应该都是用同步的方式来做的，且其中一个步骤执行时抛出异常，都会导致事件调试失败，这个算是它的一个不小的缺点吧，当然对于要求不高的任务，够用啦。 Event 既然是有事件调度，那么就有一个事件对象。 在 sched 模块中是以命名元组来实现的。 该事件有四个属性： time: 该事件的调度时间，当 timefunc 的返回值 &gt;=time 时，该事件可以进行调度 priority: 该事件的优先级，数值越小，优先级越高（Unix ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-09-24T23:45:19.798254" />
+<meta property="og:article:published_time" content="2014-09-24T23:47:25.707541" />
 <meta name="twitter:title" content="sched标准库源码学习 ">
 <meta name="twitter:description" content="简介 sched 提供了一个具有事件调度机制的类 scheduler 。 不过该模块在文件的开头简介里就说明了： 该类的每个实例内部会维护一个队列。 但是该类并不是线程安全的。 如果想要线程安全，你必须自己根据 scheduler 来定制一个， 或者在多线程环境里，使用单例模式来解决线程安全问题。 官方文档里建议使用 threading.Timer 来延时执行某个方法，可以达到类似于 sched 的效果，同时也是线程安全的。 从上面的介绍就可以看出， scheduler 不支持多线程，所以它内部的阻塞以及事件回调函数的执行应该都是用同步的方式来做的，且其中一个步骤执行时抛出异常，都会导致事件调试失败，这个算是它的一个不小的缺点吧，当然对于要求不高的任务，够用啦。 Event 既然是有事件调度，那么就有一个事件对象。 在 sched 模块中是以命名元组来实现的。 该事件有四个属性： time: 该事件的调度时间，当 timefunc 的返回值 &gt;=time 时，该事件可以进行调度 priority: 该事件的优先级，数值越小，优先级越高（Unix ...">
 
@@ -243,64 +243,64 @@
     <span class="k">def</span> <span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="sd">""" 删除一个事件 </span>
 
-<span class="sd">        这个事件可以是 `enterabs` 或者  `enter` 方法的返回值 """</span>
+<span class="sd">        这个事件可以是 `enterabs` 或者  `enter` 方法的返回值 </span>
 
-        <span class="err"> 如果该事件不在内部队列里面，会抛出 </span> <span class="sb">`ValueError`</span> <span class="err"> 异常 </span>
-        <span class="sd">"""</span>
-<span class="sd">        self._queue.remove(event)</span>
-<span class="sd">        heapq.heapify(self._queue)</span>
+<span class="sd">        如果该事件不在内部队列里面，会抛出 `ValueError` 异常 </span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+        <span class="n">heapq</span><span class="o">.</span><span class="n">heapify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">)</span>
 
-<span class="sd">    def empty(self):</span>
-<span class="sd">        """</span><span class="err"> 检查内部队列是否为空 </span><span class="s">"""</span>
-<span class="s">        return not self._queue</span>
+    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">""" 检查内部队列是否为空 """</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span>
 
-<span class="s">    def run(self):</span>
-<span class="s">        """</span><span class="err"> 开始事件调度，直接所有事件调度完成 </span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">""" 开始事件调度，直接所有事件调度完成 </span>
 
-        <span class="err"> 如果 </span><span class="n">timefunc</span><span class="o">/</span><span class="n">deltafunc</span><span class="o">/</span><span class="err"> 事件的回调函数抛出异常了，事件调试也会中止，</span>
-        <span class="err"> 不过幸运的是，你可以再次调用 </span> <span class="sb">`run`</span> <span class="err"> 来重新调试剩余事件。</span>
-        <span class="sd">"""</span>
-<span class="sd">        # 将二次调用的方法 / 属性都统一到本地变量 </span>
-<span class="sd">        # 一方面是加快调用速度，另一面也是为了线程安全考虑 </span>
-<span class="sd">        # 为本地变量的话，直接一个字节码 `LOST_FAST` 搞定了 </span>
-<span class="sd">        # Python 执行线程切换时以字节码为单位的 </span>
-<span class="sd">        q = self._queue</span>
-<span class="sd">        delayfunc = self.delayfunc</span>
-<span class="sd">        timefunc = self.timefunc</span>
-<span class="sd">        pop = heapq.heappop</span>
-<span class="sd">        while q:</span>
-<span class="sd">            time, priority, action, argument = checked_event = q[0]</span>
-<span class="sd">            now = timefunc()</span>
-<span class="sd">            if now &lt; time:</span>
-<span class="sd">                delayfunc(time - now)</span>
-<span class="sd">            else:</span>
-<span class="sd">                event = pop(q)</span>
-<span class="sd">                # 从 q[0] 取出事件和，pop 取出事件之间会执行多条字节码 </span>
-<span class="sd">                # 在多线程环境里，很有可能在一个线程里取得了 q[0]</span>
-<span class="sd">                # 而在另外一个线程里又添加了新的事件，pop 出来就可能是新的事件 </span>
-<span class="sd">                # 所以这里要验证一下两者是否是同一个对象 </span>
-<span class="sd">                if event is checked_event:</span>
-<span class="sd">                    action(*argument)</span>
-<span class="sd">                    # 主动让出执行权给其它线程 </span>
-<span class="sd">                    # 如果不加这个，且队列中所有事件都符合调度要求了，</span>
-<span class="sd">                    # 此时就会一直进行事件调度，</span>
-<span class="sd">                    # 话是这样说，但是 Python 内部的线程是抢占式，</span>
-<span class="sd">                    # 不会担心会出现上面所说的问题，</span>
-<span class="sd">                    # 所以作者在注释才会说明这句代码是一个有争论的 hack 代码 </span>
-<span class="sd">                    # 如果是用 gevent 的话这句代码就很有必要的，</span>
-<span class="sd">                    # 因为 gevent 是非抢占式的，要主要出让才行 </span>
-<span class="sd">                    delayfunc(0)</span>
-<span class="sd">                else:</span>
-<span class="sd">                    # 如果验证失败，则放回队列内部，等待下次机会 </span>
-<span class="sd">                    heapq.heappush(q, event)</span>
+<span class="sd">        如果 timefunc/deltafunc/ 事件的回调函数抛出异常了，事件调试也会中止，</span>
+<span class="sd">        不过幸运的是，你可以再次调用 `run` 来重新调试剩余事件。</span>
+<span class="sd">        """</span>
+        <span class="c"># 将二次调用的方法 / 属性都统一到本地变量 </span>
+        <span class="c"># 一方面是加快调用速度，另一面也是为了线程安全考虑 </span>
+        <span class="c"># 为本地变量的话，直接一个字节码 `LOST_FAST` 搞定了 </span>
+        <span class="c"># Python 执行线程切换时以字节码为单位的 </span>
+        <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span>
+        <span class="n">delayfunc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delayfunc</span>
+        <span class="n">timefunc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timefunc</span>
+        <span class="n">pop</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span>
+        <span class="k">while</span> <span class="n">q</span><span class="p">:</span>
+            <span class="n">time</span><span class="p">,</span> <span class="n">priority</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">argument</span> <span class="o">=</span> <span class="n">checked_event</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">now</span> <span class="o">=</span> <span class="n">timefunc</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">now</span> <span class="o">&lt;</span> <span class="n">time</span><span class="p">:</span>
+                <span class="n">delayfunc</span><span class="p">(</span><span class="n">time</span> <span class="o">-</span> <span class="n">now</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">event</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+                <span class="c"># 从 q[0] 取出事件和，pop 取出事件之间会执行多条字节码 </span>
+                <span class="c"># 在多线程环境里，很有可能在一个线程里取得了 q[0]</span>
+                <span class="c"># 而在另外一个线程里又添加了新的事件，pop 出来就可能是新的事件 </span>
+                <span class="c"># 所以这里要验证一下两者是否是同一个对象 </span>
+                <span class="k">if</span> <span class="n">event</span> <span class="ow">is</span> <span class="n">checked_event</span><span class="p">:</span>
+                    <span class="n">action</span><span class="p">(</span><span class="o">*</span><span class="n">argument</span><span class="p">)</span>
+                    <span class="c"># 主动让出执行权给其它线程 </span>
+                    <span class="c"># 如果不加这个，且队列中所有事件都符合调度要求了，</span>
+                    <span class="c"># 此时就会一直进行事件调度，</span>
+                    <span class="c"># 话是这样说，但是 Python 内部的线程是抢占式，</span>
+                    <span class="c"># 不会担心会出现上面所说的问题，</span>
+                    <span class="c"># 所以作者在注释才会说明这句代码是一个有争论的 hack 代码 </span>
+                    <span class="c"># 如果是用 gevent 的话这句代码就很有必要的，</span>
+                    <span class="c"># 因为 gevent 是非抢占式的，要主要出让才行 </span>
+                    <span class="n">delayfunc</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c"># 如果验证失败，则放回队列内部，等待下次机会 </span>
+                    <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
 
-<span class="sd">    @property</span>
-<span class="sd">    def queue(self):</span>
-<span class="sd">        """</span><span class="err"> 用来保存内部待执行的事件 </span><span class="s">"""</span>
-<span class="s">        # 这里使用堆排，而不使用 `sorted` 来对内部队列排序 </span>
-<span class="s">        # 是因为当两个事件的优先级一亲，堆排还会按两个事件的插入顺序来排序 </span>
-<span class="s">        events = self._queue[:]</span>
-<span class="s">        return map(heapq.heappop, [events]*len(events))</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">queue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">""" 用来保存内部待执行的事件 """</span>
+        <span class="c"># 这里使用堆排，而不使用 `sorted` 来对内部队列排序 </span>
+        <span class="c"># 是因为当两个事件的优先级一亲，堆排还会按两个事件的插入顺序来排序 </span>
+        <span class="n">events</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">[:]</span>
+        <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">,</span> <span class="p">[</span><span class="n">events</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">))</span>
 </pre></div>
 </td></tr></table></div>
 
@@ -344,7 +344,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-09-24T23:45:19.798254">Sep 24, 2014</time>
+            <time pubdate="pubdate" datetime="2014-09-24T23:47:25.707541">Sep 24, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
