@@ -17,7 +17,7 @@
 <meta property="og:description" content="这里记录的是我用 Python 几年以来，觉得大家可能会忽略的的小知识点（好吧，也有可能只是我自己忽略的小知识点）。 next next 是 Python 提供的一个 Built-in 函数。 提到 next，大家可能都会想到 Python 中的迭代协议中就有要求实现一个 next 方法。 那这个函数的功能也是作用于一个迭代器的。 1next(iterator[, default]) 看到它的函数签名了么，有一个 default 可选参数，这个就是我想要讲的重点。 next 在检索一个迭代器（不是一个可迭代的对象）时，会调用它的 next() 方法， 但当迭代器迭代结束时，如果提供了 default 参数，next 函数会返回 default, 如果没有，则直接抛出 StopIteration 异常。 Note 注意我上面所强调的 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-09-17T22:06:59.884214" />
+<meta property="og:article:published_time" content="2014-09-25T14:31:32.600617" />
 <meta name="twitter:title" content="Python小贴士（持续更新） ">
 <meta name="twitter:description" content="这里记录的是我用 Python 几年以来，觉得大家可能会忽略的的小知识点（好吧，也有可能只是我自己忽略的小知识点）。 next next 是 Python 提供的一个 Built-in 函数。 提到 next，大家可能都会想到 Python 中的迭代协议中就有要求实现一个 next 方法。 那这个函数的功能也是作用于一个迭代器的。 1next(iterator[, default]) 看到它的函数签名了么，有一个 default 可选参数，这个就是我想要讲的重点。 next 在检索一个迭代器（不是一个可迭代的对象）时，会调用它的 next() 方法， 但当迭代器迭代结束时，如果提供了 default 参数，next 函数会返回 default, 如果没有，则直接抛出 StopIteration 异常。 Note 注意我上面所强调的 ...">
 
@@ -80,16 +80,18 @@
         <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#next" id="id2">next</a></li>
-<li><a class="reference internal" href="#unicode" id="id3">unicode</a></li>
-<li><a class="reference internal" href="#iter" id="id4">iter</a></li>
-<li><a class="reference internal" href="#memoryview" id="id5">memoryview</a></li>
-<li><a class="reference internal" href="#notimplementednotimplementederror" id="id6">NotImplemented 与 NotImplementedError</a><ul>
-<li><a class="reference internal" href="#notimplemented" id="id7">NotImplemented</a></li>
-<li><a class="reference internal" href="#notimplementederror" id="id8">NotImplementedError</a></li>
+<li><a class="reference internal" href="#next" id="id3">next</a></li>
+<li><a class="reference internal" href="#unicode" id="id4">unicode</a></li>
+<li><a class="reference internal" href="#iter" id="id5">iter</a></li>
+<li><a class="reference internal" href="#memoryview" id="id6">memoryview</a></li>
+<li><a class="reference internal" href="#notimplementednotimplementederror" id="id7">NotImplemented 与 NotImplementedError</a><ul>
+<li><a class="reference internal" href="#notimplemented" id="id8">NotImplemented</a></li>
+<li><a class="reference internal" href="#notimplementederror" id="id9">NotImplementedError</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id1" id="id9"> 真值判断 </a></li>
+<li><a class="reference internal" href="#id1" id="id10"> 真值判断 </a></li>
+<li><a class="reference internal" href="#id2" id="id11">() 的用法 </a></li>
+<li><a class="reference internal" href="#bit-length" id="id12">1.bit_length() 为啥会报错？</a></li>
 </ul>
 </div>
         </nav>
@@ -101,7 +103,7 @@
 <hr class="docutils"/>
 <p> 这里记录的是我用 Python 几年以来，觉得大家可能会忽略的的小知识点（好吧，也有可能只是我自己忽略的小知识点）。</p>
 <div class="section" id="next">
-<h2><a class="toc-backref" href="#id2">next</a></h2>
+<h2><a class="toc-backref" href="#id3">next</a></h2>
 <p>next 是 Python 提供的一个 Built-in 函数。</p>
 <p> 提到 next，大家可能都会想到 Python 中的迭代协议中就有要求实现一个 next 方法。</p>
 <p> 那这个函数的功能也是作用于一个迭代器的。</p>
@@ -177,7 +179,7 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 </td></tr></table><p> 但有些人就是有点小强迫症（比如我）：一行可实现的代码，干嘛写那么啰嗦。</p>
 </div>
 <div class="section" id="unicode">
-<h2><a class="toc-backref" href="#id3">unicode</a></h2>
+<h2><a class="toc-backref" href="#id4">unicode</a></h2>
 <p> 嗯，这也是一个 Python 的内置函数。函数签名如下：</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">unicode</span><span class="p">(</span><span class="nb">object</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
@@ -201,7 +203,7 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 </div>
 </div>
 <div class="section" id="iter">
-<h2><a class="toc-backref" href="#id4">iter</a></h2>
+<h2><a class="toc-backref" href="#id5">iter</a></h2>
 <p> 还是 Python 的内置函数，直接看它的签名。</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">iter</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">iterator</span>
@@ -212,7 +214,7 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 <p> 该用法很类似于 <cite>itertools.takewhile</cite> 。</p>
 </div>
 <div class="section" id="memoryview">
-<h2><a class="toc-backref" href="#id5">memoryview</a></h2>
+<h2><a class="toc-backref" href="#id6">memoryview</a></h2>
 <p> 这个类是在 Python2.7 中才加入的。</p>
 <p> 这个类可以用来访问一个支持 buffer 协议的对象的内部数据，而不需要拷贝这些数据。可以用在对内存比较敏感的地方。</p>
 <p> 目前 Python 内置的支持 buffer 协议的有 str 和 bytearry。</p>
@@ -233,20 +235,20 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 <p> 第 2 种情况 Python 只会生成一个新的 memoryview 对象再然后再跟 <cite>tag</cite> 进行比较。该新的 memoryview 对象本质是对 <cite>str_a</cite> 的 <cite>bcdefg</cite> 段的引用，并不生成新的字符串。</p>
 </div>
 <div class="section" id="notimplementednotimplementederror">
-<h2><a class="toc-backref" href="#id6">NotImplemented 与 NotImplementedError</a></h2>
+<h2><a class="toc-backref" href="#id7">NotImplemented 与 NotImplementedError</a></h2>
 <div class="section" id="notimplemented">
-<h3><a class="toc-backref" href="#id7">NotImplemented</a></h3>
+<h3><a class="toc-backref" href="#id8">NotImplemented</a></h3>
 <p> 为一个内置的常量。</p>
 <p> 常用于 “ 富比较 ” 的特殊方法（ <cite>__eq__</cite> 、 <cite>__lt__</cite>  等其它方法）的返回值，用于说明该方法未实现。</p>
 </div>
 <div class="section" id="notimplementederror">
-<h3><a class="toc-backref" href="#id8">NotImplementedError</a></h3>
+<h3><a class="toc-backref" href="#id9">NotImplementedError</a></h3>
 <p> 为一个内置异常，是从 <cite>RuntimeError</cite> 继承的。</p>
 <p> 多用于用户自定义的抽象方法中，用户可以在自定义的抽象方法中抛出该异常，要求继承该方法所在类的子类实现该方法。</p>
 </div>
 </div>
 <div class="section" id="id1">
-<h2><a class="toc-backref" href="#id9"> 真值判断 </a></h2>
+<h2><a class="toc-backref" href="#id10"> 真值判断 </a></h2>
 <p> 在 Python 中使用 bool 函数、if、while 等对某个对象进行真值判断时，有一定的算法。</p>
 <ol class="arabic simple">
 <li> 以下情况则为 False<ul>
@@ -262,6 +264,93 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 </ol>
 <p> 其实真值判断在 Python 入门时，大家都有遇到过，基本对于前 6 种会被判定为 False，大家也都清楚。</p>
 <p> 但是最后一种会被判断为 False，忽略的人可能会比较多。</p>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id11">() 的用法 </a></h2>
+<p> 在 Python 中，很多人还了解到元组的生成语法后，就会以为 <cite>()</cite> 是元组专享的。</p>
+<p> 其实在 Python 中， <cite>()</cite> 真实的意思应该是组合，一般情况下有它无它都可以。</p>
+<p> 比如：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="p">(</span><span class="s">"abcd"</span> <span class="s">"ABC"</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="s">'abcdABC'</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="mi">1</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="p">(</span><span class="s">"adfi"</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="s">'adfi'</span>
+</pre></div>
+</td></tr></table><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="s">"asdfi"</span> <span class="s">"asdif"</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="s">'asdfiasdif'</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="mi">1</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="mi">1</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">23</span><span class="p">]:</span> <span class="s">"adfi"</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">23</span><span class="p">]:</span> <span class="s">'adfi'</span>
+</pre></div>
+</td></tr></table><p> 如果在 <cite>()</cite> 的内部至少有一个 <cite>,</cite> 才会解释成元组，或者啥都没有，就是一个空元组。</p>
+<p> 大家想深入了解的话，可以看 Python 官方文档 <a class="reference external" href="https://docs.python.org/2/reference/expressions.html#parenthesized-forms">Parenthesized forms</a> 。</p>
+</div>
+<div class="section" id="bit-length">
+<h2><a class="toc-backref" href="#id12">1.bit_length() 为啥会报错？</a></h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">25</span><span class="p">]:</span> <span class="mf">1.</span><span class="n">bit_length</span><span class="p">()</span>
+  <span class="n">File</span> <span class="s">"&lt;ipython-input-25-069f7d2f7d97&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="mf">1.</span><span class="n">bit_length</span><span class="p">()</span>
+               <span class="o">^</span>
+<span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">invalid</span> <span class="n">syntax</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">27</span><span class="p">]:</span> <span class="mf">1.</span><span class="o">.</span><span class="n">is_integer</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">27</span><span class="p">]:</span> <span class="bp">True</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">28</span><span class="p">]:</span> <span class="mf">1.0</span><span class="o">.</span><span class="n">is_integer</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">28</span><span class="p">]:</span> <span class="bp">True</span>
+</pre></div>
+</td></tr></table><p>Python 里面不是是一切皆对象么，为啥我大浮点数可以调用方法，整数就不可以，还报语法错？</p>
+<blockquote>
+其实这个由于 Python 的语法解析器导致的。</blockquote>
+<p> 当它解释到 <cite>[number][dot]</cite> 这种形式时，它会将之当作一个浮点数，你一个浮点后面直接加方法名，中间没有 <cite>.</cite> 当然就直接报语法错了。</p>
+<p><cite>1..is_integer()</cite> 这样的话，它就不会报错了，因为 <cite>1.</cite> 它会解释成浮点数， <cite>.is_integer()</cite> 就是正常的方法调用了。</p>
+<p> 那么在 Python 中整数就没办法直接调用方法了么？</p>
+<blockquote>
+那倒不是，方法还挺多。</blockquote>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">29</span><span class="p">]:</span> <span class="mi">1</span> <span class="o">.</span><span class="n">__add__</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c"># 空格可以任意添加多个 </span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">29</span><span class="p">]:</span> <span class="mi">3</span>
+</pre></div>
+</td></tr></table><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">30</span><span class="p">]:</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">__add__</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">30</span><span class="p">]:</span> <span class="mi">3</span>
+</pre></div>
+</td></tr></table><p> 再来个疯狂一点的：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">35</span><span class="p">]:</span> <span class="mi">1</span>       <span class="o">.</span>         <span class="n">__add__</span>       <span class="p">(</span> <span class="mi">2</span>            <span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">35</span><span class="p">]:</span> <span class="mi">3</span>
+</pre></div>
+</td></tr></table><p>StackOverFlow 上面有一个问题解释得比较详细： <a class="reference external" href="http://stackoverflow.com/questions/12025531/why-does-1-add-2-not-work-out">why-does-1-add-2-not-work-out</a> 。</p>
 </div>
 
             
@@ -304,7 +393,7 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-09-17T22:06:59.884214">Sep 17, 2014</time>
+            <time pubdate="pubdate" datetime="2014-09-25T14:31:32.600617">Sep 25, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">python</a>
             <h4>Tags</h4>
