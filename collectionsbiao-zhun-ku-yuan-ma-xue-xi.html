@@ -13,7 +13,7 @@
 <meta name="keywords" content="python, stdlibs, Python, " />
 
 <meta property="og:title" content="collections标准库源码学习 "/>
-<meta property="og:url" content="chenjiee815/collectionsbiao-zhun-ku-yuan-ma-xue-xi.html" />
+<meta property="og:url" content="http://chenjiee815.github.io/collectionsbiao-zhun-ku-yuan-ma-xue-xi.html" />
 <meta property="og:description" content="简介 collections 库包含两个文件 collections.py 和 _abcoll.py 。 至于为什么要拆分成两个文件， collections 库在文件一开始就在注释里写到： For bootstrapping reasons, the collection ABCs are defined in _abcoll.py. They should however be considered an integral part of collections.py. 我刚开始找不出它这个 bootstrapping reasons, 后来 google 了一下，发现这个 bootstrapping reasons 的解释。 不过这个链接里说 collections 会引用 os ， 而 os 又会引用 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
@@ -25,11 +25,10 @@
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="chenjiee815/theme/css/pygments.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="chenjiee815/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="chenjiee815/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="chenjiee815/theme/css/custom.css" media="screen">
-        <link href="chenjiee815/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="January Star - Full Atom Feed" />
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://chenjiee815.github.io/theme/css/custom.css" media="screen">
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -50,14 +49,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="chenjiee815/"><span class=site-name>January Star</span></a>
+                    <a class="brand" href="http://chenjiee815.github.io/"><span class=site-name>January Star</span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
-                            <li ><a href="chenjiee815">Home</a></li>
-                            <li ><a href="chenjiee815/categories.html">Categories</a></li>
-                            <li ><a href="chenjiee815/tags.html">Tags</a></li>
-                            <li ><a href="chenjiee815/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="chenjiee815/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            <li ><a href="http://chenjiee815.github.io">Home</a></li>
+                            <li ><a href="http://chenjiee815.github.io/categories.html">Categories</a></li>
+                            <li ><a href="http://chenjiee815.github.io/tags.html">Tags</a></li>
+                            <li ><a href="http://chenjiee815.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://chenjiee815.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
                         </ul>
                     </div>
                 </div>
@@ -70,7 +69,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="chenjiee815/collectionsbiao-zhun-ku-yuan-ma-xue-xi.html"> collections标准库源码学习  </a></h1>
+    <h1><a href="http://chenjiee815.github.io/collectionsbiao-zhun-ku-yuan-ma-xue-xi.html"> collections标准库源码学习  </a></h1>
     </header>
 </div>
 
@@ -858,7 +857,7 @@ factory function for creating tuple subclasses with named fields
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="chenjiee815/collectionsbiao-zhun-ku-yuan-ma-xue-xi.html#disqus_thread">
+                href="http://chenjiee815.github.io/collectionsbiao-zhun-ku-yuan-ma-xue-xi.html#disqus_thread">
                 Comments
             </a>
         </div>
@@ -868,8 +867,8 @@ factory function for creating tuple subclasses with named fields
                     <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'chenjiee815blog';
-        var disqus_identifier = 'chenjiee815/collectionsbiao-zhun-ku-yuan-ma-xue-xi.html';
-    var disqus_url = 'chenjiee815/collectionsbiao-zhun-ku-yuan-ma-xue-xi.html';
+        var disqus_identifier = 'http://chenjiee815.github.io/collectionsbiao-zhun-ku-yuan-ma-xue-xi.html';
+    var disqus_url = 'http://chenjiee815.github.io/collectionsbiao-zhun-ku-yuan-ma-xue-xi.html';
 
     (function() {
          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -894,13 +893,13 @@ factory function for creating tuple subclasses with named fields
             <h4>Published</h4>
             <time pubdate="pubdate" datetime="2014-09-11T22:31:17.038747">Sep 11, 2014</time>
             <h4>Category</h4>
-            <a class="category-link" href="chenjiee815/categories.html#python-ref">Python</a>
+            <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="chenjiee815/tags.html#python-ref">python
+                <li><a href="http://chenjiee815.github.io/tags.html#python-ref">python
                     <span>15</span>
 </a></li>
-                <li><a href="chenjiee815/tags.html#stdlibs-ref">stdlibs
+                <li><a href="http://chenjiee815.github.io/tags.html#stdlibs-ref">stdlibs
                     <span>8</span>
 </a></li>
             </ul>
