@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>January Star</title><link href="chenjiee815/" rel="alternate"></link><link href="chenjiee815/feeds/http.atom.xml" rel="self"></link><id>chenjiee815/</id><updated>2014-08-28T20:51:34+08:00</updated><entry><title>《HTTP权威指南》笔记 第四章 连接管理</title><link href="chenjiee815/httpquan-wei-zhi-nan-bi-ji-di-si-zhang-lian-jie-guan-li.html" rel="alternate"></link><updated>2014-08-28T20:51:34+08:00</updated><author><name>Chen Jie</name></author><id>tag:chenjiee815,2014-08-28:httpquan-wei-zhi-nan-bi-ji-di-si-zhang-lian-jie-guan-li.html</id><summary type="html">
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;HTTP 的连接过程 &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;HTTP 连接本质上就是 TCP 连接和一些使用连接的规则。&lt;/p&gt;
+&lt;img alt="" src="/http_definitive_guide/static/http_tcp_connection.png"/&gt;
+&lt;div class="section" id="httphttps"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id3"&gt;HTTP 和 HTTPS 网络协议栈区别 &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;HTTPS 连接其中就是在 HTTP 和 TCP 层之间插入一个 TSL/SSL 层。&lt;/p&gt;
+&lt;img alt="" src="/http_definitive_guide/static/http_stacks_vs_https_stacks.png"/&gt;
+&lt;p&gt;HTTP 要传送一条报文时，
+会以流的形式将报文数据通过一条打开的 TCP 连接按序传输。&lt;/p&gt;
+&lt;p&gt;TCP 收到数据流后，会将数据流分成多个小段，
+并将该段封装在 IP 分组中。&lt;/p&gt;
+&lt;p&gt; 每个 IP 分组包括：&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt; 一个 IP 分组首部（通常为 20 个字节）&lt;/li&gt;
+&lt;li&gt; 一个 TCP 段首部（通常为 20 个字节）&lt;/li&gt;
+&lt;li&gt; 一个 TCP 数据块（0 个或者多个字节）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="http"></category></entry><entry><title>《HTTP权威指南》笔记 第三章 HTTP报文</title><link href="chenjiee815/httpquan-wei-zhi-nan-bi-ji-di-san-zhang-httpbao-wen.html" rel="alternate"></link><updated>2014-08-28T20:51:34+08:00</updated><author><name>Chen Jie</name></author><id>tag:chenjiee815,2014-08-28:httpquan-wei-zhi-nan-bi-ji-di-san-zhang-httpbao-wen.html</id><summary type="html">
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id7"&gt; 起始行 &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt; 所有的 HTTP 报文都以一个起始行作为开始。&lt;/p&gt;
+&lt;p&gt; 请求报文的起始行（请求行）说明： &lt;strong&gt; 要做些什么 &lt;/strong&gt; 。&lt;/p&gt;
+&lt;p&gt; 响应报文的起始行（响应行）说明： &lt;strong&gt; 发生了什么 &lt;/strong&gt; 。&lt;/p&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id8"&gt; 请求行 &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt; 包含一个方法和一个请求 URL。&lt;/p&gt;
+&lt;p&gt; 这个方法描述了服务器应该执行的操作，
+请求 URL 描述了要对哪个资源执行这个方法。
+此外，它还包含了客户端使用 HTTP 版本。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id3"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id9"&gt; 响应行 &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt; 包含服务器使用 HTTP 版本、数字状态码及其对应的原因短语。&lt;/p&gt;
+&lt;p&gt; 所有这些字段通过空格来进行分隔。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id4"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id10"&gt; 状态码 &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt; 状态码表示为三位数字。&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;200~299 之间的状态码表示成功。&lt;/li&gt;
+&lt;li&gt;300~399 之间的状态码表示资源已经被移走。&lt;/li&gt;
+&lt;li&gt;400~499 之间的状态码表示客户端请求出错。&lt;/li&gt;
+&lt;li&gt;500~599 之间的状态码表示服务器响应出错。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id5"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id11"&gt; 首部 &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt; 本质上是一些 KeyValue 对的列表。&lt;/p&gt;
+&lt;p&gt; 将长的首部行分为多行可以提高可读性，
+多出来的每行前面至少要有一个空格或者制表符。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id6"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id12"&gt; 主体 &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt; 主体是 HTTP 要传输的具体内容。&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="http"></category></entry><entry><title>《HTTP权威指南》笔记 第二章 URL与资源</title><link href="chenjiee815/httpquan-wei-zhi-nan-bi-ji-di-er-zhang-urlyu-zi-yuan.html" rel="alternate"></link><updated>2014-08-28T20:51:34+08:00</updated><author><name>Chen Jie</name></author><id>tag:chenjiee815,2014-08-28:httpquan-wei-zhi-nan-bi-ji-di-er-zhang-urlyu-zi-yuan.html</id><summary type="html">&lt;img alt="" src="/http_definitive_guide/static/url.png"/&gt;
+
+&lt;div class="section" id="url"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id4"&gt;URL 语法 &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt; 大多数 URL 的格式：&lt;/p&gt;
+&lt;blockquote&gt;
+&amp;lt;scheme&amp;gt;://&amp;lt;user&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;path&amp;gt;;&amp;lt;params&amp;gt;?&amp;lt;query&amp;gt;#&amp;lt;frag&amp;gt;&lt;/blockquote&gt;
+&lt;p&gt; 其中最重要的是 scheme, host, path。&lt;/p&gt;
+&lt;img alt="" src="/http_definitive_guide/static/url_format.png"/&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id5"&gt; 相对 URL&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt; 有时候网页里面的 URL 不是绝对路径的，
+那么就会有相应的算法将之转换成绝对 URL。&lt;/p&gt;
+&lt;img alt="" src="/http_definitive_guide/static/relative_url.png"/&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id6"&gt; 转义字符 &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt; 为了在 URL 中表示各种不安全的字符，
+需要在 URL 用转义字符来表示这些不安全的字符。&lt;/p&gt;
+&lt;p&gt; 这种转义表示法包含一个百分号，后面跟着两个表示字符 ASCII 码的 16 进制数。&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;caption&gt; 一些编码字符举例 &lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col width="17%"&gt;&lt;/col&gt;
+&lt;col width="17%"&gt;&lt;/col&gt;
+&lt;col width="67%"&gt;&lt;/col&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt; 字符 &lt;/th&gt;
+&lt;th class="head"&gt;ASCII 码 &lt;/th&gt;
+&lt;th class="head"&gt; 示例 URL&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;~&lt;/td&gt;
+&lt;td&gt;126(0x7E)&lt;/td&gt;
+&lt;td&gt;&lt;a class="reference external" href="http://www.joes-hardware.com/%7Ejoe"&gt;http://www.joes-hardware.com/%7Ejoe&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt; 空格 &lt;/td&gt;
+&lt;td&gt;32(0x20)&lt;/td&gt;
+&lt;td&gt;&lt;a class="reference external" href="http://www.joes-hardware.com/more%20tools.html"&gt;http://www.joes-hardware.com/more%20tools.html&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id3"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id7"&gt; 保留字符 &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt; 在 URL 中，有几个字符被保留起来，有特殊的用途。&lt;/p&gt;
+&lt;img alt="" src="/http_definitive_guide/static/reserved_and_restricted_characters.png"/&gt;
+&lt;/div&gt;
+</summary><category term="http"></category></entry><entry><title>《HTTP权威指南》笔记 第一章 HTTP概述</title><link href="chenjiee815/httpquan-wei-zhi-nan-bi-ji-di-yi-zhang-httpgai-shu.html" rel="alternate"></link><updated>2014-08-28T20:51:34+08:00</updated><author><name>Chen Jie</name></author><id>tag:chenjiee815,2014-08-28:httpquan-wei-zhi-nan-bi-ji-di-yi-zhang-httpgai-shu.html</id><summary type="html">&lt;p&gt; 这一章主要介绍了 HTTP 协议的一些基本概念，
+这样大家会对 HTTP 有一个基本的了解。&lt;/p&gt;
+
+&lt;div class="section" id="web"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id13"&gt;Web 客户端和服务器 &lt;/a&gt;&lt;/h2&gt;
+&lt;img alt="" src="/http_definitive_guide/static/web_clients_and_servers.png"/&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id14"&gt;Web 资源 &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt; 资源既可以是静态文件，也可以是根据需求动态生成的。&lt;/p&gt;
+&lt;img alt="" src="/http_definitive_guide/static/web_resources.png"/&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id15"&gt; 媒体类型 &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt; 资源多了，就要分类。HTTP 采用了 MIME 类型。
+MIME 类型原来是在邮件里面使用的，由于它很成熟也很好用，
+所以 HTTP 也采用了。&lt;/p&gt;
+&lt;p&gt;Web 服务器会为所有的 HTTP 对象数据附加一个 MIME 类型。&lt;/p&gt;
+&lt;p&gt; 当浏览器从服务器中取回一个对象时，会去查看相关的 MIME 类型，
+这样它就知道如何处理这个对象了。&lt;/p&gt;
+&lt;p&gt; 常用 MIME 类型举例：&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;HTML 格式的文本文档：text/tml&lt;/li&gt;
+&lt;li&gt; 普通的 ASCII 文本文档：text/plain&lt;/li&gt;
+&lt;li&gt;JPEG 格式的图片：image/jpeg&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="uri"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id16"&gt;URI&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Uniform Resource Idenifier: 统一资源标识符 &lt;/p&gt;
+&lt;p&gt;URI 有两种形式：URL 和 URN。&lt;/p&gt;
+&lt;div class="section" id="url"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id17"&gt;URL&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt; 统一资源定位符，它描述了一台特定服务器上某资源的特定位置。&lt;/p&gt;
+&lt;p&gt; 大部分 URL 都遵循一种标准格式：&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt; 第一部分：方案 (scheme)，说明了使用的协议类型。&lt;/li&gt;
+&lt;li&gt; 第二部分：服务器地址。&lt;/li&gt;
+&lt;li&gt; 其余部分：服务器上的某个资源。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="urn"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id18"&gt;URN&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt; 统一资源名，作为特定内容的唯一名称使用，与资源的所在地无关。
+现实中用的很少，还处于试验阶段。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id3"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id19"&gt; 事务 &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt; 一个 HTTP 事务由一条（客户端发给服务器）的请求消息和
+一个（从服务器发回客户端）的响应消息组成。&lt;/p&gt;
+&lt;p&gt; 这种通信是通过名为 HTTP 报文（HTTP message）的格式化数据块进行的。&lt;/p&gt;
+&lt;img alt="" src="/http_definitive_guide/static/http_transactions.png"/&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id4"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id20"&gt; 方法 &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt; 每条 HTTP 请求报文都包含一个方法，这些叫做 HTTP 方法（HTTP method）。&lt;/p&gt;
+&lt;p&gt; 这些方法会告诉服务器要执行什么动作。&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;caption&gt; 常见的 HTTP 方法 &lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col width="33%"&gt;&lt;/col&gt;
+&lt;col width="67%"&gt;&lt;/col&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt; 方法名 &lt;/th&gt;
+&lt;th class="head"&gt; 说明 &lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;GET&lt;/td&gt;
+&lt;td&gt; 获取资源 &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;PUT&lt;/td&gt;
+&lt;td&gt; 更新资源 &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;DELETE&lt;/td&gt;
+&lt;td&gt; 删除资源 &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;POST&lt;/td&gt;
+&lt;td&gt; 添加资源 &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;HEAD&lt;/td&gt;
+&lt;td&gt; 获取 HTTP 响应首部 &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id5"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id21"&gt; 状态码 &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt; 每条 HTTP 响应报文返回时都会携带一个状态码。&lt;/p&gt;
+&lt;p&gt; 状态码是一个三位数字，用来告知客户端请求是否成功，
+或者是否需要采取其它动作。&lt;/p&gt;
+&lt;p&gt;HTTP 的响应报文中除了会返回状态码之外，还会同时返回对应的原因短语。&lt;/p&gt;
+&lt;p&gt; 常见 HTTP 状态码：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;200 OK：文档正常返回 &lt;/li&gt;
+&lt;li&gt;302 Redirect：重定向，到其它地方获取资源 &lt;/li&gt;
+&lt;li&gt;404 Not Found：没找到，无法找到该资源 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id6"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id22"&gt; 报文 &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;HTTP 报文是由一行行的简单字符串组成的。HTTP 报文都是纯文本，非二进制代码。&lt;/p&gt;
+&lt;img alt="" src="/http_definitive_guide/static/http_messages.png"/&gt;
+&lt;p&gt;HTTP 报文分为：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt; 请求报文（request message）&lt;/li&gt;
+&lt;li&gt; 响应报文（response message）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;HTTP 报文包括以下三个部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt; 起始行 &lt;/p&gt;
+&lt;p&gt; 报文的第一行就是起始行，
+在请求报文里说明要做些什么，
+在响应报文中说明出现了什么情况。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt; 首部字段 &lt;/p&gt;
+&lt;p&gt; 起始行后面有零个或多个首部字段。
+每个字段都包含一个名字和一个值。两者用：号分割。
+首部以一个空行结束。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt; 主体 &lt;/p&gt;
+&lt;p&gt; 空行之后就是可选的报文主体了。其中包含了所有类型的数据。
+请求报文主体中包含了要发给服务器的数据；响应报文主体中包含了
+要返回客户端的数据。主体中可以包含任意的二进制数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img alt="" src="/http_definitive_guide/static/http_get_transaction.png"/&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id7"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id23"&gt; 连接 &lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;HTTP 是个应用层协议，它将联网的具体细节交给了 TCP/IP 协议。
+所以在 HTTP 客户端向服务器发送报文之前，需要用 IP 地址及端口号在
+客户端与服务器之间建立一条 TCP/IP 连接。&lt;/p&gt;
+&lt;p&gt; 之前有讲过，客户端是通过 URL 来请求资源的。
+所以 IP 地址及端口也是从 URL 中获取到的。&lt;/p&gt;
+&lt;p&gt; 下面简单介绍一下浏览器的连接步骤：&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt; 浏览器从 URL 中解析出服务器的主机名 / 域名 &lt;/li&gt;
+&lt;li&gt; 浏览器将主机名 / 域名通过 DNS 服务转换成服务器的 IP 地址 &lt;/li&gt;
+&lt;li&gt; 浏览器将端口号从 URL 中解析出来（没有则用默认的端口号）&lt;/li&gt;
+&lt;li&gt; 浏览器建立一条与服务器的 TCP 连接 &lt;/li&gt;
+&lt;li&gt; 浏览器向服务器发送一条 HTTP 请求报文 &lt;/li&gt;
+&lt;li&gt; 服务器向浏览器回送一条 HTTP 响应报文 &lt;/li&gt;
+&lt;li&gt; 浏览器关闭连接，渲染并显示文档 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;img alt="" src="/http_definitive_guide/static/http_connection.png"/&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id8"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id24"&gt;Web 的结构组件 &lt;/a&gt;&lt;/h2&gt;
+&lt;div class="section" id="id9"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id25"&gt; 代理 &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt; 位于客户端和服务器之间。&lt;/p&gt;
+&lt;p&gt; 一般的应用场景是，客户端无法访问某些服务器，但是可以连接到某台设备，
+而这台设备可以访问这些服务器，那么就可以在这个设备上开启一个代理服务器，
+客户端通过走这台设备的代理就可以访问那些它之前无法访问的服务器了。&lt;/p&gt;
+&lt;img alt="" src="/http_definitive_guide/static/http_proxy.png"/&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id10"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id26"&gt; 缓存 &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt; 它是一种特殊的代理服务器，可以将经过代理传送的常用文档保存下来，
+当有其它客户端或者该客户端再次请求相同文档时，
+就可以直接将缓存的文档返回了。&lt;/p&gt;
+&lt;img alt="" src="/http_definitive_guide/static/http_proxy_cache.png"/&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id11"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id27"&gt; 网关 &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt; 也是一种特殊的代理服务器中，通常是将 HTTP 请求转换成其它协议的请求。&lt;/p&gt;
+&lt;img alt="" src="/http_definitive_guide/static/http_proxy_gateway.png"/&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id12"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id28"&gt; 隧道 &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt; 对 HTTP 通信报文进行盲转发的特殊代理。
+在一条或者多条 HTTP 连接上转发非 HTTP 数据，转发时不会窥探数据。&lt;/p&gt;
+&lt;p&gt; 常用的就是 HTTPS，通过 HTTP 连接承载加密安全套接字层（SSL）。&lt;/p&gt;
+&lt;img alt="" src="/http_definitive_guide/static/http_tunnel.png"/&gt;
+&lt;/div&gt;
+&lt;div class="section" id="agent"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id29"&gt;Agent 代理 &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt; 是指代表客户发起 HTTP 请求的客户端程序。&lt;/p&gt;
+&lt;p&gt; 最有代表性的就是：浏览器。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="http"></category></entry></feed>
