@@ -14,12 +14,12 @@
 
 <meta property="og:title" content="Python小贴士（持续更新） "/>
 <meta property="og:url" content="http://chenjiee815.github.io/pythonxiao-tie-shi-chi-xu-geng-xin.html" />
-<meta property="og:description" content="这里记录的是我用 Python 几年以来，觉得大家可能会忽略的的小知识点（好吧，也有可能只是我自己忽略的小知识点）。 next next 是 Python 提供的一个 Built-in 函数。 提到 next，大家可能都会想到 Python 中的迭代协议中就有要求实现一个 next 方法。 那这个函数的功能也是作用于一个迭代器的。 1next(iterator[, default]) 看到它的函数签名了么，有一个 default 可选参数，这个就是我想要讲的重点。 next 在检索一个迭代器（不是一个可迭代的对象）时，会调用它的 next() 方法， 但当迭代器迭代结束时，如果提供了 default 参数，next 函数会返回 default, 如果没有，则直接抛出 StopIteration 异常。 Note 注意我上面所强调的 ..." />
+<meta property="og:description" content="Contents next unicode iter memoryview NotImplemented 与 NotImplementedError NotImplemented NotImplementedError 真值判断 () 的用法 1.bit_length() 为啥会报错？ 获取当前模块对象 startswith&amp;&amp;endswith 这里记录的是我用 Python 几年以来，觉得大家可能会忽略的的小知识点（好吧，也有可能只是我自己忽略的小知识点）。 next next 是 Python 提供的一个 Built-in 函数。 提到 next，大家可能都会想到 Python 中的迭代协议中就有要求实现一个 next 方法。 那这个函数的功能也是作用于一个迭代器的。 1next(iterator[, default]) 看到它的函数签名了么，有一个 default 可选参数，这个就是我想要讲的重点。 next 在检索一个迭代器 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
 <meta property="og:article:published_time" content="2014-10-03T10:37:41.950917" />
 <meta name="twitter:title" content="Python小贴士（持续更新） ">
-<meta name="twitter:description" content="这里记录的是我用 Python 几年以来，觉得大家可能会忽略的的小知识点（好吧，也有可能只是我自己忽略的小知识点）。 next next 是 Python 提供的一个 Built-in 函数。 提到 next，大家可能都会想到 Python 中的迭代协议中就有要求实现一个 next 方法。 那这个函数的功能也是作用于一个迭代器的。 1next(iterator[, default]) 看到它的函数签名了么，有一个 default 可选参数，这个就是我想要讲的重点。 next 在检索一个迭代器（不是一个可迭代的对象）时，会调用它的 next() 方法， 但当迭代器迭代结束时，如果提供了 default 参数，next 函数会返回 default, 如果没有，则直接抛出 StopIteration 异常。 Note 注意我上面所强调的 ...">
+<meta name="twitter:description" content="Contents next unicode iter memoryview NotImplemented 与 NotImplementedError NotImplemented NotImplementedError 真值判断 () 的用法 1.bit_length() 为啥会报错？ 获取当前模块对象 startswith&amp;&amp;endswith 这里记录的是我用 Python 几年以来，觉得大家可能会忽略的的小知识点（好吧，也有可能只是我自己忽略的小知识点）。 next next 是 Python 提供的一个 Built-in 函数。 提到 next，大家可能都会想到 Python 中的迭代协议中就有要求实现一个 next 方法。 那这个函数的功能也是作用于一个迭代器的。 1next(iterator[, default]) 看到它的函数签名了么，有一个 default 可选参数，这个就是我想要讲的重点。 next 在检索一个迭代器 ...">
 
         <title>Python小贴士（持续更新）  · January Star
 </title>
@@ -74,10 +74,10 @@
 </div>
 
 <div class="row-fluid">
-    <div class="span2 table-of-content">
-        <nav>
-        <h4>Contents</h4>
-        <div class="contents topic" id="contents">
+        <div class="span8 offset2 article-content">
+
+            
+            <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#next" id="id4">next</a></li>
@@ -96,13 +96,7 @@
 <li><a class="reference internal" href="#startswith-endswith" id="id15">startswith&amp;&amp;endswith</a></li>
 </ul>
 </div>
-        </nav>
-    </div>
-    <div class="span8 article-content">
-
-            
-            
-<hr class="docutils"/>
+<hr class="docutils" />
 <p> 这里记录的是我用 Python 几年以来，觉得大家可能会忽略的的小知识点（好吧，也有可能只是我自己忽略的小知识点）。</p>
 <div class="section" id="next">
 <h2><a class="toc-backref" href="#id4">next</a></h2>
@@ -157,12 +151,12 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 
 <span class="k">def</span> <span class="nf">maketrans</span><span class="p">(</span><span class="n">fromstr</span><span class="p">,</span> <span class="n">tostr</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fromstr</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tostr</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="s">"maketrans arguments must have same length"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="s">&quot;maketrans arguments must have same length&quot;</span>
     <span class="n">frm_to</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fromstr</span><span class="p">,</span> <span class="n">tostr</span><span class="p">)</span>
     <span class="c"># 如果字符 C 在 fromstr 中，则替换为 tostr 中对应 index 的字符 </span>
     <span class="c"># 否则返回字符 C 本身 </span>
     <span class="n">sub_c</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="nb">next</span><span class="p">((</span><span class="n">t</span> <span class="k">for</span> <span class="n">f</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">frm_to</span> <span class="k">if</span> <span class="n">f</span> <span class="o">==</span> <span class="n">c</span><span class="p">),</span> <span class="n">c</span><span class="p">)</span>
-    <span class="k">return</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">sub_c</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">_IDMAP</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">sub_c</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">_IDMAP</span><span class="p">))</span>
 </pre></div>
 </td></tr></table><p> 我就是想要 <cite>(t for f, t in frm_to if f == c)</cite> 这个生成器（迭代器之一），在 <cite>f == c</cite> 时立即给我返回值，如果没有则直接返回 <cite>c</cite> 。</p>
 <p> 这种情况，正常的 <cite>for</cite> 格式代码很容易实现：</p>
@@ -184,7 +178,7 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 <h2><a class="toc-backref" href="#id5">unicode</a></h2>
 <p> 嗯，这也是一个 Python 的内置函数。函数签名如下：</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">unicode</span><span class="p">(</span><span class="nb">object</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">unicode</span><span class="p">(</span><span class="nb">object</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
 <span class="nb">unicode</span><span class="p">(</span><span class="nb">object</span><span class="p">[,</span> <span class="n">encoding</span><span class="p">[,</span> <span class="n">errors</span><span class="p">]])</span>
 </pre></div>
 </td></tr></table><p> 我想要讲还是 unicode 的可选参数 <cite>errors</cite> 。</p>
@@ -226,14 +220,14 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 3
 4
 5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">str_a</span> <span class="o">=</span> <span class="s">"abcdefg"</span>
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">str_a</span> <span class="o">=</span> <span class="s">&quot;abcdefg&quot;</span>
 <span class="n">mem_a</span> <span class="o">=</span> <span class="n">memoryview</span><span class="p">(</span><span class="n">str_a</span><span class="p">)</span>
-<span class="n">tag</span> <span class="o">=</span> <span class="s">"bcdefg"</span>
+<span class="n">tag</span> <span class="o">=</span> <span class="s">&quot;bcdefg&quot;</span>
 
 <span class="k">print</span> <span class="n">str_a</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">==</span> <span class="n">tag</span> <span class="c"># 第 1 种情况 </span>
 <span class="k">print</span> <span class="n">mem_a</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">==</span> <span class="n">tag</span> <span class="c"># 第 2 种情况 </span>
 </pre></div>
-</td></tr></table><p> 第 1 种情况 Python 会使用切片操作生成一个字符串 <cite>"bcdefg"</cite> ，然后再跟 <cite>tag</cite> 进行比较。</p>
+</td></tr></table><p> 第 1 种情况 Python 会使用切片操作生成一个字符串 <cite>&quot;bcdefg&quot;</cite> ，然后再跟 <cite>tag</cite> 进行比较。</p>
 <p> 第 2 种情况 Python 只会生成一个新的 memoryview 对象再然后再跟 <cite>tag</cite> 进行比较。该新的 memoryview 对象本质是对 <cite>str_a</cite> 的 <cite>bcdefg</cite> 段的引用，并不生成新的字符串。</p>
 </div>
 <div class="section" id="notimplementednotimplementederror">
@@ -279,14 +273,14 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 5
 6
 7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="p">(</span><span class="s">"abcd"</span> <span class="s">"ABC"</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="s">'abcdABC'</span>
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="p">(</span><span class="s">&quot;abcd&quot;</span> <span class="s">&quot;ABC&quot;</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="s">&#39;abcdABC&#39;</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="mi">1</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="p">(</span><span class="s">"adfi"</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="s">'adfi'</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="p">(</span><span class="s">&quot;adfi&quot;</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="s">&#39;adfi&#39;</span>
 </pre></div>
 </td></tr></table><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -295,14 +289,14 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 5
 6
 7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="s">"asdfi"</span> <span class="s">"asdif"</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="s">'asdfiasdif'</span>
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="s">&quot;asdfi&quot;</span> <span class="s">&quot;asdif&quot;</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="s">&#39;asdfiasdif&#39;</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="mi">1</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="mi">1</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">23</span><span class="p">]:</span> <span class="s">"adfi"</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">23</span><span class="p">]:</span> <span class="s">'adfi'</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">23</span><span class="p">]:</span> <span class="s">&quot;adfi&quot;</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">23</span><span class="p">]:</span> <span class="s">&#39;adfi&#39;</span>
 </pre></div>
 </td></tr></table><p> 如果在 <cite>()</cite> 的内部至少有一个 <cite>,</cite> 才会解释成元组，或者啥都没有，就是一个空元组。</p>
 <p> 大家想深入了解的话，可以看 Python 官方文档 <a class="reference external" href="https://docs.python.org/2/reference/expressions.html#parenthesized-forms">Parenthesized forms</a> 。</p>
@@ -320,7 +314,7 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
  9
 10
 11</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">25</span><span class="p">]:</span> <span class="mf">1.</span><span class="n">bit_length</span><span class="p">()</span>
-  <span class="n">File</span> <span class="s">"&lt;ipython-input-25-069f7d2f7d97&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
+  <span class="n">File</span> <span class="s">&quot;&lt;ipython-input-25-069f7d2f7d97&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
     <span class="mf">1.</span><span class="n">bit_length</span><span class="p">()</span>
                <span class="o">^</span>
 <span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">invalid</span> <span class="n">syntax</span>
@@ -359,7 +353,7 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 <p> 获取当前模块的名称很容易。</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">58</span><span class="p">]:</span> <span class="n">__name__</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">58</span><span class="p">]:</span> <span class="s">'__main__'</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">58</span><span class="p">]:</span> <span class="s">&#39;__main__&#39;</span>
 </pre></div>
 </td></tr></table><p> 但有时我们需要获取当前的模块对象，并且对它做一些有趣的事。</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -387,12 +381,12 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 <span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">61</span><span class="o">-</span><span class="mi">2538835</span><span class="n">f11fb</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
 <span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">test_var</span>
 
-<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s">'test_var'</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s">&#39;test_var&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">62</span><span class="p">]:</span> <span class="n">current_module</span><span class="o">.</span><span class="n">test_var</span> <span class="o">=</span> <span class="s">"hack var"</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">62</span><span class="p">]:</span> <span class="n">current_module</span><span class="o">.</span><span class="n">test_var</span> <span class="o">=</span> <span class="s">&quot;hack var&quot;</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">63</span><span class="p">]:</span> <span class="n">test_var</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">63</span><span class="p">]:</span> <span class="s">'hack var'</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">63</span><span class="p">]:</span> <span class="s">&#39;hack var&#39;</span>
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="startswith-endswith">
@@ -404,22 +398,22 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 4
 5
 6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">l</span> <span class="o">=</span> <span class="s">"abcdefg"</span>
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">l</span> <span class="o">=</span> <span class="s">&quot;abcdefg&quot;</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">"ab"</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;ab&quot;</span><span class="p">)</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="bp">True</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">l</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">"fg"</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">l</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&quot;fg&quot;</span><span class="p">)</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="bp">True</span>
 </pre></div>
 </td></tr></table><p> 但是有时候想判断多个 <cite>startswith</cite> 或者  <cite>endswith</cite> ，我们一般会写成：</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">"ab"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">"bc"</span><span class="p">)</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;ab&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;bc&quot;</span><span class="p">)</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="bp">True</span>
 </pre></div>
 </td></tr></table><p> 如果是三个或者三个以上的话，就要写个循环或者其相等体来判断。</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="nb">any</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s">"ab"</span><span class="p">,</span> <span class="s">"cd"</span><span class="p">,</span> <span class="s">"ef"</span><span class="p">))</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="nb">any</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&quot;ab&quot;</span><span class="p">,</span> <span class="s">&quot;cd&quot;</span><span class="p">,</span> <span class="s">&quot;ef&quot;</span><span class="p">))</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="bp">True</span>
 </pre></div>
 </td></tr></table><p> 那，有没有比较方便的判断方法呢？</p>
@@ -471,7 +465,7 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 prefix can also be a tuple of strings to try.</blockquote>
 <p> 所以，想判断多个开头或者结尾的话，传入一个元组即可。</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s">"ab"</span><span class="p">,</span> <span class="s">"bc"</span><span class="p">,</span> <span class="s">"cd"</span><span class="p">))</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s">&quot;ab&quot;</span><span class="p">,</span> <span class="s">&quot;bc&quot;</span><span class="p">,</span> <span class="s">&quot;cd&quot;</span><span class="p">))</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="bp">True</span>
 </pre></div>
 </td></tr></table></div>

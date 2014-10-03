@@ -14,12 +14,12 @@
 
 <meta property="og:title" content="HTDP第七章：数据的多样性 "/>
 <meta property="og:url" content="http://chenjiee815.github.io/htdpdi-qi-zhang-shu-ju-de-duo-yang-xing.html" />
-<meta property="og:description" content="数据混合与区分 之前设计的函数都是只能处理一种类型的数据。 这章要讲的是同一个函数如何能处理不同的类型的数据。 其实很简单，在函数的开头， 通过一定的方法先判断一下传入的数据属于哪一类型即可。 1 2 3 4 5 6 7 8 9 10 11 12 13(define PI 3.14) (define-struct square (nw length)) ;; nw 为 posn 结构体， length 为数值 (define-struct circle (center radius)) ;; center 为 posn 结构体， radius 为数值 ;; perimeter: a-shape -&gt; number ;; 传入一个图形来获取其周长（只支持正方形、圆形） (define ..." />
+<meta property="og:description" content="Contents 数据混合与区分 习题 7.1.3 设计处理混合数据的函数 习题 7.2.1 习题 7.2.2 再论函数复合 习题 7.3.1 补充练习：图形的移动 习题 7.4.1 习题 7.4.2 习题 7.4.3 习题 7.4.4 习题 7.4.5 习题 7.4.6 输入错误 习题 7.5 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
 <meta property="og:article:published_time" content="2014-08-28T20:51:34.883602" />
 <meta name="twitter:title" content="HTDP第七章：数据的多样性 ">
-<meta name="twitter:description" content="数据混合与区分 之前设计的函数都是只能处理一种类型的数据。 这章要讲的是同一个函数如何能处理不同的类型的数据。 其实很简单，在函数的开头， 通过一定的方法先判断一下传入的数据属于哪一类型即可。 1 2 3 4 5 6 7 8 9 10 11 12 13(define PI 3.14) (define-struct square (nw length)) ;; nw 为 posn 结构体， length 为数值 (define-struct circle (center radius)) ;; center 为 posn 结构体， radius 为数值 ;; perimeter: a-shape -&gt; number ;; 传入一个图形来获取其周长（只支持正方形、圆形） (define ...">
+<meta name="twitter:description" content="Contents 数据混合与区分 习题 7.1.3 设计处理混合数据的函数 习题 7.2.1 习题 7.2.2 再论函数复合 习题 7.3.1 补充练习：图形的移动 习题 7.4.1 习题 7.4.2 习题 7.4.3 习题 7.4.4 习题 7.4.5 习题 7.4.6 输入错误 习题 7.5 ...">
 
         <title>HTDP第七章：数据的多样性  · January Star
 </title>
@@ -74,10 +74,10 @@
 </div>
 
 <div class="row-fluid">
-    <div class="span2 table-of-content">
-        <nav>
-        <h4>Contents</h4>
-        <div class="contents topic" id="contents">
+        <div class="span8 offset2 article-content">
+
+            
+            <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#id1" id="id19"> 数据混合与区分 </a><ul>
@@ -110,13 +110,7 @@
 </li>
 </ul>
 </div>
-        </nav>
-    </div>
-    <div class="span8 article-content">
-
-            
-            
-<hr class="docutils"/>
+<hr class="docutils" />
 <div class="section" id="id1">
 <h2><a class="toc-backref" href="#id19"> 数据混合与区分 </a></h2>
 <p> 之前设计的函数都是只能处理一种类型的数据。</p>
@@ -167,7 +161,7 @@
 </div>
 <div class="section" id="id3">
 <h2><a class="toc-backref" href="#id21"> 设计处理混合数据的函数 </a></h2>
-<img alt="" src="/scheme/HTDP/static/ 处理混合数据的函数 .png"/>
+<img alt="" src="/scheme/HTDP/static/ 处理混合数据的函数 .png" />
 <div class="section" id="id4">
 <h3><a class="toc-backref" href="#id22"> 习题 7.2.1</a></h3>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -601,7 +595,7 @@
 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">checked-area-of-disk</span> <span class="nv">v</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">cond</span>
         <span class="p">[(</span><span class="k">and </span><span class="p">(</span><span class="nb">number? </span><span class="nv">v</span><span class="p">)</span> <span class="p">(</span><span class="nb">&gt; </span><span class="nv">v</span> <span class="mi">0</span><span class="p">))</span> <span class="p">(</span><span class="nf">area-of-disk</span> <span class="nv">v</span><span class="p">)]</span>
-        <span class="p">[</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="ss">'check-area-of-disk</span> <span class="s">"positive number expected"</span><span class="p">)]))</span>
+        <span class="p">[</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="ss">&#39;check-area-of-disk</span> <span class="s">&quot;positive number expected&quot;</span><span class="p">)]))</span>
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="id17">
@@ -634,7 +628,7 @@
         <span class="p">[(</span><span class="k">and </span><span class="p">(</span><span class="nf">positive-number?</span> <span class="nv">x</span><span class="p">)</span>
               <span class="p">(</span><span class="nf">positive-number?</span> <span class="nv">y</span><span class="p">))</span>
          <span class="p">(</span><span class="nf">make-vec</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)]</span>
-        <span class="p">[</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="ss">'check-make-vec</span> <span class="s">"positive number expected"</span><span class="p">)]))</span>
+        <span class="p">[</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="ss">&#39;check-make-vec</span> <span class="s">&quot;positive number expected&quot;</span><span class="p">)]))</span>
 </pre></div>
 </td></tr></table></div>
 </div>

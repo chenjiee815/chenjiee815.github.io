@@ -14,12 +14,12 @@
 
 <meta property="og:title" content="TheLittleSchemer笔记 "/>
 <meta property="og:url" content="http://chenjiee815.github.io/thelittleschemerbi-ji.html" />
-<meta property="og:description" content="总纲 scheme 十戒 当对一个原子列表进行递归时，要注意两个问题：(null? lat) and else。 当对一个数字进行递归时，要注意两个问题：(zero? n) and else。 当对一个 S 表达式列表进行递归时，要注意三个问题：(null? l), (atom? (car l)) 和 else。 使用 cons 来创建列表。 当创建一个列表时，先描述第一个元素，然后用 cons 来将它和递归连接在一起 递归时，至少要改变一个参数。 例如：递归一个原子列表使用 (cdr lat)；递归一个数字使用 (sub1 n)； 递归一个 S 表达式时，如果这个表达式即不 (null? l)，也不 ..." />
+<meta property="og:description" content="Contents 总纲 scheme 十戒 scheme 五律 第一章 : Toys 基本概念 其它概念 第二章 : Do It, Do It Again, and Again, and Again… lat 操作 基本概念 应用 第三章 : Cons the Magnificent lat 操作 应用 第四章 : Numbers Games 数字操作 基本概念 应用 综合操作 第五章 : *Oh My Gawd*: It&#39;s Full of Stars 第六章 : Shadows 应用 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
 <meta property="og:article:published_time" content="2014-08-28T20:57:18.860177" />
 <meta name="twitter:title" content="TheLittleSchemer笔记 ">
-<meta name="twitter:description" content="总纲 scheme 十戒 当对一个原子列表进行递归时，要注意两个问题：(null? lat) and else。 当对一个数字进行递归时，要注意两个问题：(zero? n) and else。 当对一个 S 表达式列表进行递归时，要注意三个问题：(null? l), (atom? (car l)) 和 else。 使用 cons 来创建列表。 当创建一个列表时，先描述第一个元素，然后用 cons 来将它和递归连接在一起 递归时，至少要改变一个参数。 例如：递归一个原子列表使用 (cdr lat)；递归一个数字使用 (sub1 n)； 递归一个 S 表达式时，如果这个表达式即不 (null? l)，也不 ...">
+<meta name="twitter:description" content="Contents 总纲 scheme 十戒 scheme 五律 第一章 : Toys 基本概念 其它概念 第二章 : Do It, Do It Again, and Again, and Again… lat 操作 基本概念 应用 第三章 : Cons the Magnificent lat 操作 应用 第四章 : Numbers Games 数字操作 基本概念 应用 综合操作 第五章 : *Oh My Gawd*: It&#39;s Full of Stars 第六章 : Shadows 应用 ...">
 
         <title>TheLittleSchemer笔记  · January Star
 </title>
@@ -74,10 +74,10 @@
 </div>
 
 <div class="row-fluid">
-    <div class="span2 table-of-content">
-        <nav>
-        <h4>Contents</h4>
-        <div class="contents topic" id="contents">
+        <div class="span8 offset2 article-content">
+
+            
+            <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#id1" id="id23"> 总纲 </a><ul>
@@ -151,12 +151,6 @@
 <li><a class="reference internal" href="#what-is-the-value-of-all-of-this" id="id61"> 第十章 : What Is the Value of All of This?</a></li>
 </ul>
 </div>
-        </nav>
-    </div>
-    <div class="span8 article-content">
-
-            
-            
 <div class="section" id="id1">
 <h2><a class="toc-backref" href="#id23"> 总纲 </a></h2>
 <div class="section" id="scheme">
@@ -302,7 +296,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">lat?&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">l</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">'</span><span class="p">()</span> <span class="o">'</span><span class="p">()))</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">&#39;</span><span class="p">()</span> <span class="o">&#39;</span><span class="p">()))</span>
       <span class="p">((</span><span class="nf">atom?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span> <span class="p">(</span><span class="nf">lat?&amp;co</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">l</span><span class="p">)</span>
                                 <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">lat</span> <span class="nv">nolat</span><span class="p">)</span>
                                   <span class="p">(</span><span class="nf">col</span> <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">)</span> <span class="nv">lat</span><span class="p">)</span> <span class="nv">nolat</span><span class="p">))))</span>
@@ -381,7 +375,7 @@
 6</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">rember</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
       <span class="p">((</span><span class="nb">eq? </span><span class="nv">a</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">))</span>
       <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">rember</span> <span class="nv">a</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))))</span>
 </pre></div>
@@ -412,7 +406,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">rember&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">lat</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="mi">0</span> <span class="o">'</span><span class="p">()))</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="mi">0</span> <span class="o">&#39;</span><span class="p">()))</span>
       <span class="p">((</span><span class="nb">eq? </span><span class="nv">a</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span> <span class="p">(</span><span class="nf">col</span> <span class="mi">1</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))</span>
       <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">rember&amp;co</span> <span class="nv">a</span>
                        <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)</span>
@@ -428,7 +422,7 @@
 5</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">firsts</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">l</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
       <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span> <span class="p">(</span><span class="nf">firsts</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">l</span><span class="p">)))))))</span>
 </pre></div>
 </td></tr></table><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -452,7 +446,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">firsts&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">l</span> <span class="nv">col</span><span class="p">)</span> <span class="p">(</span><span class="nb">display </span><span class="nv">l</span><span class="p">)</span> <span class="p">(</span><span class="nf">newline</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-    <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">'</span><span class="p">()))</span>
+    <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">&#39;</span><span class="p">()))</span>
     <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">firsts&amp;co</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">l</span><span class="p">)</span>
                      <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">first_ed</span><span class="p">)</span>
                        <span class="p">(</span><span class="nf">col</span> <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span> <span class="nv">first_ed</span><span class="p">))))))))</span>
@@ -472,7 +466,7 @@
 6</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">insertR</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
       <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">old</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">))))</span>
       <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">insertR</span> <span class="nv">new</span> <span class="nv">old</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))))</span>
 </pre></div>
@@ -501,7 +495,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">insertR&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">lat</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">'</span><span class="p">()))</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">&#39;</span><span class="p">()))</span>
       <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
        <span class="p">(</span><span class="nf">col</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">old</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))</span>
       <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">insertR&amp;co</span> <span class="nv">new</span>
@@ -518,7 +512,7 @@
 6</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">insertL</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
       <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="nv">lat</span><span class="p">))</span>
       <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">insertL</span> <span class="nv">new</span> <span class="nv">old</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))))</span>
 </pre></div>
@@ -546,7 +540,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">insertL&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">lat</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">'</span><span class="p">()))</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">&#39;</span><span class="p">()))</span>
       <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span> <span class="p">(</span><span class="nf">col</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="nv">lat</span><span class="p">)))</span>
       <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">insertL&amp;co</span> <span class="nv">new</span>
                         <span class="nv">old</span>
@@ -570,7 +564,7 @@
 6</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">subst</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
       <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))</span>
       <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">subst</span> <span class="nv">new</span> <span class="nv">old</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))))</span>
 </pre></div>
@@ -599,7 +593,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">subst&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">lat</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">'</span><span class="p">()))</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">&#39;</span><span class="p">()))</span>
       <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">col</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">))))</span>
       <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">subst&amp;co</span> <span class="nv">new</span>
@@ -628,7 +622,7 @@
 18</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">subst2</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old1</span> <span class="nv">old2</span> <span class="nv">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
       <span class="p">((</span><span class="nb">eq? </span><span class="nv">old1</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))</span>
       <span class="p">((</span><span class="nb">eq? </span><span class="nv">old2</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))</span>
       <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">subst2</span> <span class="nv">new</span> <span class="nv">old1</span> <span class="nv">old2</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))))</span>
@@ -637,7 +631,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">subst2</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old1</span> <span class="nv">old2</span> <span class="nv">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
       <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nb">eq? </span><span class="nv">old2</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
            <span class="p">(</span><span class="nb">eq? </span><span class="nv">old1</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)))</span>
        <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))</span>
@@ -671,7 +665,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">subst2&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old1</span> <span class="nv">old2</span> <span class="nv">lat</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">'</span><span class="p">()))</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">&#39;</span><span class="p">()))</span>
       <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nb">eq? </span><span class="nv">old1</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
            <span class="p">(</span><span class="nb">eq? </span><span class="nv">old2</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)))</span>
        <span class="p">(</span><span class="nf">col</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">))))</span>
@@ -696,7 +690,7 @@
 6</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">multirember</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
       <span class="p">((</span><span class="nb">eq? </span><span class="nv">a</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span> <span class="p">(</span><span class="nf">multirember</span> <span class="nv">a</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))</span>
       <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">multirember</span> <span class="nv">a</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))))</span>
 </pre></div>
@@ -720,7 +714,7 @@
 18</pre></div></td><td class="code"><div class="highlight"><pre> <span class="p">(</span><span class="k">define </span><span class="nv">col</span>
    <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">rmcount</span> <span class="nv">newlat</span><span class="p">)</span>
      <span class="p">(</span><span class="nb">display </span><span class="nv">rmcount</span><span class="p">)</span>
-     <span class="p">(</span><span class="nb">display </span><span class="s">" "</span><span class="p">)</span>
+     <span class="p">(</span><span class="nb">display </span><span class="s">&quot; &quot;</span><span class="p">)</span>
      <span class="p">(</span><span class="nb">display </span><span class="nv">newlat</span><span class="p">)</span>
      <span class="p">(</span><span class="nf">newline</span><span class="p">)</span>
      <span class="nv">newlat</span><span class="p">))</span>
@@ -728,7 +722,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">multirember&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">lat</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="mi">0</span> <span class="o">'</span><span class="p">()))</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="mi">0</span> <span class="o">&#39;</span><span class="p">()))</span>
      <span class="p">((</span><span class="nb">eq? </span><span class="nv">a</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">multirember&amp;co</span> <span class="nv">a</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">rmcount</span> <span class="nv">newlat</span><span class="p">)</span>
                                     <span class="p">(</span><span class="nf">col</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">rmcount</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">newlat</span><span class="p">))))</span>
@@ -751,7 +745,7 @@
 7</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">multiinsertR</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
       <span class="p">(</span><span class="nb">cons </span><span class="nv">old</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="p">(</span><span class="nf">multiinsertR</span> <span class="nv">new</span> <span class="nv">old</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">multiinsertR</span> <span class="nv">new</span> <span class="nv">old</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))))</span>
@@ -776,7 +770,7 @@
 18</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">col</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">inscount</span> <span class="nv">newlat</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">display </span><span class="nv">inscount</span><span class="p">)</span>
-    <span class="p">(</span><span class="nb">display </span><span class="s">" "</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">display </span><span class="s">&quot; &quot;</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">display </span><span class="nv">newlat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">newline</span><span class="p">)</span>
     <span class="nv">newlat</span><span class="p">))</span>
@@ -784,7 +778,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">multiinsertR&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">lat</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="mi">0</span> <span class="o">'</span><span class="p">()))</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="mi">0</span> <span class="o">&#39;</span><span class="p">()))</span>
      <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
         <span class="p">(</span><span class="nf">multiinsertR&amp;co</span> <span class="nv">new</span> <span class="nv">old</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">inscount</span> <span class="nv">newlat</span><span class="p">)</span>
                                              <span class="p">(</span><span class="nf">col</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">inscount</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">old</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="nv">newlat</span><span class="p">))))))</span>
@@ -804,7 +798,7 @@
 7</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">multiinsertL</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
       <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">old</span> <span class="p">(</span><span class="nf">multiinsertL</span> <span class="nv">new</span> <span class="nv">old</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">multiinsertL</span> <span class="nv">new</span> <span class="nv">old</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))))</span>
@@ -831,7 +825,7 @@
 20</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">col</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">inscount</span> <span class="nv">newlat</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">display </span><span class="nv">inscount</span><span class="p">)</span>
-    <span class="p">(</span><span class="nb">display </span><span class="s">" "</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">display </span><span class="s">&quot; &quot;</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">display </span><span class="nv">newlat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">newline</span><span class="p">)</span>
     <span class="nv">newlat</span><span class="p">))</span>
@@ -839,7 +833,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">mutlinsertL&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">lat</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="mi">0</span> <span class="o">'</span><span class="p">()))</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="mi">0</span> <span class="o">&#39;</span><span class="p">()))</span>
      <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">mutlinsertL&amp;co</span> <span class="nv">new</span> <span class="nv">old</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">inscount</span> <span class="nv">newlat</span><span class="p">)</span>
                                           <span class="p">(</span><span class="nf">col</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">inscount</span> <span class="mi">1</span><span class="p">)</span>
@@ -860,7 +854,7 @@
 7</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">multisubst</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
       <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="p">(</span><span class="nf">multisubst</span> <span class="nv">new</span> <span class="nv">old</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">))))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">multisubst</span> <span class="nv">new</span> <span class="nv">old</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))))</span>
@@ -887,7 +881,7 @@
 20</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">col</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">stcount</span> <span class="nv">newlat</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">display </span><span class="nv">stcount</span><span class="p">)</span>
-    <span class="p">(</span><span class="nb">display </span><span class="s">" "</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">display </span><span class="s">&quot; &quot;</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">display </span><span class="nv">newlat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">newline</span><span class="p">)</span>
     <span class="nv">newlat</span><span class="p">))</span>
@@ -895,7 +889,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">mutlsubst&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">lat</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="mi">0</span> <span class="o">'</span><span class="p">()))</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="mi">0</span> <span class="o">&#39;</span><span class="p">()))</span>
      <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">mutlisubst&amp;co</span> <span class="nv">new</span> <span class="nv">old</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">inscount</span> <span class="nv">newlat</span><span class="p">)</span>
                                           <span class="p">(</span><span class="nf">col</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">inscount</span> <span class="mi">1</span><span class="p">)</span>
@@ -1102,7 +1096,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">tup+</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">tup1</span> <span class="nv">tup2</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nb">null? </span><span class="nv">tup1</span><span class="p">)</span> <span class="p">(</span><span class="nb">null? </span><span class="nv">tup2</span><span class="p">))</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nb">null? </span><span class="nv">tup1</span><span class="p">)</span> <span class="p">(</span><span class="nb">null? </span><span class="nv">tup2</span><span class="p">))</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">+_</span> <span class="p">(</span><span class="nb">car </span><span class="nv">tup1</span><span class="p">)</span> <span class="p">(</span><span class="nb">car </span><span class="nv">tup2</span><span class="p">))</span>
                  <span class="p">(</span><span class="nf">tup+</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">tup1</span><span class="p">)</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">tup2</span><span class="p">)))))))</span>
 </pre></div>
@@ -1361,7 +1355,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">pick&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span> <span class="nv">lat</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">'</span><span class="p">()))</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">&#39;</span><span class="p">()))</span>
      <span class="p">((</span><span class="nb">zero? </span><span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))</span> <span class="p">(</span><span class="nf">col</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">pick&amp;co</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)</span> <span class="nv">col</span><span class="p">)))))</span>
 </pre></div>
@@ -1375,7 +1369,7 @@
 6</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">rempick</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span> <span class="nv">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nb">zero? </span><span class="p">(</span><span class="nf">sub1</span> <span class="nv">n</span><span class="p">))</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">rempick</span> <span class="p">(</span><span class="nf">sub1</span> <span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))))</span>
 </pre></div>
@@ -1400,7 +1394,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">rempick&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span> <span class="nv">lat</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">'</span><span class="p">()))</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">&#39;</span><span class="p">()))</span>
      <span class="p">((</span><span class="nb">zero? </span><span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))</span> <span class="p">(</span><span class="nf">col</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">rempick&amp;co</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">newlat</span><span class="p">)</span>
                                            <span class="p">(</span><span class="nf">col</span> <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="nv">newlat</span><span class="p">))))))))</span>
@@ -1415,7 +1409,7 @@
 6</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">no-nums</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nb">number? </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span> <span class="p">(</span><span class="nf">no-nums</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">no-nums</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))))</span>
 </pre></div>
@@ -1441,7 +1435,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">nonum&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">lat</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">'</span><span class="p">()))</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">&#39;</span><span class="p">()))</span>
      <span class="p">((</span><span class="nb">number? </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">nonum&amp;co</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)</span> <span class="nv">col</span><span class="p">))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">nonum&amp;co</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">newlat</span><span class="p">)</span>
@@ -1459,7 +1453,7 @@
 8</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">all-nums</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nb">not </span><span class="p">(</span><span class="nb">number? </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)))</span> <span class="p">(</span><span class="nf">all-nums</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">all-nums</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))))</span>
 
@@ -1573,7 +1567,7 @@
 11</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">rember*</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">l</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nf">atom?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">cond</span>
        <span class="p">((</span><span class="nb">eq? </span><span class="nv">a</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
@@ -1611,7 +1605,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">rember*&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">l</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">'</span><span class="p">()))</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">&#39;</span><span class="p">()))</span>
      <span class="p">((</span><span class="nf">atom?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">cond</span>
        <span class="p">((</span><span class="nb">eq? </span><span class="nv">a</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
@@ -1639,7 +1633,7 @@
 11</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">insertR*</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">l</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nf">atom?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">cond</span>
        <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
@@ -1678,7 +1672,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">insertR*&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">l</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">'</span><span class="p">()))</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">&#39;</span><span class="p">()))</span>
      <span class="p">((</span><span class="nf">atom?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">cond</span>
        <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
@@ -1773,7 +1767,7 @@
 11</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">subst*</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">l</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nf">atom?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">cond</span>
        <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
@@ -1841,7 +1835,7 @@
 11</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">insertL*</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">l</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nf">atom?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">cond</span>
        <span class="p">((</span><span class="nb">eq? </span><span class="nv">old</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
@@ -2076,7 +2070,7 @@
 6</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">rember</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">s</span> <span class="nv">l</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nb">equal? </span><span class="nv">s</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">l</span><span class="p">))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">)</span> <span class="p">(</span><span class="nf">rember</span> <span class="nv">s</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">l</span><span class="p">)))))))</span>
 </pre></div>
@@ -2105,9 +2099,9 @@
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">aexp</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
      <span class="p">((</span><span class="nf">atom?</span> <span class="nv">aexp</span><span class="p">)</span> <span class="p">(</span><span class="nb">number? </span><span class="nv">aexp</span><span class="p">))</span>
-     <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">car </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">aexp</span><span class="p">))</span> <span class="ss">'+</span><span class="p">)</span>
-          <span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">car </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">aexp</span><span class="p">))</span> <span class="ss">'*</span><span class="p">)</span>
-          <span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">car </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">aexp</span><span class="p">))</span> <span class="ss">'^</span><span class="p">))</span>
+     <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">car </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">aexp</span><span class="p">))</span> <span class="ss">&#39;+</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">car </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">aexp</span><span class="p">))</span> <span class="ss">&#39;*</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">car </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">aexp</span><span class="p">))</span> <span class="ss">&#39;^</span><span class="p">))</span>
       <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">numberd?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">aexp</span><span class="p">))</span>
            <span class="p">(</span><span class="nf">numberd?</span> <span class="p">(</span><span class="nb">car </span><span class="p">(</span><span class="nb">cdr </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">aexp</span><span class="p">))))))</span>
      <span class="p">(</span><span class="k">else </span><span class="no">#f</span><span class="p">))))</span>
@@ -2168,10 +2162,10 @@
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">nexp</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
      <span class="p">((</span><span class="nf">atom?</span> <span class="nv">nexp</span><span class="p">)</span> <span class="nv">nexp</span><span class="p">)</span>
-     <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">car </span><span class="nv">nexp</span><span class="p">)</span> <span class="ss">'+</span><span class="p">)</span>
+     <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">car </span><span class="nv">nexp</span><span class="p">)</span> <span class="ss">&#39;+</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">value</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">nexp</span><span class="p">))</span>
          <span class="p">(</span><span class="nf">value</span> <span class="p">(</span><span class="nb">cdr </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">nexp</span><span class="p">)))))</span>
-     <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">car </span><span class="nv">nexp</span><span class="p">)</span> <span class="ss">'*</span><span class="p">)</span>
+     <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">car </span><span class="nv">nexp</span><span class="p">)</span> <span class="ss">&#39;*</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">value</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">nexp</span><span class="p">))</span>
          <span class="p">(</span><span class="nf">value</span> <span class="p">(</span><span class="nb">cdr </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">nexp</span><span class="p">)))))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">^</span> <span class="p">(</span><span class="nf">value</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">nexp</span><span class="p">))</span>
@@ -2199,10 +2193,10 @@
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">nexp</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
      <span class="p">((</span><span class="nf">atom?</span> <span class="nv">nexp</span><span class="p">)</span> <span class="nv">nexp</span><span class="p">)</span>
-     <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">operator</span> <span class="nv">nexp</span><span class="p">)</span> <span class="ss">'+</span><span class="p">)</span>
+     <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">operator</span> <span class="nv">nexp</span><span class="p">)</span> <span class="ss">&#39;+</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">value</span> <span class="p">(</span><span class="mi">1</span><span class="nv">st-sub-exp</span> <span class="nv">nexp</span><span class="p">))</span>
          <span class="p">(</span><span class="nf">value</span> <span class="p">(</span><span class="mi">2</span><span class="nv">nd-sub-exp</span> <span class="nv">nexp</span><span class="p">))))</span>
-     <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">operator</span> <span class="nv">nexp</span><span class="p">)</span> <span class="ss">'*</span><span class="p">)</span>
+     <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">operator</span> <span class="nv">nexp</span><span class="p">)</span> <span class="ss">&#39;*</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">value</span> <span class="p">(</span><span class="mi">1</span><span class="nv">st-sub-exp</span> <span class="nv">nexp</span><span class="p">))</span>
          <span class="p">(</span><span class="nf">value</span> <span class="p">(</span><span class="mi">2</span><span class="nv">nd-sub-exp</span><span class="p">))))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">^</span> <span class="p">(</span><span class="nf">value</span> <span class="p">(</span><span class="mi">1</span><span class="nv">st-sub-exp</span> <span class="nv">nexp</span><span class="p">))</span>
@@ -2261,7 +2255,7 @@
 16</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">makeset</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nf">member?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">makeset</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="p">(</span><span class="nf">makeset</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))))</span>
@@ -2270,7 +2264,7 @@
 <span class="p">(</span><span class="k">define </span><span class="nv">makeset</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span>
                  <span class="p">(</span><span class="nf">makeset</span> <span class="p">(</span><span class="nf">multirember</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span>
                                        <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">))))))))</span>
@@ -2359,7 +2353,7 @@
     <span class="p">(</span><span class="nf">cond</span>
      <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nb">null? </span><span class="nv">set1</span><span class="p">)</span>
           <span class="p">(</span><span class="nb">null? </span><span class="nv">set2</span><span class="p">))</span>
-      <span class="o">'</span><span class="p">())</span>
+      <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nf">member?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">set1</span><span class="p">)</span> <span class="nv">set2</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">set1</span><span class="p">)</span>
             <span class="p">(</span><span class="nf">intersect</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">set1</span><span class="p">)</span> <span class="nv">set2</span><span class="p">)))</span>
@@ -2453,7 +2447,7 @@
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">build</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">s1</span> <span class="nv">s2</span><span class="p">)</span>
-    <span class="p">(</span><span class="nb">cons </span><span class="nv">s1</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">s2</span> <span class="o">'</span><span class="p">()))))</span>
+    <span class="p">(</span><span class="nb">cons </span><span class="nv">s1</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">s2</span> <span class="o">&#39;</span><span class="p">()))))</span>
 </pre></div>
 </td></tr></table></li>
 </ul>
@@ -2508,7 +2502,7 @@
 18
 19</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">revrel</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">rel</span><span class="p">)</span>
-    <span class="p">((</span><span class="nb">null? </span><span class="nv">rel</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+    <span class="p">((</span><span class="nb">null? </span><span class="nv">rel</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
     <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">build</span> <span class="p">(</span><span class="nf">second</span> <span class="p">(</span><span class="nb">car </span><span class="nv">rel</span><span class="p">))</span>
                        <span class="p">(</span><span class="nf">first</span> <span class="p">(</span><span class="nb">car </span><span class="nv">rel</span><span class="p">)))</span>
                 <span class="p">(</span><span class="nf">revrel</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">rel</span><span class="p">))))))</span>
@@ -2522,7 +2516,7 @@
 
 <span class="p">(</span><span class="k">define </span><span class="nv">revrel</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">rel</span><span class="p">)</span>
-    <span class="p">((</span><span class="nb">null? </span><span class="nv">rel</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+    <span class="p">((</span><span class="nb">null? </span><span class="nv">rel</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
     <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">revpair</span> <span class="p">(</span><span class="nb">car </span><span class="nv">rel</span><span class="p">))</span>
                 <span class="p">(</span><span class="nf">revrel</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">rel</span><span class="p">))))))</span>
 </pre></div>
@@ -2598,7 +2592,7 @@
 25</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">rember-f</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">test?</span> <span class="nv">a</span> <span class="nv">l</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nf">test?</span> <span class="nv">a</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">l</span><span class="p">))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">)</span>
                  <span class="p">(</span><span class="nf">rember-f</span> <span class="p">(</span><span class="nf">test?</span> <span class="nv">a</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">l</span><span class="p">))))))))</span>
@@ -2608,7 +2602,7 @@
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">test?</span><span class="p">)</span>
     <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">l</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">cond</span>
-       <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+       <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
        <span class="p">((</span><span class="nf">test?</span> <span class="nv">a</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">l</span><span class="p">))</span>
        <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">)</span>
                    <span class="p">(</span><span class="nf">rember-f</span> <span class="p">(</span><span class="nf">test?</span> <span class="nv">a</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">l</span><span class="p">)))))))))</span>
@@ -2637,7 +2631,7 @@
 
 <span class="c1">; 与 salad 比较 </span>
 <span class="p">(</span><span class="k">define </span><span class="nv">eq?-salad</span>
-<span class="p">(</span><span class="nf">eq?-c</span> <span class="ss">'salad</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">eq?-c</span> <span class="ss">&#39;salad</span><span class="p">))</span>
 </pre></div>
 </td></tr></table></li>
 <li><p class="first">insert-q: 返回一个函数 , 具体的操作函数当作参数传入 </p>
@@ -2671,7 +2665,7 @@
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">seq</span><span class="p">)</span>
     <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">old</span> <span class="nv">l</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">cond</span>
-       <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+       <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
        <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">)</span> <span class="nv">old</span><span class="p">)</span>
         <span class="p">(</span><span class="nf">seq</span> <span class="nv">new</span> <span class="nv">old</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">l</span><span class="p">)))</span>
        <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">)</span>
@@ -2699,8 +2693,8 @@
 6</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">atom-to-function</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">eq? </span><span class="nv">x</span> <span class="ss">'+</span><span class="p">)</span> <span class="nv">+</span><span class="p">)</span>
-     <span class="p">((</span><span class="nb">eq? </span><span class="nv">x</span> <span class="ss">'*</span><span class="p">)</span> <span class="nv">*</span><span class="p">)</span>
+     <span class="p">((</span><span class="nb">eq? </span><span class="nv">x</span> <span class="ss">&#39;+</span><span class="p">)</span> <span class="nv">+</span><span class="p">)</span>
+     <span class="p">((</span><span class="nb">eq? </span><span class="nv">x</span> <span class="ss">&#39;*</span><span class="p">)</span> <span class="nv">*</span><span class="p">)</span>
      <span class="p">(</span><span class="k">else </span><span class="nv">^</span><span class="p">))))</span>
 </pre></div>
 </td></tr></table><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -2733,7 +2727,7 @@
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">test?</span><span class="p">)</span>
     <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">lat</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">cond</span>
-       <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+       <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
        <span class="p">((</span><span class="nf">test?</span> <span class="nv">a</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
         <span class="p">((</span><span class="nf">multirember-f</span> <span class="nv">test?</span><span class="p">)</span> <span class="nv">a</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))</span>
        <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span>
@@ -2762,7 +2756,7 @@
 8</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">multiremberT</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">test?</span> <span class="nv">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nf">test?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">multiremberT</span> <span class="nv">test?</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))</span>
      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span>
@@ -2795,7 +2789,7 @@
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">lat</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">col</span> <span class="o">'</span><span class="p">()</span> <span class="o">'</span><span class="p">()))</span>
+      <span class="p">(</span><span class="nf">col</span> <span class="o">&#39;</span><span class="p">()</span> <span class="o">&#39;</span><span class="p">()))</span>
      <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">)</span> <span class="nv">a</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">multirember&amp;co</span> <span class="nv">a</span>
                       <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)</span>
@@ -2831,7 +2825,7 @@
 10</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">multiinsertLR</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">oldL</span> <span class="nv">oldR</span> <span class="nv">lat</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+     <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
      <span class="p">((</span><span class="nb">eq? </span><span class="nv">oldL</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
       <span class="p">(</span><span class="nb">cons </span><span class="nv">new</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">oldL</span> <span class="p">(</span><span class="nf">multiinsertLR</span> <span class="nv">new</span> <span class="nv">oldL</span> <span class="nv">oldR</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)))))</span>
      <span class="p">((</span><span class="nb">eq? </span><span class="nv">oldR</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
@@ -2863,7 +2857,7 @@ L 参数是在 oldL 参数左边插入的次数 , R 参数是在 oldR 参数右�
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new</span> <span class="nv">oldL</span> <span class="nv">oldR</span> <span class="nv">lat</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
      <span class="p">((</span><span class="nb">null? </span><span class="nv">lat</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">col</span> <span class="o">'</span><span class="p">()</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">))</span>
+      <span class="p">(</span><span class="nf">col</span> <span class="o">&#39;</span><span class="p">()</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">))</span>
      <span class="p">((</span><span class="nb">eq? </span><span class="nv">oldL</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lat</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">multiinsertLR&amp;co</span> <span class="nv">new</span> <span class="nv">oldL</span> <span class="nv">oldR</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lat</span><span class="p">)</span>
                         <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">newlat</span> <span class="nv">L</span> <span class="nv">R</span><span class="p">)</span>
@@ -2905,7 +2899,7 @@ L 参数是在 oldL 参数左边插入的次数 , R 参数是在 oldR 参数右�
 14</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">evens-only*</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">l</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
       <span class="p">((</span><span class="nf">atom?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
       <span class="p">(</span><span class="nf">cond</span>
         <span class="p">((</span><span class="nb">even? </span><span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
@@ -2947,7 +2941,7 @@ L 参数是在 oldL 参数左边插入的次数 , R 参数是在 oldR 参数右�
 26</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="nv">evens-only*&amp;co</span>
   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">l</span> <span class="nv">col</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">cond</span>
-      <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">'</span><span class="p">()</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">))</span>
+      <span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span> <span class="p">(</span><span class="nf">col</span> <span class="o">&#39;</span><span class="p">()</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">))</span>
       <span class="p">((</span><span class="nf">atom?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>
        <span class="p">(</span><span class="nf">cond</span>
          <span class="p">((</span><span class="nb">even? </span><span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span>

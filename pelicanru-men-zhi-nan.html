@@ -14,12 +14,12 @@
 
 <meta property="og:title" content="Pelican入门指南 "/>
 <meta property="og:url" content="http://chenjiee815.github.io/pelicanru-men-zhi-nan.html" />
-<meta property="og:description" content="简介 Pelican 是一个用 Python 实现的静态网站生成器。 通过 reStructuredText 或 MarkDown 语言，直接使用你的编辑器编写博客 使用简单的命令行工具生成博客 易于与版本控制工具和 WEB 应用配合使用 全静态输出可以方便的在任何地方部署 简单来说，就是你使用 reStructuredText 或者 MarkDown 来生写网站的具体内容，然后用这个工具根据你之前写的内容来生成对应的网页。 这个工具一般用来生成静态的博客是极好的，并且网上也很多技术人的博客也已经是这样来实现的。 本指南只讲解了一些有关 Pelican 的入门知识，如果你想了解更多，请移步 Pelican 中文文档 ，或者 Pelican 官方文档 。 安装 Pelican 的安装还是很简单的，因为它属于 Python 的一个第三方库，所以直接一条命令即可： 1$ pip install pelican 如果系统报没有 pip 这个命令，你可以点击 ..." />
+<meta property="og:description" content="Contents 简介 安装 依赖 更新 创建 Pelican 工程目录 使用 Pelican 编写文章 语法高亮 Makefile make html make clean make regenerate make serve make devserver make stopserver 其它 make 子命令 develop_server.sh 简介 Pelican 是一个用 Python 实现的静态网站生成器。 通过 reStructuredText 或 MarkDown 语言，直接使用你的编辑器编写博客 使用简单的命令行工具生成博客 易于与版本控制工具和 WEB 应用配合使用 全静态输出可以方便的在任何地方部署 简单来说，就是你使用 reStructuredText 或者 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
 <meta property="og:article:published_time" content="2014-08-28T20:51:34.620156" />
 <meta name="twitter:title" content="Pelican入门指南 ">
-<meta name="twitter:description" content="简介 Pelican 是一个用 Python 实现的静态网站生成器。 通过 reStructuredText 或 MarkDown 语言，直接使用你的编辑器编写博客 使用简单的命令行工具生成博客 易于与版本控制工具和 WEB 应用配合使用 全静态输出可以方便的在任何地方部署 简单来说，就是你使用 reStructuredText 或者 MarkDown 来生写网站的具体内容，然后用这个工具根据你之前写的内容来生成对应的网页。 这个工具一般用来生成静态的博客是极好的，并且网上也很多技术人的博客也已经是这样来实现的。 本指南只讲解了一些有关 Pelican 的入门知识，如果你想了解更多，请移步 Pelican 中文文档 ，或者 Pelican 官方文档 。 安装 Pelican 的安装还是很简单的，因为它属于 Python 的一个第三方库，所以直接一条命令即可： 1$ pip install pelican 如果系统报没有 pip 这个命令，你可以点击 ...">
+<meta name="twitter:description" content="Contents 简介 安装 依赖 更新 创建 Pelican 工程目录 使用 Pelican 编写文章 语法高亮 Makefile make html make clean make regenerate make serve make devserver make stopserver 其它 make 子命令 develop_server.sh 简介 Pelican 是一个用 Python 实现的静态网站生成器。 通过 reStructuredText 或 MarkDown 语言，直接使用你的编辑器编写博客 使用简单的命令行工具生成博客 易于与版本控制工具和 WEB 应用配合使用 全静态输出可以方便的在任何地方部署 简单来说，就是你使用 reStructuredText 或者 ...">
 
         <title>Pelican入门指南  · January Star
 </title>
@@ -74,10 +74,10 @@
 </div>
 
 <div class="row-fluid">
-    <div class="span2 table-of-content">
-        <nav>
-        <h4>Contents</h4>
-        <div class="contents topic" id="contents">
+        <div class="span8 offset2 article-content">
+
+            
+            <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#id1" id="id9"> 简介 </a></li>
@@ -104,12 +104,6 @@
 <li><a class="reference internal" href="#develop-server-sh" id="id24">develop_server.sh</a></li>
 </ul>
 </div>
-        </nav>
-    </div>
-    <div class="span8 article-content">
-
-            
-            
 <div class="section" id="id1">
 <h2><a class="toc-backref" href="#id9"> 简介 </a></h2>
 <p><strong>Pelican</strong> 是一个用 Python 实现的静态网站生成器。</p>

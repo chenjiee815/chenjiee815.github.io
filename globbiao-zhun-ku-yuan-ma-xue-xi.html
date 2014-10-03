@@ -14,12 +14,12 @@
 
 <meta property="og:title" content="glob标准库源码学习 "/>
 <meta property="og:url" content="http://chenjiee815.github.io/globbiao-zhun-ku-yuan-ma-xue-xi.html" />
-<meta property="og:description" content="简介 glob 库提供了以下两个函数： glob 输入 文件路径模式字符串（仅支持 Shell 通配符） 输出 和模式字符串匹配的真实文件名列表 iglob 输入 文件路径模式字符串（仅支持 Shell 通配符） 输出 和模式字符串匹配的真实文件名列表迭代器 代码解析 glob 库中最重要函数就是 iglob 函数了。 glob 函数其实也是调用 iglob 来实现的。 1 2def glob(pathname): return list(iglob(pathname)) 那么接下就主讲 iglob 这个函数。 首先我们分析一下传入的文件路径模式字符串有几种情况： 文件路径模式字符串中没有 Shell 通配符 文件路径模式字符串中有 Shell 通配符 这种情况还要再细分： dirname 没有 ..." />
+<meta property="og:description" content="Contents 简介 代码解析 代码吐槽 总结 简介 glob 库提供了以下两个函数： glob 输入 文件路径模式字符串（仅支持 Shell 通配符） 输出 和模式字符串匹配的真实文件名列表 iglob 输入 文件路径模式字符串（仅支持 Shell 通配符） 输出 和模式字符串匹配的真实文件名列表迭代器 代码解析 glob 库中最重要函数就是 iglob 函数了。 glob 函数其实也是调用 iglob 来实现的。 1 2def glob(pathname): return list(iglob(pathname)) 那么接下就主讲 iglob 这个函数。 首先我们分析一下传入的文件路径模式字符串有几种情况： 文件路径模式字符串中没有 Shell 通配符 文件路径模式字符串中有 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
 <meta property="og:article:published_time" content="2014-08-28T20:51:34.594402" />
 <meta name="twitter:title" content="glob标准库源码学习 ">
-<meta name="twitter:description" content="简介 glob 库提供了以下两个函数： glob 输入 文件路径模式字符串（仅支持 Shell 通配符） 输出 和模式字符串匹配的真实文件名列表 iglob 输入 文件路径模式字符串（仅支持 Shell 通配符） 输出 和模式字符串匹配的真实文件名列表迭代器 代码解析 glob 库中最重要函数就是 iglob 函数了。 glob 函数其实也是调用 iglob 来实现的。 1 2def glob(pathname): return list(iglob(pathname)) 那么接下就主讲 iglob 这个函数。 首先我们分析一下传入的文件路径模式字符串有几种情况： 文件路径模式字符串中没有 Shell 通配符 文件路径模式字符串中有 Shell 通配符 这种情况还要再细分： dirname 没有 ...">
+<meta name="twitter:description" content="Contents 简介 代码解析 代码吐槽 总结 简介 glob 库提供了以下两个函数： glob 输入 文件路径模式字符串（仅支持 Shell 通配符） 输出 和模式字符串匹配的真实文件名列表 iglob 输入 文件路径模式字符串（仅支持 Shell 通配符） 输出 和模式字符串匹配的真实文件名列表迭代器 代码解析 glob 库中最重要函数就是 iglob 函数了。 glob 函数其实也是调用 iglob 来实现的。 1 2def glob(pathname): return list(iglob(pathname)) 那么接下就主讲 iglob 这个函数。 首先我们分析一下传入的文件路径模式字符串有几种情况： 文件路径模式字符串中没有 Shell 通配符 文件路径模式字符串中有 ...">
 
         <title>glob标准库源码学习  · January Star
 </title>
@@ -74,10 +74,10 @@
 </div>
 
 <div class="row-fluid">
-    <div class="span2 table-of-content">
-        <nav>
-        <h4>Contents</h4>
-        <div class="contents topic" id="contents">
+        <div class="span8 offset2 article-content">
+
+            
+            <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#id1" id="id5"> 简介 </a></li>
@@ -86,13 +86,7 @@
 <li><a class="reference internal" href="#id4" id="id8"> 总结 </a></li>
 </ul>
 </div>
-        </nav>
-    </div>
-    <div class="span8 article-content">
-
-            
-            
-<hr class="docutils"/>
+<hr class="docutils" />
 <div class="section" id="id1">
 <h2><a class="toc-backref" href="#id5"> 简介 </a></h2>
 <p>glob 库提供了以下两个函数：</p>
@@ -100,8 +94,8 @@
 <li><p class="first">glob</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="9%"></col>
-<col width="91%"></col>
+<col width="9%" />
+<col width="91%" />
 </colgroup>
 <tbody valign="top">
 <tr><td> 输入 </td>
@@ -116,8 +110,8 @@
 <li><p class="first">iglob</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="9%"></col>
-<col width="91%"></col>
+<col width="9%" />
+<col width="91%" />
 </colgroup>
 <tbody valign="top">
 <tr><td> 输入 </td>
@@ -166,8 +160,8 @@
 <blockquote>
 <table border="1" class="docutils">
 <colgroup>
-<col width="16%"></col>
-<col width="84%"></col>
+<col width="16%" />
+<col width="84%" />
 </colgroup>
 <tbody valign="top">
 <tr><td>has_magic</td>
@@ -251,7 +245,7 @@
     <span class="c"># 这样会导致下面的代码无限递归，直到 Python 异常。</span>
     <span class="c"># `os.path.split()` returns the argument itself as a dirname if it is a</span>
     <span class="c"># drive or UNC path.  Prevent an infinite recursion if a drive or UNC path</span>
-    <span class="c"># contains magic characters (i.e. r'\\?\C:').</span>
+    <span class="c"># contains magic characters (i.e. r&#39;\\?\C:&#39;).</span>
     <span class="k">if</span> <span class="n">dirname</span> <span class="o">!=</span> <span class="n">pathname</span> <span class="ow">and</span> <span class="n">has_magic</span><span class="p">(</span><span class="n">dirname</span><span class="p">):</span>
         <span class="n">dirs</span> <span class="o">=</span> <span class="n">iglob</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -344,14 +338,14 @@
     <span class="c"># . 号开头的文件在 unix 平台上为隐藏文件，</span>
     <span class="c"># 但是在正则表达式中它又可以匹配任意字符，</span>
     <span class="c"># 所以需要先单独过滤一下 </span>
-    <span class="k">if</span> <span class="n">pattern</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s">'.'</span><span class="p">:</span>
-        <span class="n">names</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s">'.'</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pattern</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;.&#39;</span><span class="p">:</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">fnmatch</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">glob0</span><span class="p">(</span><span class="n">dirname</span><span class="p">,</span> <span class="n">basename</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">basename</span> <span class="o">==</span> <span class="s">''</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">basename</span> <span class="o">==</span> <span class="s">&#39;&#39;</span><span class="p">:</span>
         <span class="c"># `os.path.split()` returns an empty basename for paths ending with a</span>
-        <span class="c"># directory separator.  'q*x/' should match only directories.</span>
+        <span class="c"># directory separator.  &#39;q*x/&#39; should match only directories.</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">dirname</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">basename</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>

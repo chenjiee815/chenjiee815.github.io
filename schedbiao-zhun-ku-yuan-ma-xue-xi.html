@@ -14,12 +14,12 @@
 
 <meta property="og:title" content="sched标准库源码学习 "/>
 <meta property="og:url" content="http://chenjiee815.github.io/schedbiao-zhun-ku-yuan-ma-xue-xi.html" />
-<meta property="og:description" content="简介 sched 提供了一个具有事件调度机制的类 scheduler 。 不过该模块在文件的开头简介里就说明了： 该类的每个实例内部会维护一个队列。 但是该类并不是线程安全的。 如果想要线程安全，你必须自己根据 scheduler 来定制一个， 或者在多线程环境里，使用单例模式来解决线程安全问题。 官方文档里建议使用 threading.Timer 来延时执行某个方法，可以达到类似于 sched 的效果，同时也是线程安全的。 从上面的介绍就可以看出， scheduler 不支持多线程，所以它内部的阻塞以及事件回调函数的执行应该都是用同步的方式来做的，且其中一个步骤执行时抛出异常，都会导致事件调试失败，这个算是它的一个不小的缺点吧，当然对于要求不高的任务，够用啦。 Event 既然是有事件调度，那么就有一个事件对象。 在 sched 模块中是以命名元组来实现的。 该事件有四个属性： time: 该事件的调度时间，当 timefunc 的返回值 &gt;=time 时，该事件可以进行调度 priority: 该事件的优先级，数值越小，优先级越高（Unix ..." />
+<meta property="og:description" content="Contents 简介 Event scheduler 简介 sched 提供了一个具有事件调度机制的类 scheduler 。 不过该模块在文件的开头简介里就说明了： 该类的每个实例内部会维护一个队列。 但是该类并不是线程安全的。 如果想要线程安全，你必须自己根据 scheduler 来定制一个， 或者在多线程环境里，使用单例模式来解决线程安全问题。 官方文档里建议使用 threading.Timer 来延时执行某个方法，可以达到类似于 sched 的效果，同时也是线程安全的。 从上面的介绍就可以看出， scheduler 不支持多线程，所以它内部的阻塞以及事件回调函数的执行应该都是用同步的方式来做的，且其中一个步骤执行时抛出异常，都会导致事件调试失败，这个算是它的一个不小的缺点吧，当然对于要求不高的任务，够用啦。 Event 既然是有事件调度，那么就有一个事件对象。 在 sched 模块中是以命名元组来实现的。 该事件有四个属性： time: 该事件的调度时间，当 timefunc 的返回值 &gt;=time 时，该事件可以进行调度 priority ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
 <meta property="og:article:published_time" content="2014-09-24T23:47:25.707541" />
 <meta name="twitter:title" content="sched标准库源码学习 ">
-<meta name="twitter:description" content="简介 sched 提供了一个具有事件调度机制的类 scheduler 。 不过该模块在文件的开头简介里就说明了： 该类的每个实例内部会维护一个队列。 但是该类并不是线程安全的。 如果想要线程安全，你必须自己根据 scheduler 来定制一个， 或者在多线程环境里，使用单例模式来解决线程安全问题。 官方文档里建议使用 threading.Timer 来延时执行某个方法，可以达到类似于 sched 的效果，同时也是线程安全的。 从上面的介绍就可以看出， scheduler 不支持多线程，所以它内部的阻塞以及事件回调函数的执行应该都是用同步的方式来做的，且其中一个步骤执行时抛出异常，都会导致事件调试失败，这个算是它的一个不小的缺点吧，当然对于要求不高的任务，够用啦。 Event 既然是有事件调度，那么就有一个事件对象。 在 sched 模块中是以命名元组来实现的。 该事件有四个属性： time: 该事件的调度时间，当 timefunc 的返回值 &gt;=time 时，该事件可以进行调度 priority: 该事件的优先级，数值越小，优先级越高（Unix ...">
+<meta name="twitter:description" content="Contents 简介 Event scheduler 简介 sched 提供了一个具有事件调度机制的类 scheduler 。 不过该模块在文件的开头简介里就说明了： 该类的每个实例内部会维护一个队列。 但是该类并不是线程安全的。 如果想要线程安全，你必须自己根据 scheduler 来定制一个， 或者在多线程环境里，使用单例模式来解决线程安全问题。 官方文档里建议使用 threading.Timer 来延时执行某个方法，可以达到类似于 sched 的效果，同时也是线程安全的。 从上面的介绍就可以看出， scheduler 不支持多线程，所以它内部的阻塞以及事件回调函数的执行应该都是用同步的方式来做的，且其中一个步骤执行时抛出异常，都会导致事件调试失败，这个算是它的一个不小的缺点吧，当然对于要求不高的任务，够用啦。 Event 既然是有事件调度，那么就有一个事件对象。 在 sched 模块中是以命名元组来实现的。 该事件有四个属性： time: 该事件的调度时间，当 timefunc 的返回值 &gt;=time 时，该事件可以进行调度 priority ...">
 
         <title>sched标准库源码学习  · January Star
 </title>
@@ -74,10 +74,10 @@
 </div>
 
 <div class="row-fluid">
-    <div class="span2 table-of-content">
-        <nav>
-        <h4>Contents</h4>
-        <div class="contents topic" id="contents">
+        <div class="span8 offset2 article-content">
+
+            
+            <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#id1" id="id2"> 简介 </a></li>
@@ -85,13 +85,7 @@
 <li><a class="reference internal" href="#scheduler" id="id4">scheduler</a></li>
 </ul>
 </div>
-        </nav>
-    </div>
-    <div class="span8 article-content">
-
-            
-            
-<hr class="docutils"/>
+<hr class="docutils" />
 <div class="section" id="id1">
 <h2><a class="toc-backref" href="#id2"> 简介 </a></h2>
 <p><cite>sched</cite> 提供了一个具有事件调度机制的类 <cite>scheduler</cite> 。</p>
@@ -116,7 +110,7 @@
 <li>action: 该事件的动作，即回调函数 </li>
 <li>argument: 回调函数的参数，元组形式，不支持关键字参数 </li>
 </ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">Event</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">'Event'</span><span class="p">,</span> <span class="s">'time, priority, action, argument'</span><span class="p">)</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">Event</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;Event&#39;</span><span class="p">,</span> <span class="s">&#39;time, priority, action, argument&#39;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="scheduler">
@@ -222,44 +216,44 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">delayfunc</span> <span class="o">=</span> <span class="n">delayfunc</span>
 
     <span class="k">def</span> <span class="nf">enterabs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">priority</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">argument</span><span class="p">):</span>
-        <span class="sd">""" 插入一个事件，使用绝对时间 </span>
+        <span class="sd">&quot;&quot;&quot; 插入一个事件，使用绝对时间 </span>
 
 <span class="sd">        四个参数正好是用来生成一个事件用的 </span>
 <span class="sd">        本方法会返回一个 ID，可以用来删除对应的事件 </span>
-<span class="sd">        """</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">priority</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">argument</span><span class="p">)</span>
         <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
         <span class="c"># 这个 ID 其实就一个事件对象，不是说一提到 ID 就是一个唯一数字 </span>
         <span class="k">return</span> <span class="n">event</span>
 
     <span class="k">def</span> <span class="nf">enter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delay</span><span class="p">,</span> <span class="n">priority</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">argument</span><span class="p">):</span>
-        <span class="sd">""" 插入一个事件，使用相对时间，</span>
+        <span class="sd">&quot;&quot;&quot; 插入一个事件，使用相对时间，</span>
 
 <span class="sd">        相对于 `timefunc` 返回的时间 </span>
-<span class="sd">        """</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timefunc</span><span class="p">()</span> <span class="o">+</span> <span class="n">delay</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">enterabs</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">priority</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">argument</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-        <span class="sd">""" 删除一个事件 </span>
+        <span class="sd">&quot;&quot;&quot; 删除一个事件 </span>
 
 <span class="sd">        这个事件可以是 `enterabs` 或者  `enter` 方法的返回值 </span>
 
 <span class="sd">        如果该事件不在内部队列里面，会抛出 `ValueError` 异常 </span>
-<span class="sd">        """</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
         <span class="n">heapq</span><span class="o">.</span><span class="n">heapify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">""" 检查内部队列是否为空 """</span>
+        <span class="sd">&quot;&quot;&quot; 检查内部队列是否为空 &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">""" 开始事件调度，直接所有事件调度完成 </span>
+        <span class="sd">&quot;&quot;&quot; 开始事件调度，直接所有事件调度完成 </span>
 
 <span class="sd">        如果 timefunc/deltafunc/ 事件的回调函数抛出异常了，事件调试也会中止，</span>
 <span class="sd">        不过幸运的是，你可以再次调用 `run` 来重新调试剩余事件。</span>
-<span class="sd">        """</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c"># 将二次调用的方法 / 属性都统一到本地变量 </span>
         <span class="c"># 一方面是加快调用速度，另一面也是为了线程安全考虑 </span>
         <span class="c"># 为本地变量的话，直接一个字节码 `LOST_FAST` 搞定了 </span>
@@ -296,7 +290,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">queue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">""" 用来保存内部待执行的事件 """</span>
+        <span class="sd">&quot;&quot;&quot; 用来保存内部待执行的事件 &quot;&quot;&quot;</span>
         <span class="c"># 这里使用堆排，而不使用 `sorted` 来对内部队列排序 </span>
         <span class="c"># 是因为当两个事件的优先级一亲，堆排还会按两个事件的插入顺序来排序 </span>
         <span class="n">events</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">[:]</span>
