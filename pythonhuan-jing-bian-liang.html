@@ -17,7 +17,7 @@
 <meta property="og:description" content="Python 即可以通过命令行参数，也可以通过环境变量来进行定制。 命令行参数的优先级比较环境变量高。 当使用 -E 参数时，所有的环境变量都会忽略掉。 如果某个环境变量和命令行参数冲突，以命令行参数为准。 Note 此处只列出了 CPython 实现版本支持的环境变量，其它实现版本请查看其官方文档。 普通环境变量 PYTHONHOME 定制 Python 标准库的路径。 在默认情况下，Python 会查找 prefix/lib/pythonversion 和 exec_prefix/lib/pythonversion 。 prefix 和 exec_prefix 由你的安装环境决定。在 Unix 系统上一般情况下为 /usr/local 。 如果 PYTHONHOME 被设置为单个目录，那么 prefix 和 exec_prefix 都会被设定为该目录。 如果分别设定这两个值，可以使用 prefix ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-10-03T10:35:26.303669" />
+<meta property="og:article:published_time" content="2014-10-03T10:40:25.074778" />
 <meta name="twitter:title" content="Python环境变量 ">
 <meta name="twitter:description" content="Python 即可以通过命令行参数，也可以通过环境变量来进行定制。 命令行参数的优先级比较环境变量高。 当使用 -E 参数时，所有的环境变量都会忽略掉。 如果某个环境变量和命令行参数冲突，以命令行参数为准。 Note 此处只列出了 CPython 实现版本支持的环境变量，其它实现版本请查看其官方文档。 普通环境变量 PYTHONHOME 定制 Python 标准库的路径。 在默认情况下，Python 会查找 prefix/lib/pythonversion 和 exec_prefix/lib/pythonversion 。 prefix 和 exec_prefix 由你的安装环境决定。在 Unix 系统上一般情况下为 /usr/local 。 如果 PYTHONHOME 被设置为单个目录，那么 prefix 和 exec_prefix 都会被设定为该目录。 如果分别设定这两个值，可以使用 prefix ...">
 
@@ -167,7 +167,7 @@
 <div class="section" id="pythony2k">
 <h3><a class="toc-backref" href="#id7">PYTHONY2K</a></h3>
 <p> 默认情况下 <cite>time</cite> 模块中如果有函数需要指定年参数时，可以为 4 位，也可以为 2 位。</p>
-<p> 如果为 2 位，Python 会自动按照一定的规则进行转换。具体可以查看 <a href="#id25"><span class="problematic" id="id26">`time 模块官方文档 `_</span></a> 。</p>
+<p> 如果为 2 位，Python 会自动按照一定的规则进行转换。具体可以查看 <a class="reference external" href="file:///home/cj/python/python-2.7.8-docs-html/library/time.html#module-time">time 模块官方文档 </a> 。</p>
 <p> 如果该值被设定了， <cite>time.accept2dyear</cite> 值就会变成 0，默认为 1。</p>
 <p> 这样会导致 <cite>time</cite> 模块中如果有函数需要指定年参数时，必须要求为 4 位。</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -318,14 +318,7 @@ encodingname:errorhandler</blockquote>
 <p class="first admonition-title">Tip</p>
 <p class="last"><cite>object arena</cite> 不知道啥意思，自己试了，网上查了也不知道是啥。</p>
 </div>
-<!-- `time 模块官方文档 `: file:///home/cj/python/python-2.7.8-docs-html/library/time.html#module-time -->
 </div>
-</div>
-<div class="system-messages section">
-<h2>Docutils System Messages</h2>
-<div class="system-message" id="id25">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/media/cj/self/git/chenjiee815_blogs/chenjiee815_blogs/content/python/others/python_env_vars.rst</tt>, line 82); <em><a href="#id26">backlink</a></em></p>
-Unknown target name: "time 模块官方文档 ".</div>
 </div>
 
             
@@ -368,7 +361,7 @@ Unknown target name: "time 模块官方文档 ".</div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-10-03T10:35:26.303669">Oct 3, 2014</time>
+            <time pubdate="pubdate" datetime="2014-10-03T10:40:25.074778">Oct 3, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">python</a>
             <h4>Tags</h4>
