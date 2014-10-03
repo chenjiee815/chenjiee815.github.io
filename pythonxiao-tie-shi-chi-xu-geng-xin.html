@@ -17,7 +17,7 @@
 <meta property="og:description" content="这里记录的是我用 Python 几年以来，觉得大家可能会忽略的的小知识点（好吧，也有可能只是我自己忽略的小知识点）。 next next 是 Python 提供的一个 Built-in 函数。 提到 next，大家可能都会想到 Python 中的迭代协议中就有要求实现一个 next 方法。 那这个函数的功能也是作用于一个迭代器的。 1next(iterator[, default]) 看到它的函数签名了么，有一个 default 可选参数，这个就是我想要讲的重点。 next 在检索一个迭代器（不是一个可迭代的对象）时，会调用它的 next() 方法， 但当迭代器迭代结束时，如果提供了 default 参数，next 函数会返回 default, 如果没有，则直接抛出 StopIteration 异常。 Note 注意我上面所强调的 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-09-26T16:59:23.587090" />
+<meta property="og:article:published_time" content="2014-10-03T09:13:19.156058" />
 <meta name="twitter:title" content="Python小贴士（持续更新） ">
 <meta name="twitter:description" content="这里记录的是我用 Python 几年以来，觉得大家可能会忽略的的小知识点（好吧，也有可能只是我自己忽略的小知识点）。 next next 是 Python 提供的一个 Built-in 函数。 提到 next，大家可能都会想到 Python 中的迭代协议中就有要求实现一个 next 方法。 那这个函数的功能也是作用于一个迭代器的。 1next(iterator[, default]) 看到它的函数签名了么，有一个 default 可选参数，这个就是我想要讲的重点。 next 在检索一个迭代器（不是一个可迭代的对象）时，会调用它的 next() 方法， 但当迭代器迭代结束时，如果提供了 default 参数，next 函数会返回 default, 如果没有，则直接抛出 StopIteration 异常。 Note 注意我上面所强调的 ...">
 
@@ -93,6 +93,7 @@
 <li><a class="reference internal" href="#id2" id="id12">() 的用法 </a></li>
 <li><a class="reference internal" href="#bit-length" id="id13">1.bit_length() 为啥会报错？</a></li>
 <li><a class="reference internal" href="#id3" id="id14"> 获取当前模块对象 </a></li>
+<li><a class="reference internal" href="#startswith-endswith" id="id15">startswith&amp;&amp;endswith</a></li>
 </ul>
 </div>
         </nav>
@@ -394,6 +395,86 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
 <span class="n">Out</span><span class="p">[</span><span class="mi">63</span><span class="p">]:</span> <span class="s">'hack var'</span>
 </pre></div>
 </td></tr></table></div>
+<div class="section" id="startswith-endswith">
+<h2><a class="toc-backref" href="#id15">startswith&amp;&amp;endswith</a></h2>
+<p><cite>startswith</cite> 和 <cite>endswith</cite> 的用法相信大家都知道。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">l</span> <span class="o">=</span> <span class="s">"abcdefg"</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">"ab"</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="bp">True</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">l</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">"fg"</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="bp">True</span>
+</pre></div>
+</td></tr></table><p> 但是有时候想判断多个 <cite>startswith</cite> 或者  <cite>endswith</cite> ，我们一般会写成：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">"ab"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">"bc"</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="bp">True</span>
+</pre></div>
+</td></tr></table><p> 如果是三个或者三个以上的话，就要写个循环或者其相等体来判断。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="nb">any</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s">"ab"</span><span class="p">,</span> <span class="s">"cd"</span><span class="p">,</span> <span class="s">"ef"</span><span class="p">))</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="bp">True</span>
+</pre></div>
+</td></tr></table><p> 那，有没有比较方便的判断方法呢？</p>
+<p> 咱们看一下 <cite>startswith</cite> 和 <cite>endswith</cite> 的函数说明。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="err">?</span>
+<span class="n">Type</span><span class="p">:</span>        <span class="n">builtin_function_or_method</span>
+<span class="n">String</span> <span class="n">form</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">method</span> <span class="n">startswith</span> <span class="n">of</span> <span class="nb">str</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x8aec300</span><span class="o">&gt;</span>
+<span class="n">Docstring</span><span class="p">:</span>
+<span class="n">S</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span><span class="p">[,</span> <span class="n">start</span><span class="p">[,</span> <span class="n">end</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
+
+<span class="n">Return</span> <span class="bp">True</span> <span class="k">if</span> <span class="n">S</span> <span class="n">starts</span> <span class="k">with</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">prefix</span><span class="p">,</span> <span class="bp">False</span> <span class="n">otherwise</span><span class="o">.</span>
+<span class="n">With</span> <span class="n">optional</span> <span class="n">start</span><span class="p">,</span> <span class="n">test</span> <span class="n">S</span> <span class="n">beginning</span> <span class="n">at</span> <span class="n">that</span> <span class="n">position</span><span class="o">.</span>
+<span class="n">With</span> <span class="n">optional</span> <span class="n">end</span><span class="p">,</span> <span class="n">stop</span> <span class="n">comparing</span> <span class="n">S</span> <span class="n">at</span> <span class="n">that</span> <span class="n">position</span><span class="o">.</span>
+<span class="n">prefix</span> <span class="n">can</span> <span class="n">also</span> <span class="n">be</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">strings</span> <span class="n">to</span> <span class="k">try</span><span class="o">.</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">l</span><span class="o">.</span><span class="n">endswith</span><span class="err">?</span>
+<span class="n">Type</span><span class="p">:</span>        <span class="n">builtin_function_or_method</span>
+<span class="n">String</span> <span class="n">form</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">method</span> <span class="n">endswith</span> <span class="n">of</span> <span class="nb">str</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x8aec300</span><span class="o">&gt;</span>
+<span class="n">Docstring</span><span class="p">:</span>
+<span class="n">S</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">suffix</span><span class="p">[,</span> <span class="n">start</span><span class="p">[,</span> <span class="n">end</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
+
+<span class="n">Return</span> <span class="bp">True</span> <span class="k">if</span> <span class="n">S</span> <span class="n">ends</span> <span class="k">with</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">suffix</span><span class="p">,</span> <span class="bp">False</span> <span class="n">otherwise</span><span class="o">.</span>
+<span class="n">With</span> <span class="n">optional</span> <span class="n">start</span><span class="p">,</span> <span class="n">test</span> <span class="n">S</span> <span class="n">beginning</span> <span class="n">at</span> <span class="n">that</span> <span class="n">position</span><span class="o">.</span>
+<span class="n">With</span> <span class="n">optional</span> <span class="n">end</span><span class="p">,</span> <span class="n">stop</span> <span class="n">comparing</span> <span class="n">S</span> <span class="n">at</span> <span class="n">that</span> <span class="n">position</span><span class="o">.</span>
+<span class="n">suffix</span> <span class="n">can</span> <span class="n">also</span> <span class="n">be</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">strings</span> <span class="n">to</span> <span class="k">try</span><span class="o">.</span>
+</pre></div>
+</td></tr></table><p> 哈哈，看到最后一行，发现它们的参数还可以是一个元组。</p>
+<blockquote>
+prefix can also be a tuple of strings to try.</blockquote>
+<p> 所以，想判断多个开头或者结尾的话，传入一个元组即可。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s">"ab"</span><span class="p">,</span> <span class="s">"bc"</span><span class="p">,</span> <span class="s">"cd"</span><span class="p">))</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="bp">True</span>
+</pre></div>
+</td></tr></table></div>
 
             
             <section>
@@ -435,7 +516,7 @@ next 在检索一个迭代器（不是一个可迭代的对象）时，会调用
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-09-26T16:59:23.587090">Sep 26, 2014</time>
+            <time pubdate="pubdate" datetime="2014-10-03T09:13:19.156058">Oct 3, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">python</a>
             <h4>Tags</h4>
