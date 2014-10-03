@@ -10,18 +10,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="pip, setuptools, python, package, python, " />
+<meta name="keywords" content="python, cmd, args, python, " />
 
-<meta property="og:title" content="Python打包工具对比 "/>
-<meta property="og:url" content="http://chenjiee815.github.io/pythonda-bao-gong-ju-dui-bi.html" />
-<meta property="og:description" content="Contents distutils setuptools distribute easy_install pip distutils2 我先给出对比结果： 推荐使用 setuptools + pip 具体原因看下文。 distutils 目前属于 Python 标准库的一部分。 只适用于非常简单的应用场景，建议使用 setuptools 。 setuptools setuptools 是对 distutils 的增强 , 尤其是引入了包依赖管理。 setuptools 可以为 Python 包创建 egg 文件。 包含包目录内的数据文件。 自动包含包目录内的所有的包，而不用在 setup.py 中列举。 自动包含包内和发布有关的所有相关文件，而不用创建一个 MANIFEST.in 文件。 自动生成经过包装的脚本或 Windows 执行文件。 支持 Pyrex，即在可以 setup.py ..." />
+<meta property="og:title" content="Python命令行参数 "/>
+<meta property="og:url" content="http://chenjiee815.github.io/pythonming-ling-xing-can-shu.html" />
+<meta property="og:description" content="Contents 接口参数 通用参数 各式各样的参数 弃用参数 Note 此处只列出了 CPython 实现版本支持的命令行参数，其它实现版本请查看其官方文档。 Python 命令行调用的基本格式如下： 1$ python [-BdEiOQsRStuUvVWxX3?] [-c command | -m module-name | script | - ] [args] 接口参数 用来指定不同的方式调用 Python 代码。 -c &lt;command&gt; 直接将 Python 代码作为 &lt;command&gt; 来执行。 -m &lt;module-name&gt; 查找 sys.path 中指定的模块名并执行其 __main__ 模块中的代码。 Note 无法用来指定 Python 内置模块和其它语言编写的 Python 扩展模块。 - 从标准输入读入 Python 代码。 &lt;script ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-08-28T20:51:34.675991" />
-<meta name="twitter:title" content="Python打包工具对比 ">
-<meta name="twitter:description" content="Contents distutils setuptools distribute easy_install pip distutils2 我先给出对比结果： 推荐使用 setuptools + pip 具体原因看下文。 distutils 目前属于 Python 标准库的一部分。 只适用于非常简单的应用场景，建议使用 setuptools 。 setuptools setuptools 是对 distutils 的增强 , 尤其是引入了包依赖管理。 setuptools 可以为 Python 包创建 egg 文件。 包含包目录内的数据文件。 自动包含包目录内的所有的包，而不用在 setup.py 中列举。 自动包含包内和发布有关的所有相关文件，而不用创建一个 MANIFEST.in 文件。 自动生成经过包装的脚本或 Windows 执行文件。 支持 Pyrex，即在可以 setup.py ...">
+<meta property="og:article:published_time" content="2014-10-03T12:06:30.668406" />
+<meta name="twitter:title" content="Python命令行参数 ">
+<meta name="twitter:description" content="Contents 接口参数 通用参数 各式各样的参数 弃用参数 Note 此处只列出了 CPython 实现版本支持的命令行参数，其它实现版本请查看其官方文档。 Python 命令行调用的基本格式如下： 1$ python [-BdEiOQsRStuUvVWxX3?] [-c command | -m module-name | script | - ] [args] 接口参数 用来指定不同的方式调用 Python 代码。 -c &lt;command&gt; 直接将 Python 代码作为 &lt;command&gt; 来执行。 -m &lt;module-name&gt; 查找 sys.path 中指定的模块名并执行其 __main__ 模块中的代码。 Note 无法用来指定 Python 内置模块和其它语言编写的 Python 扩展模块。 - 从标准输入读入 Python 代码。 &lt;script ...">
 
-        <title>Python打包工具对比  · January Star
+        <title>Python命令行参数  · January Star
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -69,7 +69,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="http://chenjiee815.github.io/pythonda-bao-gong-ju-dui-bi.html"> Python打包工具对比  </a></h1>
+    <h1><a href="http://chenjiee815.github.io/pythonming-ling-xing-can-shu.html"> Python命令行参数  </a></h1>
     </header>
 </div>
 
@@ -80,73 +80,141 @@
             <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#distutils" id="id1">distutils</a></li>
-<li><a class="reference internal" href="#setuptools" id="id2">setuptools</a></li>
-<li><a class="reference internal" href="#distribute" id="id3">distribute</a></li>
-<li><a class="reference internal" href="#easy-install" id="id4">easy_install</a></li>
-<li><a class="reference internal" href="#pip" id="id5">pip</a></li>
-<li><a class="reference internal" href="#distutils2" id="id6">distutils2</a></li>
+<li><a class="reference internal" href="#id1" id="id5"> 接口参数 </a></li>
+<li><a class="reference internal" href="#id2" id="id6"> 通用参数 </a></li>
+<li><a class="reference internal" href="#id3" id="id7"> 各式各样的参数 </a></li>
+<li><a class="reference internal" href="#id4" id="id8"> 弃用参数 </a></li>
 </ul>
 </div>
 <hr class="docutils" />
-<p> 我先给出对比结果：</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last"> 此处只列出了 <cite>CPython</cite> 实现版本支持的命令行参数，其它实现版本请查看其官方文档。</p>
+</div>
+<p>Python 命令行调用的基本格式如下：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>python <span class="o">[</span>-BdEiOQsRStuUvVWxX3?<span class="o">]</span> <span class="o">[</span>-c <span class="nb">command</span> | -m module-name | script | - <span class="o">]</span> <span class="o">[</span>args<span class="o">]</span>
+</pre></div>
+</td></tr></table><div class="section" id="id1">
+<h2><a class="toc-backref" href="#id5"> 接口参数 </a></h2>
+<p> 用来指定不同的方式调用 Python 代码。</p>
+<p>-c &lt;command&gt;</p>
 <blockquote>
-推荐使用 <strong>setuptools</strong> + <strong>pip</strong></blockquote>
-<p> 具体原因看下文。</p>
-<div class="section" id="distutils">
-<h2><a class="toc-backref" href="#id1">distutils</a></h2>
-<ul class="simple">
-<li> 目前属于 Python 标准库的一部分。</li>
-<li> 只适用于非常简单的应用场景，建议使用 <strong>setuptools</strong> 。</li>
-</ul>
+直接将 Python 代码作为 &lt;command&gt; 来执行。</blockquote>
+<p>-m &lt;module-name&gt;</p>
+<blockquote>
+<p> 查找 <cite>sys.path</cite> 中指定的模块名并执行其 <cite>__main__</cite> 模块中的代码。</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last"> 无法用来指定 Python 内置模块和其它语言编写的 Python 扩展模块。</p>
 </div>
-<div class="section" id="setuptools">
-<h2><a class="toc-backref" href="#id2">setuptools</a></h2>
-<ul class="simple">
-<li>setuptools 是对 distutils 的增强 , 尤其是引入了包依赖管理。</li>
-<li>setuptools 可以为 Python 包创建 egg 文件。</li>
-<li> 包含包目录内的数据文件。</li>
-<li> 自动包含包目录内的所有的包，而不用在 setup.py 中列举。</li>
-<li> 自动包含包内和发布有关的所有相关文件，而不用创建一个 MANIFEST.in 文件。</li>
-<li> 自动生成经过包装的脚本或 Windows 执行文件。</li>
-<li> 支持 Pyrex，即在可以 setup.py 中列出 .pyx 文件，而最终用户无须安装 Pyrex。</li>
-<li> 支持上传到 PyPI。</li>
-<li> 可以部署开发模式，使项目在 sys.path 中。</li>
-<li> 用新命令或 setup() 参数扩展 distutils，为多个项目发布 / 重用扩展。</li>
-<li> 基本满足大型项目的安装和发布。</li>
-</ul>
-<p>setuptools 的诸多功能下面会有具体讲解。</p>
+</blockquote>
+<p>-</p>
+<blockquote>
+从标准输入读入 Python 代码。</blockquote>
+<p>&lt;script&gt;</p>
+<blockquote>
+指定执行某个含有 Python 代码的文件或者包含 <cite>__main__.py</cite> 文件的目录 /Zip 包。</blockquote>
 </div>
-<div class="section" id="distribute">
-<h2><a class="toc-backref" href="#id3">distribute</a></h2>
-<ul class="simple">
-<li> 由于 setuptools 初期开发进度缓慢 , 不支持 Python3, 代码混乱 , 一帮程序员另起炉灶 , fork 并且重构 setuptools 代码 , 增加功能。</li>
-<li> 然后 2013 年 8 月，distribute 又合并回 setuptools 0.7。</li>
-</ul>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id6"> 通用参数 </a></h2>
+<p>-? -h --help</p>
+<blockquote>
+打印帮助信息 </blockquote>
+<p>-V --version</p>
+<blockquote>
+打印版本信息 </blockquote>
 </div>
-<div class="section" id="easy-install">
-<h2><a class="toc-backref" href="#id4">easy_install</a></h2>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id7"> 各式各样的参数 </a></h2>
+<p>-B</p>
+<blockquote>
+在导入源码模块时不生成 <cite>.pyc</cite> 或 <cite>.pyo</cite> 文件。</blockquote>
+<p>-d</p>
+<blockquote>
+打开调试信息输出。</blockquote>
+<p>-E</p>
+<blockquote>
+忽略所有的 Python 环境变量。</blockquote>
+<p>-i</p>
+<blockquote>
+强制 Python 以交互式模式启动，即使以 <cite>-c</cite> 或者 &lt;script&gt; 模式启动。</blockquote>
+<p>-O</p>
+<blockquote>
+打开最基本的编译优化。-OO: 进一步优化，忽略 <cite>docstrings</cite> 。</blockquote>
+<p>-Q &lt;arg&gt;</p>
+<blockquote>
+<p> 控制 Python 的除法行为。&lt;arg&gt; 为下面四个值之一：</p>
 <ul class="simple">
-<li>setuptools 和 distribute 自带的安装脚本。</li>
-<li> 只支持从 <a class="reference external" href="https://pypi.python.org/pypi/">PyPI</a> 下载安装 Python 包。</li>
+<li>old, 默认值，int/int == int, long/long == log</li>
+<li>new, int/int == float, long/long == flat</li>
+<li>warn, 和 old 一样，但是有 warning 提示。</li>
+<li>warnall, 对所有的除法行为都有 warning 提示。</li>
 </ul>
+</blockquote>
+<p>-R</p>
+<blockquote>
+使用随机值在生成不可以变对象的 Hash。</blockquote>
+<p>-s</p>
+<blockquote>
+不会将用户的 site-packages 添加到 sys.path 中。</blockquote>
+<p>-S</p>
+<blockquote>
+忽略导入 site 模块和操作 sys.path 所依赖的模块。多用于受限的环境。</blockquote>
+<p>-t</p>
+<blockquote>
+<p> 如果 Python 代码中混用了 TAB 和空格来进行缩进，则进行 warning 提示。</p>
+<p>-tt: 进行 error 提示。</p>
+</blockquote>
+<p>-u</p>
+<blockquote>
+强制使 stdin/stdout/stderr 不进行缓存操作。</blockquote>
+<p>-v</p>
+<blockquote>
+显示调试信息。-vv 显示更多的调试信息。</blockquote>
+<p>-W arg</p>
+<blockquote>
+<p> 告警控制。Python 默认的告警提示输出到 stderr，其一般格式为：</p>
+<blockquote>
+<a class="reference external" href="file:line">file:line</a>: category: message</blockquote>
+<p>arg 的值为以下值其中之一：</p>
+<ul class="simple">
+<li>ignore, 忽略所有告警提示 </li>
+<li>default, 每一行源码打印一个告警 </li>
+<li>all, 每次出现告警都打印 </li>
+<li>module, 每种告警在某模块中第一次出现时打印 </li>
+<li>once, 每种告警仅打印一次 </li>
+<li>error, 抛出异常，而不是打印出 warning 提示 </li>
+</ul>
+<div class="tip">
+<p class="first admonition-title">Tip</p>
+<p class="last"> 也可以通过 <cite>warings</cite> 模块来进行告警控制。</p>
 </div>
-<div class="section" id="pip">
-<h2><a class="toc-backref" href="#id5">pip</a></h2>
-<ul class="simple">
-<li>pip 的目标非常明确：取代 easy_install。</li>
-<li> 支持安装、卸载包。</li>
-<li> 支持从任意能够通过 VCS 或浏览器访问到的地址安装 Python 包。</li>
-</ul>
-<p>pip 的功能之强大，可以看下面专门讲解 PIP 的章节。</p>
+</blockquote>
+<p>-x</p>
+<blockquote>
+<p> 忽略源码的第一行。</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last"> 一般第一行为 #!/user/bin/env python， 多用于 DOS 系统。</p>
 </div>
-<div class="section" id="distutils2">
-<h2><a class="toc-backref" href="#id6">distutils2</a></h2>
-<ul class="simple">
-<li> 它本来应该成为 Python3 的标准库 packaging，
-在其它 Python 版本里叫做 distutils2。</li>
-<li> 该项目在 2012 年已经停止了，官方文档建议使用 setuptools + pip。</li>
-</ul>
+</blockquote>
+<p>-3</p>
+<blockquote>
+当在 Python2 中使用 Python3 中不存在 / 改变的模块 / 特性时，进行 <cite>DeprecationWarning</cite> 提示。</blockquote>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id8"> 弃用参数 </a></h2>
+<p>-J</p>
+<blockquote>
+用来调用 <cite>Jython</cite></blockquote>
+<p>-U</p>
+<blockquote>
+<p> 将所有字符串都当作 unicode 字符串来处理。但不建议这么用。</p>
+<p> 最好在代码中使用 <cite>from __future__ import unicode_literals</cite></p>
+</blockquote>
+<p>-X</p>
+<blockquote>
+调用其它的 Python 实现版本。</blockquote>
 </div>
 
             
@@ -155,7 +223,7 @@
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                href="http://chenjiee815.github.io/pythonda-bao-gong-ju-dui-bi.html#disqus_thread">
+                href="http://chenjiee815.github.io/pythonming-ling-xing-can-shu.html#disqus_thread">
                 Comments
             </a>
         </div>
@@ -165,8 +233,8 @@
                     <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'chenjiee815blog';
-        var disqus_identifier = 'http://chenjiee815.github.io/pythonda-bao-gong-ju-dui-bi.html';
-    var disqus_url = 'http://chenjiee815.github.io/pythonda-bao-gong-ju-dui-bi.html';
+        var disqus_identifier = 'http://chenjiee815.github.io/pythonming-ling-xing-can-shu.html';
+    var disqus_url = 'http://chenjiee815.github.io/pythonming-ling-xing-can-shu.html';
 
     (function() {
          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -189,22 +257,19 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-08-28T20:51:34.675991">Aug 28, 2014</time>
+            <time pubdate="pubdate" datetime="2014-10-03T12:06:30.668406">Oct 3, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">python</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="http://chenjiee815.github.io/tags.html#package-ref">package
-                    <span>3</span>
+                <li><a href="http://chenjiee815.github.io/tags.html#args-ref">args
+                    <span>1</span>
 </a></li>
-                <li><a href="http://chenjiee815.github.io/tags.html#pip-ref">pip
-                    <span>2</span>
+                <li><a href="http://chenjiee815.github.io/tags.html#cmd-ref">cmd
+                    <span>1</span>
 </a></li>
                 <li><a href="http://chenjiee815.github.io/tags.html#python-ref">python
                     <span>17</span>
-</a></li>
-                <li><a href="http://chenjiee815.github.io/tags.html#setuptools-ref">setuptools
-                    <span>2</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
