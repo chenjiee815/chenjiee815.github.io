@@ -17,7 +17,7 @@
 <meta property="og:description" content="Contents 简介 SimpleHTTPRequestHandler cgi.escape Issue17324 filter 简介 本模块是建立在 BaseHTTPServer 模块基础之上的。 在 BaseHTTPServer 模块的基础之上，实现了具体的 GET 、 HEAD 请求。 本模块实现了一个浏览根目录及其子目录的 HTTP Server, 可以直接通过命令启动 : 1python -m SimpleHTTPServer 然后在浏览器中输入地址 http://127.0.0.1:8000 或者 http://localhost:8000 即可 . SimpleHTTPRequestHandler 1 2 3 4 5 6 7 8 9 10 11 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-11-20T10:24:09.442016" />
+<meta property="og:article:published_time" content="2014-11-20T11:28:40.879924" />
 <meta name="twitter:title" content="SimpleHTTPServer标准库源码学习 ">
 <meta name="twitter:description" content="Contents 简介 SimpleHTTPRequestHandler cgi.escape Issue17324 filter 简介 本模块是建立在 BaseHTTPServer 模块基础之上的。 在 BaseHTTPServer 模块的基础之上，实现了具体的 GET 、 HEAD 请求。 本模块实现了一个浏览根目录及其子目录的 HTTP Server, 可以直接通过命令启动 : 1python -m SimpleHTTPServer 然后在浏览器中输入地址 http://127.0.0.1:8000 或者 http://localhost:8000 即可 . SimpleHTTPRequestHandler 1 2 3 4 5 6 7 8 9 10 11 ...">
 
@@ -415,6 +415,7 @@
 </td></tr></table></div>
 <div class="section" id="issue17324">
 <h3><a class="toc-backref" href="#id6">Issue17324</a></h3>
+<p> 具体参见 <a class="reference external" href="http://bugs.python.org/issue17324">Issue17324</a></p>
 <p> 传统意义上说，URL 末尾是没有反斜杠的。有无 &quot;/&quot; 主要用于指示该 url 是指向一个文件还是一个目录，例如：</p>
 <blockquote>
 <p><a class="reference external" href="http://localhost:8000/too.txt">http://localhost:8000/too.txt</a> 指向的是网站根目录下一个名为 too.txt 的文件 </p>
@@ -496,7 +497,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-11-20T10:24:09.442016">Nov 20, 2014</time>
+            <time pubdate="pubdate" datetime="2014-11-20T11:28:40.879924">Nov 20, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
