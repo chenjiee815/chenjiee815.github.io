@@ -17,7 +17,7 @@
 <meta property="og:description" content="Contents 简介 HTTP 各版本协议简介 HTTP/0.9 HTTP/1.0 HTTP/1.1 默认值 DEFAULT_ERROR_MESSAGE DEFAULT_ERROR_CONTENT_TYPE _quote_html HTTPServer allow_reuse_address BaseHTTPRequestHandler URL 长度限制 打印日志的相关方法 responses 简介 该模块不实现任何具体的 HTTP 请求（比如 GET、POST、HEAD... ...）， 如果想了解深入了解，可以参见 SimpleHTTPServer 模块。 该模块只是实现了一个基本框架，让用户只需要关心如何处理具体的 HTTP 请求，并且部分实现了 HTTP/1.1 的长连接功能。 HTTP 各版本协议简介 HTTP 的消息格式定义基本如下： 起始行 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-11-19T09:57:26.212350" />
+<meta property="og:article:published_time" content="2014-11-20T09:48:13.476432" />
 <meta name="twitter:title" content="BaseHTTPServer标准库源码学习 ">
 <meta name="twitter:description" content="Contents 简介 HTTP 各版本协议简介 HTTP/0.9 HTTP/1.0 HTTP/1.1 默认值 DEFAULT_ERROR_MESSAGE DEFAULT_ERROR_CONTENT_TYPE _quote_html HTTPServer allow_reuse_address BaseHTTPRequestHandler URL 长度限制 打印日志的相关方法 responses 简介 该模块不实现任何具体的 HTTP 请求（比如 GET、POST、HEAD... ...）， 如果想了解深入了解，可以参见 SimpleHTTPServer 模块。 该模块只是实现了一个基本框架，让用户只需要关心如何处理具体的 HTTP 请求，并且部分实现了 HTTP/1.1 的长连接功能。 HTTP 各版本协议简介 HTTP 的消息格式定义基本如下： 起始行 ...">
 
@@ -120,7 +120,7 @@
 <li> 首部，可选，定义该消息的元数据 </li>
 <li> 主体，可选，消息附带的数据 </li>
 </ol>
-<p> 消息头部与消息体使用 <cite>rn</cite> 来进行分割。</p>
+<p> 消息头部与消息体使用 <cite>\r\n</cite> 来进行分割。</p>
 <div class="section" id="http-0-9">
 <h3><a class="toc-backref" href="#id6">HTTP/0.9</a></h3>
 <p>HTTP 的 1991 原型版本称为 <cite>HTTP/0.9</cite> ，它的初衷是为了获取简单的 HTML。</p>
@@ -203,6 +203,7 @@ HTTP 响应主体
 <p> 该 Bug 简单来说就是利用上面的 <cite>DEFAULT_ERROR_MESSAGE</cite> 会将 URL 也包含在内的特点，</p>
 <p> 构造一个包含可执行代码 ( 比如 JS 代码 ) 的 URL，这样就会导致 <cite>HTTPServer</cite> 返回的错误页面中的代码会被浏览器执行。</p>
 </blockquote>
+<p>PS: <cite>cgi.escape</cite> 已经提供了类似的方法 , 估计当时写该模块时 <cite>cgi</cite> 模块还未加入 , 或者作者想减少模块之间的依赖 , 没必要只要使用一个简单的函数而导入一个新的模块 .</p>
 </div>
 <div class="section" id="httpserver">
 <h2><a class="toc-backref" href="#id13">HTTPServer</a></h2>
@@ -851,7 +852,7 @@ HTTP 响应主体
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-11-19T09:57:26.212350">Nov 19, 2014</time>
+            <time pubdate="pubdate" datetime="2014-11-20T09:48:13.476432">Nov 20, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
@@ -860,7 +861,7 @@ HTTP 响应主体
                     <span>19</span>
 </a></li>
                 <li><a href="http://chenjiee815.github.io/tags.html#stdlibs-ref">stdlibs
-                    <span>10</span>
+                    <span>11</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
