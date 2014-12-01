@@ -494,55 +494,55 @@
 52
 53</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">RemAV</span> <span class="o">{</span>
     <span class="n">PizzaD</span> <span class="nf">forCrust</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Crust</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Crust</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="n">PizzaD</span> <span class="nf">forCheese</span><span class="o">(</span><span class="n">PizzaD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Cheese</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">remA</span><span class="o">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Cheese</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">remA</span><span class="o">());</span>
     <span class="o">}</span>
     <span class="n">PizzaD</span> <span class="nf">forOlive</span><span class="o">(</span><span class="n">PizzaD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Olive</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">remA</span><span class="o">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Olive</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">remA</span><span class="o">());</span>
     <span class="o">}</span>
     <span class="n">PizzaD</span> <span class="nf">forAnchovy</span><span class="o">(</span><span class="n">PizzaD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="na">remA</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="n">PizzaD</span> <span class="nf">forSausage</span><span class="o">(</span><span class="n">PizzaD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Sausage</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">remA</span><span class="o">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Sausage</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">remA</span><span class="o">());</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
 <span class="kd">class</span> <span class="nc">TopAwCV</span> <span class="o">{</span>
     <span class="n">PizzaD</span> <span class="nf">forCrust</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Crust</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Crust</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="n">PizzaD</span> <span class="nf">forCheese</span><span class="o">(</span><span class="n">PizzaD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Cheese</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">topAwC</span><span class="o">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Cheese</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">topAwC</span><span class="o">());</span>
     <span class="o">}</span>
     <span class="n">PizzaD</span> <span class="nf">forOlive</span><span class="o">(</span><span class="n">PizzaD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Olive</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">topAwC</span><span class="o">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Olive</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">topAwC</span><span class="o">());</span>
     <span class="o">}</span>
     <span class="n">PizzaD</span> <span class="nf">forAnchovy</span><span class="o">(</span><span class="n">PizzaD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Cheese</span><span class="o">(</span><span class="k">new</span> <span class="n">Anchovy</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">topAwC</span><span class="o">()));</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Cheese</span><span class="o">(</span><span class="k">new</span> <span class="n">Anchovy</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">topAwC</span><span class="o">()));</span>
     <span class="o">}</span>
     <span class="n">PizzaD</span> <span class="nf">forSausage</span><span class="o">(</span><span class="n">PizzaD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Sausage</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">topAwC</span><span class="o">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Sausage</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">topAwC</span><span class="o">());</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
 <span class="kd">class</span> <span class="nc">SubAbCV</span> <span class="o">{</span>
     <span class="n">PizzaD</span> <span class="nf">forCrust</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Crust</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Crust</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="n">PizzaD</span> <span class="nf">forCheese</span><span class="o">(</span><span class="n">PizzaD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Cheese</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">subAbC</span><span class="o">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Cheese</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">subAbC</span><span class="o">());</span>
     <span class="o">}</span>
     <span class="n">PizzaD</span> <span class="nf">forOlive</span><span class="o">(</span><span class="n">PizzaD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Olive</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">subAbC</span><span class="o">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Olive</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">subAbC</span><span class="o">());</span>
     <span class="o">}</span>
     <span class="n">PizzaD</span> <span class="nf">forAnchovy</span><span class="o">(</span><span class="n">PizzaD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Cheese</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">subAbC</span><span class="o">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Cheese</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">subAbC</span><span class="o">());</span>
     <span class="o">}</span>
     <span class="n">PizzaD</span> <span class="nf">forSausage</span><span class="o">(</span><span class="n">PizzaD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Sausage</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">subAbC</span><span class="o">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Sausage</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">subAbC</span><span class="o">());</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>

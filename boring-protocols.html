@@ -175,25 +175,25 @@
 22
 23</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">RemV</span> <span class="o">{</span>
     <span class="n">PieD</span> <span class="nf">forBot</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">){</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Bot</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Bot</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="n">PieD</span> <span class="nf">forTop</span><span class="o">(</span><span class="n">Object</span> <span class="n">t</span><span class="o">,</span> <span class="n">PieD</span> <span class="n">r</span><span class="o">,</span> <span class="n">Object</span> <span class="n">o</span><span class="o">){</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span>
             <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="na">rem</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">o</span><span class="o">);</span>
         <span class="k">else</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">rem</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">o</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">rem</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">o</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
 <span class="kd">class</span> <span class="nc">SubstV</span> <span class="o">{</span>
     <span class="n">PieD</span> <span class="nf">forBot</span><span class="o">(</span><span class="n">Object</span> <span class="n">n</span><span class="o">,</span> <span class="n">Object</span> <span class="n">o</span><span class="o">){</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Bot</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Bot</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="n">PieD</span> <span class="nf">forTop</span><span class="o">(</span><span class="n">Object</span> <span class="n">t</span><span class="o">,</span> <span class="n">PieD</span> <span class="n">r</span><span class="o">,</span> <span class="n">Object</span> <span class="n">n</span><span class="o">,</span> <span class="n">Object</span> <span class="n">o</span><span class="o">){</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">subst</span><span class="o">(</span><span class="n">tis</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">o</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">subst</span><span class="o">(</span><span class="n">tis</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">o</span><span class="o">));</span>
         <span class="k">else</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">subst</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">o</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">subst</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">o</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
@@ -237,13 +237,13 @@
         <span class="n">o</span> <span class="o">=</span> <span class="n">_o</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="n">PieD</span> <span class="nf">forBot</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">){</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Bot</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Bot</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="n">PieD</span> <span class="nf">forTop</span><span class="o">(</span><span class="n">Object</span> <span class="n">t</span><span class="o">,</span> <span class="n">PieD</span> <span class="n">r</span><span class="o">){</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span>
             <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="na">rem</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
         <span class="k">else</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">rem</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">rem</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
@@ -256,13 +256,13 @@
     <span class="o">}</span>
 
     <span class="n">PieD</span> <span class="nf">forBot</span><span class="o">(</span><span class="n">Object</span> <span class="n">n</span><span class="o">,</span> <span class="n">Object</span> <span class="n">o</span><span class="o">){</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Bot</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Bot</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="n">PieD</span> <span class="nf">forTop</span><span class="o">(</span><span class="n">Object</span> <span class="n">t</span><span class="o">,</span> <span class="n">PieD</span> <span class="n">r</span><span class="o">){</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">subst</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">subst</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
         <span class="k">else</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">subst</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">subst</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
@@ -395,13 +395,13 @@
         <span class="n">o</span> <span class="o">=</span> <span class="n">_o</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">PieD</span> <span class="nf">forBot</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Bot</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Bot</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">PieD</span> <span class="nf">forTop</span><span class="o">(</span><span class="n">Object</span> <span class="n">t</span><span class="o">,</span> <span class="n">PieD</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span>
             <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
         <span class="k">else</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
@@ -413,13 +413,13 @@
         <span class="n">o</span> <span class="o">=</span> <span class="n">_o</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">PieD</span> <span class="nf">forBot</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Bot</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Bot</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">PieD</span> <span class="nf">fotTop</span><span class="o">(</span><span class="n">Object</span> <span class="n">t</span><span class="o">,</span> <span class="n">PieD</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
         <span class="k">else</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
@@ -497,16 +497,16 @@
         <span class="n">o</span> <span class="o">=</span> <span class="n">_o</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">PieD</span> <span class="nf">forBot</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Bot</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Bot</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">PieD</span> <span class="nf">forTop</span><span class="o">(</span><span class="n">Object</span> <span class="n">t</span><span class="o">,</span> <span class="n">PieD</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>
         <span class="k">else</span>
-            <span class="nf">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span>
-                <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">LtdSubstV</span><span class="o">(</span><span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">o</span><span class="o">)));</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">LtdSubstV</span><span class="o">(</span><span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">o</span><span class="o">)));</span>
             <span class="k">else</span>
-                <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>

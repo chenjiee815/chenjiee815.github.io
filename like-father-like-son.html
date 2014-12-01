@@ -221,29 +221,29 @@
 28
 29</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">IntEvalV</span> <span class="kd">implements</span> <span class="n">ExprVisitorI</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="n">Object</span> <span class="nf">forPlus</span><span class="o">(</span><span class="n">ExprD</span> <span class="n">l</span><span class="o">,</span> <span class="n">ExprD</span> <span class="n">r</span><span class="o">){</span>
-        <span class="k">return</span> <span class="nf">plus</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">plus</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">Object</span> <span class="nf">forDiff</span><span class="o">(</span><span class="n">ExprD</span> <span class="n">l</span><span class="o">,</span> <span class="n">ExprD</span> <span class="n">r</span><span class="o">){</span>
-        <span class="k">return</span> <span class="nf">diff</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">diff</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">Object</span> <span class="nf">forProd</span><span class="o">(</span><span class="n">ExprD</span> <span class="n">l</span><span class="o">,</span> <span class="n">ExprD</span> <span class="n">r</span><span class="o">){</span>
-        <span class="k">return</span> <span class="nf">prod</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">prod</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">Object</span> <span class="nf">forConst</span><span class="o">(</span><span class="n">Object</span> <span class="n">c</span><span class="o">){</span>
         <span class="k">return</span> <span class="n">c</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="n">Object</span> <span class="nf">plus</span><span class="o">(</span><span class="n">Object</span> <span class="n">l</span><span class="o">,</span> <span class="n">Object</span> <span class="n">r</span><span class="o">){</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">l</span><span class="o">).</span><span class="na">intValue</span><span class="o">()</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">l</span><span class="o">).</span><span class="na">intValue</span><span class="o">()</span>
                            <span class="o">+</span>
                            <span class="o">((</span><span class="n">Integer</span><span class="o">)</span><span class="n">r</span><span class="o">).</span><span class="na">intValue</span><span class="o">());</span>
     <span class="o">}</span>
     <span class="n">Object</span> <span class="nf">diff</span><span class="o">(</span><span class="n">Object</span> <span class="n">l</span><span class="o">,</span> <span class="n">Object</span> <span class="n">r</span><span class="o">){</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">l</span><span class="o">).</span><span class="na">intValue</span><span class="o">()</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">l</span><span class="o">).</span><span class="na">intValue</span><span class="o">()</span>
                            <span class="o">-</span>
                            <span class="o">((</span><span class="n">Integer</span><span class="o">)</span><span class="n">r</span><span class="o">).</span><span class="na">intValue</span><span class="o">());</span>
     <span class="o">}</span>
     <span class="n">Object</span> <span class="nf">prod</span><span class="o">(</span><span class="n">Object</span> <span class="n">l</span><span class="o">,</span> <span class="n">Object</span> <span class="n">r</span><span class="o">){</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">l</span><span class="o">).</span><span class="na">intValue</span><span class="o">()</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">l</span><span class="o">).</span><span class="na">intValue</span><span class="o">()</span>
                            <span class="o">*</span>
                            <span class="o">((</span><span class="n">Integer</span><span class="o">)</span><span class="n">r</span><span class="o">).</span><span class="na">intValue</span><span class="o">());</span>
     <span class="o">}</span>
@@ -322,7 +322,7 @@
         <span class="k">if</span> <span class="o">(</span><span class="n">mem</span><span class="o">(</span><span class="n">i</span><span class="o">))</span>
             <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
         <span class="k">else</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Add</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Add</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
     <span class="o">}</span>
     <span class="kd">abstract</span> <span class="kt">boolean</span> <span class="nf">mem</span><span class="o">(</span><span class="n">Integer</span> <span class="n">i</span><span class="o">);</span>
     <span class="kd">abstract</span> <span class="n">SetD</span> <span class="nf">plus</span><span class="o">(</span><span class="n">SetD</span> <span class="n">s</span><span class="o">);</span>
@@ -338,10 +338,10 @@
         <span class="k">return</span> <span class="n">s</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="n">SetD</span> <span class="nf">diff</span><span class="o">(</span><span class="n">SetD</span> <span class="n">s</span><span class="o">){</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Empty</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Empty</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="n">SetD</span> <span class="nf">prod</span><span class="o">(</span><span class="n">SetD</span> <span class="n">s</span><span class="o">){</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Empty</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Empty</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
@@ -436,13 +436,13 @@
 46
 47</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">EvalD</span> <span class="kd">implements</span> <span class="n">ExprVisitorI</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="n">Object</span> <span class="nf">forPlus</span><span class="o">(</span><span class="n">ExprD</span> <span class="n">l</span><span class="o">,</span> <span class="n">ExprD</span> <span class="n">r</span><span class="o">){</span>
-        <span class="k">return</span> <span class="nf">plus</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">plus</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">Object</span> <span class="nf">forDiff</span><span class="o">(</span><span class="n">ExprD</span> <span class="n">l</span><span class="o">,</span> <span class="n">ExprD</span> <span class="n">r</span><span class="o">){</span>
-        <span class="k">return</span> <span class="nf">diff</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">diff</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">Object</span> <span class="nf">forProd</span><span class="o">(</span><span class="n">ExprD</span> <span class="n">l</span><span class="o">,</span> <span class="n">ExprD</span> <span class="n">r</span><span class="o">){</span>
-        <span class="k">return</span> <span class="nf">prod</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">prod</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">Object</span> <span class="nf">forConst</span><span class="o">(</span><span class="n">Object</span> <span class="n">c</span><span class="o">){</span>
         <span class="k">return</span> <span class="n">c</span><span class="o">;</span>
@@ -454,17 +454,17 @@
 
 <span class="kd">class</span> <span class="nc">IntEvalV</span> <span class="kd">extends</span> <span class="n">EvalD</span> <span class="o">{</span>
     <span class="n">Object</span> <span class="nf">plus</span><span class="o">(</span><span class="n">Object</span> <span class="n">l</span><span class="o">,</span> <span class="n">Object</span> <span class="n">r</span><span class="o">){</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">l</span><span class="o">).</span><span class="na">intValue</span><span class="o">()</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">l</span><span class="o">).</span><span class="na">intValue</span><span class="o">()</span>
                            <span class="o">+</span>
                            <span class="o">((</span><span class="n">Integer</span><span class="o">)</span><span class="n">r</span><span class="o">).</span><span class="na">intValue</span><span class="o">());</span>
     <span class="o">}</span>
     <span class="n">Object</span> <span class="nf">diff</span><span class="o">(</span><span class="n">Object</span> <span class="n">l</span><span class="o">,</span> <span class="n">Object</span> <span class="n">r</span><span class="o">){</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">l</span><span class="o">).</span><span class="na">intValue</span><span class="o">()</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">l</span><span class="o">).</span><span class="na">intValue</span><span class="o">()</span>
                            <span class="o">-</span>
                            <span class="o">((</span><span class="n">Integer</span><span class="o">)</span><span class="n">r</span><span class="o">).</span><span class="na">intValue</span><span class="o">());</span>
     <span class="o">}</span>
     <span class="n">Object</span> <span class="nf">prod</span><span class="o">(</span><span class="n">Object</span> <span class="n">l</span><span class="o">,</span> <span class="n">Object</span> <span class="n">r</span><span class="o">){</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">l</span><span class="o">).</span><span class="na">intValue</span><span class="o">()</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)</span><span class="n">l</span><span class="o">).</span><span class="na">intValue</span><span class="o">()</span>
                            <span class="o">*</span>
                            <span class="o">((</span><span class="n">Integer</span><span class="o">)</span><span class="n">r</span><span class="o">).</span><span class="na">intValue</span><span class="o">());</span>
     <span class="o">}</span>
@@ -532,7 +532,7 @@
         <span class="n">o</span> <span class="o">=</span> <span class="n">_o</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">PieD</span> <span class="nf">forBot</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Bot</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Bot</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">PieD</span> <span class="nf">forTop</span><span class="o">(</span><span class="n">Object</span> <span class="n">t</span><span class="o">,</span> <span class="n">PieD</span> <span class="n">r</span><span class="o">);</span>
 <span class="o">}</span>
@@ -543,9 +543,9 @@
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">PieD</span> <span class="nf">forTop</span><span class="o">(</span><span class="n">Object</span> <span class="n">t</span><span class="o">,</span> <span class="n">PieD</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
         <span class="k">else</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
@@ -557,12 +557,12 @@
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">PieD</span> <span class="nf">forTop</span><span class="o">(</span><span class="n">Object</span> <span class="n">t</span><span class="o">,</span> <span class="n">PieD</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>
         <span class="k">else</span>
-            <span class="nf">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span>
-                <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">LtdSubstV</span><span class="o">(</span><span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">o</span><span class="o">)));</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">LtdSubstV</span><span class="o">(</span><span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">o</span><span class="o">)));</span>
             <span class="k">else</span>
-                <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
@@ -613,13 +613,13 @@
         <span class="n">o</span> <span class="o">=</span> <span class="n">_o</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">PieD</span> <span class="nf">forBot</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Bot</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Bot</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">PieD</span> <span class="nf">fotTop</span><span class="o">(</span><span class="n">Object</span> <span class="n">t</span><span class="o">,</span> <span class="n">PieD</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
         <span class="k">else</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
@@ -633,12 +633,12 @@
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">PieD</span> <span class="nf">forTop</span><span class="o">(</span><span class="n">Object</span> <span class="n">t</span><span class="o">,</span> <span class="n">PieD</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>
         <span class="k">else</span>
-            <span class="nf">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span>
-                <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">LtdSubstV</span><span class="o">(</span><span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">o</span><span class="o">)));</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">LtdSubstV</span><span class="o">(</span><span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">o</span><span class="o">)));</span>
             <span class="k">else</span>
-                <span class="k">return</span> <span class="k">new</span> <span class="nf">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="n">Top</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>

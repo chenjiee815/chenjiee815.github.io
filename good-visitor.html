@@ -303,7 +303,7 @@
         <span class="n">p</span> <span class="o">=</span> <span class="n">_p</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="n">ShapeVisitorI</span> <span class="nf">newHasPt</span><span class="o">(</span><span class="n">PointD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">HasPtV</span><span class="o">(</span><span class="n">p</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">HasPtV</span><span class="o">(</span><span class="n">p</span><span class="o">);</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">forCircle</span><span class="o">(</span><span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="na">distanceTo0</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="o">;</span>
@@ -321,7 +321,7 @@
         <span class="kd">super</span><span class="o">(</span><span class="n">_p</span><span class="o">);</span>
     <span class="o">}</span>
     <span class="n">ShapeVisitorI</span> <span class="nf">newHasPt</span><span class="o">(</span><span class="n">PointD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">UnionHasPtV</span><span class="o">(</span><span class="n">p</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">UnionHasPtV</span><span class="o">(</span><span class="n">p</span><span class="o">);</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">forUnion</span><span class="o">(</span><span class="n">ShapeD</span> <span class="n">s</span><span class="o">,</span> <span class="n">ShapeD</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">||</span> <span class="n">t</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>

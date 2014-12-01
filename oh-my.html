@@ -439,16 +439,16 @@
         <span class="n">o</span> <span class="o">=</span> <span class="n">_o</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">TreeD</span> <span class="nf">forBud</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Bud</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Bud</span><span class="o">();</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">TreeD</span> <span class="nf">forFlat</span><span class="o">(</span><span class="n">FruitD</span> <span class="n">f</span><span class="o">,</span> <span class="n">TreeD</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">f</span><span class="o">))</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Flat</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">t</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Flat</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">t</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
         <span class="k">else</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Flat</span><span class="o">(</span><span class="n">f</span><span class="o">,</span> <span class="n">t</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Flat</span><span class="o">(</span><span class="n">f</span><span class="o">,</span> <span class="n">t</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">TreeD</span> <span class="nf">forSplit</span><span class="o">(</span><span class="n">TreeD</span> <span class="n">l</span><span class="o">,</span> <span class="n">TreeD</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Split</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Split</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">),</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
@@ -560,28 +560,28 @@
 
 <span class="kd">class</span> <span class="nc">IsFlatV</span> <span class="kd">implements</span> <span class="n">TreeVisitorI</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="n">Object</span> <span class="nf">forBud</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Boolean</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Boolean</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">Object</span> <span class="nf">forFlat</span><span class="o">(</span><span class="n">FruitD</span> <span class="n">f</span><span class="o">,</span> <span class="n">TreeD</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">Object</span> <span class="nf">forSplit</span><span class="o">(</span><span class="n">TreeD</span> <span class="n">l</span><span class="o">,</span> <span class="n">TreeD</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Boolean</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Boolean</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
 <span class="kd">class</span> <span class="nc">bIsSplitV</span> <span class="kd">implements</span> <span class="n">bTreeVisitorI</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">forBud</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Boolean</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Boolean</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">forFlat</span><span class="o">(</span><span class="n">FruitD</span> <span class="n">f</span><span class="o">,</span> <span class="n">TreeD</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Boolean</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Boolean</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">forSplit</span><span class="o">(</span><span class="n">TreeD</span> <span class="n">l</span><span class="o">,</span> <span class="n">TreeD</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(((</span><span class="n">Boolean</span><span class="o">)(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">))).</span><span class="na">booleanValue</span><span class="o">())</span>
             <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
         <span class="k">else</span><span class="o">:</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Boolean</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Boolean</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
@@ -614,16 +614,16 @@
         <span class="n">a</span> <span class="o">=</span> <span class="n">_a</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">Object</span> <span class="nf">forBud</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Integer</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="n">Object</span> <span class="nf">forFlat</span><span class="o">(</span><span class="n">FruitD</span> <span class="n">f</span><span class="o">,</span> <span class="n">TreeD</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">f</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">a</span><span class="o">))</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)(</span><span class="n">t</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">))).</span><span class="na">intValue</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)(</span><span class="n">t</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">))).</span><span class="na">intValue</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
         <span class="k">else</span>
             <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">forSplit</span><span class="o">(</span><span class="n">TreeD</span> <span class="n">l</span><span class="o">,</span> <span class="n">TreeD</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">))).</span><span class="na">intValue</span><span class="o">()</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">(((</span><span class="n">Integer</span><span class="o">)(</span><span class="n">l</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">))).</span><span class="na">intValue</span><span class="o">()</span>
                            <span class="o">+</span>
                            <span class="o">((</span><span class="n">Integer</span><span class="o">)(</span><span class="n">r</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">))).</span><span class="na">intValue</span><span class="o">());</span>
     <span class="o">}</span>
