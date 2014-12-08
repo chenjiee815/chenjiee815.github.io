@@ -14,12 +14,12 @@
 
 <meta property="og:title" content="SimpleXMLRPCServer标准库源码学习 "/>
 <meta property="og:url" content="http://chenjiee815.github.io/simplexmlrpcserverbiao-zhun-ku-yuan-ma-xue-xi.html" />
-<meta property="og:description" content="Contents XML-RPC 简介 请求消息 响应格式 简介 辅助函数 resolve_dotted_attribute list_public_methods remove_duplicates SimpleXMLRPCDispatcher allow_dotted_names SimpleXMLRPCRequestHandler MTU Issue792570 HTTP 压缩 SimpleXMLRPCServer _send_traceback_header Issue1222790 MultiPathXMLRPCServer CGIXMLRPCRequestHandler XML-RPC 简介 全称 XML Remote Procedure Call ，即 XML 远程方法调用。它使用 http/https 作为传输协议，XML 作为传送信息的编码格式。 下面每个格式中的 XML 不暂时不作具体解释了，基本一看就明了，而且解析该内容的具体工作是由 xmlrpclib 模块完成的，到讲解 xmlrpclib 模块时再作具体的分析。 如果想要深入了解 XML-RPC ..." />
+<meta property="og:description" content="Contents XML-RPC 简介 请求消息 响应消息 简介 辅助函数 resolve_dotted_attribute list_public_methods remove_duplicates SimpleXMLRPCDispatcher register_introspection_functions allow_dotted_names SimpleXMLRPCRequestHandler MTU Issue792570 HTTP 压缩 SimpleXMLRPCServer _send_traceback_header Issue1222790 MultiPathXMLRPCServer CGIXMLRPCRequestHandler XML-RPC 简介 全称 XML Remote Procedure Call ，即 XML 远程方法调用。它使用 http/https 作为传输协议，XML 作为传送信息的编码格式。 下面每个格式中的 XML 不暂时不作具体解释了，基本一看就明了，而且解析该内容的具体工作是由 xmlrpclib 模块完成的，到讲解 xmlrpclib 模块时再作具体的分析。 如果想要深入了解 ..." />
 <meta property="og:site_name" content="January Star" />
 <meta property="og:article:author" content="Chen Jie" />
-<meta property="og:article:published_time" content="2014-12-05T18:11:57.779644" />
+<meta property="og:article:published_time" content="2014-12-08T19:44:54.008779" />
 <meta name="twitter:title" content="SimpleXMLRPCServer标准库源码学习 ">
-<meta name="twitter:description" content="Contents XML-RPC 简介 请求消息 响应格式 简介 辅助函数 resolve_dotted_attribute list_public_methods remove_duplicates SimpleXMLRPCDispatcher allow_dotted_names SimpleXMLRPCRequestHandler MTU Issue792570 HTTP 压缩 SimpleXMLRPCServer _send_traceback_header Issue1222790 MultiPathXMLRPCServer CGIXMLRPCRequestHandler XML-RPC 简介 全称 XML Remote Procedure Call ，即 XML 远程方法调用。它使用 http/https 作为传输协议，XML 作为传送信息的编码格式。 下面每个格式中的 XML 不暂时不作具体解释了，基本一看就明了，而且解析该内容的具体工作是由 xmlrpclib 模块完成的，到讲解 xmlrpclib 模块时再作具体的分析。 如果想要深入了解 XML-RPC ...">
+<meta name="twitter:description" content="Contents XML-RPC 简介 请求消息 响应消息 简介 辅助函数 resolve_dotted_attribute list_public_methods remove_duplicates SimpleXMLRPCDispatcher register_introspection_functions allow_dotted_names SimpleXMLRPCRequestHandler MTU Issue792570 HTTP 压缩 SimpleXMLRPCServer _send_traceback_header Issue1222790 MultiPathXMLRPCServer CGIXMLRPCRequestHandler XML-RPC 简介 全称 XML Remote Procedure Call ，即 XML 远程方法调用。它使用 http/https 作为传输协议，XML 作为传送信息的编码格式。 下面每个格式中的 XML 不暂时不作具体解释了，基本一看就明了，而且解析该内容的具体工作是由 xmlrpclib 模块完成的，到讲解 xmlrpclib 模块时再作具体的分析。 如果想要深入了解 ...">
 
         <title>SimpleXMLRPCServer标准库源码学习  · January Star
 </title>
@@ -82,7 +82,7 @@
 <ul class="simple">
 <li><a class="reference internal" href="#xml-rpc" id="id7">XML-RPC 简介 </a><ul>
 <li><a class="reference internal" href="#id1" id="id8"> 请求消息 </a></li>
-<li><a class="reference internal" href="#id2" id="id9"> 响应格式 </a></li>
+<li><a class="reference internal" href="#id2" id="id9"> 响应消息 </a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#id3" id="id10"> 简介 </a></li>
@@ -93,22 +93,23 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#simplexmlrpcdispatcher" id="id15">SimpleXMLRPCDispatcher</a><ul>
-<li><a class="reference internal" href="#allow-dotted-names" id="id16">allow_dotted_names</a></li>
+<li><a class="reference internal" href="#register-introspection-functions" id="id16">register_introspection_functions</a></li>
+<li><a class="reference internal" href="#allow-dotted-names" id="id17">allow_dotted_names</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#simplexmlrpcrequesthandler" id="id17">SimpleXMLRPCRequestHandler</a><ul>
-<li><a class="reference internal" href="#mtu" id="id18">MTU</a></li>
-<li><a class="reference internal" href="#issue792570" id="id19">Issue792570</a></li>
-<li><a class="reference internal" href="#http" id="id20">HTTP 压缩 </a></li>
+<li><a class="reference internal" href="#simplexmlrpcrequesthandler" id="id18">SimpleXMLRPCRequestHandler</a><ul>
+<li><a class="reference internal" href="#mtu" id="id19">MTU</a></li>
+<li><a class="reference internal" href="#issue792570" id="id20">Issue792570</a></li>
+<li><a class="reference internal" href="#http" id="id21">HTTP 压缩 </a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id5" id="id21">SimpleXMLRPCServer</a><ul>
-<li><a class="reference internal" href="#send-traceback-header" id="id22">_send_traceback_header</a></li>
-<li><a class="reference internal" href="#issue1222790" id="id23">Issue1222790</a></li>
+<li><a class="reference internal" href="#id5" id="id22">SimpleXMLRPCServer</a><ul>
+<li><a class="reference internal" href="#send-traceback-header" id="id23">_send_traceback_header</a></li>
+<li><a class="reference internal" href="#issue1222790" id="id24">Issue1222790</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#multipathxmlrpcserver" id="id24">MultiPathXMLRPCServer</a></li>
-<li><a class="reference internal" href="#cgixmlrpcrequesthandler" id="id25">CGIXMLRPCRequestHandler</a></li>
+<li><a class="reference internal" href="#multipathxmlrpcserver" id="id25">MultiPathXMLRPCServer</a></li>
+<li><a class="reference internal" href="#cgixmlrpcrequesthandler" id="id26">CGIXMLRPCRequestHandler</a></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -160,7 +161,7 @@ Content-length: 181
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="id2">
-<h3><a class="toc-backref" href="#id9"> 响应格式 </a></h3>
+<h3><a class="toc-backref" href="#id9"> 响应消息 </a></h3>
 <p> 除非有底层错误，否则响应首行永远为 <cite>200 OK</cite> 。</p>
 <p><cite>Content-Type</cite> 必须指定为 <cite>text/xml</cite> 。</p>
 <p><cite>Content-Length</cite> 必须指定，并且一定要等于消息体的长度。</p>
@@ -804,8 +805,13 @@ resolve_dotted_attribute(a, 'b.c.d') =&gt; a.b.c.d
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&#39;method &quot;</span><span class="si">%s</span><span class="s">&quot; is not supported&#39;</span> <span class="o">%</span> <span class="n">method</span><span class="p">)</span>
 </pre></div>
-</td></tr></table><div class="section" id="allow-dotted-names">
-<h3><a class="toc-backref" href="#id16">allow_dotted_names</a></h3>
+</td></tr></table><div class="section" id="register-introspection-functions">
+<h3><a class="toc-backref" href="#id16">register_introspection_functions</a></h3>
+<p>XML-RPC 的内省协议并不是 XML-RPC 标准的一部分，不过大多数 XML-RPC 的客户端及服务端都实现该内省协议。</p>
+<p> 详情可参见 <a class="reference external" href="http://xmlrpc-c.sourceforge.net/introspection.html">XML-RPC Introspection</a></p>
+</div>
+<div class="section" id="allow-dotted-names">
+<h3><a class="toc-backref" href="#id17">allow_dotted_names</a></h3>
 <p> 在上面的注释中有提到，如果打开该参数，会允许调用者访问实例所在模块的所有变量，甚至执行任意代码。</p>
 <p> 那么调用者是如何做到的呢？</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -833,7 +839,7 @@ resolve_dotted_attribute(a, 'b.c.d') =&gt; a.b.c.d
 </div>
 </div>
 <div class="section" id="simplexmlrpcrequesthandler">
-<h2><a class="toc-backref" href="#id17">SimpleXMLRPCRequestHandler</a></h2>
+<h2><a class="toc-backref" href="#id18">SimpleXMLRPCRequestHandler</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
   3
@@ -1083,7 +1089,7 @@ resolve_dotted_attribute(a, 'b.c.d') =&gt; a.b.c.d
             <span class="n">BaseHTTPServer</span><span class="o">.</span><span class="n">BaseHTTPRequestHandler</span><span class="o">.</span><span class="n">log_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
 </pre></div>
 </td></tr></table><div class="section" id="mtu">
-<h3><a class="toc-backref" href="#id18">MTU</a></h3>
+<h3><a class="toc-backref" href="#id19">MTU</a></h3>
 <p> 通信术语： 最大传输单元（Maximum Transmission Unit，MTU）</p>
 <blockquote>
 指一种通信协议的某一层上面一次传输所能通过的最大数据包大小（以字节为单位）</blockquote>
@@ -1091,12 +1097,12 @@ resolve_dotted_attribute(a, 'b.c.d') =&gt; a.b.c.d
 <p> 代码中使用 <cite>encode_threshold</cite> 主要是为了压缩响应数据的长度，尽量使用较少的传输数次数将响应数据发送给客户端。</p>
 </div>
 <div class="section" id="issue792570">
-<h3><a class="toc-backref" href="#id19">Issue792570</a></h3>
+<h3><a class="toc-backref" href="#id20">Issue792570</a></h3>
 <p> 该 Bug 产生的原因是服务端的 socket 在进行 read 操作时，如果一次性读取大量的数据，有可能会导致读取的数据不完整，导致后面进行 XML 解析时失败。</p>
 <p> 详情参见 <a class="reference external" href="http://bugs.python.org/issue792570">SimpleXMLRPCServer cannot handle large requests</a></p>
 </div>
 <div class="section" id="http">
-<h3><a class="toc-backref" href="#id20">HTTP 压缩 </a></h3>
+<h3><a class="toc-backref" href="#id21">HTTP 压缩 </a></h3>
 <p>HTTP 压缩是在 Web 服务器和浏览器间传输压缩文本内容的方法，主要为了更加有效节约带宽流量。当然，它的代价就是增加了服务器的一些 CPU 开销。</p>
 <p> 其实 HTTP 压缩本质上来说是 HTTP 内容编码的子集。</p>
 <p>HTTP 内容编码定义了一些标准的内容编码类型，并允许用扩展编码的形式添加更多的编码。</p>
@@ -1117,7 +1123,7 @@ resolve_dotted_attribute(a, 'b.c.d') =&gt; a.b.c.d
 </div>
 </div>
 <div class="section" id="id5">
-<h2><a class="toc-backref" href="#id21">SimpleXMLRPCServer</a></h2>
+<h2><a class="toc-backref" href="#id22">SimpleXMLRPCServer</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1157,7 +1163,7 @@ resolve_dotted_attribute(a, 'b.c.d') =&gt; a.b.c.d
             <span class="n">fcntl</span><span class="o">.</span><span class="n">fcntl</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span> <span class="n">fcntl</span><span class="o">.</span><span class="n">F_SETFD</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
 </pre></div>
 </td></tr></table><div class="section" id="send-traceback-header">
-<h3><a class="toc-backref" href="#id22">_send_traceback_header</a></h3>
+<h3><a class="toc-backref" href="#id23">_send_traceback_header</a></h3>
 <p> 调试参数。如果该参数为 True，XML-RPC 在处理请求消息的解析及 RPC 方法分发时发生异常，响应消息头部就会带上异常栈信息。</p>
 <div class="warning">
 <p class="first admonition-title">Warning</p>
@@ -1165,14 +1171,14 @@ resolve_dotted_attribute(a, 'b.c.d') =&gt; a.b.c.d
 </div>
 </div>
 <div class="section" id="issue1222790">
-<h3><a class="toc-backref" href="#id23">Issue1222790</a></h3>
+<h3><a class="toc-backref" href="#id24">Issue1222790</a></h3>
 <p> 该 Bug 描述的情况是，服务端提供的 RPC 方法中有可能调用（linux: fork+exec）外部程序，那么该外部程序就会继承服务端打开的 socket 句柄（fork 函数的功能），如果此时服务端在该外部程序退出之前就退出了，外部程序就会占用该 socket 句柄（该句柄绑定的 IP：PORT 也就会一直被占用），服务端进程再次拉起时，会尝试绑定原来的 IP：PORT，但由于其被占用，服务端就会报错误 <cite>Address already in use</cite> ，无法正常工作。</p>
 <p> 那么对该 socket 句柄设置了 <cite>FD_CLOEXEC</cite> 标志后，在 fork 出来的子进程里执行 exec 来调用外部程序时，就会自动关闭该 socket 句柄，外部程序就会不占用服务端绑定的 IP：PORT。</p>
 <p> 详情参见 <a class="reference external" href="http://bugs.python.org/issue1222790">SimpleXMLRPCServer does not set FD_CLOEXEC</a></p>
 </div>
 </div>
 <div class="section" id="multipathxmlrpcserver">
-<h2><a class="toc-backref" href="#id24">MultiPathXMLRPCServer</a></h2>
+<h2><a class="toc-backref" href="#id25">MultiPathXMLRPCServer</a></h2>
 <p> 多路分发 XML-RPC 服务 </p>
 <p> 它和 <cite>SimpleXMLRPCServer</cite> 的区别在于，它支持注册多个 Dispatcher 实例并同时提供 XML-RPC 服务，多个实例之间互不冲突（绑定的 URL 路径不同，当然不会冲突）。</p>
 <p>Dispatcher 一般指的是 <cite>SimpleXMLRPCDispatcher</cite> 或者是基于 <cite>SimpleXMLRPCDispatcher</cite> 的类。</p>
@@ -1242,7 +1248,7 @@ resolve_dotted_attribute(a, 'b.c.d') =&gt; a.b.c.d
 </pre></div>
 </td></tr></table></div>
 <div class="section" id="cgixmlrpcrequesthandler">
-<h2><a class="toc-backref" href="#id25">CGIXMLRPCRequestHandler</a></h2>
+<h2><a class="toc-backref" href="#id26">CGIXMLRPCRequestHandler</a></h2>
 <p> 通过 CGI 的形式来进行提供 XML-RPC 服务。</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -1398,16 +1404,16 @@ resolve_dotted_attribute(a, 'b.c.d') =&gt; a.b.c.d
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-12-05T18:11:57.779644">Dec 5, 2014</time>
+            <time pubdate="pubdate" datetime="2014-12-08T19:44:54.008779">Dec 8, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="http://chenjiee815.github.io/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="http://chenjiee815.github.io/tags.html#python-ref">python
-                    <span>22</span>
+                    <span>23</span>
 </a></li>
                 <li><a href="http://chenjiee815.github.io/tags.html#stdlibs-ref">stdlibs
-                    <span>14</span>
+                    <span>15</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
